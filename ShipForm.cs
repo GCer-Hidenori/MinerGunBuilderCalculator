@@ -14,7 +14,7 @@ namespace MinerGunBuilderCalculator
     {
         public static ShipForm Current;
         public ShipLayoutManager shipLayoutManager = null;
-        FireController calculator = null;
+        FireController fireController = null;
         public ShipParameter shipParamater = null;
         public string save_file_name = null;
         public ShipForm()
@@ -29,18 +29,18 @@ namespace MinerGunBuilderCalculator
 
         private void ShipForm_Load(object sender, EventArgs e)
         {
-            calculator = new(this);
-            shipLayoutManager.AddShipLayoutChangeObserver(calculator);
+            fireController = new(this);
+            shipLayoutManager.AddShipLayoutChangeObserver(fireController);
             shipLayoutManager.Draw();
         }
 
-        public void WriteCalculateResult(decimal average_damage,decimal max_damage,decimal? min_damage,decimal projectile_speed, decimal projectile_eject_per_sec)
+        public void WriteCalculateResult(decimal average_damage, decimal max_damage, decimal? min_damage, decimal projectile_speed, decimal projectile_eject_per_sec)
         {
             Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}", average_damage);
             Label_highest_projectile_damage.Text = String.Format("{0:#,0.00}", max_damage);
             Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage);
-            Label_Projectile_Max_Speed.Text = String.Format("{0:#,0.00}",projectile_speed);
-            Label_projectile_ejected_per_sec.Text =String.Format("{0:#,0.00}",projectile_eject_per_sec);
+            Label_Projectile_Max_Speed.Text = String.Format("{0:#,0.00}", projectile_speed);
+            Label_projectile_ejected_per_sec.Text = String.Format("{0:#,0.00}", projectile_eject_per_sec);
 
         }
 
@@ -48,11 +48,13 @@ namespace MinerGunBuilderCalculator
         {
             TextBox_Message.Text += msessage;
         }
-        public TableLayoutPanel GetTableLayoutPanel()
+        
+        public void AddPictureBox(PictureBox pb)
         {
-            return TableLayoutPanel2;
+            panel_pb_parent.Controls.Add(pb);
         }
-        public void SetShipParameteLabelText(decimal base_damage,decimal fire_rate,decimal projectile_speed)
+        
+        public void SetShipParameteLabelText(decimal base_damage, decimal fire_rate, decimal projectile_speed)
         {
             TextBox_BaseDamage.Text = base_damage.ToString();
             TextBox_FireRate.Text = fire_rate.ToString();
@@ -62,7 +64,7 @@ namespace MinerGunBuilderCalculator
         {
             var textbox = (TextBox)sender;
             decimal value;
-            if(!Decimal.TryParse(textbox.Text,out value))
+            if (!Decimal.TryParse(textbox.Text, out value))
             {
                 errorProvider1.SetError(TextBox_BaseDamage, "Projectile Speed must be number.");
                 e.Cancel = true;
@@ -74,7 +76,7 @@ namespace MinerGunBuilderCalculator
         {
             var textbox = (TextBox)sender;
             decimal value;
-            if(!Decimal.TryParse(textbox.Text,out value))
+            if (!Decimal.TryParse(textbox.Text, out value))
             {
                 errorProvider1.SetError(TextBox_BaseDamage, "Base damage must be number.");
                 e.Cancel = true;
@@ -116,5 +118,7 @@ namespace MinerGunBuilderCalculator
             Current = this;
         }
 
+
+    
     }
 }

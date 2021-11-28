@@ -22,13 +22,17 @@ namespace MinerGunBuilderCalculator
     public class ShipLayoutManager
     {
         public Thing[,] thing_layout;
+        private PictureBox[,] picturebox_layout;
+
+        private Dictionary<PictureBox, Point> dic_picturebox;
+
         private int shipsize;
-        private TableLayoutPanel tab;
         private ShipForm shipForm;
-        private TableLayoutPanelCellPosition? mouse_hvoer_position;
+        private Point? mouse_hvoer_position;
         private IList<IShipLayoutChangeObserver> ship_layoutchange_observers = new List<IShipLayoutChangeObserver>();
         private ShipParameter ship_parameter;
         private MouseHVoerEffect? mouse_hover_effect;
+        const int panelsize = 39;
 
         public void AddShipLayoutChangeObserver(IShipLayoutChangeObserver observer)
         {
@@ -44,7 +48,7 @@ namespace MinerGunBuilderCalculator
         {
             foreach(var observer in ship_layoutchange_observers)
             {
-                observer.ShipLayoutChanged(thing_layout, ship_parameter);
+                observer.ShipLayoutChanged(thing_layout, ship_parameter,picturebox_layout);
             }
         }
 
@@ -57,7 +61,6 @@ namespace MinerGunBuilderCalculator
         public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,int _size=12)
         {
             shipForm = _shipform;
-            tab = shipForm.GetTableLayoutPanel();
             shipsize = _size;
             ship_parameter = _ship_parameter;
             CreateInitialThingLayout(); // set initial thing_layout
@@ -67,7 +70,6 @@ namespace MinerGunBuilderCalculator
         public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter, Thing[,] _thing_layout)
         {
             shipForm = _shipform;
-            tab = shipForm.GetTableLayoutPanel();
 
             thing_layout = _thing_layout;
             shipsize = thing_layout.GetLength(0);
@@ -78,6 +80,7 @@ namespace MinerGunBuilderCalculator
         {
             thing_layout = new Thing[shipsize, shipsize];
             
+
             int x = 0, y = 0;
             for (x = 0; x < shipsize; x++)
             {
@@ -105,9 +108,9 @@ namespace MinerGunBuilderCalculator
             PictureBox pb = (PictureBox)sender;
             if (pb.BackgroundImage != null)
             {
-                TableLayoutPanel tab = shipForm.GetTableLayoutPanel();
-                var pos = tab.GetPositionFromControl(pb);
-                if (!(thing_layout[pos.Column, pos.Row] is Parts_01_Wall))
+                var pos = dic_picturebox[pb];
+
+                if (!(thing_layout[pos.X, pos.Y] is Parts_01_Wall))
                 {
                     mouse_hvoer_position = pos;
                     pb.MouseLeave += PictureBox_MouseLeave;
@@ -119,11 +122,10 @@ namespace MinerGunBuilderCalculator
             if(mouse_hvoer_position != null)
             {
                 PictureBox pb = (PictureBox)sender;
-                TableLayoutPanel tab = shipForm.GetTableLayoutPanel();
-                var pb_pos = tab.GetPositionFromControl(pb);
+                var pb_pos = dic_picturebox[pb];
                 var resource_manager = Resource_Effects.ResourceManager;
 
-                Thing thing = thing_layout[pb_pos.Column, pb_pos.Row];
+                Thing thing = thing_layout[pb_pos.X, pb_pos.Y];
 
                 if(thing.IsRotatable &&  pb_pos == mouse_hvoer_position && e.Y < pb.Height / 3.0)
                 {
@@ -175,8 +177,7 @@ namespace MinerGunBuilderCalculator
             pb.Image = null;
             pb.MouseLeave -= PictureBox_MouseLeave;
 
-            TableLayoutPanel tab = shipForm.GetTableLayoutPanel();
-            var pb_pos = tab.GetPositionFromControl(pb);
+            var pb_pos = dic_picturebox[pb];
             if(pb_pos == mouse_hvoer_position)
             {
                 mouse_hvoer_position = null;
@@ -189,24 +190,23 @@ namespace MinerGunBuilderCalculator
             if (e.Button == MouseButtons.Left)
             {
                 PictureBox pb = (PictureBox)sender;
-                TableLayoutPanel tab = shipForm.GetTableLayoutPanel();
-                var pb_pos = tab.GetPositionFromControl(pb);
+                var pb_pos = dic_picturebox[pb];
 
                 switch (mouse_hover_effect)
                 {
                     case MouseHVoerEffect.ARROW_LEFT:
-                        thing_layout[pb_pos.Column, pb_pos.Row].Turn(TurnDirection.LEFT);
-                        Rotate_Image(pb, thing_layout[pb_pos.Column, pb_pos.Row]);
+                        thing_layout[pb_pos.X, pb_pos.Y].Turn(TurnDirection.LEFT);
+                        Rotate_Image(pb, thing_layout[pb_pos.X, pb_pos.Y]);
 
                         NotifyShipLayoutChange2Observer();
                         return;
                     case MouseHVoerEffect.ARROW_RIGHT:
-                        thing_layout[pb_pos.Column, pb_pos.Row].Turn(TurnDirection.RIGHT);
-                        Rotate_Image(pb, thing_layout[pb_pos.Column, pb_pos.Row]);
+                        thing_layout[pb_pos.X, pb_pos.Y].Turn(TurnDirection.RIGHT);
+                        Rotate_Image(pb, thing_layout[pb_pos.X, pb_pos.Y]);
                         NotifyShipLayoutChange2Observer();
                         return;
                     case MouseHVoerEffect.CROSSMARK:
-                        thing_layout[pb_pos.Column, pb_pos.Row] = new Parts_Null(thing_layout);
+                        thing_layout[pb_pos.X, pb_pos.Y] = new Parts_Null(thing_layout);
 			            pb.BackgroundImage = null;
                         NotifyShipLayoutChange2Observer();
                         return;
@@ -286,10 +286,10 @@ namespace MinerGunBuilderCalculator
             {
                 var to_pb = (PictureBox)sender;
                 var from_pb = (PictureBox)e.Data.GetData(typeof(PictureBox));
-                var from_pos = tab.GetPositionFromControl(from_pb);
                 if (from_pb.Parent == to_pb.Parent)
                 {
-                    if (thing_layout[from_pos.Column, from_pos.Row].GetType() != typeof(Parts_Null))
+                    var from_pos = dic_picturebox[from_pb];
+                    if (thing_layout[from_pos.X, from_pos.Y].GetType() != typeof(Parts_Null))
                     {
                         e.Effect = DragDropEffects.Move;
                     }
@@ -310,19 +310,18 @@ namespace MinerGunBuilderCalculator
             if (e.Data.GetDataPresent(typeof(PictureBox)))
             {
                 var to_pb = (PictureBox)sender;
-                TableLayoutPanel tab = shipForm.GetTableLayoutPanel();
-                var to_pos = tab.GetPositionFromControl(to_pb);
+                var to_pos = dic_picturebox[to_pb];
                 var from_pb = (PictureBox)e.Data.GetData(typeof(PictureBox));
                 Thing from_obj, to_obj;
                 
                 if (from_pb.Parent == to_pb.Parent)
                 {
                     (from_pb.BackgroundImage, to_pb.BackgroundImage) = (to_pb.BackgroundImage, from_pb.BackgroundImage);
-                    var from_pos = tab.GetPositionFromControl(from_pb);
-                    from_obj = thing_layout[from_pos.Column, from_pos.Row];
-                    to_obj = thing_layout[to_pos.Column, to_pos.Row];
-                    thing_layout[from_pos.Column, from_pos.Row] = to_obj;
-                    thing_layout[to_pos.Column, to_pos.Row] = from_obj;
+                    var from_pos = dic_picturebox[from_pb];
+                    from_obj = thing_layout[from_pos.X, from_pos.Y];
+                    to_obj = thing_layout[to_pos.X, to_pos.Y];
+                    thing_layout[from_pos.X, from_pos.Y] = to_obj;
+                    thing_layout[to_pos.X, to_pos.Y] = from_obj;
 
                     NotifyShipLayoutChange2Observer();
                 }
@@ -331,7 +330,7 @@ namespace MinerGunBuilderCalculator
                     to_pb.BackgroundImage = from_pb.BackgroundImage;
                     to_obj = ResourceName2Item(from_pb.Name);
                
-                    thing_layout[to_pos.Column, to_pos.Row] = to_obj;
+                    thing_layout[to_pos.X, to_pos.Y] = to_obj;
 
                     NotifyShipLayoutChange2Observer();
                 }
@@ -340,19 +339,30 @@ namespace MinerGunBuilderCalculator
 
         private void CreatePictureBoxs()
         {
+            picturebox_layout = new PictureBox[shipsize,shipsize];
+            dic_picturebox = new Dictionary<PictureBox, Point>();
             for (var x = 0; x < shipsize; x++)
             {
                 for (var y = 0; y < shipsize; y++)
                 {
-                    var pb = new PictureBox();
-                    pb.AllowDrop = true;
-                    pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                    var pb = new PictureBox
+                    {
+                        AllowDrop = true,
+                        SizeMode = PictureBoxSizeMode.StretchImage,
+
+                        Location = new Point(x * panelsize, y * panelsize),
+                        Size = new Size(panelsize, panelsize),
+                        BorderStyle = BorderStyle.FixedSingle
+                    };
+
                     pb.MouseDown += Picturebox_click;
                     pb.DragEnter += PictureBox_DragEnter;
                     pb.DragDrop += PictureBox_DragDrop;
                     pb.MouseHover += PictureBox_MouseHover;
                     pb.MouseMove += PictureBox_MouseMove;
-                    tab.Controls.Add(pb);
+                    shipForm.AddPictureBox(pb);
+                    dic_picturebox[pb] = new Point(x, y);
+                    picturebox_layout[x,y] = pb;
                 }
             }
 
@@ -364,7 +374,7 @@ namespace MinerGunBuilderCalculator
             {
                 for(var y = 0;y < shipsize; y++)
                 {
-                    pb = (PictureBox)tab.GetControlFromPosition(x, y);
+                    pb = picturebox_layout[x,y];
                     pb.BackgroundImageLayout = ImageLayout.Zoom;
                     pb.BackgroundImage = Item2image(thing_layout[x, y]);
                     Rotate_Image(pb, thing_layout[x, y]);

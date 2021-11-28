@@ -16,11 +16,11 @@ namespace MinerGunBuilderCalculator
         {
             shipForm = _shipForm;
         }
-        public void ShipLayoutChanged(Thing[,] thing_layout,ShipParameter shipParameter)
+        public void ShipLayoutChanged(Thing[,] thing_layout,ShipParameter shipParameter,PictureBox[,] picturebox_layout)
         {
             CreateProjectileFlow(thing_layout );
-            DrawProjectileEffect(thing_layout);
-            DrawEjectorEffect(thing_layout);
+            DrawProjectileEffect(thing_layout,picturebox_layout);
+            DrawEjectorEffect(thing_layout,picturebox_layout);
             string message = CalculateDamage(thing_layout, shipParameter);
             shipForm.AddMessage(message);
         }
@@ -81,17 +81,16 @@ namespace MinerGunBuilderCalculator
             return stringBuilder.ToString();
         }
 
-        private void DrawEjectorEffect(Thing[,] thing_layout)
+        private void DrawEjectorEffect(Thing[,] thing_layout,PictureBox[,] picturebox_layout)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
-            TableLayoutPanel tableLayoutPanel = shipForm.GetTableLayoutPanel();
             var resource_manager_effect = Resource_Effects.ResourceManager;
             var resource_manager_shipparts = Resource_ShipParts.ResourceManager;
             IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
             foreach (Parts_02_Ejector ejector in IEejector)
             {
                 var loc = ejector.GetLocation();
-                var pb = (PictureBox)tableLayoutPanel.GetControlFromPosition(loc.X,loc.Y);
+                var pb = picturebox_layout[loc.X,loc.Y];
                 if(ejector.Access_from_abs_top != null || ejector.Access_from_abs_right != null || ejector.Access_from_abs_down != null || ejector.Access_from_abs_left != null)
                 {
                     var image = (Bitmap)resource_manager_effect.GetObject("Parts_02_Ejector_ejecting");
@@ -106,16 +105,15 @@ namespace MinerGunBuilderCalculator
                 }
             }
         }
-        private void DrawProjectileEffect(Thing[,] thing_layout)
+        private void DrawProjectileEffect(Thing[,] thing_layout,PictureBox[,] picturebox_layout)
         {
-            TableLayoutPanel tableLayoutPanel = shipForm.GetTableLayoutPanel();
             var resource_manager = Resource_Effects.ResourceManager;
 
             for(var x = 0;x < thing_layout.GetLength(0); x++)
             {
                 for(var y=0;y < thing_layout.GetLength(1); y++)
                 {
-                    var pb = (PictureBox)tableLayoutPanel.GetControlFromPosition(x, y);
+                    var pb = picturebox_layout[x,y];
                     pb.Name = null;
                     pb.Image = null;
                 }
@@ -146,7 +144,7 @@ namespace MinerGunBuilderCalculator
                     for(y = y_from + 1;y < y_to; y++)
                     {
                         Bitmap image;
-                        pb = (PictureBox)tableLayoutPanel.GetControlFromPosition(x, y);
+                        pb = picturebox_layout[x,y];
                         if(pb.Name == "HorizontalLine")
                         {
                             image = (Bitmap)resource_manager.GetObject("CrossLine");
@@ -175,7 +173,7 @@ namespace MinerGunBuilderCalculator
                     for(x = x_from + 1;x < x_to; x++)
                     {
                         Bitmap image;
-                        pb = (PictureBox)tableLayoutPanel.GetControlFromPosition(x, y);
+                        pb = picturebox_layout[x,y];
                         if(pb.Name == "VerticalLine")
                         {
                             image = (Bitmap)resource_manager.GetObject("CrossLine");
