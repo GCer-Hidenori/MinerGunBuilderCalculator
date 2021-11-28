@@ -234,24 +234,16 @@ namespace MinerGunBuilderCalculator
         public override List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
         {
 
-
             List<Projectile> inbound_projectiles = new();
 
             if (Access_from_rel_down != null)
             {
-                decimal damage_pool = 0;
                 inbound_projectiles.AddRange(Access_from_rel_down.GetOutboundProjectile(shipParameter,this));
                 foreach (var projectile in inbound_projectiles)
                 {
-                    decimal twenty_of_projectile_damage = Decimal.Multiply(projectile.average_damage, (Decimal)(0.2));
-                    damage_pool += twenty_of_projectile_damage;
-                    decimal ten_of_pool = Decimal.Multiply(damage_pool,(Decimal)0.1);
-                    damage_pool -= ten_of_pool;
-
-                    projectile.min_damage = projectile.min_damage - twenty_of_projectile_damage + ten_of_pool;
-                    projectile.max_damage = projectile.max_damage - twenty_of_projectile_damage + ten_of_pool;
-                    projectile.average_damage = projectile.average_damage - twenty_of_projectile_damage + ten_of_pool;
-                    damage_pool += twenty_of_projectile_damage;
+                    projectile.average_damage *= 1.2m;
+                    projectile.max_damage *= 1.2m;
+                    projectile.min_damage *= 1.2m;
                 }
             }
             return inbound_projectiles;
@@ -503,7 +495,7 @@ namespace MinerGunBuilderCalculator
         }
         public override List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
         {
-            //óvåüèÿ
+            //TO BE CONFIRMED
             List<Projectile> inbound_projectiles = new();
 
             if (Access_from_rel_down != null)
@@ -548,9 +540,8 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
-            //IsPassingThroughLeftRight = true;
         }
-        //óvåüèÿ
+        //TO BE CONFIRMED
         public override List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
         {
             List<Projectile> inbound_projectiles = new();
@@ -592,7 +583,6 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
-            //IsPassingThroughLeftRight = true;
         }
         public override List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
         {
@@ -615,44 +605,9 @@ namespace MinerGunBuilderCalculator
                             }
                             break;
                         }
-                        //inbound_projectiles.Add(projectile);
                     }
                 }
 
-                /*
-                if (Access_from_rel_left != null && Access_to_rel_right != null && Access_from_rel_down != null)
-                {
-                    if (Access_to_rel_right.IsReachable(Access_from_rel_down))
-                    {
-                        foreach(var projectile in Access_from_rel_down.GetOutboundProjectile(shipParameter, this))
-                        {
-                            if (projectile_history.TryGetValue(projectile, out Projectile his_projectile))
-                            {
-                                projectile.average_damage += his_projectile.average_damage;
-                                projectile.min_damage += his_projectile.min_damage;
-                                projectile.max_damage += his_projectile.max_damage;
-                            }
-                            inbound_projectiles.Add(projectile);
-                        }
-                    }
-                }
-                else if (Access_from_rel_right != null && Access_to_rel_left != null && Access_from_rel_down != null)
-                {
-                    if (Access_to_rel_right.IsReachable(Access_from_rel_down))
-                    {
-                        foreach (var projectile in Access_from_rel_down.GetOutboundProjectile(shipParameter, this))
-                        {
-                            if (projectile_history.TryGetValue(projectile, out Projectile his_projectile))
-                            {
-                                projectile.average_damage += his_projectile.average_damage;
-                                projectile.min_damage += his_projectile.min_damage;
-                                projectile.max_damage += his_projectile.max_damage;
-                            }
-                            inbound_projectiles.Add(projectile);
-                        }
-                    }
-                }
-                */
             }
             else if(Access_to_rel_left == to_thing || Access_to_rel_right == to_thing)
             {
@@ -701,5 +656,4 @@ namespace MinerGunBuilderCalculator
     }
 
 
-    //  }
 }

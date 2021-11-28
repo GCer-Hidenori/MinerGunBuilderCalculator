@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +14,6 @@ namespace MinerGunBuilderCalculator
             IsAccessFromRIGHT = true;
             IsAccessFromDOWN = true;
             IsAccessFromLEFT = true;
-
-
-
         }
     }
 }

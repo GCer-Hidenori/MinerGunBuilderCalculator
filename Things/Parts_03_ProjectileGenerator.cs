@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator
 {
-  //  namespace Item
-   // {
     class Parts_03_ProjectileGenerator : Parts
     {
         public Parts_03_ProjectileGenerator(Thing[,] _thing_layout) : base(_thing_layout)
