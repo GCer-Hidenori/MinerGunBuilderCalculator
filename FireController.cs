@@ -75,10 +75,7 @@ namespace MinerGunBuilderCalculator
                 stringBuilder.AppendLine($"ejector {i} avg_damage={average_damage:#,0.00} max_damage={max_damage:#,0.00} min_damage={min_damage:#,0.00} max_speed={max_speed:#,0.00}");
                 i += 1;
 	        }
-            if (total_projectile_num > 0)
-            {
-                total_average_damage = Decimal.Divide(total_average_damage, total_projectile_num);
-            }
+
             shipForm.WriteCalculateResult(total_average_damage, total_max_damage, total_min_damage, total_max_speed, total_fire_rate);
 
             return stringBuilder.ToString();
