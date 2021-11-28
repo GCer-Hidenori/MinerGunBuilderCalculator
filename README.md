@@ -93,7 +93,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@Hidenori_tw](https://twitter.com/Hidenori_tw)
+[@Hidenori_tw](https://twitter.com/Hidenori_tw)
 
 Project Link: [https://github.com/GCer-Hidenori/MinerGunBuilderCalculator](https://github.com/GCer-Hidenori/MinerGunBuilderCalculator)
 
