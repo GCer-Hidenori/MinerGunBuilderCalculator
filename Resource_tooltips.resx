@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Item_01_Guide_right" xml:space="preserve">
+    <value>Guides the projectile to the right.</value>
+  </data>
+  <data name="Item_02_Guide_left" xml:space="preserve">
+    <value>Guides the projectile to the left.</value>
+  </data>
+  <data name="Item_03_Add_1_damage" xml:space="preserve">
+    <value>Projectile damage by 1.</value>
+  </data>
+  <data name="Item_04_Speed_up" xml:space="preserve">
+    <value>Projectile speed by 1.</value>
+  </data>
+  <data name="Item_05_Spread_left" xml:space="preserve">
+    <value>Large spread to the left side.</value>
+  </data>
+  <data name="Item_06_Large_spread" xml:space="preserve">
+    <value>Large spread.</value>
+  </data>
+  <data name="Item_07_Spread_right" xml:space="preserve">
+    <value>Large spread to the right side.</value>
+  </data>
+  <data name="Item_08_Small_spread" xml:space="preserve">
+    <value>Small spread.</value>
+  </data>
+  <data name="Item_09_Curve_left" xml:space="preserve">
+    <value>Projectile flies in a curve to the left.</value>
+  </data>
+  <data name="Item_10_Random_curve" xml:space="preserve">
+    <value>Projectile flies in a random direction.</value>
+  </data>
+  <data name="Item_11_Curve_right" xml:space="preserve">
+    <value>Projectile flies in a curve to the right.</value>
+  </data>
+  <data name="Item_12_Slow_down" xml:space="preserve">
+    <value>Reduce projectile speed by half.</value>
+  </data>
+  <data name="Item_13_Criticalx2" xml:space="preserve">
+    <value>Chance of 33% for double damage.</value>
+  </data>
+  <data name="Item_14_Criticalx10" xml:space="preserve">
+    <value>Chance of 4% for 10x damage.</value>
+  </data>
+  <data name="Item_15_Random_critical" xml:space="preserve">
+    <value>Damage eigher times 0,1,1,1,1,1,1,1,1,1,2,3 or 4.</value>
+  </data>
+  <data name="Item_16_Charge" xml:space="preserve">
+    <value>Absorbs 20% of each damage from each projectile into its pool.And deals 10% of the pool's damage to each bullet.</value>
+  </data>
+  <data name="Item_17_Return" xml:space="preserve">
+    <value>The projectile returns after hit.</value>
+  </data>
+  <data name="Item_18_Random_bounce" xml:space="preserve">
+    <value>Bounce one time with random direction.</value>
+  </data>
+  <data name="Item_19_Richchet" xml:space="preserve">
+    <value>Projectiles rocochet off blocks.</value>
+  </data>
+  <data name="Item_20_Double_lifetime" xml:space="preserve">
+    <value>Doubles the lifetime of the projectile.</value>
+  </data>
+  <data name="Item_21_Split_2_way" xml:space="preserve">
+    <value>Splits the projectile in two.</value>
+  </data>
+  <data name="Item_22_Split_3_way" xml:space="preserve">
+    <value>Splits the projectile in three.</value>
+  </data>
+  <data name="Item_23_Random_2_way" xml:space="preserve">
+    <value>Double damage but random direction.</value>
+  </data>
+  <data name="Item_24_Random_3_way" xml:space="preserve">
+    <value>Triple damage but random direction.</value>
+  </data>
+  <data name="Item_25_Remaining_damage" xml:space="preserve">
+    <value>If block destroyed,continue with bot of remaining damage.</value>
+  </data>
+  <data name="Item_26_Pierce" xml:space="preserve">
+    <value>Projectile pierces one block</value>
+  </data>
+  <data name="Item_27_Round_area" xml:space="preserve">
+    <value>Area damage in a circle but 4% less total damage.</value>
+  </data>
+  <data name="Item_28_Rectangle_area" xml:space="preserve">
+    <value>Area damage in a horizontal rectangle. 4% less total damage.</value>
+  </data>
+  <data name="Item_29_Attraction" xml:space="preserve">
+    <value>Projectiles attract each other.</value>
+  </data>
+  <data name="Item_30_Align_direction" xml:space="preserve">
+    <value>Projectiles align their diection.</value>
+  </data>
+  <data name="Item_31_Align_to_ship" xml:space="preserve">
+    <value>Attraction to line in fron of ship.</value>
+  </data>
+  <data name="Item_32_Add_projectile" xml:space="preserve">
+    <value>Add 1 projectle</value>
+  </data>
+  <data name="Item_33_Fly_forward" xml:space="preserve">
+    <value>After some distance projectile fly upwards.</value>
+  </data>
+  <data name="Item_34_Fly_sideways" xml:space="preserve">
+    <value>After some distance projectile fly sideways.</value>
+  </data>
+  <data name="Item_35_Money_crossing" xml:space="preserve">
+    <value>30% more money when first passed sideways then on defaut direction.</value>
+  </data>
+  <data name="Item_36_Damage_crossing" xml:space="preserve">
+    <value>Adds the damage from the last time crossed.</value>
+  </data>
+  <data name="Item_700_Add_100_damage" xml:space="preserve">
+    <value>Adds 100 damage to the projectild.</value>
+  </data>
+  <data name="Parts_01_Wall" xml:space="preserve">
+    <value>Wall</value>
+  </data>
+  <data name="Parts_02_Ejector" xml:space="preserve">
+    <value>Projectile Ejector</value>
+  </data>
+  <data name="Parts_03_ProjectileGenerator" xml:space="preserve">
+    <value>Projectile generator.</value>
+  </data>
+</root>
