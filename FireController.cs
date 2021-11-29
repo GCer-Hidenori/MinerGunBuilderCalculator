@@ -31,7 +31,7 @@ namespace MinerGunBuilderCalculator
             Hashtable h_ejector = new();
             decimal total_max_damage = 0;
             decimal? total_min_damage = null;
-            decimal total_average_damage = 0;
+            decimal total_average_damage_per_sec = 0;
             decimal total_max_speed = 0;
             decimal total_projectile_num = 0;
             decimal total_fire_rate = 0;
@@ -48,7 +48,7 @@ namespace MinerGunBuilderCalculator
 
                 decimal max_damage = 0;
                 decimal? min_damage = null;
-                decimal average_damage = 0;
+                decimal average_damage_per_sec = 0;
                 decimal fire_rate = 0;
                 
                 decimal max_speed = 0;
@@ -62,21 +62,21 @@ namespace MinerGunBuilderCalculator
                     min_damage = (min_damage == null || min_damage > projectile.min_damage) ? projectile.min_damage : min_damage;
 
                     max_damage = max_damage < projectile.max_damage ? projectile.max_damage : max_damage;
-                    average_damage += projectile.average_damage;
+                    average_damage_per_sec += projectile.average_damage * projectile.fire_rate;
                     max_speed = max_speed < projectile.speed ? projectile.speed : max_speed;
                 }
                 total_max_damage = total_max_damage < max_damage ? max_damage : total_max_damage;
                 total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
                 total_min_damage = (total_min_damage==null|| total_min_damage > min_damage) ? min_damage : total_min_damage;
-                total_average_damage += average_damage;
+                total_average_damage_per_sec += average_damage_per_sec;
                 total_projectile_num += projectile_num;
                 total_fire_rate += fire_rate;
 
-                stringBuilder.AppendLine($"ejector {i} avg_damage={average_damage:#,0.00} max_damage={max_damage:#,0.00} min_damage={min_damage:#,0.00} max_speed={max_speed:#,0.00}");
+                stringBuilder.AppendLine($"ejector {i} avg_damage/sec={average_damage_per_sec:#,0.00} max_damage={max_damage:#,0.00} min_damage={min_damage:#,0.00} max_speed={max_speed:#,0.00}");
                 i += 1;
 	        }
 
-            shipForm.WriteCalculateResult(total_average_damage, total_max_damage, total_min_damage, total_max_speed, total_fire_rate);
+            shipForm.WriteCalculateResult(total_average_damage_per_sec, total_max_damage, total_min_damage, total_max_speed, total_fire_rate);
 
             return stringBuilder.ToString();
         }

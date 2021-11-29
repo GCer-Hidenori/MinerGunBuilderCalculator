@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -572,6 +573,7 @@ namespace MinerGunBuilderCalculator
     }
     class Item_36_Damage_crossing : Item
     {
+        [JsonIgnore]
         public Dictionary<Projectile, Projectile> projectile_history = new();
 
 

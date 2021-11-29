@@ -286,6 +286,7 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Message.Name = "TextBox_Message";
             this.TextBox_Message.Size = new System.Drawing.Size(134, 551);
             this.TextBox_Message.TabIndex = 2;
+            this.TextBox_Message.Visible = false;
             // 
             // panel_pb_parent
             // 
