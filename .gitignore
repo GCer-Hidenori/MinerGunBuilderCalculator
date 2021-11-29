@@ -389,6 +389,3 @@ FodyWeavers.xsd
 *.sln.iml
 
 # add by hand
-*.deps.json
-*.dev.json
-ref/
