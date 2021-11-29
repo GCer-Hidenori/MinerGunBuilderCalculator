@@ -71,7 +71,7 @@ namespace MinerGunBuilderCalculator
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(63, 15);
             this.label3.TabIndex = 3;
-            this.label3.Text = "version 0.1";
+            this.label3.Text = "version 0.2";
             // 
             // Form_VersionInfo
             // 
