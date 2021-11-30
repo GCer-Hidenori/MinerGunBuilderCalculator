@@ -34,6 +34,7 @@
 <details>
   <summary>Table of Contents</summary>
   <ol>
+    <li><a href="#system-requirements">System requirements</a></li>
     <li><a href="#Installation">Installation</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
@@ -51,6 +52,11 @@ You can calculate damage of Miner Gun Builder.
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
+## System Requirements
+- Windows 7 SP1(*), 8.1
+- Windows 10 Client Version 1607+
+- Windows Server2012 R2 and newer version
+- Windows Server Core2012 R2 and newer version
 
 <!-- GETTING STARTED -->
 ## Installation
