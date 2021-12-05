@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -117,115 +117,121 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Item_01_Guide_right" xml:space="preserve">
+  <data name="Item_001_Guide_right" xml:space="preserve">
     <value>Guides the projectile to the right.</value>
   </data>
-  <data name="Item_02_Guide_left" xml:space="preserve">
+  <data name="Item_002_Guide_left" xml:space="preserve">
     <value>Guides the projectile to the left.</value>
   </data>
-  <data name="Item_03_Add_1_damage" xml:space="preserve">
+  <data name="Item_003_Add_1_damage" xml:space="preserve">
     <value>Projectile damage by 1.</value>
   </data>
-  <data name="Item_04_Speed_up" xml:space="preserve">
+  <data name="Item_004_Speed_up" xml:space="preserve">
     <value>Projectile speed by 1.</value>
   </data>
-  <data name="Item_05_Spread_left" xml:space="preserve">
+  <data name="Item_005_Spread_left" xml:space="preserve">
     <value>Large spread to the left side.</value>
   </data>
-  <data name="Item_06_Large_spread" xml:space="preserve">
+  <data name="Item_006_Large_spread" xml:space="preserve">
     <value>Large spread.</value>
   </data>
-  <data name="Item_07_Spread_right" xml:space="preserve">
+  <data name="Item_007_Spread_right" xml:space="preserve">
     <value>Large spread to the right side.</value>
   </data>
-  <data name="Item_08_Small_spread" xml:space="preserve">
+  <data name="Item_008_Small_spread" xml:space="preserve">
     <value>Small spread.</value>
   </data>
-  <data name="Item_09_Curve_left" xml:space="preserve">
+  <data name="Item_009_Curve_left" xml:space="preserve">
     <value>Projectile flies in a curve to the left.</value>
   </data>
-  <data name="Item_10_Random_curve" xml:space="preserve">
+  <data name="Item_010_Random_curve" xml:space="preserve">
     <value>Projectile flies in a random direction.</value>
   </data>
-  <data name="Item_11_Curve_right" xml:space="preserve">
+  <data name="Item_011_Curve_right" xml:space="preserve">
     <value>Projectile flies in a curve to the right.</value>
   </data>
-  <data name="Item_12_Slow_down" xml:space="preserve">
+  <data name="Item_012_Slow_down" xml:space="preserve">
     <value>Reduce projectile speed by half.</value>
   </data>
-  <data name="Item_13_Criticalx2" xml:space="preserve">
+  <data name="Item_013_Criticalx2" xml:space="preserve">
     <value>Chance of 33% for double damage.</value>
   </data>
-  <data name="Item_14_Criticalx10" xml:space="preserve">
+  <data name="Item_014_Criticalx10" xml:space="preserve">
     <value>Chance of 4% for 10x damage.</value>
   </data>
-  <data name="Item_15_Random_critical" xml:space="preserve">
+  <data name="Item_015_Random_critical" xml:space="preserve">
     <value>Damage eigher times 0,1,1,1,1,1,1,1,1,1,2,3 or 4.</value>
   </data>
-  <data name="Item_16_Charge" xml:space="preserve">
+  <data name="Item_016_Charge" xml:space="preserve">
     <value>Absorbs 20% of each damage from each projectile into its pool.And deals 10% of the pool's damage to each bullet.</value>
   </data>
-  <data name="Item_17_Return" xml:space="preserve">
+  <data name="Item_017_Return" xml:space="preserve">
     <value>The projectile returns after hit.</value>
   </data>
-  <data name="Item_18_Random_bounce" xml:space="preserve">
+  <data name="Item_018_Random_bounce" xml:space="preserve">
     <value>Bounce one time with random direction.</value>
   </data>
-  <data name="Item_19_Richchet" xml:space="preserve">
+  <data name="Item_019_Richchet" xml:space="preserve">
     <value>Projectiles rocochet off blocks.</value>
   </data>
-  <data name="Item_20_Double_lifetime" xml:space="preserve">
+  <data name="Item_020_Double_lifetime" xml:space="preserve">
     <value>Doubles the lifetime of the projectile.</value>
   </data>
-  <data name="Item_21_Split_2_way" xml:space="preserve">
+  <data name="Item_021_Split_2_way" xml:space="preserve">
     <value>Splits the projectile in two.</value>
   </data>
-  <data name="Item_22_Split_3_way" xml:space="preserve">
+  <data name="Item_022_Split_3_way" xml:space="preserve">
     <value>Splits the projectile in three.</value>
   </data>
-  <data name="Item_23_Random_2_way" xml:space="preserve">
+  <data name="Item_023_Random_2_way" xml:space="preserve">
     <value>Double damage but random direction.</value>
   </data>
-  <data name="Item_24_Random_3_way" xml:space="preserve">
+  <data name="Item_024_Random_3_way" xml:space="preserve">
     <value>Triple damage but random direction.</value>
   </data>
-  <data name="Item_25_Remaining_damage" xml:space="preserve">
+  <data name="Item_025_Remaining_damage" xml:space="preserve">
     <value>If block destroyed,continue with bot of remaining damage.</value>
   </data>
-  <data name="Item_26_Pierce" xml:space="preserve">
+  <data name="Item_026_Pierce" xml:space="preserve">
     <value>Projectile pierces one block</value>
   </data>
-  <data name="Item_27_Round_area" xml:space="preserve">
+  <data name="Item_027_Round_area" xml:space="preserve">
     <value>Area damage in a circle but 4% less total damage.</value>
   </data>
-  <data name="Item_28_Rectangle_area" xml:space="preserve">
+  <data name="Item_028_Rectangle_area" xml:space="preserve">
     <value>Area damage in a horizontal rectangle. 4% less total damage.</value>
   </data>
-  <data name="Item_29_Attraction" xml:space="preserve">
+  <data name="Item_029_Attraction" xml:space="preserve">
     <value>Projectiles attract each other.</value>
   </data>
-  <data name="Item_30_Align_direction" xml:space="preserve">
+  <data name="Item_030_Align_direction" xml:space="preserve">
     <value>Projectiles align their diection.</value>
   </data>
-  <data name="Item_31_Align_to_ship" xml:space="preserve">
+  <data name="Item_031_Align_to_ship" xml:space="preserve">
     <value>Attraction to line in fron of ship.</value>
   </data>
-  <data name="Item_32_Add_projectile" xml:space="preserve">
+  <data name="Item_032_Add_projectile" xml:space="preserve">
     <value>Add 1 projectle</value>
   </data>
-  <data name="Item_33_Fly_forward" xml:space="preserve">
+  <data name="Item_033_Fly_forward" xml:space="preserve">
     <value>After some distance projectile fly upwards.</value>
   </data>
-  <data name="Item_34_Fly_sideways" xml:space="preserve">
+  <data name="Item_034_Fly_sideways" xml:space="preserve">
     <value>After some distance projectile fly sideways.</value>
   </data>
-  <data name="Item_35_Money_crossing" xml:space="preserve">
+  <data name="Item_035_Money_crossing" xml:space="preserve">
     <value>30% more money when first passed sideways then on defaut direction.</value>
   </data>
-  <data name="Item_36_Damage_crossing" xml:space="preserve">
+  <data name="Item_036_Damage_crossing" xml:space="preserve">
     <value>Adds the damage from the last time crossed.</value>
   </data>
-  <data name="Item_700_Add_100_damage" xml:space="preserve">
+  <data name="Item_101_Tier_damage" xml:space="preserve">
+    <value>Adds 10% of the highest reached Tier in the world map as damage.</value>
+  </data>
+  <data name="Item_102_More_than_lower" xml:space="preserve">
+    <value>4x damage if damage if lower than that of last passing projectile.</value>
+  </data>
+  <data name="Item_109_Add_100_damage" xml:space="preserve">
     <value>Adds 100 damage to the projectild.</value>
   </data>
   <data name="Parts_01_Wall" xml:space="preserve">

@@ -17,6 +17,7 @@ namespace MinerGunBuilderCalculator
         FireController fireController = null;
         public ShipParameter shipParamater = null;
         public string save_file_name = null;
+        internal Profile profile = null;
         public ShipForm()
         {
             InitializeComponent();
@@ -34,8 +35,9 @@ namespace MinerGunBuilderCalculator
             shipLayoutManager.Draw();
         }
 
-        public void WriteCalculateResult(decimal average_damage_per_sec, decimal max_damage, decimal? min_damage, decimal projectile_speed, decimal projectile_eject_per_sec)
+        public void WriteCalculateResult(decimal average_damage_per_sec, decimal? min_damage, decimal average_damage, decimal max_damage, decimal projectile_speed, decimal projectile_eject_per_sec)
         {
+            Label_average_damage.Text = String.Format("{0:#,0.00}", average_damage);
             Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}", average_damage_per_sec);
             Label_highest_projectile_damage.Text = String.Format("{0:#,0.00}", max_damage);
             Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage);
@@ -118,7 +120,23 @@ namespace MinerGunBuilderCalculator
             Current = this;
         }
 
+        private void TextBox_Highet_Tier_in_World_Map_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(TextBox_Highet_Tier_in_World_Map, "");
+            shipLayoutManager.NotifyShipLayoutChange2Observer();
+        }
 
-    
+        private void TextBox_Highet_Tier_in_World_Map_Validating(object sender, CancelEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            int value;
+            if (!int.TryParse(textbox.Text, out value))
+            {
+                errorProvider1.SetError(TextBox_Highet_Tier_in_World_Map, "Firerate must be number.");
+                e.Cancel = true;
+            }
+            profile.Highest_Reached_Tier_in_World_Map = value;
+
+        }
     }
 }

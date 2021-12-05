@@ -28,9 +28,11 @@ namespace MinerGunBuilderCalculator
         {
             ShipForm shipForm = new ShipForm();
             ShipParameter shipParamater = new();
-            ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater, 14);
+            Profile profile = new();
+            ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater, profile,14);
             shipForm.shipLayoutManager = shipLayoutManager;
             shipForm.shipParamater = shipParamater;
+            shipForm.profile = profile;
 
             // Set the Parent Form of the Child window.
             shipForm.MdiParent = this;
@@ -61,9 +63,11 @@ namespace MinerGunBuilderCalculator
                 shipForm.Text = Path.GetFileName(save_file_name);
                 shipForm.save_file_name = save_file_name;
                 ShipParameter shipParamater = save_data.shipParameter;
-                ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater, save_data.thing_layout);
+                Profile profile = save_data.profile;
+                ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater,profile, save_data.thing_layout);
                 shipForm.shipLayoutManager = shipLayoutManager;
                 shipForm.shipParamater = shipParamater;
+                shipForm.profile = profile;
 
                 // Set the Parent Form of the Child window.
                 shipForm.MdiParent = this;
@@ -83,7 +87,7 @@ namespace MinerGunBuilderCalculator
                 ShipForm shipForm = ShipForm.Current;
                 var shipLayoutManager = shipForm.GetShipLayoutManager();
                 
-                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.GetShipParameter(),false,shipForm.save_file_name);
+                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.ship_parameter,shipLayoutManager.profile,false,shipForm.save_file_name);
                 shipForm.save_file_name = save_file_name;
                 shipForm.Text = Path.GetFileName(save_file_name);
             }
@@ -100,7 +104,7 @@ namespace MinerGunBuilderCalculator
                 ShipForm shipForm = ShipForm.Current;
                 var shipLayoutManager = shipForm.GetShipLayoutManager();
 
-                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.GetShipParameter(), true);
+                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.ship_parameter,shipLayoutManager.profile, true);
                 shipForm.save_file_name = save_file_name;
                 shipForm.Text = Path.GetFileName(save_file_name);
             }

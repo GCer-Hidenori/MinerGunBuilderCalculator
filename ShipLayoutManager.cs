@@ -30,7 +30,8 @@ namespace MinerGunBuilderCalculator
         private ShipForm shipForm;
         private Point? mouse_hvoer_position;
         private IList<IShipLayoutChangeObserver> ship_layoutchange_observers = new List<IShipLayoutChangeObserver>();
-        private ShipParameter ship_parameter;
+        public ShipParameter ship_parameter;
+        internal Profile profile;
         private MouseHVoerEffect? mouse_hover_effect;
         const int panelsize = 39;
 
@@ -39,16 +40,11 @@ namespace MinerGunBuilderCalculator
             ship_layoutchange_observers.Add(observer);
         }
 
-        public ShipParameter GetShipParameter()
-        {
-            return ship_parameter;
-        }
-
         public void NotifyShipLayoutChange2Observer()
         {
             foreach(var observer in ship_layoutchange_observers)
             {
-                observer.ShipLayoutChanged(thing_layout, ship_parameter,picturebox_layout);
+                observer.ShipLayoutChanged(thing_layout, ship_parameter,profile,picturebox_layout);
             }
         }
 
@@ -58,22 +54,24 @@ namespace MinerGunBuilderCalculator
         /// </summary>
         /// <param name="_tab">TableLayoutPanel</param>
         /// <param name="_size">Ship size</param>
-        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,int _size=12)
+        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,Profile _profile,int _size=12)
         {
             shipForm = _shipform;
             shipsize = _size;
             ship_parameter = _ship_parameter;
+            profile = _profile;
             CreateInitialThingLayout(); // set initial thing_layout
             CreatePictureBoxs();
         }
 
-        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter, Thing[,] _thing_layout)
+        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,Profile _profile, Thing[,] _thing_layout)
         {
             shipForm = _shipform;
 
             thing_layout = _thing_layout;
             shipsize = thing_layout.GetLength(0);
             ship_parameter = _ship_parameter;
+            profile = _profile;
             CreatePictureBoxs();
         }
         private void CreateInitialThingLayout()

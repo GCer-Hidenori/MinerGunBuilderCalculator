@@ -63,333 +63,333 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   Guides the projectile to the right. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_01_Guide_right {
+        internal static string Item_001_Guide_right {
             get {
-                return ResourceManager.GetString("Item_01_Guide_right", resourceCulture);
+                return ResourceManager.GetString("Item_001_Guide_right", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Guides the projectile to the left. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_02_Guide_left {
+        internal static string Item_002_Guide_left {
             get {
-                return ResourceManager.GetString("Item_02_Guide_left", resourceCulture);
+                return ResourceManager.GetString("Item_002_Guide_left", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile damage by 1. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_03_Add_1_damage {
+        internal static string Item_003_Add_1_damage {
             get {
-                return ResourceManager.GetString("Item_03_Add_1_damage", resourceCulture);
+                return ResourceManager.GetString("Item_003_Add_1_damage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile speed by 1. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_04_Speed_up {
+        internal static string Item_004_Speed_up {
             get {
-                return ResourceManager.GetString("Item_04_Speed_up", resourceCulture);
+                return ResourceManager.GetString("Item_004_Speed_up", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Large spread to the left side. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_05_Spread_left {
+        internal static string Item_005_Spread_left {
             get {
-                return ResourceManager.GetString("Item_05_Spread_left", resourceCulture);
+                return ResourceManager.GetString("Item_005_Spread_left", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Large spread. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_06_Large_spread {
+        internal static string Item_006_Large_spread {
             get {
-                return ResourceManager.GetString("Item_06_Large_spread", resourceCulture);
+                return ResourceManager.GetString("Item_006_Large_spread", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Large spread to the right side. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_07_Spread_right {
+        internal static string Item_007_Spread_right {
             get {
-                return ResourceManager.GetString("Item_07_Spread_right", resourceCulture);
+                return ResourceManager.GetString("Item_007_Spread_right", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Small spread. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_08_Small_spread {
+        internal static string Item_008_Small_spread {
             get {
-                return ResourceManager.GetString("Item_08_Small_spread", resourceCulture);
+                return ResourceManager.GetString("Item_008_Small_spread", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile flies in a curve to the left. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_09_Curve_left {
+        internal static string Item_009_Curve_left {
             get {
-                return ResourceManager.GetString("Item_09_Curve_left", resourceCulture);
+                return ResourceManager.GetString("Item_009_Curve_left", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile flies in a random direction. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_10_Random_curve {
+        internal static string Item_010_Random_curve {
             get {
-                return ResourceManager.GetString("Item_10_Random_curve", resourceCulture);
+                return ResourceManager.GetString("Item_010_Random_curve", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile flies in a curve to the right. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_11_Curve_right {
+        internal static string Item_011_Curve_right {
             get {
-                return ResourceManager.GetString("Item_11_Curve_right", resourceCulture);
+                return ResourceManager.GetString("Item_011_Curve_right", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Reduce projectile speed by half. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_12_Slow_down {
+        internal static string Item_012_Slow_down {
             get {
-                return ResourceManager.GetString("Item_12_Slow_down", resourceCulture);
+                return ResourceManager.GetString("Item_012_Slow_down", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Chance of 33% for double damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_13_Criticalx2 {
+        internal static string Item_013_Criticalx2 {
             get {
-                return ResourceManager.GetString("Item_13_Criticalx2", resourceCulture);
+                return ResourceManager.GetString("Item_013_Criticalx2", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Chance of 4% for 10x damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_14_Criticalx10 {
+        internal static string Item_014_Criticalx10 {
             get {
-                return ResourceManager.GetString("Item_14_Criticalx10", resourceCulture);
+                return ResourceManager.GetString("Item_014_Criticalx10", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Damage eigher times 0,1,1,1,1,1,1,1,1,1,2,3 or 4. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_15_Random_critical {
+        internal static string Item_015_Random_critical {
             get {
-                return ResourceManager.GetString("Item_15_Random_critical", resourceCulture);
+                return ResourceManager.GetString("Item_015_Random_critical", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Absorbs 20% of each damage from each projectile into its pool.And deals 10% of the pool&apos;s damage to each bullet. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_16_Charge {
+        internal static string Item_016_Charge {
             get {
-                return ResourceManager.GetString("Item_16_Charge", resourceCulture);
+                return ResourceManager.GetString("Item_016_Charge", resourceCulture);
             }
         }
         
         /// <summary>
         ///   The projectile returns after hit. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_17_Return {
+        internal static string Item_017_Return {
             get {
-                return ResourceManager.GetString("Item_17_Return", resourceCulture);
+                return ResourceManager.GetString("Item_017_Return", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Bounce one time with random direction. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_18_Random_bounce {
+        internal static string Item_018_Random_bounce {
             get {
-                return ResourceManager.GetString("Item_18_Random_bounce", resourceCulture);
+                return ResourceManager.GetString("Item_018_Random_bounce", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectiles rocochet off blocks. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_19_Richchet {
+        internal static string Item_019_Richchet {
             get {
-                return ResourceManager.GetString("Item_19_Richchet", resourceCulture);
+                return ResourceManager.GetString("Item_019_Richchet", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Doubles the lifetime of the projectile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_20_Double_lifetime {
+        internal static string Item_020_Double_lifetime {
             get {
-                return ResourceManager.GetString("Item_20_Double_lifetime", resourceCulture);
+                return ResourceManager.GetString("Item_020_Double_lifetime", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Splits the projectile in two. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_21_Split_2_way {
+        internal static string Item_021_Split_2_way {
             get {
-                return ResourceManager.GetString("Item_21_Split_2_way", resourceCulture);
+                return ResourceManager.GetString("Item_021_Split_2_way", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Splits the projectile in three. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_22_Split_3_way {
+        internal static string Item_022_Split_3_way {
             get {
-                return ResourceManager.GetString("Item_22_Split_3_way", resourceCulture);
+                return ResourceManager.GetString("Item_022_Split_3_way", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Double damage but random direction. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_23_Random_2_way {
+        internal static string Item_023_Random_2_way {
             get {
-                return ResourceManager.GetString("Item_23_Random_2_way", resourceCulture);
+                return ResourceManager.GetString("Item_023_Random_2_way", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Triple damage but random direction. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_24_Random_3_way {
+        internal static string Item_024_Random_3_way {
             get {
-                return ResourceManager.GetString("Item_24_Random_3_way", resourceCulture);
+                return ResourceManager.GetString("Item_024_Random_3_way", resourceCulture);
             }
         }
         
         /// <summary>
         ///   If block destroyed,continue with bot of remaining damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_25_Remaining_damage {
+        internal static string Item_025_Remaining_damage {
             get {
-                return ResourceManager.GetString("Item_25_Remaining_damage", resourceCulture);
+                return ResourceManager.GetString("Item_025_Remaining_damage", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectile pierces one block に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_26_Pierce {
+        internal static string Item_026_Pierce {
             get {
-                return ResourceManager.GetString("Item_26_Pierce", resourceCulture);
+                return ResourceManager.GetString("Item_026_Pierce", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Area damage in a circle but 4% less total damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_27_Round_area {
+        internal static string Item_027_Round_area {
             get {
-                return ResourceManager.GetString("Item_27_Round_area", resourceCulture);
+                return ResourceManager.GetString("Item_027_Round_area", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Area damage in a horizontal rectangle. 4% less total damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_28_Rectangle_area {
+        internal static string Item_028_Rectangle_area {
             get {
-                return ResourceManager.GetString("Item_28_Rectangle_area", resourceCulture);
+                return ResourceManager.GetString("Item_028_Rectangle_area", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectiles attract each other. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_29_Attraction {
+        internal static string Item_029_Attraction {
             get {
-                return ResourceManager.GetString("Item_29_Attraction", resourceCulture);
+                return ResourceManager.GetString("Item_029_Attraction", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Projectiles align their diection. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_30_Align_direction {
+        internal static string Item_030_Align_direction {
             get {
-                return ResourceManager.GetString("Item_30_Align_direction", resourceCulture);
+                return ResourceManager.GetString("Item_030_Align_direction", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Attraction to line in fron of ship. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_31_Align_to_ship {
+        internal static string Item_031_Align_to_ship {
             get {
-                return ResourceManager.GetString("Item_31_Align_to_ship", resourceCulture);
+                return ResourceManager.GetString("Item_031_Align_to_ship", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Add 1 projectle に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_32_Add_projectile {
+        internal static string Item_032_Add_projectile {
             get {
-                return ResourceManager.GetString("Item_32_Add_projectile", resourceCulture);
+                return ResourceManager.GetString("Item_032_Add_projectile", resourceCulture);
             }
         }
         
         /// <summary>
         ///   After some distance projectile fly upwards. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_33_Fly_forward {
+        internal static string Item_033_Fly_forward {
             get {
-                return ResourceManager.GetString("Item_33_Fly_forward", resourceCulture);
+                return ResourceManager.GetString("Item_033_Fly_forward", resourceCulture);
             }
         }
         
         /// <summary>
         ///   After some distance projectile fly sideways. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_34_Fly_sideways {
+        internal static string Item_034_Fly_sideways {
             get {
-                return ResourceManager.GetString("Item_34_Fly_sideways", resourceCulture);
+                return ResourceManager.GetString("Item_034_Fly_sideways", resourceCulture);
             }
         }
         
         /// <summary>
         ///   30% more money when first passed sideways then on defaut direction. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_35_Money_crossing {
+        internal static string Item_035_Money_crossing {
             get {
-                return ResourceManager.GetString("Item_35_Money_crossing", resourceCulture);
+                return ResourceManager.GetString("Item_035_Money_crossing", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Adds the damage from the last time crossed. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_36_Damage_crossing {
+        internal static string Item_036_Damage_crossing {
             get {
-                return ResourceManager.GetString("Item_36_Damage_crossing", resourceCulture);
+                return ResourceManager.GetString("Item_036_Damage_crossing", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Adds 100 damage to the projectild. に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string Item_700_Add_100_damage {
+        internal static string Item_109_Add_100_damage {
             get {
-                return ResourceManager.GetString("Item_700_Add_100_damage", resourceCulture);
+                return ResourceManager.GetString("Item_109_Add_100_damage", resourceCulture);
             }
         }
         

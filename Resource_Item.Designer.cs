@@ -63,9 +63,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_01_Guide_right {
+        internal static System.Drawing.Bitmap Item_001_Guide_right {
             get {
-                object obj = ResourceManager.GetObject("Item_01_Guide_right", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_001_Guide_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_02_Guide_left {
+        internal static System.Drawing.Bitmap Item_002_Guide_left {
             get {
-                object obj = ResourceManager.GetObject("Item_02_Guide_left", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_002_Guide_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_03_Add_1_damage {
+        internal static System.Drawing.Bitmap Item_003_Add_1_damage {
             get {
-                object obj = ResourceManager.GetObject("Item_03_Add_1_damage", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_003_Add_1_damage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +93,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_04_Speed_up {
+        internal static System.Drawing.Bitmap Item_004_Speed_up {
             get {
-                object obj = ResourceManager.GetObject("Item_04_Speed_up", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_004_Speed_up", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_05_Spread_left {
+        internal static System.Drawing.Bitmap Item_005_Spread_left {
             get {
-                object obj = ResourceManager.GetObject("Item_05_Spread_left", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_005_Spread_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_06_Large_spread {
+        internal static System.Drawing.Bitmap Item_006_Large_spread {
             get {
-                object obj = ResourceManager.GetObject("Item_06_Large_spread", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_006_Large_spread", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,9 +123,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_07_Spread_right {
+        internal static System.Drawing.Bitmap Item_007_Spread_right {
             get {
-                object obj = ResourceManager.GetObject("Item_07_Spread_right", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_007_Spread_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -133,9 +133,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_08_Small_spread {
+        internal static System.Drawing.Bitmap Item_008_Small_spread {
             get {
-                object obj = ResourceManager.GetObject("Item_08_Small_spread", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_008_Small_spread", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +143,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_09_Curve_left {
+        internal static System.Drawing.Bitmap Item_009_Curve_left {
             get {
-                object obj = ResourceManager.GetObject("Item_09_Curve_left", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_009_Curve_left", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +153,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_10_Random_curve {
+        internal static System.Drawing.Bitmap Item_010_Random_curve {
             get {
-                object obj = ResourceManager.GetObject("Item_10_Random_curve", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_010_Random_curve", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,9 +163,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_11_Curve_right {
+        internal static System.Drawing.Bitmap Item_011_Curve_right {
             get {
-                object obj = ResourceManager.GetObject("Item_11_Curve_right", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_011_Curve_right", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -173,9 +173,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_12_Slow_down {
+        internal static System.Drawing.Bitmap Item_012_Slow_down {
             get {
-                object obj = ResourceManager.GetObject("Item_12_Slow_down", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_012_Slow_down", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -183,9 +183,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_13_Criticalx2 {
+        internal static System.Drawing.Bitmap Item_013_Criticalx2 {
             get {
-                object obj = ResourceManager.GetObject("Item_13_Criticalx2", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_013_Criticalx2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -193,9 +193,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_14_Criticalx10 {
+        internal static System.Drawing.Bitmap Item_014_Criticalx10 {
             get {
-                object obj = ResourceManager.GetObject("Item_14_Criticalx10", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_014_Criticalx10", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -203,9 +203,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_15_Random_critical {
+        internal static System.Drawing.Bitmap Item_015_Random_critical {
             get {
-                object obj = ResourceManager.GetObject("Item_15_Random_critical", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_015_Random_critical", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -213,9 +213,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_16_Charge {
+        internal static System.Drawing.Bitmap Item_016_Charge {
             get {
-                object obj = ResourceManager.GetObject("Item_16_Charge", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_016_Charge", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -223,9 +223,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_17_Return {
+        internal static System.Drawing.Bitmap Item_017_Return {
             get {
-                object obj = ResourceManager.GetObject("Item_17_Return", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_017_Return", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -233,9 +233,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_18_Random_bounce {
+        internal static System.Drawing.Bitmap Item_018_Random_bounce {
             get {
-                object obj = ResourceManager.GetObject("Item_18_Random_bounce", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_018_Random_bounce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -243,9 +243,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_19_Richchet {
+        internal static System.Drawing.Bitmap Item_019_Richchet {
             get {
-                object obj = ResourceManager.GetObject("Item_19_Richchet", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_019_Richchet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +253,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_20_Double_lifetime {
+        internal static System.Drawing.Bitmap Item_020_Double_lifetime {
             get {
-                object obj = ResourceManager.GetObject("Item_20_Double_lifetime", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_020_Double_lifetime", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -263,9 +263,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_21_Split_2_way {
+        internal static System.Drawing.Bitmap Item_021_Split_2_way {
             get {
-                object obj = ResourceManager.GetObject("Item_21_Split_2_way", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_021_Split_2_way", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -273,9 +273,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_22_Split_3_way {
+        internal static System.Drawing.Bitmap Item_022_Split_3_way {
             get {
-                object obj = ResourceManager.GetObject("Item_22_Split_3_way", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_022_Split_3_way", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,9 +283,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_23_Random_2_way {
+        internal static System.Drawing.Bitmap Item_023_Random_2_way {
             get {
-                object obj = ResourceManager.GetObject("Item_23_Random_2_way", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_023_Random_2_way", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -293,9 +293,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_24_Random_3_way {
+        internal static System.Drawing.Bitmap Item_024_Random_3_way {
             get {
-                object obj = ResourceManager.GetObject("Item_24_Random_3_way", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_024_Random_3_way", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +303,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_25_Remaining_damage {
+        internal static System.Drawing.Bitmap Item_025_Remaining_damage {
             get {
-                object obj = ResourceManager.GetObject("Item_25_Remaining_damage", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_025_Remaining_damage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -313,9 +313,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_26_Pierce {
+        internal static System.Drawing.Bitmap Item_026_Pierce {
             get {
-                object obj = ResourceManager.GetObject("Item_26_Pierce", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_026_Pierce", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -323,9 +323,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_27_Round_area {
+        internal static System.Drawing.Bitmap Item_027_Round_area {
             get {
-                object obj = ResourceManager.GetObject("Item_27_Round_area", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_027_Round_area", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -333,9 +333,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_28_Rectangle_area {
+        internal static System.Drawing.Bitmap Item_028_Rectangle_area {
             get {
-                object obj = ResourceManager.GetObject("Item_28_Rectangle_area", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_028_Rectangle_area", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -343,9 +343,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_29_Attraction {
+        internal static System.Drawing.Bitmap Item_029_Attraction {
             get {
-                object obj = ResourceManager.GetObject("Item_29_Attraction", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_029_Attraction", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -353,9 +353,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_30_Align_direction {
+        internal static System.Drawing.Bitmap Item_030_Align_direction {
             get {
-                object obj = ResourceManager.GetObject("Item_30_Align_direction", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_030_Align_direction", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -363,9 +363,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_31_Align_to_ship {
+        internal static System.Drawing.Bitmap Item_031_Align_to_ship {
             get {
-                object obj = ResourceManager.GetObject("Item_31_Align_to_ship", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_031_Align_to_ship", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -373,9 +373,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_32_Add_projectile {
+        internal static System.Drawing.Bitmap Item_032_Add_projectile {
             get {
-                object obj = ResourceManager.GetObject("Item_32_Add_projectile", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_032_Add_projectile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -383,9 +383,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_33_Fly_forward {
+        internal static System.Drawing.Bitmap Item_033_Fly_forward {
             get {
-                object obj = ResourceManager.GetObject("Item_33_Fly_forward", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_033_Fly_forward", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -393,9 +393,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_34_Fly_sideways {
+        internal static System.Drawing.Bitmap Item_034_Fly_sideways {
             get {
-                object obj = ResourceManager.GetObject("Item_34_Fly_sideways", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_034_Fly_sideways", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -403,9 +403,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_35_Money_crossing {
+        internal static System.Drawing.Bitmap Item_035_Money_crossing {
             get {
-                object obj = ResourceManager.GetObject("Item_35_Money_crossing", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_035_Money_crossing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -413,9 +413,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_36_Damage_crossing {
+        internal static System.Drawing.Bitmap Item_036_Damage_crossing {
             get {
-                object obj = ResourceManager.GetObject("Item_36_Damage_crossing", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_036_Damage_crossing", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -423,9 +423,9 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
-        internal static System.Drawing.Bitmap Item_700_Add_100_damage {
+        internal static System.Drawing.Bitmap Item_109_Add_100_damage {
             get {
-                object obj = ResourceManager.GetObject("Item_700_Add_100_damage", resourceCulture);
+                object obj = ResourceManager.GetObject("Item_109_Add_100_damage", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
