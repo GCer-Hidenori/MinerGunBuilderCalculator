@@ -21,6 +21,7 @@ namespace MinerGunBuilderCalculator
             projectileStat.min_damage = shipParameter.base_damage;
             projectileStat.magnification = 1;
             projectileStat.speed = shipParameter.projectile_speed;
+            projectileStat.lifetime = shipParameter.projectile_lifetime;
             inbound_projectileStat = projectileStat;
             
             return inbound_projectileStat;
@@ -31,6 +32,7 @@ namespace MinerGunBuilderCalculator
             projectile.damage = shipParameter.base_damage;
             projectile.magnification = 1;
             projectile.speed = shipParameter.projectile_speed;
+            projectile.lifetime = shipParameter.projectile_lifetime;
             return projectile;
         }
     }

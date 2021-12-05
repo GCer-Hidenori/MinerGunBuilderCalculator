@@ -381,6 +381,17 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = new();
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.lifetime *= 2;
+            }
+            return inbound_projectileStat;
+        }
     }
     class Item_021_Split_2_way : Item
     {
@@ -966,6 +977,7 @@ namespace MinerGunBuilderCalculator
                 projectileStat.min_damage = (decimal)min_damage;
                 projectileStat.magnification = projectile.magnification;
                 projectileStat.speed = projectile.speed;
+                projectileStat.lifetime = projectile.lifetime;
                 inbound_projectileStat = projectileStat;
             }
             return inbound_projectileStat;
@@ -983,6 +995,28 @@ namespace MinerGunBuilderCalculator
                 last_damage = inbound_projectile.damage;
             }
             return inbound_projectile;
+        }
+    }
+    class Item_103_Late_damage : Item
+    {
+        public Item_103_Late_damage(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = new();
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                decimal late_damage_magnification = (inbound_projectileStat.lifetime + 0.4m)/inbound_projectileStat.lifetime;
+                inbound_projectileStat.average_damage *= late_damage_magnification;
+                inbound_projectileStat.max_damage  *= late_damage_magnification;
+                inbound_projectileStat.min_damage  *= late_damage_magnification;
+            }
+            return inbound_projectileStat;
         }
     }
     class Item_109_Add_100_damage : Item

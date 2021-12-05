@@ -231,6 +231,9 @@
   <data name="Item_102_More_than_lower" xml:space="preserve">
     <value>4x damage if damage if lower than that of last passing projectile.</value>
   </data>
+  <data name="Item_103_Late_damage" xml:space="preserve">
+    <value>Double damage in the last 0.4s of the projectile's lifetime.</value>
+  </data>
   <data name="Item_109_Add_100_damage" xml:space="preserve">
     <value>Adds 100 damage to the projectild.</value>
   </data>

@@ -40,7 +40,7 @@ namespace MinerGunBuilderCalculator
             Label_average_damage.Text = String.Format("{0:#,0.00}", average_damage);
             Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}", average_damage_per_sec);
             Label_highest_projectile_damage.Text = String.Format("{0:#,0.00}", max_damage);
-            Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage);
+            Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage ?? 0);
             Label_Projectile_Max_Speed.Text = String.Format("{0:#,0.00}", projectile_speed);
             Label_projectile_ejected_per_sec.Text = String.Format("{0:#,0.00}", projectile_eject_per_sec);
 
@@ -56,11 +56,12 @@ namespace MinerGunBuilderCalculator
             panel_pb_parent.Controls.Add(pb);
         }
         
-        public void SetShipParameteLabelText(decimal base_damage, decimal fire_rate, decimal projectile_speed)
+        public void SetShipParameteLabelText(decimal base_damage, decimal fire_rate, decimal projectile_speed,decimal projectile_lifetime)
         {
             TextBox_BaseDamage.Text = base_damage.ToString();
             TextBox_FireRate.Text = fire_rate.ToString();
             TextBox_Projectile_Speed.Text = projectile_speed.ToString();
+            TextBox_Projectile_Lifetime.Text = projectile_lifetime.ToString();
         }
         private void TextBox_Projectile_Speed_Validating(object sender, CancelEventArgs e)
         {
@@ -137,6 +138,24 @@ namespace MinerGunBuilderCalculator
             }
             profile.Highest_Reached_Tier_in_World_Map = value;
 
+        }
+
+        private void TextBox_Projectile_Lifetime_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(TextBox_Projectile_Lifetime, "");
+            shipLayoutManager.NotifyShipLayoutChange2Observer();
+        }
+
+        private void TextBox_Projectile_Lifetime_Validating(object sender, CancelEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            decimal value;
+            if (!Decimal.TryParse(textbox.Text, out value))
+            {
+                errorProvider1.SetError(TextBox_Projectile_Lifetime, "Projectile lifetime must be number.");
+                e.Cancel = true;
+            }
+            shipParamater.projectile_lifetime = value;
         }
     }
 }

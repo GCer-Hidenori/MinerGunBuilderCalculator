@@ -12,6 +12,7 @@ namespace MinerGunBuilderCalculator
         public decimal damage;
         public decimal magnification;
         public decimal speed;
+        public decimal lifetime;
         public Projectile()
         {
             self_and_ancestors.Add(this);
@@ -22,6 +23,7 @@ namespace MinerGunBuilderCalculator
             {
                 damage = damage,
                 speed = speed,
+                lifetime = lifetime,
                 magnification = magnification
             };
             projectile.self_and_ancestors.AddRange(self_and_ancestors);

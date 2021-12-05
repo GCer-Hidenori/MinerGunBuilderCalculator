@@ -378,7 +378,7 @@ namespace MinerGunBuilderCalculator
                     Rotate_Image(pb, thing_layout[x, y]);
                 }
             }
-            shipForm.SetShipParameteLabelText(ship_parameter.base_damage, ship_parameter.fire_rate, ship_parameter.projectile_speed);
+            shipForm.SetShipParameteLabelText(ship_parameter.base_damage, ship_parameter.fire_rate, ship_parameter.projectile_speed, ship_parameter.projectile_lifetime);
             NotifyShipLayoutChange2Observer();
         }
 

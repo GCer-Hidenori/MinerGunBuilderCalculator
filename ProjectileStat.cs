@@ -14,6 +14,7 @@ namespace MinerGunBuilderCalculator
         public decimal max_damage;
         public decimal min_damage;
         public decimal speed;
+        public decimal lifetime;
         public decimal magnification;
 
         public ProjectileStat()
@@ -29,6 +30,7 @@ namespace MinerGunBuilderCalculator
                 max_damage = max_damage,
                 min_damage = min_damage,
                 speed = speed,
+                lifetime = lifetime,
                 magnification = magnification
             };
             projectileStats.self_and_ancestors.AddRange(self_and_ancestors);
