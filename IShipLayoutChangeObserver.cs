@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +9,6 @@ namespace MinerGunBuilderCalculator
 {
     public interface IShipLayoutChangeObserver
     {
-        void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter,PictureBox[,] picturebox_layout);
+        void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter,Profile profile,PictureBox[,] picturebox_layout);
     }
 }

@@ -16,67 +16,79 @@ namespace MinerGunBuilderCalculator
         {
             shipForm = _shipForm;
         }
-        public void ShipLayoutChanged(Thing[,] thing_layout,ShipParameter shipParameter,PictureBox[,] picturebox_layout)
+        public void ShipLayoutChanged(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile,PictureBox[,] picturebox_layout)
         {
             CreateProjectileFlow(thing_layout );
             DrawProjectileEffect(thing_layout,picturebox_layout);
             DrawEjectorEffect(thing_layout,picturebox_layout);
-            string message = CalculateDamage(thing_layout, shipParameter);
+            string message = CalculateDamage(thing_layout, shipParameter,profile);
             shipForm.AddMessage(message);
         }
 
-        private string CalculateDamage(Thing[,] thing_layout,ShipParameter shipParameter)
+        private string CalculateDamage(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile)
         {
             StringBuilder stringBuilder = new();
             Hashtable h_ejector = new();
-            decimal total_max_damage = 0;
             decimal? total_min_damage = null;
             decimal total_average_damage_per_sec = 0;
+            decimal total_average_damage = 0;
+            decimal total_max_damage = 0;
             decimal total_max_speed = 0;
-            decimal total_projectile_num = 0;
-            decimal total_fire_rate = 0;
+            //decimal total_projectile_num = 0;
+            decimal total_magnification = 0;
 
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
             int i = 1;
             foreach (Parts_02_Ejector ejector in IEejector){
-                List<Projectile> inbound_projectiles = new();
-                if (ejector.Access_from_abs_top != null)inbound_projectiles.AddRange(ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter,ejector));
-                if (ejector.Access_from_abs_right != null)inbound_projectiles.AddRange(ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, ejector));
-                if (ejector.Access_from_abs_down != null)inbound_projectiles.AddRange(ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, ejector));
-                if (ejector.Access_from_abs_left != null)inbound_projectiles.AddRange(ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, ejector));
+                List<ProjectileStat> inbound_projectileStats = new();
+                if (ejector.Access_from_abs_top != null)inbound_projectileStats.Add(ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter,profile,ejector));
+                if (ejector.Access_from_abs_right != null)inbound_projectileStats.Add(ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter,profile, ejector));
+                if (ejector.Access_from_abs_down != null)inbound_projectileStats.Add(ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter,profile, ejector));
+                if (ejector.Access_from_abs_left != null)inbound_projectileStats.Add(ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter,profile, ejector));
 
-                decimal max_damage = 0;
                 decimal? min_damage = null;
+                decimal average_damage = 0;
+                decimal max_damage = 0;
                 decimal average_damage_per_sec = 0;
-                decimal fire_rate = 0;
+                decimal magnification = 0;
                 
                 decimal max_speed = 0;
-                decimal projectile_num = 0;
+                //decimal projectile_num = 0;
 
-                foreach(var projectile in inbound_projectiles)
+                foreach(var projectileStats in inbound_projectileStats)
                 {
-                    projectile_num++;
-                    fire_rate += projectile.fire_rate;
+                    //projectile_num++;
+                    magnification += projectileStats.magnification;
 
-                    min_damage = (min_damage == null || min_damage > projectile.min_damage) ? projectile.min_damage : min_damage;
+                    min_damage = (min_damage == null || min_damage > projectileStats.min_damage) ? projectileStats.min_damage : min_damage;
 
-                    max_damage = max_damage < projectile.max_damage ? projectile.max_damage : max_damage;
-                    average_damage_per_sec += projectile.average_damage * projectile.fire_rate;
-                    max_speed = max_speed < projectile.speed ? projectile.speed : max_speed;
+                    max_damage = max_damage < projectileStats.max_damage ? projectileStats.max_damage : max_damage;
+                    average_damage += projectileStats.average_damage;
+                    average_damage_per_sec += projectileStats.average_damage * projectileStats.magnification * shipParameter.fire_rate;
+                    max_speed = max_speed < projectileStats.speed ? projectileStats.speed : max_speed;
                 }
+                if (inbound_projectileStats.Count > 0)
+                {
+                    average_damage = average_damage / inbound_projectileStats.Count;
+                    //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
+                }
+                
+
                 total_max_damage = total_max_damage < max_damage ? max_damage : total_max_damage;
-                total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
+                total_average_damage += average_damage;
                 total_min_damage = (total_min_damage==null|| total_min_damage > min_damage) ? min_damage : total_min_damage;
+                total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
                 total_average_damage_per_sec += average_damage_per_sec;
-                total_projectile_num += projectile_num;
-                total_fire_rate += fire_rate;
+                //total_projectile_num += projectile_num;
+                total_magnification += magnification;
 
                 stringBuilder.AppendLine($"ejector {i} avg_damage/sec={average_damage_per_sec:#,0.00} max_damage={max_damage:#,0.00} min_damage={min_damage:#,0.00} max_speed={max_speed:#,0.00}");
                 i += 1;
 	        }
+            if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>();
 
-            shipForm.WriteCalculateResult(total_average_damage_per_sec, total_max_damage, total_min_damage, total_max_speed, total_fire_rate);
+            shipForm.WriteCalculateResult(total_average_damage_per_sec,total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification);
 
             return stringBuilder.ToString();
         }
@@ -354,21 +366,102 @@ namespace MinerGunBuilderCalculator
                 return null;
             }
         }
+        private static void ResetBeforeCalculateDamage(Thing[,] thing_layout)
+        {
+            for (int x = 0; x < thing_layout.GetLength(0); x++)
+            {
+                for (int y = 0; y < thing_layout.GetLength(1); y++)
+                {
+                    var thing = thing_layout[x, y];
+                    thing.ResetBeforeCalculateDamage();
+                    thing.Access_to_abs_top = null;
+                    thing.Access_to_abs_right = null;
+                    thing.Access_to_abs_down = null;
+                    thing.Access_to_abs_left = null;
+
+                    thing.Access_from_abs_top = null;
+                    thing.Access_from_abs_right = null;
+                    thing.Access_from_abs_down = null;
+                    thing.Access_from_abs_left = null;
+                }
+            }
+        }
         private static void CreateProjectileFlow(Thing[,] thing_layout)
         {
+            ResetBeforeCalculateDamage(thing_layout);
+
             // 1. Check the connection between thing and assign it to access_**** property.
             CreateProjectileFlow1(thing_layout);
             
-            /*
-            // 2. Delete connections that are not connected to Projectile ejector.
+            // 2. Modify damage crossing/money crossing connections
             CreateProjectileFlow2(thing_layout);
-            */
 
             // 3. Delete connections that are not connected to Projectile generator.
-            CreateProjectileFlow3(thing_layout );
+            CreateProjectileFlow3(thing_layout);
 
             // 4. Create backward projectile connection.
             CreateProjectileFlow4(thing_layout);
+        }
+        private static void CreateProjectileFlow2(Thing[,] thing_layout)
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEcrossing = thing_1dim_layout.Where(thing => thing.IsCrossing == true);
+            foreach (Thing crossing in IEcrossing)
+            {
+                if(crossing.Access_to_rel_top != null)
+                {
+                    var isfound = false;
+                    for(var x = 0;x < thing_layout.GetLength(0);x++){
+                        for(var y = 0;y < thing_layout.GetLength(0);y++){
+                            var thing = thing_layout[x,y];
+                            switch (crossing.direction)
+                            {
+                                case Thing.Direction.TOP:
+                                    if(thing.Access_to_abs_top == crossing)
+                                    {
+                                        isfound = true;
+                                        break;
+                                    }
+                                    break;
+                                case Thing.Direction.RIGHT:
+                                    if(thing.Access_to_abs_right == crossing)
+                                    {
+                                        isfound = true;
+                                        break;
+                                    }
+                                    break;
+                                case Thing.Direction.DOWN:
+                                    if (thing.Access_to_abs_down == crossing)
+                                    {
+                                        isfound = true;
+                                        break;
+                                    }
+                                    break;
+                                case Thing.Direction.LEFT:
+                                    if (thing.Access_to_abs_left == crossing)
+                                    {
+                                        isfound = true;
+                                        break;
+                                    }
+                                    break;
+                                default:
+                                    throw new NotImplementedException();
+                            }
+                            
+                            /*
+                            if(thing.Access_to_rel_top == crossing || thing.Access_to_rel_right == crossing || thing.Access_to_rel_down == crossing || thing.Access_to_rel_left == crossing){
+                                isfound = true;
+                                break;
+                            }
+                            */
+                        }
+                        if(isfound)break;
+                    }
+                    if(!isfound){
+                        crossing.Access_to_rel_top = null;
+                    }
+                }
+            }
         }
 
         private static void CreateProjectileFlow4(Thing[,] thing_layout)
@@ -414,6 +507,7 @@ namespace MinerGunBuilderCalculator
                 for (int y = 0; y < thing_layout.GetLength(1); y++)
                 {
                     var thing = thing_layout[x, y];
+                    /*
                     thing.Access_to_abs_top = null;
                     thing.Access_to_abs_right = null;
                     thing.Access_to_abs_down = null;
@@ -423,6 +517,7 @@ namespace MinerGunBuilderCalculator
                     thing.Access_from_abs_right = null;
                     thing.Access_from_abs_down = null;
                     thing.Access_from_abs_left = null;
+                    */
 
                     if (thing.IsAccessToTOP)
                     {

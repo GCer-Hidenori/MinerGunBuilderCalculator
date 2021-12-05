@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator
 {
-
     public struct Location
     {
         public int X;
@@ -34,7 +33,7 @@ namespace MinerGunBuilderCalculator
         public bool IsAccessFromRIGHT = false;
         public bool IsAccessFromDOWN = false;
         public bool IsAccessFromLEFT = false;
-
+        public bool IsCrossing = false; //Damage crossing,Money crossing
         public bool IsAccessToTOP = false;
         public bool IsAccessToRIGHT = false;
         public bool IsAccessToDOWN = false;
@@ -44,7 +43,6 @@ namespace MinerGunBuilderCalculator
         public bool IsRemovable = true;
 
         protected bool connectionChecked;
-
 
         public Direction direction = Direction.TOP;
 
@@ -544,15 +542,27 @@ namespace MinerGunBuilderCalculator
         {
             thing_layout = _thing_layout;
         }
-
-        public virtual List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
+        public virtual void ResetBeforeCalculateDamage()
         {
-            List<Projectile> inbound_projectiles = new();
+        }
+
+        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectiles.AddRange(Access_from_rel_down.GetOutboundProjectile(shipParameter,this));
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile,this);
             }
-            return inbound_projectiles;
+            return inbound_projectileStat;
+        }
+        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        {
+            Projectile inbound_projectile = new();
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile,this);
+            }
+            return inbound_projectile;
         }
 
         public void Turn(TurnDirection turn_direction)
@@ -579,7 +589,6 @@ namespace MinerGunBuilderCalculator
         /// <returns></returns>
         public IEnumerable<Thing> ConnectedThings(bool isFirstCall=false)
         {
-            System.Diagnostics.Debug.WriteLine($"@1 {GetLocation().X} {GetLocation().Y} {GetType().Name}");
             if (isFirstCall)
             {
                 ResetAllThingsCheckConnectionFlag();
@@ -589,37 +598,29 @@ namespace MinerGunBuilderCalculator
                 yield return this;
                 if(Access_to_abs_top != null)
                 {
-                    System.Diagnostics.Debug.WriteLine($"@2 {GetLocation().X} {GetLocation().Y} {GetType().Name} begin foreach access_to_abs_top    ");
                     foreach(Thing thing in Access_to_abs_top.ConnectedThings())
                     {
-                        System.Diagnostics.Debug.WriteLine($"@3 {GetLocation().X} {GetLocation().Y} {GetType().Name} -> {thing.GetLocation().X},{thing.GetLocation().Y} {thing.GetType().Name} inside foreach access_to_abs_top    ");
                         yield return thing;
                     }
                 }
                 if (Access_to_abs_right != null)
                 {
-                    System.Diagnostics.Debug.WriteLine($"@4 {GetLocation().X} {GetLocation().Y} {GetType().Name} begin foreach access_to_abs_right    ");
                     foreach (Thing thing in Access_to_abs_right.ConnectedThings())
                     {
-                        System.Diagnostics.Debug.WriteLine($"@5 {GetLocation().X} {GetLocation().Y} {GetType().Name} -> {thing.GetLocation().X},{thing.GetLocation().Y} {thing.GetType().Name} inside foreach access_to_abs_right    ");
                         yield return thing;
                     }
                 }
                 if (Access_to_abs_down != null)
                 {
-                    System.Diagnostics.Debug.WriteLine($"@6 {GetLocation().X} {GetLocation().Y} {GetType().Name} begin foreach access_to_abs_down    ");
                     foreach (Thing thing in Access_to_abs_down.ConnectedThings())
                     {
-                        System.Diagnostics.Debug.WriteLine($"@7 {GetLocation().X} {GetLocation().Y} {GetType().Name} -> {thing.GetLocation().X},{thing.GetLocation().Y} {thing.GetType().Name} inside foreach access_to_abs_down    ");
                         yield return thing;
                     }
                 }
                 if (Access_to_abs_left != null)
                 {
-                    System.Diagnostics.Debug.WriteLine($"@8 {GetLocation().X} {GetLocation().Y} {GetType().Name} begin foreach access_to_abs_left    ");
                     foreach (Thing thing in Access_to_abs_left.ConnectedThings())
                     {
-                        System.Diagnostics.Debug.WriteLine($"@9 {GetLocation().X} {GetLocation().Y} {GetType().Name} -> {thing.GetLocation().X},{thing.GetLocation().Y} {thing.GetType().Name} inside foreach access_to_abs_left    ");
                         yield return thing;
                     }
                 }

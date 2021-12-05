@@ -12,19 +12,28 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessToTOP = true;
         }
-        public override List<Projectile> GetOutboundProjectile(ShipParameter shipParameter,Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
         {
-            List<Projectile> inbound_projectiles = new();
-            var projectile = new Projectile();
-            projectile.average_damage = shipParameter.base_damage;
-            projectile.max_damage = shipParameter.base_damage;
-            projectile.min_damage = shipParameter.base_damage;
-            projectile.fire_rate = shipParameter.fire_rate;
-            projectile.speed = shipParameter.projectile_speed;
-            inbound_projectiles.Add(projectile);
+            ProjectileStat inbound_projectileStat = new();
+            var projectileStat = new ProjectileStat();
+            projectileStat.average_damage = shipParameter.base_damage;
+            projectileStat.max_damage = shipParameter.base_damage;
+            projectileStat.min_damage = shipParameter.base_damage;
+            projectileStat.magnification = 1;
+            projectileStat.speed = shipParameter.projectile_speed;
+            projectileStat.lifetime = shipParameter.projectile_lifetime;
+            inbound_projectileStat = projectileStat;
             
-            return inbound_projectiles;
+            return inbound_projectileStat;
         }
-
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile projectile = new();
+            projectile.damage = shipParameter.base_damage;
+            projectile.magnification = 1;
+            projectile.speed = shipParameter.projectile_speed;
+            projectile.lifetime = shipParameter.projectile_lifetime;
+            return projectile;
+        }
     }
 }

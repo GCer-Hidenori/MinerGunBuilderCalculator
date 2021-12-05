@@ -118,115 +118,124 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Item_01_Guide_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_01_Guide_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_001_Guide_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_001_Guide_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_02_Guide_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_02_Guide_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_002_Guide_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_002_Guide_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_03_Add_1_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_03_Add_1_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_003_Add_1_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_003_Add_1_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_04_Speed_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_04_Speed_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_004_Speed_up" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_004_Speed_up.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_05_Spread_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_05_Spread_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_005_Spread_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_005_Spread_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_06_Large_spread" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_06_Large_spread.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_006_Large_spread" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_006_Large_spread.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_07_Spread_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_07_Spread_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_007_Spread_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_007_Spread_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_08_Small_spread" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_08_Small_spread.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_008_Small_spread" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_008_Small_spread.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_09_Curve_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_09_Curve_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_009_Curve_left" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_009_Curve_left.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_10_Random_curve" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_10_Random_curve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_010_Random_curve" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_010_Random_curve.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_11_Curve_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_11_Curve_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_011_Curve_right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_011_Curve_right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_12_Slow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_12_Slow_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_012_Slow_down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_012_Slow_down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_13_Criticalx2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_13_Criticalx2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_013_Criticalx2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_013_Criticalx2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_14_Criticalx10" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_14_Criticalx10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_014_Criticalx10" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_014_Criticalx10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_15_Random_critical" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_15_Random_critical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_015_Random_critical" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_015_Random_critical.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_16_Charge" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_16_Charge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_016_Charge" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_016_Charge.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_17_Return" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_17_Return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_017_Return" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_017_Return.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_18_Random_bounce" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_18_Random_bounce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_018_Random_bounce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_018_Random_bounce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_19_Richchet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_19_Richchet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_019_Richchet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_019_Richchet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_20_Double_lifetime" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_20_Double_lifetime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_020_Double_lifetime" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_020_Double_lifetime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_21_Split_2_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_21_Split_2_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_021_Split_2_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_021_Split_2_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_22_Split_3_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_22_Split_3_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_022_Split_3_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_022_Split_3_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_23_Random_2_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_23_Random_2_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_023_Random_2_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_023_Random_2_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_24_Random_3_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_24_Random_3_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_024_Random_3_way" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_024_Random_3_way.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_25_Remaining_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_25_Remaining_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_025_Remaining_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_025_Remaining_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_26_Pierce" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_26_Pierce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_026_Pierce" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_026_Pierce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_27_Round_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_27_Round_area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_027_Round_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_027_Round_area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_28_Rectangle_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_28_Rectangle_area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_028_Rectangle_area" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_028_Rectangle_area.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_29_Attraction" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_29_Attraction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_029_Attraction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_029_Attraction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_30_Align_direction" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_30_Align_direction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_030_Align_direction" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_030_Align_direction.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_31_Align_to_ship" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_31_Align_to_ship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_031_Align_to_ship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_031_Align_to_ship.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_32_Add_projectile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_32_Add_projectile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_032_Add_projectile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_032_Add_projectile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_33_Fly_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_33_Fly_forward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_033_Fly_forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_033_Fly_forward.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_34_Fly_sideways" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_34_Fly_sideways.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_034_Fly_sideways" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_034_Fly_sideways.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_35_Money_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_35_Money_crossing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_035_Money_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_035_Money_crossing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_36_Damage_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_36_Damage_crossing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_036_Damage_crossing" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_036_Damage_crossing.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_700_Add_100_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_700_Add_100_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_101_Tier_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_101_Tier_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Item_102_More_than_lower" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_102_More_than_lower.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Item_103_Late_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_103_Late_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Item_109_Add_100_damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_109_Add_100_damage.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -13,9 +13,13 @@ namespace MinerGunBuilderCalculator
     public class SaveData
     {
         public ShipParameter shipParameter;
+        internal Profile profile;
         public Thing[,] thing_layout;
 
-        const int SAVE_FORMAT_VERSION = 1;
+        const int SAVE_FORMAT_VERSION = 2;
+        const int SUPPRT_MIN_SAVE_FORMAT_VERSION = 1;
+        // 1 initial version
+        // 2 Profile class
         public int SaveFormatVersion = SAVE_FORMAT_VERSION;
 
         private static bool CheckSaveFormatVersion(string json_string)
@@ -26,7 +30,7 @@ namespace MinerGunBuilderCalculator
                 int saveformatversion;
                 if(int.TryParse(savedata["SaveFormatVersion"].ToString(),out saveformatversion))
                 {
-                    if(saveformatversion == SAVE_FORMAT_VERSION)
+                    if(saveformatversion >= SUPPRT_MIN_SAVE_FORMAT_VERSION)
                     {
                         return true;
                     }
@@ -82,11 +86,13 @@ namespace MinerGunBuilderCalculator
                         }
                         catch (Newtonsoft.Json.JsonSerializationException)
                         {
+                            save_file_name = null;
                             MessageBox.Show("Load error", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
+                        save_file_name = null;
                         MessageBox.Show("Not supported save data format.", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
@@ -95,12 +101,12 @@ namespace MinerGunBuilderCalculator
             }
             return null;
         }
-
-        public static string Save(Thing[,] _thing_layout,ShipParameter _shipParameter,bool isSaveAs, string save_file_name = null)
+        public static string Save(Thing[,] _thing_layout,ShipParameter _shipParameter,Profile _profile,bool isSaveAs, string save_file_name = null)
         {
             var saveData = new SaveData();
             saveData.thing_layout = _thing_layout;
             saveData.shipParameter = _shipParameter;
+            saveData.profile = _profile;
 
             var setting = new JsonSerializerSettings
             {
