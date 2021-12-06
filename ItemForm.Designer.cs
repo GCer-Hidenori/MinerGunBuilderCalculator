@@ -32,10 +32,13 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel_Items = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tableLayoutPanel_Legendary = new System.Windows.Forms.TableLayoutPanel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel_Others = new System.Windows.Forms.TableLayoutPanel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -49,7 +52,7 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel_Items.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel_Items.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel_Items.Name = "tableLayoutPanel_Items";
-            this.tableLayoutPanel_Items.RowCount = 10;
+            this.tableLayoutPanel_Items.RowCount = 9;
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
@@ -59,13 +62,13 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel_Items.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tableLayoutPanel_Items.Size = new System.Drawing.Size(306, 760);
+            this.tableLayoutPanel_Items.Size = new System.Drawing.Size(304, 684);
             this.tableLayoutPanel_Items.TabIndex = 0;
             // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -83,6 +86,34 @@ namespace MinerGunBuilderCalculator
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Items";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.tableLayoutPanel_Legendary);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(312, 757);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Legendary";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tableLayoutPanel_Legendary
+            // 
+            this.tableLayoutPanel_Legendary.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.tableLayoutPanel_Legendary.ColumnCount = 4;
+            this.tableLayoutPanel_Legendary.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel_Legendary.Name = "tableLayoutPanel_Legendary";
+            this.tableLayoutPanel_Legendary.RowCount = 3;
+            this.tableLayoutPanel_Legendary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel_Legendary.Size = new System.Drawing.Size(304, 228);
+            this.tableLayoutPanel_Legendary.TabIndex = 0;
             // 
             // tabPage2
             // 
@@ -103,7 +134,7 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel_Others.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel_Others.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel_Others.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel_Others.Location = new System.Drawing.Point(4, 0);
+            this.tableLayoutPanel_Others.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel_Others.Name = "tableLayoutPanel_Others";
             this.tableLayoutPanel_Others.RowCount = 1;
             this.tableLayoutPanel_Others.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -116,12 +147,13 @@ namespace MinerGunBuilderCalculator
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(336, 613);
+            this.ClientSize = new System.Drawing.Size(336, 537);
             this.Controls.Add(this.tabControl1);
             this.Name = "ItemForm";
             this.Text = "Items";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -134,5 +166,7 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Others;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Legendary;
     }
 }

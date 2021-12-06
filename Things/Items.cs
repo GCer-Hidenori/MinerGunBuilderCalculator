@@ -1019,6 +1019,47 @@ namespace MinerGunBuilderCalculator
             return inbound_projectileStat;
         }
     }
+    class Item_104_Unused_tile : Item
+    {
+        public Item_104_Unused_tile(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        private decimal Calc_additional_damage_magnification()
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEnull = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_Null");
+            int num_unused_tiles = IEnull.Count<Thing>();
+            return 1m + 0.1m * num_unused_tiles;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = new();
+
+            if (Access_from_rel_down != null)
+            {
+                decimal additional_damage_magnification = Calc_additional_damage_magnification();
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.average_damage *= additional_damage_magnification;
+                inbound_projectileStat.max_damage *= additional_damage_magnification;
+                inbound_projectileStat.min_damage *= additional_damage_magnification;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = new();
+
+            if (Access_from_rel_down != null)
+            {
+                decimal additional_damage_magnification = Calc_additional_damage_magnification();
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                inbound_projectile.damage *= additional_damage_magnification;
+            }
+            return inbound_projectile;
+        }
+    }
     class Item_109_Add_100_damage : Item
     {
         public Item_109_Add_100_damage(Thing[,] _thing_layout) : base(_thing_layout)
