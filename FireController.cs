@@ -22,7 +22,6 @@ namespace MinerGunBuilderCalculator
             DrawProjectileEffect(thing_layout,picturebox_layout);
             DrawEjectorEffect(thing_layout,picturebox_layout);
             string message = CalculateDamage(thing_layout, shipParameter,profile);
-            shipForm.AddMessage(message);
         }
 
         private string CalculateDamage(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile)

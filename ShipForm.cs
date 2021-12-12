@@ -46,11 +46,6 @@ namespace MinerGunBuilderCalculator
 
         }
 
-        public void AddMessage(string msessage)
-        {
-            TextBox_Message.Text += msessage;
-        }
-        
         public void AddPictureBox(PictureBox pb)
         {
             panel_pb_parent.Controls.Add(pb);
@@ -156,6 +151,11 @@ namespace MinerGunBuilderCalculator
                 e.Cancel = true;
             }
             shipParamater.projectile_lifetime = value;
+        }
+
+        private void button_Start_Detailed_Calc_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

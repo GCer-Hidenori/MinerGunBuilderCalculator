@@ -57,14 +57,16 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Projectile_Speed = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBox_Projectile_Lifetime = new System.Windows.Forms.TextBox();
-            this.TextBox_Message = new System.Windows.Forms.TextBox();
             this.panel_pb_parent = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.button_Start_Detailed_Calc = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -75,8 +77,8 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 552F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.TextBox_Message, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel_pb_parent, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -404,16 +406,6 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Projectile_Lifetime.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Projectile_Lifetime_Validating);
             this.TextBox_Projectile_Lifetime.Validated += new System.EventHandler(this.TextBox_Projectile_Lifetime_Validated);
             // 
-            // TextBox_Message
-            // 
-            this.TextBox_Message.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.TextBox_Message.Location = new System.Drawing.Point(557, 4);
-            this.TextBox_Message.Multiline = true;
-            this.TextBox_Message.Name = "TextBox_Message";
-            this.TextBox_Message.Size = new System.Drawing.Size(223, 546);
-            this.TextBox_Message.TabIndex = 2;
-            this.TextBox_Message.Visible = false;
-            // 
             // panel_pb_parent
             // 
             this.panel_pb_parent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -421,6 +413,26 @@ namespace MinerGunBuilderCalculator
             this.panel_pb_parent.Name = "panel_pb_parent";
             this.panel_pb_parent.Size = new System.Drawing.Size(546, 546);
             this.panel_pb_parent.TabIndex = 3;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.button_Start_Detailed_Calc);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(557, 557);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(200, 166);
+            this.panel2.TabIndex = 4;
+            // 
+            // button_Start_Detailed_Calc
+            // 
+            this.button_Start_Detailed_Calc.Location = new System.Drawing.Point(3, 6);
+            this.button_Start_Detailed_Calc.Name = "button_Start_Detailed_Calc";
+            this.button_Start_Detailed_Calc.Size = new System.Drawing.Size(101, 23);
+            this.button_Start_Detailed_Calc.TabIndex = 0;
+            this.button_Start_Detailed_Calc.Text = "Detailed Calc";
+            this.button_Start_Detailed_Calc.UseVisualStyleBackColor = true;
+            this.button_Start_Detailed_Calc.Visible = false;
+            this.button_Start_Detailed_Calc.Click += new System.EventHandler(this.button_Start_Detailed_Calc_Click);
             // 
             // errorProvider1
             // 
@@ -437,7 +449,6 @@ namespace MinerGunBuilderCalculator
             this.Load += new System.EventHandler(this.ShipForm_Load);
             this.Enter += new System.EventHandler(this.ShipForm_Enter);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -445,6 +456,7 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel4.PerformLayout();
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
@@ -473,7 +485,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.TextBox TextBox_BaseDamage;
         private System.Windows.Forms.TextBox TextBox_FireRate;
         private System.Windows.Forms.TextBox TextBox_Projectile_Speed;
-        private System.Windows.Forms.TextBox TextBox_Message;
         private System.Windows.Forms.Panel panel_pb_parent;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Label label9;
@@ -482,5 +493,7 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.Label Label_average_damage;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TextBox_Projectile_Lifetime;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button button_Start_Detailed_Calc;
     }
 }

@@ -32,7 +32,7 @@ namespace MinerGunBuilderCalculator
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.label_version_number = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -64,21 +64,21 @@ namespace MinerGunBuilderCalculator
             this.linkLabel1.Text = "Hidenori_tw";
             this.linkLabel1.Click += new System.EventHandler(this.linkLabel1_Click);
             // 
-            // label3
+            // label_version_number
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 21);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(63, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "version 0.3";
+            this.label_version_number.AutoSize = true;
+            this.label_version_number.Location = new System.Drawing.Point(5, 21);
+            this.label_version_number.Name = "label_version_number";
+            this.label_version_number.Size = new System.Drawing.Size(66, 15);
+            this.label_version_number.TabIndex = 3;
+            this.label_version_number.Text = "version xxx";
             // 
             // Form_VersionInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(185, 60);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label_version_number);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -99,6 +99,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label_version_number;
     }
 }

@@ -12,9 +12,11 @@ namespace MinerGunBuilderCalculator
 {
     public partial class Form_VersionInfo : Form
     {
+        const string version = "0.4";
         public Form_VersionInfo()
         {
             InitializeComponent();
+            label_version_number.Text = "version " + version;
         }
 
         private void linkLabel1_Click(object sender, EventArgs e)
