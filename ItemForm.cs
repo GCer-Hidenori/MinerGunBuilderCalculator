@@ -19,6 +19,7 @@ namespace MinerGunBuilderCalculator
             Load_images(tableLayoutPanel_Others,Resource_ShipParts.ResourceManager,"Parts_03_ProjectileGenerator");
             Load_images(tableLayoutPanel_Legendary,Resource_Legendary.ResourceManager);
             SetToolTips(tableLayoutPanel_Items);
+            SetToolTips(tableLayoutPanel_Legendary);
             SetToolTips(tableLayoutPanel_Others);
         }
         private void Load_images(TableLayoutPanel tab, System.Resources.ResourceManager resource_manager,string not_show_thing_name=null)

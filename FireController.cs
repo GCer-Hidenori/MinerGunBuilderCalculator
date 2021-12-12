@@ -47,11 +47,11 @@ namespace MinerGunBuilderCalculator
                 if (ejector.Access_from_abs_down != null)inbound_projectileStats.Add(ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter,profile, ejector));
                 if (ejector.Access_from_abs_left != null)inbound_projectileStats.Add(ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter,profile, ejector));
 
-                decimal? min_damage = null;
-                decimal average_damage = 0;
-                decimal max_damage = 0;
-                decimal average_damage_per_sec = 0;
-                decimal magnification = 0;
+                decimal? each_ejector_min_damage = null;
+                decimal each_ejector_average_damage = 0;
+                decimal each_ejector_max_damage = 0;
+                decimal each_ejector_average_damage_per_sec = 0;
+                decimal each_ejector_magnification = 0;
                 
                 decimal max_speed = 0;
                 //decimal projectile_num = 0;
@@ -59,34 +59,35 @@ namespace MinerGunBuilderCalculator
                 foreach(var projectileStats in inbound_projectileStats)
                 {
                     //projectile_num++;
-                    magnification += projectileStats.magnification;
+                    each_ejector_magnification += projectileStats.magnification;
 
-                    min_damage = (min_damage == null || min_damage > projectileStats.min_damage) ? projectileStats.min_damage : min_damage;
+                    each_ejector_min_damage = (each_ejector_min_damage == null || each_ejector_min_damage > projectileStats.min_damage) ? projectileStats.min_damage : each_ejector_min_damage;
 
-                    max_damage = max_damage < projectileStats.max_damage ? projectileStats.max_damage : max_damage;
-                    average_damage += projectileStats.average_damage;
-                    average_damage_per_sec += projectileStats.average_damage * projectileStats.magnification * shipParameter.fire_rate;
+                    each_ejector_max_damage = each_ejector_max_damage < projectileStats.max_damage ? projectileStats.max_damage : each_ejector_max_damage;
+                    each_ejector_average_damage += projectileStats.average_damage;
+                    each_ejector_average_damage_per_sec += projectileStats.average_damage * projectileStats.magnification * shipParameter.fire_rate;
                     max_speed = max_speed < projectileStats.speed ? projectileStats.speed : max_speed;
                 }
                 if (inbound_projectileStats.Count > 0)
                 {
-                    average_damage = average_damage / inbound_projectileStats.Count;
+                    each_ejector_average_damage = each_ejector_average_damage / inbound_projectileStats.Count;
                     //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
                 }
-                
 
-                total_max_damage = total_max_damage < max_damage ? max_damage : total_max_damage;
-                total_average_damage += average_damage;
-                total_min_damage = (total_min_damage==null|| total_min_damage > min_damage) ? min_damage : total_min_damage;
+
+                //total_max_damage = total_max_damage < each_ejector_max_damage ? each_ejector_max_damage : total_max_damage;
+                total_max_damage += each_ejector_max_damage;
+                total_average_damage += each_ejector_average_damage;
+                total_min_damage = (total_min_damage==null|| total_min_damage > each_ejector_min_damage) ? each_ejector_min_damage : total_min_damage;
                 total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
-                total_average_damage_per_sec += average_damage_per_sec;
+                total_average_damage_per_sec += each_ejector_average_damage_per_sec;
                 //total_projectile_num += projectile_num;
-                total_magnification += magnification;
+                total_magnification += each_ejector_magnification;
 
-                stringBuilder.AppendLine($"ejector {i} avg_damage/sec={average_damage_per_sec:#,0.00} max_damage={max_damage:#,0.00} min_damage={min_damage:#,0.00} max_speed={max_speed:#,0.00}");
+                stringBuilder.AppendLine($"ejector {i} avg_damage/sec={each_ejector_average_damage_per_sec:#,0.00} max_damage={each_ejector_max_damage:#,0.00} min_damage={each_ejector_min_damage:#,0.00} max_speed={max_speed:#,0.00}");
                 i += 1;
 	        }
-            if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>();
+            //if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>(); //
 
             shipForm.WriteCalculateResult(total_average_damage_per_sec,total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification);
 

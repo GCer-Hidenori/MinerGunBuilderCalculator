@@ -29,6 +29,9 @@ namespace MinerGunBuilderCalculator
             LEFT = 3
         }
 
+        //If true,Items that cannot be handled by this program because the calculation method is not known.
+        public bool IsNotSupported = false;
+
         public bool IsAccessFromTOP = false;
         public bool IsAccessFromRIGHT = false;
         public bool IsAccessFromDOWN = false;

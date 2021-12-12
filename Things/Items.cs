@@ -16,19 +16,29 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
             if (Access_from_rel_down != null)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                if(inbound_projectileStat.EnableGuideDamage)
+                {
+                    inbound_projectileStat.average_damage *= 1.1m;
+                    inbound_projectileStat.max_damage *= 1.1m;
+                    inbound_projectileStat.min_damage *= 1.1m;
+                }
             }
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                if(inbound_projectile.EnableGuideDamage)
+                {
+                    inbound_projectile.damage *= 1.1m;
+                }
             }
             return inbound_projectile;
         }
@@ -40,6 +50,34 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToLEFT = true;
         }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                if(inbound_projectileStat.EnableGuideDamage)
+                {
+                    inbound_projectileStat.average_damage *= 1.1m;
+                    inbound_projectileStat.max_damage *= 1.1m;
+                    inbound_projectileStat.min_damage *= 1.1m;
+                }
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                if(inbound_projectile.EnableGuideDamage)
+                {
+                    inbound_projectile.damage *= 1.1m;
+                }
+            }
+            return inbound_projectile;
+        }
     }
     class Item_003_Add_1_damage : Item
     {
@@ -50,7 +88,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -63,12 +101,15 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.damage += 1;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.damage += 1;
+                }
             }
             return inbound_projectile;
         }
@@ -82,7 +123,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -93,12 +134,15 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.speed += 1;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.speed += 1;
+                }
             }
             return inbound_projectile;
         }
@@ -168,7 +212,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -179,12 +223,15 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.speed /= 2;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.speed /= 2;
+                }
             }
             return inbound_projectile;
         }
@@ -198,7 +245,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -210,7 +257,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -230,7 +277,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -242,7 +289,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -262,7 +309,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -275,7 +322,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -327,7 +374,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -340,12 +387,15 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.damage *= 1.2m;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.damage *= 1.2m;
+                }
             }
             return inbound_projectile;
         }
@@ -383,7 +433,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -403,7 +453,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -421,7 +471,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -449,7 +499,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -467,7 +517,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -494,7 +544,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -522,7 +572,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -556,7 +606,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -594,7 +644,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
@@ -691,7 +741,7 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //TO BE CONFIRMED
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -703,12 +753,15 @@ namespace MinerGunBuilderCalculator
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //TO BE CONFIRMED
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.magnification += 1;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.magnification += 1;
+                }
             }
             return inbound_projectile;
         }
@@ -744,7 +797,7 @@ namespace MinerGunBuilderCalculator
         //TO BE CONFIRMED
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_to_rel_top == to_thing)
             {
@@ -770,7 +823,7 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_to_rel_top == to_thing)
             {
@@ -821,7 +874,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_to_rel_top == to_thing)
             {
@@ -859,19 +912,18 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_to_rel_top == to_thing)
             {
                 if (Access_from_rel_down != null)
                 {
                     inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                    var projectile = inbound_projectile;
-                    foreach (var self_and_ancestor in projectile.self_and_ancestors)
+                    foreach (var self_and_ancestor in inbound_projectile.self_and_ancestors)
                     {
                         if (projectile_history.TryGetValue(self_and_ancestor, out Projectile his_projectile))
                         {
-                            projectile.damage += his_projectile.damage;
+                            inbound_projectile.damage += his_projectile.damage;
                         }
                         break;
                     }
@@ -890,8 +942,7 @@ namespace MinerGunBuilderCalculator
                     if (Access_from_rel_left != null)
                         inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile, this);
                 }
-                var projectile = inbound_projectile;
-                projectile_history[projectile] = projectile;
+                projectile_history[inbound_projectile] = inbound_projectile;
             }
             return inbound_projectile;
         }
@@ -905,30 +956,28 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
-                var projectileStat = inbound_projectileStat;
                 int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
-                projectileStat.average_damage += additional;
-                projectileStat.max_damage += additional;
-                projectileStat.min_damage += additional;
+                inbound_projectileStat.average_damage += additional;
+                inbound_projectileStat.max_damage += additional;
+                inbound_projectileStat.min_damage += additional;
 
             }
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                var projectile = inbound_projectile;
                 int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
-                projectile.damage += additional;
+                inbound_projectile.damage += additional;
 
             }
             return inbound_projectile;
@@ -951,12 +1000,10 @@ namespace MinerGunBuilderCalculator
 
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            //Projectile inbound_projectile; // = new();
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
             if (Access_from_rel_down != null)
             {
                 const int Count = 1000;
-                //inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
                 decimal total_damage = new();
                 decimal max_damage = new();
                 decimal? min_damage = null;
@@ -978,13 +1025,14 @@ namespace MinerGunBuilderCalculator
                 projectileStat.magnification = projectile.magnification;
                 projectileStat.speed = projectile.speed;
                 projectileStat.lifetime = projectile.lifetime;
+                projectileStat.EnableGuideDamage = projectile.EnableGuideDamage;
                 inbound_projectileStat = projectileStat;
             }
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
@@ -1006,15 +1054,15 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
-                decimal late_damage_magnification = (inbound_projectileStat.lifetime + 0.4m)/inbound_projectileStat.lifetime;
+                decimal late_damage_magnification = (inbound_projectileStat.lifetime + 0.4m) / inbound_projectileStat.lifetime;
                 inbound_projectileStat.average_damage *= late_damage_magnification;
-                inbound_projectileStat.max_damage  *= late_damage_magnification;
-                inbound_projectileStat.min_damage  *= late_damage_magnification;
+                inbound_projectileStat.max_damage *= late_damage_magnification;
+                inbound_projectileStat.min_damage *= late_damage_magnification;
             }
             return inbound_projectileStat;
         }
@@ -1035,7 +1083,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
@@ -1049,13 +1097,148 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 decimal additional_damage_magnification = Calc_additional_damage_magnification();
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                inbound_projectile.damage *= additional_damage_magnification;
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.damage *= additional_damage_magnification;
+                }
+            }
+            return inbound_projectile;
+        }
+    }
+    // More damage, x2 at 1 speed to x5 at 0.2 speed, for slower projectiles.
+    class Item_105_Slow_damage : Item
+    {
+        public Item_105_Slow_damage(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                decimal magnification = 1m;
+                if (0.2m <= inbound_projectileStat.speed && inbound_projectileStat.speed <= 1)
+                {
+                    magnification = Math.Truncate(-3.75m * inbound_projectileStat.speed + 5.75m);
+                }
+                else if (inbound_projectileStat.speed < 0.2m)
+                {
+                    magnification = 5m;
+                }
+                inbound_projectileStat.average_damage *= magnification;
+                inbound_projectileStat.max_damage *= magnification;
+                inbound_projectileStat.min_damage *= magnification;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                decimal magnification = 1m;
+                if (0.2m <= inbound_projectile.speed && inbound_projectile.speed <= 1)
+                {
+                    magnification = Math.Truncate(-3.75m * inbound_projectile.speed + 5.75m);
+                }
+                else if (inbound_projectile.speed < 0.2m)
+                {
+                    magnification = 5m;
+                }
+                inbound_projectile.damage *= magnification;
+            }
+            return inbound_projectile;
+        }
+    }
+    class Item_106_Combine10 : Item
+    {
+        int count = 0;
+        public Item_106_Combine10(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.average_damage *= 20;
+                inbound_projectileStat.max_damage *= 20;
+                inbound_projectileStat.min_damage *= 20;
+                inbound_projectileStat.magnification /= 10;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+            count += 1;
+            if (count >= 10)
+            {
+                if (Access_from_rel_down != null)
+                {
+                    inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                    if (inbound_projectile != null)
+                    {
+                        inbound_projectile.damage *= 20;
+                    }
+                }
+                count = 0;
+            }
+            return inbound_projectile;
+        }
+    }
+
+    //TO BE SUPPORT
+    class Item_107_Change_Direction : Item
+    {
+        public Item_107_Change_Direction(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+    }
+    class Item_108_Guide_Damage : Item
+    {
+        public Item_108_Guide_Damage(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.EnableGuideDamage = true;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                inbound_projectile.EnableGuideDamage = true;
             }
             return inbound_projectile;
         }
@@ -1069,27 +1252,111 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = new();
+            ProjectileStat inbound_projectileStat = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
-                var projectileStat = inbound_projectileStat;
-                projectileStat.average_damage += 100;
-                projectileStat.max_damage += 100;
-                projectileStat.min_damage += 100;
+                inbound_projectileStat.average_damage += 100;
+                inbound_projectileStat.max_damage += 100;
+                inbound_projectileStat.min_damage += 100;
             }
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = new();
+            Projectile inbound_projectile = null;
 
             if (Access_from_rel_down != null)
             {
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
-                var projectile = inbound_projectile;
-                projectile.damage += 100;
+                inbound_projectile.damage += 100;
+            }
+            return inbound_projectile;
+        }
+    }
+    class Item_110_Ejection_Damage : Item
+    {
+        public Item_110_Ejection_Damage(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        private decimal Count_Unused_Ejection()
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEunusedEjection = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_02_Ejector").Where(thing => thing.Access_from_abs_top == null).Where(thing => thing.Access_from_abs_right == null).Where(thing => thing.Access_from_abs_down == null).Where(thing => thing.Access_from_abs_left == null);
+            return IEunusedEjection.Count<Thing>();
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+
+            if (Access_from_rel_down != null)
+            {
+                decimal additional_damage= Count_Unused_Ejection() * 10m;
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.average_damage += additional_damage;
+                inbound_projectileStat.max_damage += additional_damage;
+                inbound_projectileStat.min_damage += additional_damage;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+
+            if (Access_from_rel_down != null)
+            {
+                decimal additional_damage= Count_Unused_Ejection() * 10m;
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.damage += additional_damage;
+                }
+            }
+            return inbound_projectile;
+        }
+    }
+
+    //TO BE SUPPORT
+    class Item_111_Few_Shot_Damage : Item
+    {
+        public Item_111_Few_Shot_Damage(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+    }
+    class Item_112_Clone : Item
+    {
+        public Item_112_Clone(Thing[,] _thing_layout) : base(_thing_layout)
+        {
+            IsAccessFromDOWN = true;
+            IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+                inbound_projectileStat.magnification *= 2m;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = null;
+
+            if (Access_from_rel_down != null)
+            {
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+                if (inbound_projectile != null)
+                {
+                    inbound_projectile.magnification *= 2;
+                }
             }
             return inbound_projectile;
         }

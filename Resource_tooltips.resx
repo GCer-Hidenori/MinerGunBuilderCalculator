@@ -234,8 +234,32 @@
   <data name="Item_103_Late_damage" xml:space="preserve">
     <value>Double damage in the last 0.4s of the projectile's lifetime.</value>
   </data>
+  <data name="Item_104_Unused_tile" xml:space="preserve">
+    <value>Adds 10% more damage for each unused tile in ship.</value>
+  </data>
+  <data name="Item_105_Slow_damage" xml:space="preserve">
+    <value>More damage, x2 at 1 speed to x5 at 0.2 speed, for slower projectiles.</value>
+  </data>
+  <data name="Item_106_Combine10" xml:space="preserve">
+    <value>Combines 10 projectiles into one stronger one also doubling the damage.</value>
+  </data>
+  <data name="Item_107_Change_Direction" xml:space="preserve">
+    <value>[NOT SUPPORTED YET]Changes direction in flight every 0.2s and adds 5% damage, less with each change.</value>
+  </data>
+  <data name="Item_108_Guide_Damage" xml:space="preserve">
+    <value>Following projectile guides in ship increase damage by 10%.</value>
+  </data>
   <data name="Item_109_Add_100_damage" xml:space="preserve">
     <value>Adds 100 damage to the projectild.</value>
+  </data>
+  <data name="Item_110_Ejection_Damage" xml:space="preserve">
+    <value>Adds 10 damage for each unused ejection block.</value>
+  </data>
+  <data name="Item_111_Few_Shot_Damage" xml:space="preserve">
+    <value>[NOT SUPPORTED YET]Adds up to double damage for less (1 to 10) projectiles out.</value>
+  </data>
+  <data name="Item_112_Clone" xml:space="preserve">
+    <value>Clones every passing projectile.</value>
   </data>
   <data name="Parts_01_Wall" xml:space="preserve">
     <value>Wall</value>
