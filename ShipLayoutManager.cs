@@ -241,6 +241,7 @@ namespace MinerGunBuilderCalculator
         {
             var resource_manager_shipparts = Resource_ShipParts.ResourceManager;
             var resource_manager_item = Resource_Item.ResourceManager;
+            var resource_manager_legendary = Resource_Legendary.ResourceManager;
             switch (item)
             {
                 case Parts_Null:
@@ -255,8 +256,8 @@ namespace MinerGunBuilderCalculator
                     }
                     else
                     {
-                        image = (Image)resource_manager_item.GetObject(item.GetType().Name.ToString());
-                        if(image != null)
+                        image = (Image)resource_manager_item.GetObject(item.GetType().Name.ToString()) ?? (Image)resource_manager_legendary.GetObject(item.GetType().Name.ToString());
+                        if (image != null)
                         {
                             return image;
                         }
