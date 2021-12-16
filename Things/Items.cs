@@ -193,6 +193,7 @@ namespace MinerGunBuilderCalculator
     }
     class Item_013_Criticalx2 : Item
     {
+        Random rand;
         public Item_013_Criticalx2(Thing[,] _thing_layout) : base(_thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -209,14 +210,18 @@ namespace MinerGunBuilderCalculator
         {
             Projectile inbound_projectile = null;
 
-            Random rand = new Random();
             inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (rand.Next(0, 100) < 33) inbound_projectile.damage *= 2;
             return inbound_projectile;
         }
+        public override void ResetBeforeCalculateDamage()
+        {
+            rand = new Random(0);
+        }
     }
     class Item_014_Criticalx10 : Item
     {
+        Random rand;
         public Item_014_Criticalx10(Thing[,] _thing_layout) : base(_thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -233,14 +238,18 @@ namespace MinerGunBuilderCalculator
         {
             Projectile inbound_projectile = null;
 
-            Random rand = new Random();
             inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (rand.Next(0, 100) < 4) inbound_projectile.damage *= 10;
             return inbound_projectile;
         }
+        public override void ResetBeforeCalculateDamage()
+        {
+            rand = new Random(0);
+        }
     }
     class Item_015_Random_critical : Item
     {
+        Random rand;
         public Item_015_Random_critical(Thing[,] _thing_layout) : base(_thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -258,7 +267,6 @@ namespace MinerGunBuilderCalculator
         {
             Projectile inbound_projectile = null;
 
-            Random rand = new Random();
             inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             switch (rand.Next(0, 12))
             {
@@ -295,6 +303,10 @@ namespace MinerGunBuilderCalculator
             }
 
             return inbound_projectile;
+        }
+        public override void ResetBeforeCalculateDamage()
+        {
+            rand = new Random(0);
         }
     }
     class Item_016_Charge : Item
