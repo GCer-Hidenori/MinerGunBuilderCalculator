@@ -429,9 +429,8 @@ namespace MinerGunBuilderCalculator
             this.button_Start_Detailed_Calc.Name = "button_Start_Detailed_Calc";
             this.button_Start_Detailed_Calc.Size = new System.Drawing.Size(101, 23);
             this.button_Start_Detailed_Calc.TabIndex = 0;
-            this.button_Start_Detailed_Calc.Text = "Detailed Calc";
+            this.button_Start_Detailed_Calc.Text = "SIMULATE";
             this.button_Start_Detailed_Calc.UseVisualStyleBackColor = true;
-            this.button_Start_Detailed_Calc.Visible = false;
             this.button_Start_Detailed_Calc.Click += new System.EventHandler(this.button_Start_Detailed_Calc_Click);
             // 
             // errorProvider1

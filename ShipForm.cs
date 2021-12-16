@@ -155,7 +155,12 @@ namespace MinerGunBuilderCalculator
 
         private void button_Start_Detailed_Calc_Click(object sender, EventArgs e)
         {
-
+            if(fireController != null)
+            {
+                fireController.MakeGraphs((ParentForm)this.ParentForm);
+            }
+            
+            //var graphForm = new Form_Graph();
         }
     }
 }

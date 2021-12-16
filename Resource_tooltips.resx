@@ -196,10 +196,10 @@
     <value>Projectile pierces one block</value>
   </data>
   <data name="Item_027_Round_area" xml:space="preserve">
-    <value>Area damage in a circle but 4% less total damage.</value>
+    <value>[NOT SUPPORTED YET]Area damage in a circle but 4% less total damage.</value>
   </data>
   <data name="Item_028_Rectangle_area" xml:space="preserve">
-    <value>Area damage in a horizontal rectangle. 4% less total damage.</value>
+    <value>[NOT SUPPORTED YET]Area damage in a horizontal rectangle. 4% less total damage.</value>
   </data>
   <data name="Item_029_Attraction" xml:space="preserve">
     <value>Projectiles attract each other.</value>
