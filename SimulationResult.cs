@@ -10,5 +10,6 @@ namespace MinerGunBuilderCalculator
     {
         public int ejector_number;
         public List<decimal> damages;
+        public Statistics.Stats stats;
     }
 }

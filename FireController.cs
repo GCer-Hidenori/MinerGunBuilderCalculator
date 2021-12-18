@@ -663,7 +663,7 @@ namespace MinerGunBuilderCalculator
             formGraph.ClearGraphs();
             foreach(SimulationResult each_result in results)
             {
-                formGraph.AddHistogram(each_result.ejector_number, each_result.damages,fire_time_sec);
+                formGraph.AddHistogram(each_result.ejector_number, each_result.damages,fire_time_sec,each_result.stats);
             }
 
         }
@@ -717,7 +717,13 @@ namespace MinerGunBuilderCalculator
 
                 if (ejector_damages.Count > 0)
                 {
-                    var ejector_result = new SimulationResult { ejector_number = ejector_number, damages = ejector_damages };
+                    var stats = Statistics.Calculate(ejector_damages);
+                    var ejector_result = new SimulationResult
+                    {
+                        ejector_number = ejector_number,
+                        damages = ejector_damages,
+                        stats = stats
+                    };
                     results.Add(ejector_result);
                     ejector_number += 1;
                 }

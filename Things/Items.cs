@@ -260,7 +260,7 @@ namespace MinerGunBuilderCalculator
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.min_damage = 0;
             inbound_projectileStat.max_damage *= 4;
-            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)(9.0 / 13 + 2.0 / 13 + (3.0 + 4) / 2 / 13));
+            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)(9.0 / 12 + 2.0 / 12 + (3.0 + 4) / 2 / 12));
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
@@ -273,6 +273,7 @@ namespace MinerGunBuilderCalculator
                 case 0:
                     inbound_projectile.damage = 0;
                     break;
+                case 1:
                 case 2:
                 case 3:
                 case 4:
