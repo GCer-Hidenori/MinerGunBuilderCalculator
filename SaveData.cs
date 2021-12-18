@@ -27,8 +27,8 @@ namespace MinerGunBuilderCalculator
             JObject savedata = JObject.Parse(json_string);
             if (savedata.ContainsKey("SaveFormatVersion"))
             {
-                int saveformatversion;
-                if(int.TryParse(savedata["SaveFormatVersion"].ToString(),out saveformatversion))
+                //int saveformatversion;
+                if(int.TryParse(savedata["SaveFormatVersion"].ToString(),out int saveformatversion))
                 {
                     if(saveformatversion >= SUPPRT_MIN_SAVE_FORMAT_VERSION)
                     {
@@ -41,7 +41,7 @@ namespace MinerGunBuilderCalculator
 
         public static SaveData Load(out string save_file_name)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
+            OpenFileDialog ofd = new();
             SaveData save_data = null;
             save_file_name = null;
             ofd.FileName = "";
@@ -103,10 +103,12 @@ namespace MinerGunBuilderCalculator
         }
         public static string Save(Thing[,] _thing_layout,ShipParameter _shipParameter,Profile _profile,bool isSaveAs, string save_file_name = null)
         {
-            var saveData = new SaveData();
-            saveData.thing_layout = _thing_layout;
-            saveData.shipParameter = _shipParameter;
-            saveData.profile = _profile;
+            var saveData = new SaveData
+            {
+                thing_layout = _thing_layout,
+                shipParameter = _shipParameter,
+                profile = _profile
+            };
 
             var setting = new JsonSerializerSettings
             {
@@ -117,7 +119,7 @@ namespace MinerGunBuilderCalculator
             
             if ((isSaveAs ==false && save_file_name!=null) || (  save_file_name != null && File.Exists(save_file_name)))
             {
-                using (StreamWriter sw = new StreamWriter(save_file_name,false, Encoding.UTF8))
+                using (StreamWriter sw = new (save_file_name,false, Encoding.UTF8))
                 {
                     sw.Write(jsonString);
                 }
@@ -125,20 +127,21 @@ namespace MinerGunBuilderCalculator
             }
             else
             {
-                SaveFileDialog sfd = new SaveFileDialog();
-
-                sfd.FileName = "New ship.json";
-                sfd.InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-                sfd.Filter = "Ship file(*.json)|*.json|All files(*.*)|*.*";
-                sfd.FilterIndex = 1;
-                sfd.Title = "Save";
-                sfd.RestoreDirectory = true;
-                sfd.OverwritePrompt = true;
-                sfd.CheckPathExists = true;
+                SaveFileDialog sfd = new()
+                {
+                    FileName = "New ship.json",
+                    InitialDirectory = System.AppDomain.CurrentDomain.BaseDirectory,
+                    Filter = "Ship file(*.json)|*.json|All files(*.*)|*.*",
+                    FilterIndex = 1,
+                    Title = "Save",
+                    RestoreDirectory = true,
+                    OverwritePrompt = true,
+                    CheckPathExists = true
+                };
 
                 if (sfd.ShowDialog() == DialogResult.OK)
                 {
-                    using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8))
+                    using (StreamWriter sw = new(sfd.FileName, false, Encoding.UTF8))
                     {
                         sw.Write(jsonString);
                     }

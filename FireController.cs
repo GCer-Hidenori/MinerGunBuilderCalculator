@@ -79,7 +79,7 @@ namespace MinerGunBuilderCalculator
                 }
                 if (inbound_projectileStats.Count > 0)
                 {
-                    each_ejector_average_damage = each_ejector_average_damage / inbound_projectileStats.Count;
+                    each_ejector_average_damage /= inbound_projectileStats.Count;
                     //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
                 }
 
@@ -141,7 +141,7 @@ namespace MinerGunBuilderCalculator
                 }
             }
 
-            foreach (Thing[] things in list_separate_connect(thing_layout))
+            foreach (Thing[] things in List_separate_connect(thing_layout))
             {
                 int x, y;
                 int y_from, y_to;
@@ -217,7 +217,7 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private IEnumerable<Thing[]> list_separate_connect(Thing[,] thing_layout)
+        private IEnumerable<Thing[]> List_separate_connect(Thing[,] thing_layout)
         {
             for (var x = 0; x < thing_layout.GetLength(0); x++)
             {
@@ -620,7 +620,8 @@ namespace MinerGunBuilderCalculator
                 }
             }
         }
-        private Point find_projectile_generator_position(Thing[,] thing_layout)
+        /*
+        private Point Find_projectile_generator_position(Thing[,] thing_layout)
         {
             for (var x = 0; x < thing_layout.GetLength(0); x++)
             {
@@ -634,6 +635,7 @@ namespace MinerGunBuilderCalculator
             }
             throw new Exception();
         }
+        */
 
         public void MakeGraphs(ParentForm parentForm)
         {
@@ -652,8 +654,10 @@ namespace MinerGunBuilderCalculator
         {
             if(formGraph == null || formGraph.IsDisposed == true)
             {
-                formGraph = new Form_Graph();
-                formGraph.MdiParent = parentForm;
+                formGraph = new Form_Graph
+                {
+                    MdiParent = parentForm
+                };
                 formGraph.Show();
             }
             formGraph.ClearGraphs();

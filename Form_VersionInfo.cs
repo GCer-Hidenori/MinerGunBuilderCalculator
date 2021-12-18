@@ -19,7 +19,7 @@ namespace MinerGunBuilderCalculator
             label_version_number.Text = "version " + version;
         }
 
-        private void linkLabel1_Click(object sender, EventArgs e)
+        private void LinkLabel1_Click(object sender, EventArgs e)
         {
             var info = new System.Diagnostics.ProcessStartInfo
             {

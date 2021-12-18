@@ -77,9 +77,10 @@ namespace MinerGunBuilderCalculator
         private void CreateInitialThingLayout()
         {
             thing_layout = new Thing[shipsize, shipsize];
-            
 
-            int x = 0, y = 0;
+
+            int x;
+            int y = 0;
             for (x = 0; x < shipsize; x++)
             {
                 for (y = 0; y < shipsize; y++)
@@ -108,7 +109,7 @@ namespace MinerGunBuilderCalculator
             {
                 var pos = dic_picturebox[pb];
 
-                if (!(thing_layout[pos.X, pos.Y] is Parts_01_Wall))
+                if (thing_layout[pos.X, pos.Y] is not Parts_01_Wall)
                 {
                     mouse_hvoer_position = pos;
                     pb.MouseLeave += PictureBox_MouseLeave;
@@ -267,11 +268,11 @@ namespace MinerGunBuilderCalculator
         }
         private Thing ResourceName2Item(string resource_name)
         {
-            Thing item = null;
+            //Thing item = null;
 
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
             string typename = typeof(ShipLayoutManager).Namespace + "." + resource_name;
-            item = (Thing)assembly.CreateInstance(typename, true, System.Reflection.BindingFlags.CreateInstance, null, new object[] { thing_layout }, null, null);
+            Thing item = (Thing)assembly.CreateInstance(typename, true, System.Reflection.BindingFlags.CreateInstance, null, new object[] { thing_layout }, null, null);
             if(item == null)
             {
                 throw new Exception();

@@ -15,14 +15,12 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = new();
-            var projectileStat = new ProjectileStat();
-            projectileStat.average_damage = shipParameter.base_damage;
-            projectileStat.max_damage = shipParameter.base_damage;
-            projectileStat.min_damage = shipParameter.base_damage;
-            projectileStat.magnification = 1;
-            projectileStat.speed = shipParameter.projectile_speed;
-            projectileStat.lifetime = shipParameter.projectile_lifetime;
-            inbound_projectileStat = projectileStat;
+            inbound_projectileStat.average_damage = shipParameter.base_damage;
+            inbound_projectileStat.max_damage = shipParameter.base_damage;
+            inbound_projectileStat.min_damage = shipParameter.base_damage;
+            inbound_projectileStat.magnification = 1;
+            inbound_projectileStat.speed = shipParameter.projectile_speed;
+            inbound_projectileStat.lifetime = shipParameter.projectile_lifetime;
             
             return inbound_projectileStat;
         }

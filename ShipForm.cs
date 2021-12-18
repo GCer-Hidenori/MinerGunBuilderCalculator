@@ -61,8 +61,8 @@ namespace MinerGunBuilderCalculator
         private void TextBox_Projectile_Speed_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
-            decimal value;
-            if (!Decimal.TryParse(textbox.Text, out value))
+            
+            if (!Decimal.TryParse(textbox.Text, out decimal value))
             {
                 errorProvider1.SetError(TextBox_BaseDamage, "Projectile Speed must be number.");
                 e.Cancel = true;
@@ -73,8 +73,8 @@ namespace MinerGunBuilderCalculator
         private void TextBox_BaseDamage_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
-            decimal value;
-            if (!Decimal.TryParse(textbox.Text, out value))
+            
+            if (!Decimal.TryParse(textbox.Text, out decimal value))
             {
                 errorProvider1.SetError(TextBox_BaseDamage, "Base damage must be number.");
                 e.Cancel = true;
@@ -96,8 +96,8 @@ namespace MinerGunBuilderCalculator
         private void TextBox_FireRate_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
-            decimal value;
-            if (!Decimal.TryParse(textbox.Text, out value))
+            
+            if (!Decimal.TryParse(textbox.Text, out decimal value))
             {
                 errorProvider1.SetError(TextBox_FireRate, "Firerate must be number.");
                 e.Cancel = true;
@@ -125,8 +125,8 @@ namespace MinerGunBuilderCalculator
         private void TextBox_Highet_Tier_in_World_Map_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
-            int value;
-            if (!int.TryParse(textbox.Text, out value))
+            
+            if (!int.TryParse(textbox.Text, out int value))
             {
                 errorProvider1.SetError(TextBox_Highet_Tier_in_World_Map, "Firerate must be number.");
                 e.Cancel = true;
@@ -144,8 +144,8 @@ namespace MinerGunBuilderCalculator
         private void TextBox_Projectile_Lifetime_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
-            decimal value;
-            if (!Decimal.TryParse(textbox.Text, out value))
+            
+            if (!Decimal.TryParse(textbox.Text, out decimal value))
             {
                 errorProvider1.SetError(TextBox_Projectile_Lifetime, "Projectile lifetime must be number.");
                 e.Cancel = true;
@@ -153,7 +153,7 @@ namespace MinerGunBuilderCalculator
             shipParamater.projectile_lifetime = value;
         }
 
-        private void button_Start_Detailed_Calc_Click(object sender, EventArgs e)
+        private void Button_Start_Detailed_Calc_Click(object sender, EventArgs e)
         {
             if(fireController != null)
             {

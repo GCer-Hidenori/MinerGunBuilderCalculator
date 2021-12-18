@@ -32,15 +32,20 @@ namespace MinerGunBuilderCalculator
             {
                 Image image = (Image)resource_manager.GetObject(idictionary.Key.ToString());
                 if(idictionary.Key.ToString()==not_show_thing_name)continue;
-                var pb = new PictureBox();
+                var pb = new PictureBox
+                {
+                    BackgroundImageLayout = ImageLayout.Zoom,
+                    BackgroundImage = image,
+                    Width = this.Size.Width / 4,
+                    Name = idictionary.Key.ToString(),
+                    Height = Width,
+                    SizeMode = PictureBoxSizeMode.StretchImage,
 
-                pb.BackgroundImageLayout = ImageLayout.Zoom;
-                pb.BackgroundImage = image;
-                pb.Width = this.Size.Width / 4;
-                pb.Height = pb.Width;
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                };
+                //pb.Height = pb.Width;
+                //pb.SizeMode = PictureBoxSizeMode.StretchImage;
                 pb.MouseDown += Picturebox_click;
-                pb.Name = idictionary.Key.ToString();
+                
 
                 list_picuture_box.Add(pb);
             }

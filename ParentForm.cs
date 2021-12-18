@@ -20,16 +20,18 @@ namespace MinerGunBuilderCalculator
         {
             InitializeComponent();
             menuStrip1.MdiWindowListItem = windowwToolStripMenuItem;
-            itemForm = new ItemForm();
-            itemForm.MdiParent = this;
+            itemForm = new ItemForm
+            {
+                MdiParent = this
+            };
             itemForm.Show();
         }
         private void NewShip()
         {
-            ShipForm shipForm = new ShipForm();
+            ShipForm shipForm = new();
             ShipParameter shipParamater = new();
             Profile profile = new();
-            ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater, profile,14);
+            ShipLayoutManager shipLayoutManager = new(shipForm, shipParamater, profile,14);
             shipForm.shipLayoutManager = shipLayoutManager;
             shipForm.shipParamater = shipParamater;
             shipForm.profile = profile;
@@ -48,23 +50,25 @@ namespace MinerGunBuilderCalculator
         {
             if(itemForm == null || itemForm.IsDisposed == true)
             {
-                itemForm = new ItemForm();
-                itemForm.MdiParent = this;
+                itemForm = new ItemForm
+                {
+                    MdiParent = this
+                };
                 itemForm.Show();
             }
         }
         private void LoadShip()
         {
-            string save_file_name = null;
-            var save_data = SaveData.Load(out save_file_name);
+            //string save_file_name; // = null;
+            var save_data = SaveData.Load(out string save_file_name);
             if(save_data != null)
             {
-                ShipForm shipForm = new ShipForm();
+                ShipForm shipForm = new();
                 shipForm.Text = Path.GetFileName(save_file_name);
                 shipForm.save_file_name = save_file_name;
                 ShipParameter shipParamater = save_data.shipParameter;
                 Profile profile = save_data.profile;
-                ShipLayoutManager shipLayoutManager = new ShipLayoutManager(shipForm, shipParamater,profile, save_data.thing_layout);
+                ShipLayoutManager shipLayoutManager = new(shipForm, shipParamater,profile, save_data.thing_layout);
                 shipForm.shipLayoutManager = shipLayoutManager;
                 shipForm.shipParamater = shipParamater;
                 shipForm.profile = profile;
@@ -131,7 +135,7 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (versionForm == null || versionForm.IsDisposed)
             {

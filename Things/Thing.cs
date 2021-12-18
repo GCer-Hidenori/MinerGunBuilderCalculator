@@ -103,19 +103,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return Access_to_abs_top;
-                    case Direction.RIGHT:
-                        return Access_to_abs_right;
-                    case Direction.DOWN:
-                        return Access_to_abs_down;
-                    case Direction.LEFT:
-                        return Access_to_abs_left;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => Access_to_abs_top,
+                    Direction.RIGHT => Access_to_abs_right,
+                    Direction.DOWN => Access_to_abs_down,
+                    Direction.LEFT => Access_to_abs_left,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         [JsonIgnore]
@@ -143,19 +138,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return Access_to_abs_right;
-                    case Direction.RIGHT:
-                        return Access_to_abs_down;
-                    case Direction.DOWN:
-                        return Access_to_abs_left;
-                    case Direction.LEFT:
-                        return Access_to_abs_top;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => Access_to_abs_right,
+                    Direction.RIGHT => Access_to_abs_down,
+                    Direction.DOWN => Access_to_abs_left,
+                    Direction.LEFT => Access_to_abs_top,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         
@@ -184,19 +174,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return Access_to_abs_down;
-                    case Direction.RIGHT:
-                        return Access_to_abs_left;
-                    case Direction.DOWN:
-                        return Access_to_abs_top;
-                    case Direction.LEFT:
-                        return Access_to_abs_right;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => Access_to_abs_down,
+                    Direction.RIGHT => Access_to_abs_left,
+                    Direction.DOWN => Access_to_abs_top,
+                    Direction.LEFT => Access_to_abs_right,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         [JsonIgnore]
@@ -224,19 +209,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return Access_to_abs_left;
-                    case Direction.RIGHT:
-                        return Access_to_abs_top;
-                    case Direction.DOWN:
-                        return Access_to_abs_right;
-                    case Direction.LEFT:
-                        return Access_to_abs_down;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => Access_to_abs_left,
+                    Direction.RIGHT => Access_to_abs_top,
+                    Direction.DOWN => Access_to_abs_right,
+                    Direction.LEFT => Access_to_abs_down,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
 
@@ -247,23 +227,14 @@ namespace MinerGunBuilderCalculator
         {
             set
             {
-                switch (direction)
+                access_from_abs_top = direction switch
                 {
-                    case Direction.TOP:
-                        access_from_abs_top = value;
-                        break;
-                    case Direction.RIGHT:
-                        access_from_abs_top = value;
-                        break;
-                    case Direction.DOWN:
-                        access_from_abs_top = value;
-                        break;
-                    case Direction.LEFT:
-                        access_from_abs_top = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => value,
+                    Direction.RIGHT => value,
+                    Direction.DOWN => value,
+                    Direction.LEFT => value,
+                    _ => throw new NotImplementedException(),
+                };
             }
             get
             {
@@ -275,23 +246,14 @@ namespace MinerGunBuilderCalculator
         {
             set
             {
-                switch (direction)
+                access_from_abs_right = direction switch
                 {
-                    case Direction.TOP:
-                        access_from_abs_right = value;
-                        break;
-                    case Direction.RIGHT:
-                        access_from_abs_right = value;
-                        break;
-                    case Direction.DOWN:
-                        access_from_abs_right = value;
-                        break;
-                    case Direction.LEFT:
-                        access_from_abs_right = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => value,
+                    Direction.RIGHT => value,
+                    Direction.DOWN => value,
+                    Direction.LEFT => value,
+                    _ => throw new NotImplementedException(),
+                };
             }
             get
             {
@@ -303,23 +265,14 @@ namespace MinerGunBuilderCalculator
         {
             set
             {
-                switch (direction)
+                access_from_abs_down = direction switch
                 {
-                    case Direction.TOP:
-                        access_from_abs_down = value;
-                        break;
-                    case Direction.RIGHT:
-                        access_from_abs_down = value;
-                        break;
-                    case Direction.DOWN:
-                        access_from_abs_down = value;
-                        break;
-                    case Direction.LEFT:
-                        access_from_abs_down = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => value,
+                    Direction.RIGHT => value,
+                    Direction.DOWN => value,
+                    Direction.LEFT => value,
+                    _ => throw new NotImplementedException(),
+                };
             }
             get
             {
@@ -331,23 +284,14 @@ namespace MinerGunBuilderCalculator
         {
             set
             {
-                switch (direction)
+                access_from_abs_left = direction switch
                 {
-                    case Direction.TOP:
-                        access_from_abs_left = value;
-                        break;
-                    case Direction.RIGHT:
-                        access_from_abs_left = value;
-                        break;
-                    case Direction.DOWN:
-                        access_from_abs_left = value;
-                        break;
-                    case Direction.LEFT:
-                        access_from_abs_left = value;
-                        break;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => value,
+                    Direction.RIGHT => value,
+                    Direction.DOWN => value,
+                    Direction.LEFT => value,
+                    _ => throw new NotImplementedException(),
+                };
             }
             get
             {
@@ -381,19 +325,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return access_from_abs_top;
-                    case Direction.RIGHT:
-                        return access_from_abs_right;
-                    case Direction.DOWN:
-                        return access_from_abs_down;
-                    case Direction.LEFT:
-                        return access_from_abs_left;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => access_from_abs_top,
+                    Direction.RIGHT => access_from_abs_right,
+                    Direction.DOWN => access_from_abs_down,
+                    Direction.LEFT => access_from_abs_left,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         [JsonIgnore]
@@ -421,19 +360,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return access_from_abs_right;
-                    case Direction.RIGHT:
-                        return access_from_abs_down;
-                    case Direction.DOWN:
-                        return access_from_abs_left;
-                    case Direction.LEFT:
-                        return access_from_abs_top;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => access_from_abs_right,
+                    Direction.RIGHT => access_from_abs_down,
+                    Direction.DOWN => access_from_abs_left,
+                    Direction.LEFT => access_from_abs_top,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         [JsonIgnore]
@@ -461,19 +395,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return access_from_abs_down;
-                    case Direction.RIGHT:
-                        return access_from_abs_left;
-                    case Direction.DOWN:
-                        return access_from_abs_top;
-                    case Direction.LEFT:
-                        return access_from_abs_right;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => access_from_abs_down,
+                    Direction.RIGHT => access_from_abs_left,
+                    Direction.DOWN => access_from_abs_top,
+                    Direction.LEFT => access_from_abs_right,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
         [JsonIgnore]
@@ -501,19 +430,14 @@ namespace MinerGunBuilderCalculator
             }
             get
             {
-                switch (direction)
+                return direction switch
                 {
-                    case Direction.TOP:
-                        return access_from_abs_left;
-                    case Direction.RIGHT:
-                        return access_from_abs_top;
-                    case Direction.DOWN:
-                        return access_from_abs_right;
-                    case Direction.LEFT:
-                        return access_from_abs_down;
-                    default:
-                        throw new NotImplementedException();
-                }
+                    Direction.TOP => access_from_abs_left,
+                    Direction.RIGHT => access_from_abs_top,
+                    Direction.DOWN => access_from_abs_right,
+                    Direction.LEFT => access_from_abs_down,
+                    _ => throw new NotImplementedException(),
+                };
             }
         }
 

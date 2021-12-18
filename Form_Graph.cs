@@ -29,13 +29,14 @@ namespace MinerGunBuilderCalculator
         }
         public void AddHistogram(int ejector_number,List<decimal> decimal_damages,int fire_time_sec)
         {
-            var formsPlot = new ScottPlot.FormsPlot();
-            
-            formsPlot.Height = 300;
-            formsPlot.Width = 500;
+            var formsPlot = new ScottPlot.FormsPlot
+            {
+                Height = 300,
+                Width = 500,
 
-            formsPlot.BorderStyle = BorderStyle.FixedSingle;
-            formsPlot.Dock = DockStyle.Fill;
+                BorderStyle = BorderStyle.FixedSingle,
+                Dock = DockStyle.Fill
+            };
             var plt = formsPlot.Plot;
             
             double[] damages = new double[ decimal_damages.Count];
