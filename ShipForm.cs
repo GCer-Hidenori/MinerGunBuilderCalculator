@@ -37,8 +37,8 @@ namespace MinerGunBuilderCalculator
 
         public void WriteCalculateResult(decimal average_damage_per_sec, decimal? min_damage, decimal average_damage, decimal max_damage, decimal projectile_speed, decimal projectile_eject_per_sec)
         {
-            Label_average_damage.Text = String.Format("{0:#,0.00}", average_damage);
-            Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}", average_damage_per_sec);
+            Label_average_damage.Text = String.Format("{0:#,0.00}", Decimal.Round(average_damage,2,MidpointRounding.AwayFromZero));
+            Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}",Decimal.Round(average_damage_per_sec,2,MidpointRounding.AwayFromZero));
             Label_highest_projectile_damage.Text = String.Format("{0:#,0.00}", max_damage);
             Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage ?? 0);
             Label_Projectile_Max_Speed.Text = String.Format("{0:#,0.00}", projectile_speed);

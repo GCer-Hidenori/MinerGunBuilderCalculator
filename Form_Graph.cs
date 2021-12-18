@@ -23,7 +23,7 @@ namespace MinerGunBuilderCalculator
             }
             tableLayoutPanel1.RowCount = 1;
         }
-        public void AddHistogram(int ejector_number,List<decimal> decimal_damages,int fire_time_sec, Statistics.Stats stats)
+        public void AddHistogram(string ejector_name,List<decimal> decimal_damages,int fire_time_sec, Statistics.Stats stats)
         {
             var formsPlot = new ScottPlot.FormsPlot
             {
@@ -40,17 +40,7 @@ namespace MinerGunBuilderCalculator
 
             double scale_min = (double)stats.min;
             double scale_max = (double)stats.max;
-            /*
-            foreach(double v in damages)
-            {
-                min = (min > v || min==null) ? v : min;
-                max = (max < v || max==null) ? v : max;
-            }
-            */
 
-            //decide min,max
-            //if (scale_min == null) scale_min = 0;
-            //if (scale_max == null) scale_max = 100;
             if (scale_min == scale_max) scale_max *= 10;
             if (scale_max - scale_min < 10)scale_max = scale_min + 10;
 
@@ -62,7 +52,7 @@ namespace MinerGunBuilderCalculator
             bar.BarWidth = 1;
 
             // customize the plot style
-            plt.Title($"Ejector #{ejector_number} damage histogram for {fire_time_sec}second");
+            plt.Title($"Ejector #{ejector_name} damage histogram for {fire_time_sec}second");
             plt.YAxis.Label("Count (#)");
             plt.XAxis.Label("Damage");
             plt.SetAxisLimits(yMin: 0);
@@ -77,7 +67,11 @@ namespace MinerGunBuilderCalculator
             var label = new Label()
             {
                 Dock = DockStyle.Fill,
-                Text = $"Average:{stats.average:#,0.00}\r\nMean:{stats.mean:#,0.00}\r\nLow:{stats.min:#,0.00}\r\nHigh:{stats.max:#,0.00}"
+                Text = $"Low:{stats.min:#,0.00}\r\nAverage:{Decimal.Round(stats.average,2,MidpointRounding.AwayFromZero):#,0.00}\r\nMean:{stats.mean:#,0.00}\r\nHigh:{stats.max:#,0.00}" +
+                $"\r\nTotal:{stats.total_damage}\r\nAverage/sec:{Decimal.Round(stats.average_per_sec,2,MidpointRounding.AwayFromZero)}" +
+                $"\r\nEjected:{stats.ejected}\r\nEjected/sec:{Decimal.Round(stats.ejected_per_sec,2,MidpointRounding.AwayFromZero):#,0.00}"
+
+
             };
             tableLayoutPanel1.Controls.Add(label);
 

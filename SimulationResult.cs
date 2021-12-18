@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     struct SimulationResult
     {
-        public int ejector_number;
+        public string ejector_name;
         public List<decimal> damages;
         public Statistics.Stats stats;
     }
