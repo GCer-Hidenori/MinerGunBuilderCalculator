@@ -44,12 +44,13 @@ namespace MinerGunBuilderCalculator
             if (scale_min == scale_max) scale_max *= 10;
             if (scale_max - scale_min < 10)scale_max = scale_min + 10;
 
-            (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(damages, min: (double)scale_min, max: (double)scale_max, binSize: 1);
+            //(double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(damages, min: (double)scale_min, max: (double)scale_max, binSize: 1);
+            (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(damages,20);
             double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
 
             // display the histogram counts as a bar plot
             var bar = plt.AddBar(values: counts, positions: leftEdges);
-            bar.BarWidth = 1;
+            //bar.BarWidth = 1;
 
             // customize the plot style
             plt.Title($"Ejector #{ejector_name} damage histogram for {fire_time_sec}second");

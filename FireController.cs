@@ -643,7 +643,7 @@ namespace MinerGunBuilderCalculator
             CreateProjectileFlow(thing_layout);
             DrawProjectileEffect(thing_layout, picturebox_layout);
             DrawEjectorEffect(thing_layout, picturebox_layout);
-            List<SimulationResult> results = DamageSimulate(thing_layout, shipParameter, profile,fire_time_sec);
+            List<SimulationResult> results = DamageSimulate(thing_layout, shipParameter, fire_time_sec);
             if (results.Count > 0)
             {
                 MakeGraphsMain(results, parentForm,fire_time_sec);
@@ -710,7 +710,8 @@ namespace MinerGunBuilderCalculator
             }
             return ejector_damages;
         }
-        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile,int fire_time_sec)
+        /*
+        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,int fire_time_sec)
         {
             var results = new List<SimulationResult>();
             var thing_1dim_layout = thing_layout.Cast<Thing>();
@@ -738,6 +739,48 @@ namespace MinerGunBuilderCalculator
                     }
                     ejector_damages.Add(damage / loop_number_for_accuracy);
                 }
+
+                if (ejector_damages.Count > 0)
+                {
+                    stats = Statistics.Calculate(ejector_damages,fire_time_sec);
+                    ejector_result = new SimulationResult
+                    {
+                        ejector_name = ejector_number.ToString(),
+                        damages = ejector_damages,
+                        stats = stats
+                    };
+                    results.Add(ejector_result);
+                    ejector_number += 1;
+
+                    all_ejector_damages.AddRange(ejector_damages);
+                }
+            }
+            if (results.Count > 1)
+            {
+                stats = Statistics.Calculate(all_ejector_damages,fire_time_sec);
+                ejector_result = new SimulationResult
+                {
+                    ejector_name = "Total",
+                    damages = all_ejector_damages,
+                    stats = stats
+                };
+                results.Insert(0, ejector_result);
+            }
+            return results;
+        }
+        */
+        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,int fire_time_sec)
+        {
+            var results = new List<SimulationResult>();
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
+            int ejector_number = 1;
+            List<decimal> all_ejector_damages = new();
+            SimulationResult ejector_result;
+            Statistics.Stats stats;
+            foreach (Parts_02_Ejector ejector in IEejector)
+            {
+                List<decimal> ejector_damages = GetEjectorDamages(ejector, shipParameter, fire_time_sec);
 
                 if (ejector_damages.Count > 0)
                 {
