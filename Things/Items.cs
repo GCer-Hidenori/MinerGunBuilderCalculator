@@ -9,6 +9,10 @@ namespace MinerGunBuilderCalculator
 {
     class Item_001_Guide_right : Item
     {
+        private static decimal SkillTree_Add5damage(SkillTree skillTree)
+        {
+            return skillTree.v03_12_add_5_damage ? 5 : 0;
+        }
         public Item_001_Guide_right(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -17,8 +21,12 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if (inbound_projectileStat.EnableGuideDamage)
+            if (inbound_projectileStat.Legendary_EnableGuideDamage)
             {
+                inbound_projectileStat.average_damage += SkillTree_Add5damage(skillTree);
+                inbound_projectileStat.max_damage += SkillTree_Add5damage(skillTree);
+                inbound_projectileStat.min_damage += SkillTree_Add5damage(skillTree);
+
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
                 inbound_projectileStat.min_damage *= 1.1m;
@@ -29,8 +37,9 @@ namespace MinerGunBuilderCalculator
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (inbound_projectile.EnableGuideDamage)
+            if (inbound_projectile.Legendary_EnableGuideDamage)
             {
+                inbound_projectile.damage += SkillTree_Add5damage(skillTree);
                 inbound_projectile.damage *= 1.1m;
             }
             return inbound_projectile;
@@ -38,6 +47,10 @@ namespace MinerGunBuilderCalculator
     }
     class Item_002_Guide_left : Item
     {
+        private static decimal SkillTree_Add5damage(SkillTree skillTree)
+        {
+            return skillTree.v04_11_add_5_damage ? 5 : 0;
+        }
         public Item_002_Guide_left(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -46,8 +59,12 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if (inbound_projectileStat.EnableGuideDamage)
+            if (inbound_projectileStat.Legendary_EnableGuideDamage)
             {
+                inbound_projectileStat.average_damage += SkillTree_Add5damage(skillTree);
+                inbound_projectileStat.max_damage += SkillTree_Add5damage(skillTree);
+                inbound_projectileStat.min_damage += SkillTree_Add5damage(skillTree);
+
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
                 inbound_projectileStat.min_damage *= 1.1m;
@@ -57,8 +74,9 @@ namespace MinerGunBuilderCalculator
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (inbound_projectile.EnableGuideDamage)
+            if (inbound_projectile.Legendary_EnableGuideDamage)
             {
+                inbound_projectile.damage += SkillTree_Add5damage(skillTree);
                 inbound_projectile.damage *= 1.1m;
             }
             return inbound_projectile;
@@ -194,6 +212,14 @@ namespace MinerGunBuilderCalculator
     class Item_013_Criticalx2 : Item
     {
         Random rand;
+        private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
+        {
+            return skillTree.v02_13_increase_chance ? 1.4m : (decimal)(1.0+1.0/3);
+        }
+        private static int SkillTree_IncreaseChance_Chance(SkillTree skillTree)
+        {
+            return skillTree.v02_13_increase_chance ? 40 : 33;
+        }
         public Item_013_Criticalx2(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -203,15 +229,13 @@ namespace MinerGunBuilderCalculator
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
             inbound_projectileStat.max_damage *= 2;
-            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)(1.0 + 1.0 / 3));
+            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(skillTree));
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
-            //Projectile inbound_projectile = null;
-
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (rand.Next(0, 100) < 33) inbound_projectile.damage *= 2;
+            if (rand.Next(0, 100) < SkillTree_IncreaseChance_Chance(skillTree)) inbound_projectile.damage *= 2;
             return inbound_projectile;
         }
         public override void ResetBeforeCalculateDamage()
@@ -911,7 +935,7 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.magnification = projectile.magnification;
             inbound_projectileStat.speed = projectile.speed;
             inbound_projectileStat.lifetime = projectile.lifetime;
-            inbound_projectileStat.EnableGuideDamage = projectile.EnableGuideDamage;
+            inbound_projectileStat.Legendary_EnableGuideDamage = projectile.Legendary_EnableGuideDamage;
             //inbound_projectileStat = projectileStat;
             return inbound_projectileStat;
         }
@@ -1087,13 +1111,13 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.EnableGuideDamage = true;
+            inbound_projectileStat.Legendary_EnableGuideDamage = true;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            inbound_projectile.EnableGuideDamage = true;
+            inbound_projectile.Legendary_EnableGuideDamage = true;
 
             return inbound_projectile;
         }
@@ -1128,14 +1152,7 @@ namespace MinerGunBuilderCalculator
         }
         private static decimal SkillTree_Add30damage(SkillTree skillTree)
         {
-            if(skillTree.v01_08_add_30_damage)
-            {
-                return 30;
-            }
-            else
-            {
-                return 0;
-            }
+            return skillTree.v01_08_add_30_damage ? 30 : 0;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {

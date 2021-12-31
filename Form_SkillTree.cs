@@ -42,6 +42,10 @@ namespace MinerGunBuilderCalculator
             {
                 "00_07" => skillTree.v00_07_add_5_damage,
                 "01_08" => skillTree.v01_08_add_30_damage,
+                "04_11" => skillTree.v04_11_add_5_damage,
+                "05_10" => skillTree.v05_10_add_5_damage,
+                "03_12" => skillTree.v03_12_add_5_damage,
+                "02_13" => skillTree.v02_13_increase_chance,
                 _ => throw new NotImplementedException(),
             };
         }
@@ -114,6 +118,26 @@ namespace MinerGunBuilderCalculator
                 case "01_08":
                     skillTree.v01_08_add_30_damage = !skillTree.v01_08_add_30_damage;
                     RefreshHex(x, y, skillTree.v01_08_add_30_damage);
+                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                    break;
+                case "04_11":
+                    skillTree.v04_11_add_5_damage = !skillTree.v04_11_add_5_damage;
+                    RefreshHex(x, y, skillTree.v04_11_add_5_damage);
+                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                    break;
+                case "05_10":
+                    skillTree.v05_10_add_5_damage = !skillTree.v05_10_add_5_damage;
+                    RefreshHex(x, y, skillTree.v05_10_add_5_damage);
+                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                    break;
+                case "03_12":
+                    skillTree.v03_12_add_5_damage = !skillTree.v03_12_add_5_damage;
+                    RefreshHex(x, y, skillTree.v03_12_add_5_damage);
+                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                    break;
+                case "02_13":
+                    skillTree.v02_13_increase_chance = !skillTree.v02_13_increase_chance;
+                    RefreshHex(x, y, skillTree.v02_13_increase_chance);
                     skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
                     break;
                 default:

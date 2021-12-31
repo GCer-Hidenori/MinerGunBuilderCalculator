@@ -14,7 +14,7 @@ namespace MinerGunBuilderCalculator
         public decimal speed;
         public decimal lifetime;
 
-        public bool EnableGuideDamage = false;
+        public bool Legendary_EnableGuideDamage = false;
         public Projectile()
         {
             self_and_ancestors.Add(this);
@@ -26,7 +26,7 @@ namespace MinerGunBuilderCalculator
                 damage = damage,
                 speed = speed,
                 lifetime = lifetime,
-                EnableGuideDamage = EnableGuideDamage,
+                Legendary_EnableGuideDamage = Legendary_EnableGuideDamage,
                 magnification = magnification
             };
             projectile.self_and_ancestors.AddRange(self_and_ancestors);

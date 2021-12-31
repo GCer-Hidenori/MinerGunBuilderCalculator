@@ -77,5 +77,41 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("01_08", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Increased chance of 40% for damage multiplier. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _02_13 {
+            get {
+                return ResourceManager.GetString("02_13", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _03_12 {
+            get {
+                return ResourceManager.GetString("03_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _04_11 {
+            get {
+                return ResourceManager.GetString("04_11", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _05_10 {
+            get {
+                return ResourceManager.GetString("05_10", resourceCulture);
+            }
+        }
     }
 }

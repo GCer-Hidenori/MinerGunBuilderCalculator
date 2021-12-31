@@ -123,4 +123,16 @@
   <data name="01_08" xml:space="preserve">
     <value>Adds additional 30 damage to the projectile.</value>
   </data>
+  <data name="02_13" xml:space="preserve">
+    <value>Increased chance of 40% for damage multiplier.</value>
+  </data>
+  <data name="03_12" xml:space="preserve">
+    <value>Adds +5 damage.</value>
+  </data>
+  <data name="04_11" xml:space="preserve">
+    <value>Adds +5 damage.</value>
+  </data>
+  <data name="05_10" xml:space="preserve">
+    <value>Adds +5 damage.</value>
+  </data>
 </root>
