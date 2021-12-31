@@ -59,6 +59,7 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Projectile_Lifetime = new System.Windows.Forms.TextBox();
             this.panel_pb_parent = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.button_SkillTree = new System.Windows.Forms.Button();
             this.button_Start_Detailed_Calc = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
@@ -416,12 +417,23 @@ namespace MinerGunBuilderCalculator
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.button_SkillTree);
             this.panel2.Controls.Add(this.button_Start_Detailed_Calc);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(557, 557);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(200, 166);
             this.panel2.TabIndex = 4;
+            // 
+            // button_SkillTree
+            // 
+            this.button_SkillTree.Location = new System.Drawing.Point(4, 35);
+            this.button_SkillTree.Name = "button_SkillTree";
+            this.button_SkillTree.Size = new System.Drawing.Size(75, 23);
+            this.button_SkillTree.TabIndex = 1;
+            this.button_SkillTree.Text = "Skill Tree";
+            this.button_SkillTree.UseVisualStyleBackColor = true;
+            this.button_SkillTree.Click += new System.EventHandler(this.Button_SkillTree_Click);
             // 
             // button_Start_Detailed_Calc
             // 
@@ -445,6 +457,7 @@ namespace MinerGunBuilderCalculator
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ShipForm";
             this.Text = "Ship";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShipForm_FormClosing);
             this.Load += new System.EventHandler(this.ShipForm_Load);
             this.Enter += new System.EventHandler(this.ShipForm_Enter);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -494,5 +507,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.TextBox TextBox_Projectile_Lifetime;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Button button_Start_Detailed_Calc;
+        private System.Windows.Forms.Button button_SkillTree;
     }
 }

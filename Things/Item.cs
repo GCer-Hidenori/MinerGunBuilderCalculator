@@ -8,9 +8,9 @@ namespace MinerGunBuilderCalculator
 {
     class Item : Thing
     {
-        public Item(Thing[,] _thing_layout) : base(_thing_layout)
+        public Item(Thing[,] thing_layout) : base(thing_layout)
         {
-            thing_layout = _thing_layout;
+            this.thing_layout = thing_layout;
         }
     }
 }

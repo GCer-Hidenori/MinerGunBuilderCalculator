@@ -8,11 +8,11 @@ namespace MinerGunBuilderCalculator
 {
     class Parts_03_ProjectileGenerator : Parts
     {
-        public Parts_03_ProjectileGenerator(Thing[,] _thing_layout) : base(_thing_layout)
+        public Parts_03_ProjectileGenerator(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,SkillTree skillTree,Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = new();
             inbound_projectileStat.average_damage = shipParameter.base_damage;
@@ -24,7 +24,7 @@ namespace MinerGunBuilderCalculator
             
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             Projectile projectile = new();
             projectile.damage = shipParameter.base_damage;

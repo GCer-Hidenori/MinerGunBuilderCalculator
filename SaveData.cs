@@ -7,6 +7,7 @@ using System.IO;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Microsoft.Extensions.Logging;
 
 namespace MinerGunBuilderCalculator
 {
@@ -15,11 +16,13 @@ namespace MinerGunBuilderCalculator
         public ShipParameter shipParameter;
         internal Profile profile;
         public Thing[,] thing_layout;
+        public SkillTree skillTree;
 
-        const int SAVE_FORMAT_VERSION = 2;
+        const int SAVE_FORMAT_VERSION = 3;
         const int SUPPRT_MIN_SAVE_FORMAT_VERSION = 1;
         // 1 initial version
         // 2 Profile class
+        // 3 SkillTree class
         public int SaveFormatVersion = SAVE_FORMAT_VERSION;
 
         private static bool CheckSaveFormatVersion(string json_string)
@@ -39,7 +42,7 @@ namespace MinerGunBuilderCalculator
             return false;
         }
 
-        public static SaveData Load(out string save_file_name)
+        public static SaveData Load(out string save_file_name, ILogger logger)
         {
             OpenFileDialog ofd = new();
             SaveData save_data = null;
@@ -84,9 +87,23 @@ namespace MinerGunBuilderCalculator
                             }
                             save_file_name = ofd.FileName;
                         }
-                        catch (Newtonsoft.Json.JsonSerializationException)
+                        catch (Newtonsoft.Json.JsonSerializationException ex)
                         {
                             save_file_name = null;
+                            logger.LogError(ex, $"load error" +
+                                $"jsondata:" +
+                                $"{jsonData}");
+
+
+                            /*
+                            logger.LogError($"Load error: " +
+                                $"Message:" +
+                                $"{ex.Message}" +
+                                $"Trace:" +
+                                $"{ex.StackTrace}" +
+                                $"LinePosition:" +
+                                $"{ex.LinePosition}", ex, jsonData);
+                            */
                             MessageBox.Show("Load error", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
@@ -101,18 +118,20 @@ namespace MinerGunBuilderCalculator
             }
             return null;
         }
-        public static string Save(Thing[,] _thing_layout,ShipParameter _shipParameter,Profile _profile,bool isSaveAs, string save_file_name = null)
+        public static string Save(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile,SkillTree skillTree,bool isSaveAs, string save_file_name = null)
         {
             var saveData = new SaveData
             {
-                thing_layout = _thing_layout,
-                shipParameter = _shipParameter,
-                profile = _profile
+                thing_layout = thing_layout,
+                shipParameter = shipParameter,
+                profile = profile,
+                skillTree = skillTree
             };
 
             var setting = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All,
+                //ReferenceLoopHandling = ReferenceLoopHandling.Ignore
                 
             };
             var jsonString = JsonConvert.SerializeObject(saveData,setting);
