@@ -17,23 +17,23 @@ namespace MinerGunBuilderCalculator
         private PictureBox[,] picturebox_layout;
         private Thing[,] thing_layout;
         private ShipParameter shipParameter;
-        public FireController(ShipForm shipForm)
+        public FireController(ShipForm _shipForm)
         {
-            this.shipForm = shipForm;
+            shipForm = _shipForm;
         }
-        public void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile, SkillTree skillTree,PictureBox[,] picturebox_layout)
+        public void ShipLayoutChanged(Thing[,] _thing_layout, ShipParameter _shipParameter, Profile _profile, PictureBox[,] _picturebox_layout)
         {
-            this.thing_layout = thing_layout;
-            this.profile = profile;
-            this.picturebox_layout = picturebox_layout;
-            this.shipParameter = shipParameter;
+            thing_layout = _thing_layout;
+            profile = _profile;
+            picturebox_layout = _picturebox_layout;
+            shipParameter = _shipParameter;
             CreateProjectileFlow(thing_layout);
             DrawProjectileEffect(thing_layout, picturebox_layout);
             DrawEjectorEffect(thing_layout, picturebox_layout);
-            CalculateDamage(thing_layout, shipParameter, profile,skillTree);
+            CalculateDamage(thing_layout, shipParameter, profile);
         }
 
-        private void CalculateDamage(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile,SkillTree skillTree)
+        private void CalculateDamage(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile)
         {
             //StringBuilder stringBuilder = new();
             //Hashtable h_ejector = new();
@@ -51,10 +51,10 @@ namespace MinerGunBuilderCalculator
             foreach (Parts_02_Ejector ejector in IEejector)
             {
                 List<ProjectileStat> inbound_projectileStats = new();
-                if (ejector.Access_from_abs_top != null) inbound_projectileStats.Add(ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_right != null) inbound_projectileStats.Add(ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_down != null) inbound_projectileStats.Add(ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_left != null) inbound_projectileStats.Add(ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
+                if (ejector.Access_from_abs_top != null) inbound_projectileStats.Add(ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter, profile, ejector));
+                if (ejector.Access_from_abs_right != null) inbound_projectileStats.Add(ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter, profile, ejector));
+                if (ejector.Access_from_abs_down != null) inbound_projectileStats.Add(ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter, profile, ejector));
+                if (ejector.Access_from_abs_left != null) inbound_projectileStats.Add(ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter, profile, ejector));
 
                 decimal? each_ejector_min_damage = null;
                 decimal each_ejector_average_damage = 0;
@@ -102,7 +102,7 @@ namespace MinerGunBuilderCalculator
             //return stringBuilder.ToString();
         }
 
-        private static void DrawEjectorEffect(Thing[,] thing_layout, PictureBox[,] picturebox_layout)
+        private void DrawEjectorEffect(Thing[,] thing_layout, PictureBox[,] picturebox_layout)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             var resource_manager_effect = Resource_Effects.ResourceManager;
@@ -127,7 +127,7 @@ namespace MinerGunBuilderCalculator
                 }
             }
         }
-        private static void DrawProjectileEffect(Thing[,] thing_layout, PictureBox[,] picturebox_layout)
+        private void DrawProjectileEffect(Thing[,] thing_layout, PictureBox[,] picturebox_layout)
         {
             var resource_manager = Resource_Effects.ResourceManager;
 
@@ -217,7 +217,7 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private static IEnumerable<Thing[]> List_separate_connect(Thing[,] thing_layout)
+        private IEnumerable<Thing[]> List_separate_connect(Thing[,] thing_layout)
         {
             for (var x = 0; x < thing_layout.GetLength(0); x++)
             {
@@ -637,13 +637,13 @@ namespace MinerGunBuilderCalculator
         }
         */
 
-        public void MakeGraphs(ParentForm parentForm,SkillTree skillTree)
+        public void MakeGraphs(ParentForm parentForm)
         {
             const int fire_time_sec = 100;
             CreateProjectileFlow(thing_layout);
             DrawProjectileEffect(thing_layout, picturebox_layout);
             DrawEjectorEffect(thing_layout, picturebox_layout);
-            List<SimulationResult> results = DamageSimulate(thing_layout, shipParameter,skillTree, fire_time_sec);
+            List<SimulationResult> results = DamageSimulate(thing_layout, shipParameter, fire_time_sec);
             if (results.Count > 0)
             {
                 MakeGraphsMain(results, parentForm,fire_time_sec);
@@ -667,44 +667,44 @@ namespace MinerGunBuilderCalculator
             }
 
         }
-        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, SkillTree skillTree,int fire_time_sec)
+        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, int fire_time_sec)
         {
             int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
             List<decimal> ejector_damages = new();
             Projectile projectile;
             if (ejector.Access_from_abs_top != null)
             {
-                projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile, ejector);
                 for (int j = 0; j < projectile.magnification * fireCount; j++)
                 {
-                    projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                    projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile, ejector);
                     ejector_damages.Add(projectile.damage);
                 }
             }
             if (ejector.Access_from_abs_right != null)
             {
-                projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile, ejector);
                 for (int j = 0; j < projectile.magnification * fireCount; j++)
                 {
-                    projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                    projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile, ejector);
                     ejector_damages.Add(projectile.damage);
                 }
             }
             if (ejector.Access_from_abs_down != null)
             {
-                projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile, ejector);
                 for (int j = 0; j < projectile.magnification * fireCount; j++)
                 {
-                    projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                    projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile, ejector);
                     ejector_damages.Add(projectile.damage);
                 }
             }
             if (ejector.Access_from_abs_left != null)
             {
-                projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile, ejector);
                 for (int j = 0; j < projectile.magnification * fireCount; j++)
                 {
-                    projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
+                    projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile, ejector);
                     ejector_damages.Add(projectile.damage);
                 }
             }
@@ -769,7 +769,7 @@ namespace MinerGunBuilderCalculator
             return results;
         }
         */
-        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,SkillTree skillTree,int fire_time_sec)
+        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,int fire_time_sec)
         {
             var results = new List<SimulationResult>();
             var thing_1dim_layout = thing_layout.Cast<Thing>();
@@ -780,7 +780,7 @@ namespace MinerGunBuilderCalculator
             Statistics.Stats stats;
             foreach (Parts_02_Ejector ejector in IEejector)
             {
-                List<decimal> ejector_damages = GetEjectorDamages(ejector, shipParameter, skillTree,fire_time_sec);
+                List<decimal> ejector_damages = GetEjectorDamages(ejector, shipParameter, fire_time_sec);
 
                 if (ejector_damages.Count > 0)
                 {

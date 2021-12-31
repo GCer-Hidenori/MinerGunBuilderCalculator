@@ -9,6 +9,6 @@ namespace MinerGunBuilderCalculator
 {
     public interface IShipLayoutChangeObserver
     {
-        void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter,Profile profile,SkillTree skillTree,PictureBox[,] picturebox_layout);
+        void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter,Profile profile,PictureBox[,] picturebox_layout);
     }
 }

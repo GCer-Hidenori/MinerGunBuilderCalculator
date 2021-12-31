@@ -32,7 +32,6 @@ namespace MinerGunBuilderCalculator
         private IList<IShipLayoutChangeObserver> ship_layoutchange_observers = new List<IShipLayoutChangeObserver>();
         public ShipParameter ship_parameter;
         internal Profile profile;
-        internal SkillTree skillTree;
         private MouseHVoerEffect? mouse_hover_effect;
         const int panelsize = 39;
 
@@ -45,40 +44,34 @@ namespace MinerGunBuilderCalculator
         {
             foreach(var observer in ship_layoutchange_observers)
             {
-                observer.ShipLayoutChanged(thing_layout, ship_parameter,profile,skillTree,picturebox_layout);
+                observer.ShipLayoutChanged(thing_layout, ship_parameter,profile,picturebox_layout);
             }
         }
-        public ShipLayoutManager()
-        {
-        }
+
 
         /// <summary>
         /// constructor 
         /// </summary>
         /// <param name="_tab">TableLayoutPanel</param>
         /// <param name="_size">Ship size</param>
-        public ShipLayoutManager(ShipForm shipform, ShipParameter ship_parameter,Profile profile,SkillTree skillTree, int size=12)
+        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,Profile _profile,int _size=12)
         {
-            this.shipForm = shipform;
-            this.shipsize = size;
-            this.ship_parameter = ship_parameter;
-            this.profile = profile;
-            this.skillTree = skillTree;
-            this.skillTree.shipLayoutManager = this;
+            shipForm = _shipform;
+            shipsize = _size;
+            ship_parameter = _ship_parameter;
+            profile = _profile;
             CreateInitialThingLayout(); // set initial thing_layout
             CreatePictureBoxs();
         }
 
-        public ShipLayoutManager(ShipForm shipform, ShipParameter ship_parameter,Profile profile, SkillTree skillTree,Thing[,] thing_layout)
+        public ShipLayoutManager(ShipForm _shipform, ShipParameter _ship_parameter,Profile _profile, Thing[,] _thing_layout)
         {
-            this.shipForm = shipform;
+            shipForm = _shipform;
 
-            this.thing_layout = thing_layout;
+            thing_layout = _thing_layout;
             shipsize = thing_layout.GetLength(0);
-            this.ship_parameter = ship_parameter;
-            this.profile = profile;
-            this.skillTree = skillTree;
-            this.skillTree.shipLayoutManager = this;
+            ship_parameter = _ship_parameter;
+            profile = _profile;
             CreatePictureBoxs();
         }
         private void CreateInitialThingLayout()

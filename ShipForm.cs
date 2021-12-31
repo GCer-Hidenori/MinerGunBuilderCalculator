@@ -18,7 +18,6 @@ namespace MinerGunBuilderCalculator
         public ShipParameter shipParamater = null;
         public string save_file_name = null;
         internal Profile profile = null;
-        Form_SkillTree form_skillTree = null;
         public ShipForm()
         {
             InitializeComponent();
@@ -158,35 +157,10 @@ namespace MinerGunBuilderCalculator
         {
             if(fireController != null)
             {
-                fireController.MakeGraphs((ParentForm)this.ParentForm,shipLayoutManager.skillTree);
+                fireController.MakeGraphs((ParentForm)this.ParentForm);
             }
             
             //var graphForm = new Form_Graph();
-        }
-
-        private void Button_SkillTree_Click(object sender, EventArgs e)
-        {
-            if(form_skillTree == null || form_skillTree.IsDisposed == true)
-            {
-                form_skillTree = new Form_SkillTree
-                {
-                    MdiParent = this.MdiParent
-                };
-                form_skillTree.skillTree = shipLayoutManager.skillTree;
-                //form_skillTree.skillTree.form_SkillTree = form_skillTree;
-                form_skillTree.Show();
-                form_skillTree.DrawSkills();
-            }
-
-        }
-
-        // Close skilltree form before ship form closed
-        private void ShipForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if(form_skillTree != null && form_skillTree.IsDisposed == false)
-            {
-                form_skillTree.Close();
-            }
         }
     }
 }

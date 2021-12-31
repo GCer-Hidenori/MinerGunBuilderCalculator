@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     class Parts_02_Ejector : Parts
     {
-        public Parts_02_Ejector(Thing[,] thing_layout) : base(thing_layout)
+        public Parts_02_Ejector(Thing[,] _thing_layout) : base(_thing_layout)
         {
             IsAccessFromTOP = true;
             IsAccessFromRIGHT = true;

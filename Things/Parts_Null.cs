@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     class Parts_Null : Parts
     {
-        public Parts_Null(Thing[,] thing_layout) : base(thing_layout)
+        public Parts_Null(Thing[,] _thing_layout) : base(_thing_layout)
         {
             IsRemovable = false;
             IsRotatable = false;
