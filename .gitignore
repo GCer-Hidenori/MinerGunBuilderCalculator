@@ -389,3 +389,4 @@ FodyWeavers.xsd
 *.sln.iml
 
 # add by hand
+New ship.json

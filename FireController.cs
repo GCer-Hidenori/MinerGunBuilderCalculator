@@ -12,14 +12,14 @@ namespace MinerGunBuilderCalculator
     class FireController : IShipLayoutChangeObserver
     {
         private Form_Graph formGraph = null;
-        private ShipForm shipForm;
+        private Form_Ship form_ship;
         private Profile profile;
         private PictureBox[,] picturebox_layout;
         private Thing[,] thing_layout;
         private ShipParameter shipParameter;
-        public FireController(ShipForm shipForm)
+        public FireController(Form_Ship form_ship)
         {
-            this.shipForm = shipForm;
+            this.form_ship = form_ship;
         }
         public void ShipLayoutChanged(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile, SkillTree skillTree,PictureBox[,] picturebox_layout)
         {
@@ -97,7 +97,7 @@ namespace MinerGunBuilderCalculator
             }
             //if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>(); //
 
-            shipForm.WriteCalculateResult(total_average_damage_per_sec, total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification);
+            form_ship.WriteCalculateResult(total_average_damage_per_sec, total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification);
 
             //return stringBuilder.ToString();
         }

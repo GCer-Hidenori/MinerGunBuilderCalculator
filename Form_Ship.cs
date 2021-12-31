@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace MinerGunBuilderCalculator
 {
-    public partial class ShipForm : Form
+    public partial class Form_Ship : Form
     {
-        public static ShipForm Current;
+        public static Form_Ship Current;
         public ShipLayoutManager shipLayoutManager = null;
         FireController fireController = null;
         public ShipParameter shipParamater = null;
         public string save_file_name = null;
         internal Profile profile = null;
         Form_SkillTree form_skillTree = null;
-        public ShipForm()
+        public Form_Ship()
         {
             InitializeComponent();
         }
@@ -29,7 +29,7 @@ namespace MinerGunBuilderCalculator
             return shipLayoutManager;
         }
 
-        private void ShipForm_Load(object sender, EventArgs e)
+        private void Form_Ship_Load(object sender, EventArgs e)
         {
             fireController = new(this);
             shipLayoutManager.AddShipLayoutChangeObserver(fireController);
@@ -112,7 +112,7 @@ namespace MinerGunBuilderCalculator
             shipLayoutManager.NotifyShipLayoutChange2Observer();
         }
 
-        private void ShipForm_Enter(object sender, EventArgs e)
+        private void Form_Ship_Enter(object sender, EventArgs e)
         {
             Current = this;
         }
@@ -181,7 +181,7 @@ namespace MinerGunBuilderCalculator
         }
 
         // Close skilltree form before ship form closed
-        private void ShipForm_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form_Ship_FormClosing(object sender, FormClosingEventArgs e)
         {
             if(form_skillTree != null && form_skillTree.IsDisposed == false)
             {

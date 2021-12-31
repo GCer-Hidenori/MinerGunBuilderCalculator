@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace MinerGunBuilderCalculator
 {
-    public partial class ItemForm : Form
+    public partial class Form_Item : Form
     {
-        public ItemForm()
+        public Form_Item()
         {
             InitializeComponent();
             Load_images(tableLayoutPanel_Items,Resource_Item.ResourceManager);

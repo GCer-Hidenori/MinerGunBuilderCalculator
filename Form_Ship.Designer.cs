@@ -1,7 +1,7 @@
 ﻿
 namespace MinerGunBuilderCalculator
 {
-    partial class ShipForm
+    partial class Form_Ship
     {
         /// <summary>
         /// Required designer variable.
@@ -449,17 +449,17 @@ namespace MinerGunBuilderCalculator
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // ShipForm
+            // Form_Ship
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(702, 708);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Name = "ShipForm";
+            this.Name = "Form_Ship";
             this.Text = "Ship";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ShipForm_FormClosing);
-            this.Load += new System.EventHandler(this.ShipForm_Load);
-            this.Enter += new System.EventHandler(this.ShipForm_Enter);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Ship_FormClosing);
+            this.Load += new System.EventHandler(this.Form_Ship_Load);
+            this.Enter += new System.EventHandler(this.Form_Ship_Enter);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);

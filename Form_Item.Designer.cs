@@ -1,7 +1,7 @@
 
 namespace MinerGunBuilderCalculator
 {
-    partial class ItemForm
+    partial class Form_Item
     {
         /// <summary>
         /// Required designer variable.
@@ -142,14 +142,14 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel_Others.Size = new System.Drawing.Size(304, 76);
             this.tableLayoutPanel_Others.TabIndex = 0;
             // 
-            // ItemForm
+            // Form_Item
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(336, 537);
             this.Controls.Add(this.tabControl1);
-            this.Name = "ItemForm";
+            this.Name = "Form_Item";
             this.Text = "Items";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

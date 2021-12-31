@@ -14,7 +14,7 @@ namespace MinerGunBuilderCalculator
 {
     public partial class ParentForm : Form
     {
-        ItemForm itemForm = null;
+        Form_Item form_item = null;
         Form_VersionInfo versionForm = null;
         ILogger logger;
 
@@ -23,27 +23,27 @@ namespace MinerGunBuilderCalculator
             InitializeComponent();
             this.logger = logger;
             menuStrip1.MdiWindowListItem = windowwToolStripMenuItem;
-            itemForm = new ItemForm
+            form_item = new Form_Item
             {
                 MdiParent = this
             };
-            itemForm.Show();
+            form_item.Show();
         }
         private void NewShip()
         {
-            ShipForm shipForm = new();
+            Form_Ship form_ship = new();
             ShipParameter shipParamater = new();
             Profile profile = new();
             SkillTree skillTree = new();
-            ShipLayoutManager shipLayoutManager = new(shipForm, shipParamater, profile,skillTree, 14);
-            shipForm.shipLayoutManager = shipLayoutManager;
-            shipForm.shipParamater = shipParamater;
-            shipForm.profile = profile;
+            ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater, profile,skillTree, 14);
+            form_ship.shipLayoutManager = shipLayoutManager;
+            form_ship.shipParamater = shipParamater;
+            form_ship.profile = profile;
 
             // Set the Parent Form of the Child window.
-            shipForm.MdiParent = this;
+            form_ship.MdiParent = this;
             // Display the new form.
-            shipForm.Show();
+            form_ship.Show();
         }
 
         private void LoadShip()
@@ -52,21 +52,21 @@ namespace MinerGunBuilderCalculator
             var save_data = SaveData.Load(out string save_file_name,logger);
             if(save_data != null)
             {
-                ShipForm shipForm = new();
-                shipForm.Text = Path.GetFileName(save_file_name);
-                shipForm.save_file_name = save_file_name;
+                Form_Ship form_ship = new();
+                form_ship.Text = Path.GetFileName(save_file_name);
+                form_ship.save_file_name = save_file_name;
                 ShipParameter shipParamater = save_data.shipParameter;
                 Profile profile = save_data.profile;
                 SkillTree skillTree = save_data.skillTree;
-                ShipLayoutManager shipLayoutManager = new(shipForm, shipParamater,profile, skillTree,save_data.thing_layout);
-                shipForm.shipLayoutManager = shipLayoutManager;
-                shipForm.shipParamater = shipParamater;
-                shipForm.profile = profile;
+                ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater,profile, skillTree,save_data.thing_layout);
+                form_ship.shipLayoutManager = shipLayoutManager;
+                form_ship.shipParamater = shipParamater;
+                form_ship.profile = profile;
 
                 // Set the Parent Form of the Child window.
-                shipForm.MdiParent = this;
+                form_ship.MdiParent = this;
                 // Display the new form.
-                shipForm.Show();
+                form_ship.Show();
             }
         }
         private void NewShipToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -75,13 +75,13 @@ namespace MinerGunBuilderCalculator
         }
         private void NewItemWindowToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(itemForm == null || itemForm.IsDisposed == true)
+            if(form_item == null || form_item.IsDisposed == true)
             {
-                itemForm = new ItemForm
+                form_item = new Form_Item
                 {
                     MdiParent = this
                 };
-                itemForm.Show();
+                form_item.Show();
             }
         }
         private void LoadShipToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,14 +91,14 @@ namespace MinerGunBuilderCalculator
 
         private static void SaveShip()
         {
-            if(ShipForm.Current != null)
+            if(Form_Ship.Current != null)
             {
-                ShipForm shipForm = ShipForm.Current;
-                var shipLayoutManager = shipForm.GetShipLayoutManager();
+                Form_Ship form_ship = Form_Ship.Current;
+                var shipLayoutManager = form_ship.GetShipLayoutManager();
                 
-                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.ship_parameter,shipLayoutManager.profile,shipLayoutManager.skillTree, false,shipForm.save_file_name);
-                shipForm.save_file_name = save_file_name;
-                shipForm.Text = Path.GetFileName(save_file_name);
+                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.ship_parameter,shipLayoutManager.profile,shipLayoutManager.skillTree, false,form_ship.save_file_name);
+                form_ship.save_file_name = save_file_name;
+                form_ship.Text = Path.GetFileName(save_file_name);
             }
         }
         private void SaveShipToolStripMenuItem_Click(object sender, EventArgs e)
@@ -108,14 +108,14 @@ namespace MinerGunBuilderCalculator
 
         private void SaveAsShipToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (ShipForm.Current != null)
+            if (Form_Ship.Current != null)
             {
-                ShipForm shipForm = ShipForm.Current;
-                var shipLayoutManager = shipForm.GetShipLayoutManager();
+                Form_Ship form_ship = Form_Ship.Current;
+                var shipLayoutManager = form_ship.GetShipLayoutManager();
 
                 var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.ship_parameter,shipLayoutManager.profile,shipLayoutManager.skillTree, true);
-                shipForm.save_file_name = save_file_name;
-                shipForm.Text = Path.GetFileName(save_file_name);
+                form_ship.save_file_name = save_file_name;
+                form_ship.Text = Path.GetFileName(save_file_name);
             }
         }
 

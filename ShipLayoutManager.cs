@@ -27,7 +27,7 @@ namespace MinerGunBuilderCalculator
         private Dictionary<PictureBox, Point> dic_picturebox;
 
         private int shipsize;
-        private ShipForm shipForm;
+        private Form_Ship form_ship;
         private Point? mouse_hvoer_position;
         private IList<IShipLayoutChangeObserver> ship_layoutchange_observers = new List<IShipLayoutChangeObserver>();
         public ShipParameter ship_parameter;
@@ -57,9 +57,9 @@ namespace MinerGunBuilderCalculator
         /// </summary>
         /// <param name="_tab">TableLayoutPanel</param>
         /// <param name="_size">Ship size</param>
-        public ShipLayoutManager(ShipForm shipform, ShipParameter ship_parameter,Profile profile,SkillTree skillTree, int size=12)
+        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile,SkillTree skillTree, int size=12)
         {
-            this.shipForm = shipform;
+            this.form_ship = form_ship;
             this.shipsize = size;
             this.ship_parameter = ship_parameter;
             this.profile = profile;
@@ -69,9 +69,9 @@ namespace MinerGunBuilderCalculator
             CreatePictureBoxs();
         }
 
-        public ShipLayoutManager(ShipForm shipform, ShipParameter ship_parameter,Profile profile, SkillTree skillTree,Thing[,] thing_layout)
+        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile, SkillTree skillTree,Thing[,] thing_layout)
         {
-            this.shipForm = shipform;
+            this.form_ship = form_ship;
 
             this.thing_layout = thing_layout;
             shipsize = thing_layout.GetLength(0);
@@ -367,7 +367,7 @@ namespace MinerGunBuilderCalculator
                     pb.DragDrop += PictureBox_DragDrop;
                     pb.MouseHover += PictureBox_MouseHover;
                     pb.MouseMove += PictureBox_MouseMove;
-                    shipForm.AddPictureBox(pb);
+                    form_ship.AddPictureBox(pb);
                     dic_picturebox[pb] = new Point(x, y);
                     picturebox_layout[x,y] = pb;
                 }
@@ -387,7 +387,7 @@ namespace MinerGunBuilderCalculator
                     Rotate_Image(pb, thing_layout[x, y]);
                 }
             }
-            shipForm.SetShipParameteLabelText(ship_parameter.base_damage, ship_parameter.fire_rate, ship_parameter.projectile_speed, ship_parameter.projectile_lifetime);
+            form_ship.SetShipParameteLabelText(ship_parameter.base_damage, ship_parameter.fire_rate, ship_parameter.projectile_speed, ship_parameter.projectile_lifetime);
             NotifyShipLayoutChange2Observer();
         }
 
