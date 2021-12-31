@@ -16,6 +16,10 @@ namespace MinerGunBuilderCalculator
             X = x;
             Y = y;
         }
+        public double GetDistance(Location loc)
+        {
+            return Math.Sqrt((Math.Pow(X - loc.X, 2) + Math.Pow(Y - loc.Y, 2)));
+        }
     }
     public class Thing
     {
@@ -440,6 +444,19 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+        
+        [JsonIgnore]
+        public Thing Access_from
+        {
+            get
+            {
+                if(Access_from_rel_down != null)return Access_from_rel_down;
+                if(Access_from_rel_right != null)return Access_from_rel_right;
+                if(Access_from_rel_left != null)return Access_from_rel_left;
+                if(Access_from_rel_top != null)return Access_from_rel_top;
+                return null;
+            }
+        }
 
         public bool IsReachable(Thing target_thing)
         {
@@ -465,29 +482,29 @@ namespace MinerGunBuilderCalculator
             throw new Exception();
         }
 
-        public Thing(Thing[,] _thing_layout)
+        public Thing(Thing[,] thing_layout)
         {
-            thing_layout = _thing_layout;
+            this.thing_layout = thing_layout;
         }
         public virtual void ResetBeforeCalculateDamage()
         {
         }
 
-        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile,this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile, skillTree, this);
             }
             return inbound_projectileStat;
         }
-        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile, SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile,this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile, skillTree, this);
             }
             return inbound_projectile;
         }

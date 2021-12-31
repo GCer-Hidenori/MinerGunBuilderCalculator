@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +12,7 @@ namespace MinerGunBuilderCalculator
 {
     public partial class Form_VersionInfo : Form
     {
-        const string version = "0.6";
+        const string version = "0.7";
         public Form_VersionInfo()
         {
             InitializeComponent();

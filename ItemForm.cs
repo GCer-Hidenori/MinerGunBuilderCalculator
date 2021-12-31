@@ -65,7 +65,7 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private void SetToolTips(TableLayoutPanel tab)
+        private static void SetToolTips(TableLayoutPanel tab)
         {
             var resource_manager = Resource_tooltips.ResourceManager;
             for (int x = 0; x < tab.ColumnCount; x++)

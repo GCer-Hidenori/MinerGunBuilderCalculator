@@ -1,3 +1,4 @@
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Windows.Forms;
 
 namespace MinerGunBuilderCalculator
 {
-    static class Program
+    class Program
     {
         /// <summary>
         ///  The main entry point for the application.
@@ -17,7 +18,21 @@ namespace MinerGunBuilderCalculator
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ParentForm());
+
+            using var loggerFactory = LoggerFactory.Create(builder =>
+            {
+                builder.AddEventLog(eventLogSettings =>
+                {
+                    //eventLogSettings.SourceName = "MinerBunBuilderCalculator";
+                });
+
+            });
+            ILogger logger = loggerFactory.CreateLogger<Program>();
+
+            //logger.LogInformation("Example log message");
+
+            Application.Run(new ParentForm(logger));
         }
+    
     }
 }

@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     class Parts : Thing
     {
-        public Parts(Thing[,] _thing_layout) : base(_thing_layout)
+        public Parts(Thing[,] thing_layout) : base(thing_layout)
         {
 
         }

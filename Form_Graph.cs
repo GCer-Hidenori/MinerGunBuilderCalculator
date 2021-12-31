@@ -38,18 +38,18 @@ namespace MinerGunBuilderCalculator
             double[] damages = new double[ decimal_damages.Count];
             for (var i = 0; i < decimal_damages.Count; i++) damages[i] = (double)decimal_damages[i];
 
-            double scale_min = (double)stats.min;
-            double scale_max = (double)stats.max;
+            //double scale_min = (double)stats.min;
+            //double scale_max = (double)stats.max;
 
-            if (scale_min == scale_max) scale_max *= 10;
-            if (scale_max - scale_min < 10)scale_max = scale_min + 10;
+            //if (scale_min == scale_max) scale_max *= 10;
+            //if (scale_max - scale_min < 10)scale_max = scale_min + 10;
 
             //(double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(damages, min: (double)scale_min, max: (double)scale_max, binSize: 1);
             (double[] counts, double[] binEdges) = ScottPlot.Statistics.Common.Histogram(damages,20);
             double[] leftEdges = binEdges.Take(binEdges.Length - 1).ToArray();
 
             // display the histogram counts as a bar plot
-            var bar = plt.AddBar(values: counts, positions: leftEdges);
+            plt.AddBar(values: counts, positions: leftEdges);
             //bar.BarWidth = 1;
 
             // customize the plot style

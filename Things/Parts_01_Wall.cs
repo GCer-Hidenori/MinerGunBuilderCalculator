@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     class Parts_01_Wall : Thing
     {
-        public Parts_01_Wall(Thing[,] _thing_layout) : base(_thing_layout)
+        public Parts_01_Wall(Thing[,] thing_layout) : base(thing_layout)
         {
             IsRotatable = false;
         }        
