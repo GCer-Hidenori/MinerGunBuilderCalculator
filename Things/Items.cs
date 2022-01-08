@@ -895,7 +895,7 @@ namespace MinerGunBuilderCalculator
                         inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
                 }
                 var projectileStat = inbound_projectileStat;
-                projectileStats_history[projectileStat] = projectileStat;
+                projectileStats_history[projectileStat] = projectileStat.Copy();
             }
             return inbound_projectileStat;
         }
