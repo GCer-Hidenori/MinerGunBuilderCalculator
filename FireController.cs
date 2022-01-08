@@ -35,26 +35,50 @@ namespace MinerGunBuilderCalculator
 
         private void CalculateDamage(Thing[,] thing_layout, ShipParameter shipParameter, Profile profile,SkillTree skillTree)
         {
-            //StringBuilder stringBuilder = new();
-            //Hashtable h_ejector = new();
             decimal? total_min_damage = null;
             decimal total_average_damage_per_sec = 0;
             decimal total_average_damage = 0;
             decimal total_max_damage = 0;
             decimal total_max_speed = 0;
-            //decimal total_projectile_num = 0;
             decimal total_magnification = 0;
 
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
-            //int i = 1;
             foreach (Parts_02_Ejector ejector in IEejector)
             {
                 List<ProjectileStat> inbound_projectileStats = new();
-                if (ejector.Access_from_abs_top != null) inbound_projectileStats.Add(ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_right != null) inbound_projectileStats.Add(ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_down != null) inbound_projectileStats.Add(ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
-                if (ejector.Access_from_abs_left != null) inbound_projectileStats.Add(ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter, profile,skillTree, ejector));
+                if (ejector.Access_from_abs_top != null)
+                {
+                    ProjectileStat projectileStat;
+                    if((projectileStat = ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter, profile, skillTree, ejector)) != null)
+                    {
+                        inbound_projectileStats.Add(projectileStat);
+                    }
+                }
+                if (ejector.Access_from_abs_right != null)
+                {
+                    ProjectileStat projectileStat;
+                    if((projectileStat = ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter, profile, skillTree, ejector)) != null)
+                    {
+                        inbound_projectileStats.Add(projectileStat);
+                    }
+                }
+                if (ejector.Access_from_abs_down != null)
+                {
+                    ProjectileStat projectileStat;
+                    if((projectileStat = ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, ejector)) != null)
+                    {
+                        inbound_projectileStats.Add(projectileStat);
+                    }
+                }
+                if (ejector.Access_from_abs_left != null)
+                {
+                    ProjectileStat projectileStat;
+                    if((projectileStat = ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter, profile, skillTree, ejector)) != null)
+                    {
+                        inbound_projectileStats.Add(projectileStat);
+                    }
+                }
 
                 decimal? each_ejector_min_damage = null;
                 decimal each_ejector_average_damage = 0;
@@ -415,11 +439,13 @@ namespace MinerGunBuilderCalculator
             // 1. Check the connection between thing and assign it to access_**** property.
             CreateProjectileFlow1(thing_layout);
 
+            // 3. Delete connections that are not connected to Projectile generator.
+            CreateProjectileFlow3(thing_layout);
+
             // 2. Modify damage crossing/money crossing connections
             CreateProjectileFlow2(thing_layout);
 
-            // 3. Delete connections that are not connected to Projectile generator.
-            CreateProjectileFlow3(thing_layout);
+
 
             // 4. Create backward projectile connection.
             CreateProjectileFlow4(thing_layout);
