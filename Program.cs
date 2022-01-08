@@ -31,7 +31,7 @@ namespace MinerGunBuilderCalculator
 
             //logger.LogInformation("Example log message");
 
-            Application.Run(new ParentForm(logger));
+            Application.Run(new Form_Parent(logger));
         }
     
     }

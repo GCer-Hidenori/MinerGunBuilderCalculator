@@ -1,7 +1,7 @@
 
 namespace MinerGunBuilderCalculator
 {
-    partial class ParentForm
+    partial class Form_Parent
     {
         /// <summary>
         /// Required designer variable.
@@ -122,7 +122,7 @@ namespace MinerGunBuilderCalculator
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
-            // ParentForm
+            // Form_Parent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -131,9 +131,9 @@ namespace MinerGunBuilderCalculator
             this.IsMdiContainer = true;
             this.KeyPreview = true;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ParentForm";
-            this.Text = "Miner Gun Builder Calculator";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ParentForm_KeyDown);
+            this.Name = "Form_Parent";
+            this.Text = "Miner Gun Builder Calculator.";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form_Parent_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);

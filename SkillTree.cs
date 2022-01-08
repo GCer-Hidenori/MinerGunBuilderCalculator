@@ -15,6 +15,16 @@ namespace MinerGunBuilderCalculator
         public bool v05_10_add_5_damage = false;
         public bool v03_12_add_5_damage = false;
         public bool v02_13_increase_chance = false;
+        public bool v02_15_increase_chance = false; //criticalx10
+        public bool v01_16_high_times = false;  //criticalx10
+
+        // random critinal
+        // Multipliers are instead 0,1,1,2 or 3.
+        public bool v03_16_high_multiplier = false;
+
+        // random critinal
+        // Multipliers are instead 0,0,0,1,2,3 or 4.
+        public bool v03_18_high_multiplier = false;
 
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()

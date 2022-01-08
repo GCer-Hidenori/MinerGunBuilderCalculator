@@ -123,11 +123,23 @@
   <data name="01_08" xml:space="preserve">
     <value>Adds additional 30 damage to the projectile.</value>
   </data>
+  <data name="01_16" xml:space="preserve">
+    <value>Higher multiplier of times 12</value>
+  </data>
   <data name="02_13" xml:space="preserve">
     <value>Increased chance of 40% for damage multiplier.</value>
   </data>
+  <data name="02_15" xml:space="preserve">
+    <value>Increased chance of 6% for damage multiplier.</value>
+  </data>
   <data name="03_12" xml:space="preserve">
     <value>Adds +5 damage.</value>
+  </data>
+  <data name="03_16" xml:space="preserve">
+    <value>Multipliers are instead 0,1,1,2 or 3.</value>
+  </data>
+  <data name="03_18" xml:space="preserve">
+    <value>Multipliers are instead 0,0,0,1,2,3 or 4.</value>
   </data>
   <data name="04_11" xml:space="preserve">
     <value>Adds +5 damage.</value>

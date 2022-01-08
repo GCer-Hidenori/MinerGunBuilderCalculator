@@ -12,13 +12,13 @@ using System.Windows.Forms;
 
 namespace MinerGunBuilderCalculator
 {
-    public partial class ParentForm : Form
+    public partial class Form_Parent : Form
     {
         Form_Item form_item = null;
         Form_VersionInfo versionForm = null;
         ILogger logger;
 
-        public ParentForm(ILogger logger)
+        public Form_Parent(ILogger logger)
         {
             InitializeComponent();
             this.logger = logger;
@@ -119,7 +119,7 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private void ParentForm_KeyDown(object sender, KeyEventArgs e)
+        private void Form_Parent_KeyDown(object sender, KeyEventArgs e)
         {
 
             if (e.Control)

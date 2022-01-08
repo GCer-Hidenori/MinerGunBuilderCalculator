@@ -637,7 +637,7 @@ namespace MinerGunBuilderCalculator
         }
         */
 
-        public void MakeGraphs(ParentForm parentForm,SkillTree skillTree)
+        public void MakeGraphs(Form_Parent form_parent,SkillTree skillTree)
         {
             const int fire_time_sec = 100;
             CreateProjectileFlow(thing_layout);
@@ -646,17 +646,17 @@ namespace MinerGunBuilderCalculator
             List<SimulationResult> results = DamageSimulate(thing_layout, shipParameter,skillTree, fire_time_sec);
             if (results.Count > 0)
             {
-                MakeGraphsMain(results, parentForm,fire_time_sec);
+                MakeGraphsMain(results, form_parent,fire_time_sec);
             }
         }
 
-        private void MakeGraphsMain(List<SimulationResult> results, ParentForm parentForm,int fire_time_sec)
+        private void MakeGraphsMain(List<SimulationResult> results, Form_Parent form_parent,int fire_time_sec)
         {
             if(formGraph == null || formGraph.IsDisposed == true)
             {
                 formGraph = new Form_Graph
                 {
-                    MdiParent = parentForm
+                    MdiParent = form_parent
                 };
                 formGraph.Show();
             }

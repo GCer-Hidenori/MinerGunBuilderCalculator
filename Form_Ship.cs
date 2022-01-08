@@ -158,7 +158,7 @@ namespace MinerGunBuilderCalculator
         {
             if(fireController != null)
             {
-                fireController.MakeGraphs((ParentForm)this.ParentForm,shipLayoutManager.skillTree);
+                fireController.MakeGraphs((Form_Parent)this.ParentForm,shipLayoutManager.skillTree);
             }
             
             //var graphForm = new Form_Graph();
