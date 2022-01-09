@@ -79,6 +79,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Higher multiplier of times 2.5. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _01_12 {
+            get {
+                return ResourceManager.GetString("01_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Higher multiplier of times 12 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _01_16 {

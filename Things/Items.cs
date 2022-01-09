@@ -212,7 +212,24 @@ namespace MinerGunBuilderCalculator
         Random rand;
         private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
         {
-            return skillTree.v02_13_increase_chance ? 1.4m : (decimal)(1.0+1.0/3);
+            decimal hit_rate,magnification;
+            if(skillTree.v02_13_increase_chance)
+            {
+                hit_rate = 0.4m;
+            }else
+            {
+                hit_rate = 0.3m;
+            }
+            if(skillTree.v01_12_high_multiplier)
+            {
+                magnification = 2.5m;
+            }
+            else
+            {
+                magnification = 2m;
+            }
+            //return skillTree.v02_13_increase_chance ? 1.4m : (decimal)(1.0+1.0/3);
+            return (1.0m-hit_rate) + hit_rate * magnification;
         }
         private static int SkillTree_IncreaseChance_Chance(SkillTree skillTree)
         {
@@ -226,14 +243,14 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.max_damage *= 2;
+            inbound_projectileStat.max_damage *= skillTree.v01_12_high_multiplier ? 2.5m : 2m;
             inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(skillTree));
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (rand.Next(0, 100) < (33m + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= 2;
+            if (rand.Next(0, 100) < (33m + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= skillTree.v01_12_high_multiplier ? 2.5m : 2m;
             return inbound_projectile;
         }
         public override void ResetBeforeCalculateDamage()

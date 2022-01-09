@@ -14,9 +14,17 @@ namespace MinerGunBuilderCalculator
         public bool v04_11_add_5_damage = false;
         public bool v05_10_add_5_damage = false;
         public bool v03_12_add_5_damage = false;
+
+        //criticalx2
+        //Increased chance of 40% for damage multiplier.
         public bool v02_13_increase_chance = false;
-        public bool v02_15_increase_chance = false; //criticalx10
-        public bool v01_16_high_times = false;  //criticalx10
+        //criticalx2
+        //Higher multiplier of times 2.5.
+        public bool v01_12_high_multiplier = false;
+
+        //criticalx10
+        public bool v02_15_increase_chance = false;
+        public bool v01_16_high_times = false;
 
         // random critinal
         // Multipliers are instead 0,1,1,2 or 3.

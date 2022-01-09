@@ -49,6 +49,7 @@ namespace MinerGunBuilderCalculator
                 "05_10" => skillTree.v05_10_add_5_damage,
                 "03_12" => skillTree.v03_12_add_5_damage,
                 "02_13" => skillTree.v02_13_increase_chance,
+                "01_12" => skillTree.v01_12_high_multiplier,
                 "02_15" => skillTree.v02_15_increase_chance,
                 "01_16" => skillTree.v01_16_high_times,
                 "03_16" => skillTree.v03_16_high_multiplier,
@@ -145,6 +146,11 @@ namespace MinerGunBuilderCalculator
                 case "02_13":
                     skillTree.v02_13_increase_chance = !skillTree.v02_13_increase_chance;
                     RefreshHex(x, y, skillTree.v02_13_increase_chance);
+                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                    break;
+                case "01_12":
+                    skillTree.v01_12_high_multiplier = !skillTree.v01_12_high_multiplier;
+                    RefreshHex(x, y, skillTree.v01_12_high_multiplier);
                     skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
                     break;
                 case "02_15":
