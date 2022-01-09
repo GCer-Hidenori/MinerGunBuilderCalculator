@@ -158,5 +158,14 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("05_10", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Adds instead 30% of damage to following projectiles. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _06_13 {
+            get {
+                return ResourceManager.GetString("06_13", resourceCulture);
+            }
+        }
     }
 }

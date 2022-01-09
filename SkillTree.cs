@@ -34,6 +34,10 @@ namespace MinerGunBuilderCalculator
         // Multipliers are instead 0,0,0,1,2,3 or 4.
         public bool v03_18_high_multiplier = false;
 
+        // Charge
+        // Adds instead 30% of damage to following projectiles.
+        public bool v06_13_high_multiplier = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

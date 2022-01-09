@@ -428,17 +428,19 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage *= 1.2m;
-            inbound_projectileStat.max_damage *= 1.2m;
-            inbound_projectileStat.min_damage *= 1.2m;
+            decimal magnification = skillTree.v06_13_high_multiplier ? 1.3m : 1.2m;
+            inbound_projectileStat.average_damage *= magnification;
+            inbound_projectileStat.max_damage *= magnification;
+            inbound_projectileStat.min_damage *= magnification;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
+            decimal magnification = skillTree.v06_13_high_multiplier ? 1.3m : 1.2m;
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.damage *= 1.2m;
+                inbound_projectile.damage *= magnification;
             }
             return inbound_projectile;
         }

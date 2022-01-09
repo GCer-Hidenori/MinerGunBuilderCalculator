@@ -150,4 +150,7 @@
   <data name="05_10" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>
+  <data name="06_13" xml:space="preserve">
+    <value>Adds instead 30% of damage to following projectiles.</value>
+  </data>
 </root>

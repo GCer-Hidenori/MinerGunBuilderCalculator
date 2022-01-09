@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace MinerGunBuilderCalculator
 {
@@ -41,6 +42,13 @@ namespace MinerGunBuilderCalculator
         }
         private bool IsValid(string name)
         {
+            FieldInfo field = GetFieldFromSkillTree(skillTree, name);
+            if(field != null)
+            {
+                return (bool)field.GetValue(skillTree);
+            }
+            throw new NotImplementedException();
+            /*
             return name switch
             {
                 "00_07" => skillTree.v00_07_add_5_damage,
@@ -54,8 +62,10 @@ namespace MinerGunBuilderCalculator
                 "01_16" => skillTree.v01_16_high_times,
                 "03_16" => skillTree.v03_16_high_multiplier,
                 "03_18" => skillTree.v03_18_high_multiplier,
+                "06_13" => skillTree.v06_13_high_multiplier,
                 _ => throw new NotImplementedException(),
             };
+            */
         }
         public void RefreshHex(int x,int y,bool state)
         {
@@ -110,12 +120,40 @@ namespace MinerGunBuilderCalculator
             }
         }
 
+        private FieldInfo GetFieldFromSkillTree(SkillTree skillTree, string name)
+        {
+            foreach (var field in skillTree.GetType().GetFields())
+            {
+                if (field.Name.StartsWith("v" + name))
+                {
+                    return field;
+                }
+            }
+            return null;
+        }
+
         private void Pb_Click(object sender, EventArgs e)
         {
             string name = ((PictureBox)sender).Name;
             var tmpary = name.Split('_');
             int x, y;
             (x, y) = (int.Parse(tmpary[0]), int.Parse(tmpary[1]));
+
+
+            FieldInfo field = GetFieldFromSkillTree(skillTree, name);
+            
+            if(field != null)
+            {
+                field.SetValue(skillTree,!(bool)field.GetValue(skillTree));
+                RefreshHex(x, y, (bool)field.GetValue(skillTree));
+                skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
+            /*
             switch (name)
             {
                 case "00_07":
@@ -176,6 +214,7 @@ namespace MinerGunBuilderCalculator
                 default:
                     throw new NotImplementedException();
             }
+            */
         }
 
         private static PictureBox CreateHex(Bitmap image)
