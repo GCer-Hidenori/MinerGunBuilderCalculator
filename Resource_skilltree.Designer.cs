@@ -160,6 +160,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Increase the speed thresholds to 1.2 to 1.3. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _04_17 {
+            get {
+                return ResourceManager.GetString("04_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _05_10 {

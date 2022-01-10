@@ -1114,34 +1114,62 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
             decimal magnification = 1m;
-            if (0.2m <= inbound_projectileStat.speed && inbound_projectileStat.speed <= 1)
+            if (skillTree.v04_17_increase_thresholds)
             {
-                magnification = Math.Truncate(-3.75m * inbound_projectileStat.speed + 5.75m);
+                if (inbound_projectileStat.speed is >= 0.3m and <= 1.2m)
+                {
+                    magnification = Math.Truncate(-10m / 3m * inbound_projectileStat.speed + 6m);
+                }
+                else if (inbound_projectileStat.speed < 0.3m)
+                {
+                    magnification = 5m;
+                }
             }
-            else if (inbound_projectileStat.speed < 0.2m)
+            else
             {
-                magnification = 5m;
+                if (inbound_projectileStat.speed is >= 0.2m and <= 1)
+                {
+                    magnification = Math.Truncate(-3.75m * inbound_projectileStat.speed + 5.75m);
+                }
+                else if (inbound_projectileStat.speed < 0.2m)
+                {
+                    magnification = 5m;
+                }
             }
             inbound_projectileStat.average_damage *= magnification;
             inbound_projectileStat.max_damage *= magnification;
             inbound_projectileStat.min_damage *= magnification;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
             decimal magnification = 1m;
-            if (0.2m <= inbound_projectile.speed && inbound_projectile.speed <= 1)
+            if (skillTree.v04_17_increase_thresholds)
             {
-                magnification = Math.Truncate(-3.75m * inbound_projectile.speed + 5.75m);
+                if (inbound_projectile.speed is >= 0.3m and <= 1.2m)
+                {
+                    magnification = Math.Truncate(-10m / 3m * inbound_projectile.speed + 6m);
+                }
+                else if (inbound_projectile.speed < 0.3m)
+                {
+                    magnification = 5m;
+                }
             }
-            else if (inbound_projectile.speed < 0.2m)
+            else
             {
-                magnification = 5m;
+                if (inbound_projectile.speed is >= 0.2m and <= 1)
+                {
+                    magnification = Math.Truncate(-3.75m * inbound_projectile.speed + 5.75m);
+                }
+                else if (inbound_projectile.speed < 0.2m)
+                {
+                    magnification = 5m;
+                }
             }
             inbound_projectile.damage *= magnification;
 

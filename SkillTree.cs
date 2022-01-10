@@ -42,6 +42,10 @@ namespace MinerGunBuilderCalculator
         // Combines only 6 projectiles instead
         public bool v02_17_only_6_projectile = false;
 
+        // Slow damage
+        // Increase the speed thresholds to 1.2 to 0.3.
+        public bool v04_17_increase_thresholds = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

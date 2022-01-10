@@ -150,6 +150,9 @@
   <data name="04_11" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>
+  <data name="04_17" xml:space="preserve">
+    <value>Increase the speed thresholds to 1.2 to 1.3.</value>
+  </data>
   <data name="05_10" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>
