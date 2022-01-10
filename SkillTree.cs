@@ -38,6 +38,10 @@ namespace MinerGunBuilderCalculator
         // Adds instead 30% of damage to following projectiles.
         public bool v06_13_high_multiplier = false;
 
+        // Combine10
+        // Combines only 6 projectiles instead
+        public bool v02_17_only_6_projectile = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

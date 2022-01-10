@@ -1156,27 +1156,36 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage *= 20;
-            inbound_projectileStat.max_damage *= 20;
-            inbound_projectileStat.min_damage *= 20;
-            inbound_projectileStat.magnification /= 10;
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            if (skillTree.v02_17_only_6_projectile)
+            {
+                inbound_projectileStat.average_damage *= 12;
+                inbound_projectileStat.max_damage *= 12;
+                inbound_projectileStat.min_damage *= 12;
+                inbound_projectileStat.magnification /= 6;
+            }
+            else
+            {
+                inbound_projectileStat.average_damage *= 20;
+                inbound_projectileStat.max_damage *= 20;
+                inbound_projectileStat.min_damage *= 20;
+                inbound_projectileStat.magnification /= 10;
+            }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = null;
             count += 1;
-            if (count >= 10)
+            if (count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (inbound_projectile != null)
                 {
-                    inbound_projectile.damage *= 20;
+                    inbound_projectile.damage *= (skillTree.v02_17_only_6_projectile ? 12 : 20);
                 }
-
                 count = 0;
             }
             return inbound_projectile;
