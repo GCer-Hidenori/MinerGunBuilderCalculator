@@ -138,6 +138,9 @@
   <data name="02_17" xml:space="preserve">
     <value>Combines only 6 projectiles instead.</value>
   </data>
+  <data name="03_08" xml:space="preserve">
+    <value>Adds up to 60% more damage with bigger ejection curve angle.</value>
+  </data>
   <data name="03_12" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>
