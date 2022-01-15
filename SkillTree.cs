@@ -46,6 +46,10 @@ namespace MinerGunBuilderCalculator
         // Increase the speed thresholds to 1.2 to 0.3.
         public bool v04_17_increase_thresholds = false;
 
+        // Curve Left
+        // Adds up to 40% more damage with bigger ejection curve angle.
+        public bool v05_06_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

@@ -142,10 +142,13 @@
   <data name="04_17" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\04_17.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="05_06" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\05-06.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="05_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\05_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="_06_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="06_13" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\06_13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
