@@ -151,6 +151,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Adds up to 40% more damage with bigger ejection curve angle. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _04_05 {
+            get {
+                return ResourceManager.GetString("04_05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _04_11 {

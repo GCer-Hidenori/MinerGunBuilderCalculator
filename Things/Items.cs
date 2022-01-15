@@ -203,6 +203,26 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            if (skillTree.v04_05_more_damage)
+            {
+                inbound_projectileStat.average_damage *= 1.4m;
+                inbound_projectileStat.max_damage *= 1.4m;
+                inbound_projectileStat.min_damage *= 1.4m;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            if (skillTree.v04_05_more_damage)
+            {
+                inbound_projectile.damage *= 1.4m;
+            }
+            return inbound_projectile;
+        }
     }
     class Item_012_Slow_down : Item
     {

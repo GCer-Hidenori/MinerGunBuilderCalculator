@@ -147,6 +147,9 @@
   <data name="03_18" xml:space="preserve">
     <value>Multipliers are instead 0,0,0,1,2,3 or 4.</value>
   </data>
+  <data name="04_05" xml:space="preserve">
+    <value>Adds up to 40% more damage with bigger ejection curve angle.</value>
+  </data>
   <data name="04_11" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>

@@ -50,6 +50,10 @@ namespace MinerGunBuilderCalculator
         // Adds up to 40% more damage with bigger ejection curve angle.
         public bool v05_06_more_damage = false;
 
+        // Curve Right
+        // Adds up to 40% more damage with bigger ejection curve angle.
+        public bool v04_05_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {
