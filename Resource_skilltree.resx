@@ -165,6 +165,9 @@
   <data name="05_06" xml:space="preserve">
     <value>Adds up to 40% more damage with bigger ejection curve angle.</value>
   </data>
+  <data name="05_08" xml:space="preserve">
+    <value>Adds +5 additional damage.</value>
+  </data>
   <data name="05_10" xml:space="preserve">
     <value>Adds +5 damage.</value>
   </data>

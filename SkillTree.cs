@@ -62,6 +62,10 @@ namespace MinerGunBuilderCalculator
         // 8x damage instead of 4x.
         public bool v02_07_more_damage = false;
 
+        // Add 1 damage
+        // Adds +5 additional damage.
+        public bool v05_08_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

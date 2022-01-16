@@ -87,20 +87,30 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage += 1;
-            inbound_projectileStat.max_damage += 1;
-            inbound_projectileStat.min_damage += 1;
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            decimal additional_damage = 0m;
+            if (skillTree.v05_08_more_damage)
+            {
+                additional_damage = 5;
+            }
+            inbound_projectileStat.average_damage += 1 + additional_damage;
+            inbound_projectileStat.max_damage += 1 + additional_damage;
+            inbound_projectileStat.min_damage += 1 + additional_damage;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.damage += 1;
+                decimal additional_damage = 0m;
+                if (skillTree.v05_08_more_damage)
+                {
+                    additional_damage = 5;
+                }
+                inbound_projectile.damage += 1 + additional_damage;
             }
             return inbound_projectile;
         }

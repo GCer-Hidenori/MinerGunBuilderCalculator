@@ -205,6 +205,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Adds +5 additional damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _05_08 {
+            get {
+                return ResourceManager.GetString("05_08", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds +5 damage. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _05_10 {
