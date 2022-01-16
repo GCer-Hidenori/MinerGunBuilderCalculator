@@ -196,6 +196,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Adds +20 additional damage for each in ship. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _05_00 {
+            get {
+                return ResourceManager.GetString("05_00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds up to 40% more damage with bigger ejection curve angle. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _05_06 {

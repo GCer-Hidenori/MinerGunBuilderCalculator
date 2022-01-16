@@ -95,6 +95,13 @@ namespace MinerGunBuilderCalculator
             {
                 additional_damage = 5;
             }
+            if (skillTree.v05_00_more_damage)
+            {
+                var thing_1dim_layout = thing_layout.Cast<Thing>();
+                IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
+                int num_add1damage = IEadd1damage.Count<Thing>();
+                additional_damage += 20 * num_add1damage;
+            }
             inbound_projectileStat.average_damage += 1 + additional_damage;
             inbound_projectileStat.max_damage += 1 + additional_damage;
             inbound_projectileStat.min_damage += 1 + additional_damage;
@@ -109,6 +116,13 @@ namespace MinerGunBuilderCalculator
                 if (skillTree.v05_08_more_damage)
                 {
                     additional_damage = 5;
+                }
+                if (skillTree.v05_00_more_damage)
+                {
+                    var thing_1dim_layout = thing_layout.Cast<Thing>();
+                    IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
+                    int num_add1damage = IEadd1damage.Count<Thing>();
+                    additional_damage += 20 * num_add1damage;
                 }
                 inbound_projectile.damage += 1 + additional_damage;
             }

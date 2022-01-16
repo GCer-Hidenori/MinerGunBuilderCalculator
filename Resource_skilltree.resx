@@ -162,6 +162,9 @@
   <data name="04_17" xml:space="preserve">
     <value>Increase the speed thresholds to 1.2 to 1.3.</value>
   </data>
+  <data name="05_00" xml:space="preserve">
+    <value>Adds +20 additional damage for each in ship.</value>
+  </data>
   <data name="05_06" xml:space="preserve">
     <value>Adds up to 40% more damage with bigger ejection curve angle.</value>
   </data>

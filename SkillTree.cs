@@ -65,6 +65,9 @@ namespace MinerGunBuilderCalculator
         // Add 1 damage
         // Adds +5 additional damage.
         public bool v05_08_more_damage = false;
+        // Add 1 damage
+        // Adds +20 additional damage for each in ship.
+        public bool v05_00_more_damage = false;
 
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
