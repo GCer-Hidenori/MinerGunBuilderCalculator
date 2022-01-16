@@ -97,6 +97,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   8x damage instead of 4x. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _02_07 {
+            get {
+                return ResourceManager.GetString("02_07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Increased chance of 40% for damage multiplier. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _02_13 {

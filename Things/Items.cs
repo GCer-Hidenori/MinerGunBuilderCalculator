@@ -1058,7 +1058,6 @@ namespace MinerGunBuilderCalculator
 
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
-            //ProjectileStat inbound_projectileStat = null;
             const int Count = 1000;
             decimal total_damage = new();
             decimal max_damage = new();
@@ -1072,7 +1071,7 @@ namespace MinerGunBuilderCalculator
                 if (projectile != null)
                 {
                     j += 1;
-                    if (last_damage_for_stats != null && last_damage_for_stats > projectile.damage) projectile.damage *= 4;
+                    if (last_damage_for_stats != null && last_damage_for_stats > projectile.damage) projectile.damage *= skillTree.v02_07_more_damage? 8 : 4;
                     total_damage += projectile.damage;
                     max_damage = max_damage < projectile.damage ? projectile.damage : max_damage;
                     min_damage = (min_damage == null || min_damage > projectile.damage) ? projectile.damage : min_damage;
@@ -1087,7 +1086,6 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.speed = projectile.speed;
             inbound_projectileStat.lifetime = projectile.lifetime;
             inbound_projectileStat.Legendary_EnableGuideDamage = projectile.Legendary_EnableGuideDamage;
-            //inbound_projectileStat = projectileStat;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
@@ -1095,7 +1093,8 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (last_damage != null)
             {
-                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= 4;
+                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= skillTree.v02_07_more_damage ? 8 : 4;
+
             }
             last_damage = inbound_projectile.damage;
             return inbound_projectile;

@@ -121,6 +121,9 @@
   <data name="00_07-01_08" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\00_07-01_08.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="02_07" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\02_07.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="02_13-01_12" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\02_13.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
