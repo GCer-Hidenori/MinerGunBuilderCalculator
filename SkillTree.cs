@@ -72,6 +72,9 @@ namespace MinerGunBuilderCalculator
         // Spread left
         // Adds up to 50% more damage with bigger ejection angle.
         public bool v06_11_more_damage = false;
+        // Spread right
+        // Adds up to 50% more damage with bigger ejection angle.
+        public bool v07_12_more_damage = false;
 
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
