@@ -164,10 +164,8 @@ namespace MinerGunBuilderCalculator
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
             if(skillTree.v06_11_more_damage){
-                decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.5m;
-                inbound_projectileStat.average_damage *= magnification;
-                inbound_projectileStat.max_damage *= magnification;
-                inbound_projectileStat.min_damage *= magnification;
+                inbound_projectileStat.average_damage *= 1.25m;
+                inbound_projectileStat.max_damage *= 1.5m;
             }
             return inbound_projectileStat;
         }
@@ -209,10 +207,8 @@ namespace MinerGunBuilderCalculator
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
             if(skillTree.v07_12_more_damage){
-                decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.5m;
-                inbound_projectileStat.average_damage *= magnification;
-                inbound_projectileStat.max_damage *= magnification;
-                inbound_projectileStat.min_damage *= magnification;
+                inbound_projectileStat.average_damage *= 1.25m;
+                inbound_projectileStat.max_damage *= 1.5m;
             }
             return inbound_projectileStat;
         }
