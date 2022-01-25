@@ -189,10 +189,37 @@ namespace MinerGunBuilderCalculator
     }
     class Item_006_Large_spread : Item
     {
+        Random rand;
         public Item_006_Large_spread(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+        }
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            if(skillTree.v07_10_more_damage){
+                inbound_projectileStat.average_damage *= 1.3m;
+                inbound_projectileStat.max_damage *= 1.6m;
+            }
+            return inbound_projectileStat;
+        }
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            if (inbound_projectile != null)
+            {
+                if (skillTree.v07_10_more_damage)
+                {
+                    decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.6m;
+                    inbound_projectile.damage *= magnification;
+                }
+            }
+            return inbound_projectile;
+        }
+        public override void ResetBeforeCalculateDamage()
+        {
+            rand = new Random(0);
         }
     }
     class Item_007_Spread_right : Item
