@@ -171,7 +171,7 @@
   <data name="Item_018_Random_bounce" xml:space="preserve">
     <value>Bounce one time with random direction.</value>
   </data>
-  <data name="Item_019_Richchet" xml:space="preserve">
+  <data name="Item_019_Ricochet" xml:space="preserve">
     <value>Projectiles rocochet off blocks.</value>
   </data>
   <data name="Item_020_Double_lifetime" xml:space="preserve">
@@ -228,7 +228,7 @@
   <data name="Item_101_Tier_damage" xml:space="preserve">
     <value>Adds 10% of the highest reached Tier in the world map as damage.</value>
   </data>
-  <data name="Item_102_More_than_lower" xml:space="preserve">
+  <data name="Item_102_More_when_lower" xml:space="preserve">
     <value>4x damage if damage if lower than that of last passing projectile.</value>
   </data>
   <data name="Item_103_Late_damage" xml:space="preserve">

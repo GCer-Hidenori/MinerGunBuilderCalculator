@@ -183,4 +183,7 @@
   <data name="07_12" xml:space="preserve">
     <value>Adds up to 50% more damage with bigger ejection angle.</value>
   </data>
+  <data name="08_11" xml:space="preserve">
+    <value>Adds up to 25% more damage with bigger ejection angle.</value>
+  </data>
 </root>

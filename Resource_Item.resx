@@ -172,8 +172,8 @@
   <data name="Item_018_Random_bounce" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Item_018_Random_bounce.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Item_019_Richchet" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\Item_019_Richchet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Item_019_Ricochet" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\Item_019_Ricochet.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Item_020_Double_lifetime" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\Item_020_Double_lifetime.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

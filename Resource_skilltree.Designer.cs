@@ -257,5 +257,14 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("07_12", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Adds up to 25% more damage with bigger ejection angle. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _08_11 {
+            get {
+                return ResourceManager.GetString("08_11", resourceCulture);
+            }
+        }
     }
 }
