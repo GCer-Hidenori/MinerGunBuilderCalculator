@@ -322,6 +322,7 @@ namespace MinerGunBuilderCalculator
     }
     class Item_010_Random_curve : Item
     {
+        Random rand;
         public Item_010_Random_curve(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -332,9 +333,8 @@ namespace MinerGunBuilderCalculator
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
             if (skillTree.v03_08_more_damage)
             {
-                inbound_projectileStat.average_damage *= 1.6m;
+                inbound_projectileStat.average_damage *= 1.3m;
                 inbound_projectileStat.max_damage *= 1.6m;
-                inbound_projectileStat.min_damage *= 1.6m;
             }
             return inbound_projectileStat;
         }
@@ -343,9 +343,14 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
             if (skillTree.v03_08_more_damage)
             {
-                inbound_projectile.damage *= 1.6m;
+                    decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.6m;
+                    inbound_projectile.damage *= magnification;
             }
             return inbound_projectile;
+        }
+        public override void ResetBeforeCalculateDamage()
+        {
+            rand = new Random(0);
         }
     }
     class Item_011_Curve_right : Item
