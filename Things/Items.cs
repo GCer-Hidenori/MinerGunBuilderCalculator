@@ -768,26 +768,44 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
 
             if (Access_to_rel_right == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-                projectileStat.min_damage *= 2;
-                projectileStat.max_damage *= 2;
-                projectileStat.average_damage *= 2;
+                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                if (skillTree.v08_09_high_multiplier)
+                {
+                    projectileStat.min_damage *= 3;
+                    projectileStat.max_damage *= 3;
+                    projectileStat.average_damage *= 3;
+                }
+                else
+                {
+                    projectileStat.min_damage *= 2;
+                    projectileStat.max_damage *= 2;
+                    projectileStat.average_damage *= 2;
+                }
                 projectileStat.magnification /= 2;
                 inbound_projectileStat = projectileStat;
             }
             else if (Access_to_rel_left == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
                 var copy = projectileStat.Copy();
-                copy.min_damage *= 2;
-                copy.max_damage *= 2;
-                copy.average_damage *= 2;
+                if (skillTree.v08_09_high_multiplier)
+                {
+                    copy.min_damage *= 3;
+                    copy.max_damage *= 3;
+                    copy.average_damage *= 3;
+                }
+                else
+                {
+                    copy.min_damage *= 2;
+                    copy.max_damage *= 2;
+                    copy.average_damage *= 2;
+                }
                 copy.magnification = projectileStat.magnification / 2;
                 inbound_projectileStat = copy;
             }
