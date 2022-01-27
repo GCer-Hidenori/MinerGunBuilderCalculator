@@ -268,6 +268,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Higher damage multiplier of 4. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _08_07 {
+            get {
+                return ResourceManager.GetString("08_07", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Higher damage multiplier of 3. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _08_09 {

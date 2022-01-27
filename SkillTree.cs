@@ -88,6 +88,10 @@ namespace MinerGunBuilderCalculator
         // Higher damage multiplier of 3.
         public bool v08_09_high_multiplier = false;
 
+        // Random 3 way
+        // Higher damage multiplier of 4.
+        public bool v08_07_high_multiplier = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

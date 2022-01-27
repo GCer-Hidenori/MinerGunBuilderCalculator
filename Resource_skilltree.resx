@@ -186,6 +186,9 @@
   <data name="07_12" xml:space="preserve">
     <value>Adds up to 50% more damage with bigger ejection angle.</value>
   </data>
+  <data name="08_07" xml:space="preserve">
+    <value>Higher damage multiplier of 4.</value>
+  </data>
   <data name="08_09" xml:space="preserve">
     <value>Higher damage multiplier of 3.</value>
   </data>
