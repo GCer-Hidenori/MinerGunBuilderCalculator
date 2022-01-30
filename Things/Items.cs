@@ -1238,6 +1238,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
@@ -1258,7 +1259,7 @@ namespace MinerGunBuilderCalculator
             return inbound_projectile;
         }
     }
-    class Item_102_More_than_lower : Item
+    class Item_102_More_when_lower : Item
     {
         [JsonIgnore]
         private decimal? last_damage = null;
@@ -1267,10 +1268,11 @@ namespace MinerGunBuilderCalculator
         {
             last_damage = null;
         }
-        public Item_102_More_than_lower(Thing[,] thing_layout) : base(thing_layout)
+        public Item_102_More_when_lower(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
 
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
@@ -1323,6 +1325,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
@@ -1350,19 +1353,26 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
-        private decimal Calc_additional_damage_magnification()
+        private decimal Calc_additional_damage_magnification(SkillTree skillTree)
         {
+            int num_unused_tiles = 0;
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEnull = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_Null");
-            int num_unused_tiles = IEnull.Count<Thing>();
+            num_unused_tiles = IEnull.Count<Thing>();
+            if(skillTree.v08_05_legendary_as_unused_tile)
+            {
+                IEnull = thing_1dim_layout.Where(thing => thing.IsLegendary = true);
+                num_unused_tiles += IEnull.Count<Thing>();
+            }
             return 1m + 0.1m * num_unused_tiles;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             //ProjectileStat inbound_projectileStat = null;
 
-            decimal additional_damage_magnification = Calc_additional_damage_magnification();
+            decimal additional_damage_magnification = Calc_additional_damage_magnification(skillTree);
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
             inbound_projectileStat.average_damage *= additional_damage_magnification;
             inbound_projectileStat.max_damage *= additional_damage_magnification;
@@ -1373,7 +1383,7 @@ namespace MinerGunBuilderCalculator
         {
             //Projectile inbound_projectile = null;
 
-            decimal additional_damage_magnification = Calc_additional_damage_magnification();
+            decimal additional_damage_magnification = Calc_additional_damage_magnification(skillTree);
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
@@ -1389,6 +1399,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
@@ -1459,6 +1470,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
@@ -1503,6 +1515,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
     }
     class Item_108_Guide_Damage : Item
@@ -1511,6 +1524,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
@@ -1532,6 +1546,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         private decimal SkillTree_Add5damage(SkillTree skillTree)
         {
@@ -1584,6 +1599,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
         private decimal Count_Unused_Ejection()
         {
@@ -1624,6 +1640,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
         }
     }
     class Item_112_Clone : Item
@@ -1632,6 +1649,8 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+            IsLegendary = true;
+            IsLegendary = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {

@@ -268,6 +268,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Legendary items count as unused tile. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _08_05 {
+            get {
+                return ResourceManager.GetString("08_05", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Higher damage multiplier of 4. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _08_07 {

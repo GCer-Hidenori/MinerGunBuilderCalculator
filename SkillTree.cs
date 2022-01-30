@@ -92,6 +92,10 @@ namespace MinerGunBuilderCalculator
         // Higher damage multiplier of 4.
         public bool v08_07_high_multiplier = false;
 
+        // Unused tile
+        // Legendary items count as unused tile.
+        public bool v08_05_legendary_as_unused_tile = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

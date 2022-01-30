@@ -51,6 +51,8 @@ namespace MinerGunBuilderCalculator
 
         protected bool connectionChecked;
 
+        public bool IsLegendary = false;
+
         public Direction direction = Direction.TOP;
 
         //debug
