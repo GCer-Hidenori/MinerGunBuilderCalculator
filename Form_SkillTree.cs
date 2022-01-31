@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace MinerGunBuilderCalculator
 {
     public partial class Form_SkillTree : Form
     {
-        PictureBox[,] ary_pb = new PictureBox[10,20];
+        PictureBox[,] ary_pb = new PictureBox[10, 20];
+        Dictionary<string, FieldInfo> skillTreeId2field = new();
 
         public SkillTree skillTree;
 
@@ -24,6 +26,20 @@ namespace MinerGunBuilderCalculator
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
         }
+
+        private void MakeSkillTreeId2Field(SkillTree skillTree)
+        {
+            Regex regex = new Regex(@"^v(\d\d_\d\d)");
+            foreach (var field in skillTree.GetType().GetFields())
+            {
+                Match matche = regex.Match(field.Name);
+                if (matche.Success)
+                {
+                    skillTreeId2field[matche.Groups[1].Value] = field;
+                } 
+            }
+        }
+
         private static Bitmap GetImageFromResource(string name)
         {
             var resource_manager = Resource_SkillTree_Images.ResourceManager;
@@ -48,24 +64,6 @@ namespace MinerGunBuilderCalculator
                 return (bool)field.GetValue(skillTree);
             }
             throw new NotImplementedException();
-            /*
-            return name switch
-            {
-                "00_07" => skillTree.v00_07_add_5_damage,
-                "01_08" => skillTree.v01_08_add_30_damage,
-                "04_11" => skillTree.v04_11_add_5_damage,
-                "05_10" => skillTree.v05_10_add_5_damage,
-                "03_12" => skillTree.v03_12_add_5_damage,
-                "02_13" => skillTree.v02_13_increase_chance,
-                "01_12" => skillTree.v01_12_high_multiplier,
-                "02_15" => skillTree.v02_15_increase_chance,
-                "01_16" => skillTree.v01_16_high_times,
-                "03_16" => skillTree.v03_16_high_multiplier,
-                "03_18" => skillTree.v03_18_high_multiplier,
-                "06_13" => skillTree.v06_13_high_multiplier,
-                _ => throw new NotImplementedException(),
-            };
-            */
         }
         public void RefreshHex(int x,int y,bool state)
         {
@@ -122,6 +120,13 @@ namespace MinerGunBuilderCalculator
 
         private FieldInfo GetFieldFromSkillTree(SkillTree skillTree, string name)
         {
+            if (skillTreeId2field.Count == 0)
+            {
+                MakeSkillTreeId2Field(skillTree);
+            }
+            return skillTreeId2field[name];
+
+            /*
             foreach (var field in skillTree.GetType().GetFields())
             {
                 if (field.Name.StartsWith("v" + name))
@@ -129,7 +134,9 @@ namespace MinerGunBuilderCalculator
                     return field;
                 }
             }
+            
             return null;
+            */
         }
 
         private void Pb_Click(object sender, EventArgs e)
@@ -153,68 +160,7 @@ namespace MinerGunBuilderCalculator
                 throw new NotImplementedException();
             }
 
-            /*
-            switch (name)
-            {
-                case "00_07":
-                    skillTree.v00_07_add_5_damage = !skillTree.v00_07_add_5_damage;
-                    RefreshHex(x, y, skillTree.v00_07_add_5_damage);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "01_08":
-                    skillTree.v01_08_add_30_damage = !skillTree.v01_08_add_30_damage;
-                    RefreshHex(x, y, skillTree.v01_08_add_30_damage);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "04_11":
-                    skillTree.v04_11_add_5_damage = !skillTree.v04_11_add_5_damage;
-                    RefreshHex(x, y, skillTree.v04_11_add_5_damage);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "05_10":
-                    skillTree.v05_10_add_5_damage = !skillTree.v05_10_add_5_damage;
-                    RefreshHex(x, y, skillTree.v05_10_add_5_damage);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "03_12":
-                    skillTree.v03_12_add_5_damage = !skillTree.v03_12_add_5_damage;
-                    RefreshHex(x, y, skillTree.v03_12_add_5_damage);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "02_13":
-                    skillTree.v02_13_increase_chance = !skillTree.v02_13_increase_chance;
-                    RefreshHex(x, y, skillTree.v02_13_increase_chance);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "01_12":
-                    skillTree.v01_12_high_multiplier = !skillTree.v01_12_high_multiplier;
-                    RefreshHex(x, y, skillTree.v01_12_high_multiplier);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "02_15":
-                    skillTree.v02_15_increase_chance = !skillTree.v02_15_increase_chance;
-                    RefreshHex(x, y, skillTree.v02_15_increase_chance);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "01_16":
-                    skillTree.v01_16_high_times = !skillTree.v01_16_high_times;
-                    RefreshHex(x, y, skillTree.v01_16_high_times);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "03_16":
-                    skillTree.v03_16_high_multiplier = !skillTree.v03_16_high_multiplier;
-                    RefreshHex(x, y, skillTree.v03_16_high_multiplier);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                case "03_18":
-                    skillTree.v03_18_high_multiplier = !skillTree.v03_18_high_multiplier;
-                    RefreshHex(x, y, skillTree.v03_18_high_multiplier);
-                    skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
-            */
+           
         }
 
         private static PictureBox CreateHex(Bitmap image)

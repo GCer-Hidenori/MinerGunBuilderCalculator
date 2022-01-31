@@ -17,6 +17,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToRIGHT = true;
+            IsGuide = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
@@ -54,6 +55,7 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToLEFT = true;
+            IsGuide = true;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
@@ -1363,7 +1365,12 @@ namespace MinerGunBuilderCalculator
             num_unused_tiles = IEnull.Count<Thing>();
             if(skillTree.v08_05_legendary_as_unused_tile)
             {
-                IEnull = thing_1dim_layout.Where(thing => thing.IsLegendary = true);
+                IEnull = thing_1dim_layout.Where(thing => thing.IsLegendary == true);
+                num_unused_tiles += IEnull.Count<Thing>();
+            }
+            if(skillTree.v09_04_guide_as_unused_tile)
+            {
+                IEnull = thing_1dim_layout.Where(thing => thing.IsGuide == true);
                 num_unused_tiles += IEnull.Count<Thing>();
             }
             return 1m + 0.1m * num_unused_tiles;

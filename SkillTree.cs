@@ -96,6 +96,10 @@ namespace MinerGunBuilderCalculator
         // Legendary items count as unused tile.
         public bool v08_05_legendary_as_unused_tile = false;
 
+        // Unused tile
+        // Projectile direction guides count as unused tile.
+        public bool v09_04_guide_as_unused_tile = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

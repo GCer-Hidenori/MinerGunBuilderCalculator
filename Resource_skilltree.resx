@@ -198,4 +198,7 @@
   <data name="08_11" xml:space="preserve">
     <value>Adds up to 25% more damage with bigger ejection angle.</value>
   </data>
+  <data name="09_04" xml:space="preserve">
+    <value>Projectile direction guides count as unused tile.</value>
+  </data>
 </root>

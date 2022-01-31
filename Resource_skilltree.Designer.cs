@@ -302,5 +302,14 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("08_11", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Projectile direction guides count as unused tile. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _09_04 {
+            get {
+                return ResourceManager.GetString("09_04", resourceCulture);
+            }
+        }
     }
 }
