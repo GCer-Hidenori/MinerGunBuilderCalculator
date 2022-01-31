@@ -320,5 +320,14 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("09_04", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Chance of 5% to split instead of guide. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _09_08 {
+            get {
+                return ResourceManager.GetString("09_08", resourceCulture);
+            }
+        }
     }
 }

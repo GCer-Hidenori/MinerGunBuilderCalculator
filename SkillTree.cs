@@ -104,6 +104,10 @@ namespace MinerGunBuilderCalculator
         // Chance of 20% to clone the projectile twice.
         public bool v07_04_chance_more_clone = false;
 
+        // Random 2 way
+        // Chance of 5% to split instead of guide.
+        public bool v09_08_chance_to_split = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

@@ -204,4 +204,7 @@
   <data name="09_04" xml:space="preserve">
     <value>Projectile direction guides count as unused tile.</value>
   </data>
+  <data name="09_08" xml:space="preserve">
+    <value>Chance of 5% to split instead of guide.</value>
+  </data>
 </root>

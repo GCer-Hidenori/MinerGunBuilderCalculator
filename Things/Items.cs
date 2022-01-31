@@ -737,20 +737,48 @@ namespace MinerGunBuilderCalculator
             if (Access_to_rel_right == to_thing)
             {
                 var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                if (skillTree.v08_09_high_multiplier)
+                if (skillTree.v09_08_chance_to_split)
                 {
-                    projectileStat.min_damage *= 3;
-                    projectileStat.max_damage *= 3;
-                    projectileStat.average_damage *= 3;
+                    if (Access_to_rel_right == to_thing)
+                    {
+                        inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                    }
+                    else if (Access_to_rel_left == to_thing)
+                    {
+                        projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                        inbound_projectileStat = projectileStat.Copy();
+                    }
+                    if (skillTree.v08_09_high_multiplier)
+                    {
+                        inbound_projectileStat.min_damage *= 3;
+                        inbound_projectileStat.max_damage *= 3;
+                        inbound_projectileStat.average_damage *= 3;
+                    }
+                    else
+                    {
+                        inbound_projectileStat.min_damage *= 2;
+                        inbound_projectileStat.max_damage *= 2;
+                        inbound_projectileStat.average_damage *= 2;
+                    }
+                    inbound_projectileStat.magnification *= 0.05m * 1 + 0.95m / 2;
                 }
                 else
                 {
-                    projectileStat.min_damage *= 2;
-                    projectileStat.max_damage *= 2;
-                    projectileStat.average_damage *= 2;
+                    if (skillTree.v08_09_high_multiplier)
+                    {
+                        projectileStat.min_damage *= 3;
+                        projectileStat.max_damage *= 3;
+                        projectileStat.average_damage *= 3;
+                    }
+                    else
+                    {
+                        projectileStat.min_damage *= 2;
+                        projectileStat.max_damage *= 2;
+                        projectileStat.average_damage *= 2;
+                    }
+                    projectileStat.magnification /= 2;
+                    inbound_projectileStat = projectileStat;
                 }
-                projectileStat.magnification /= 2;
-                inbound_projectileStat = projectileStat;
             }
             else if (Access_to_rel_left == to_thing)
             {
