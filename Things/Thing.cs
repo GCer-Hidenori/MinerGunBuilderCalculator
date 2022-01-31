@@ -54,6 +54,10 @@ namespace MinerGunBuilderCalculator
         public bool IsLegendary = false;
         public bool IsGuide = false;
 
+
+        [JsonIgnore]
+        public Random rand;
+
         public Direction direction = Direction.TOP;
 
         //debug
@@ -491,6 +495,7 @@ namespace MinerGunBuilderCalculator
         }
         public virtual void ResetBeforeCalculateDamage()
         {
+            rand = new Random(0);
         }
 
         public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,SkillTree skillTree, Thing to_thing)

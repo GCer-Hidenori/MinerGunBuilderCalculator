@@ -180,6 +180,9 @@
   <data name="06_13" xml:space="preserve">
     <value>Adds instead 30% of damage to following projectiles.</value>
   </data>
+  <data name="07_04" xml:space="preserve">
+    <value>Chance of 20% to clone the projectile twice.</value>
+  </data>
   <data name="07_10" xml:space="preserve">
     <value>Adds up to 60% more damage with bigger ejection angle.</value>
   </data>

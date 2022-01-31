@@ -100,6 +100,10 @@ namespace MinerGunBuilderCalculator
         // Projectile direction guides count as unused tile.
         public bool v09_04_guide_as_unused_tile = false;
 
+        // Clone
+        // Chance of 20% to clone the projectile twice.
+        public bool v07_04_chance_more_clone = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

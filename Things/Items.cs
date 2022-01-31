@@ -156,7 +156,6 @@ namespace MinerGunBuilderCalculator
     }
     class Item_005_Spread_left : Item
     {
-        Random rand;
         public Item_005_Spread_left(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -184,14 +183,9 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectile;
         }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
-        }
     }
     class Item_006_Large_spread : Item
     {
-        Random rand;
         public Item_006_Large_spread(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -219,14 +213,9 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectile;
         }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
-        }
     }
     class Item_007_Spread_right : Item
     {
-        Random rand;
         public Item_007_Spread_right(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -254,14 +243,9 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectile;
         }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
-        }
     }
     class Item_008_Small_spread : Item
     {
-        Random rand;
         public Item_008_Small_spread(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -288,10 +272,6 @@ namespace MinerGunBuilderCalculator
                 }
             }
             return inbound_projectile;
-        }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
         }
     }
     class Item_009_Curve_left : Item
@@ -324,7 +304,6 @@ namespace MinerGunBuilderCalculator
     }
     class Item_010_Random_curve : Item
     {
-        Random rand;
         public Item_010_Random_curve(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -349,10 +328,6 @@ namespace MinerGunBuilderCalculator
                     inbound_projectile.damage *= magnification;
             }
             return inbound_projectile;
-        }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
         }
     }
     class Item_011_Curve_right : Item
@@ -408,7 +383,6 @@ namespace MinerGunBuilderCalculator
     }
     class Item_013_Criticalx2 : Item
     {
-        Random rand;
         private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
         {
             decimal hit_rate,magnification;
@@ -452,14 +426,9 @@ namespace MinerGunBuilderCalculator
             if (rand.Next(0, 100) < (33m + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= skillTree.v01_12_high_multiplier ? 2.5m : 2m;
             return inbound_projectile;
         }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
-        }
     }
     class Item_014_Criticalx10 : Item
     {
-        Random rand;
         private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
         {
             return skillTree.v02_15_increase_chance ? (decimal)(1m-0.06m+0.06m * (10m+SkillTree_High_Times(skillTree))) : (decimal)(1m - 0.04m + 0.04m * (10m + SkillTree_High_Times(skillTree)));
@@ -492,14 +461,9 @@ namespace MinerGunBuilderCalculator
             if (rand.Next(0, 100) < (4 + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= 10;
             return inbound_projectile;
         }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
-        }
     }
     class Item_015_Random_critical : Item
     {
-        Random rand;
         public Item_015_Random_critical(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -611,10 +575,6 @@ namespace MinerGunBuilderCalculator
             }
 
             return inbound_projectile;
-        }
-        public override void ResetBeforeCalculateDamage()
-        {
-            rand = new Random(0);
         }
     }
     class Item_016_Charge : Item
@@ -1146,6 +1106,7 @@ namespace MinerGunBuilderCalculator
 
         public override void ResetBeforeCalculateDamage()
         {
+            base.ResetBeforeCalculateDamage();
             projectileStats_history.Clear();
             projectile_history.Clear();
         }
@@ -1268,6 +1229,7 @@ namespace MinerGunBuilderCalculator
 
         public override void ResetBeforeCalculateDamage()
         {
+            base.ResetBeforeCalculateDamage();
             last_damage = null;
         }
         public Item_102_More_when_lower(Thing[,] thing_layout) : base(thing_layout)
@@ -1659,20 +1621,34 @@ namespace MinerGunBuilderCalculator
             IsLegendary = true;
             IsLegendary = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.magnification *= 2m;
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            if (skillTree.v07_04_chance_more_clone)
+            {
+                inbound_projectileStat.magnification *= 2.2m;
+            }
+            else
+            {
+                inbound_projectileStat.magnification *= 2m;
+            }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             //Projectile inbound_projectile = null;
 
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.magnification *= 2;
+                if (skillTree.v07_04_chance_more_clone && rand.Next(0,100) < 20)
+                {
+                    inbound_projectile.magnification *= 3;
+                }
+                else
+                {
+                    inbound_projectile.magnification *= 2;
+                }
             }
 
             return inbound_projectile;

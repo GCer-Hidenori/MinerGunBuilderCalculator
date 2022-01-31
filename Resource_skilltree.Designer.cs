@@ -250,6 +250,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Chance of 20% to clone the projectile twice. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _07_04 {
+            get {
+                return ResourceManager.GetString("07_04", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds up to 60% more damage with bigger ejection angle. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _07_10 {

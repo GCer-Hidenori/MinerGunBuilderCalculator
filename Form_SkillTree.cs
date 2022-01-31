@@ -29,7 +29,7 @@ namespace MinerGunBuilderCalculator
 
         private void MakeSkillTreeId2Field(SkillTree skillTree)
         {
-            Regex regex = new Regex(@"^v(\d\d_\d\d)");
+            Regex regex = new(@"^v(\d\d_\d\d)");
             foreach (var field in skillTree.GetType().GetFields())
             {
                 Match matche = regex.Match(field.Name);
