@@ -112,6 +112,10 @@ namespace MinerGunBuilderCalculator
         // Chance of 5% to split instead of guide.
         public bool v09_06_chance_to_split = false;
 
+        // Tier damage
+        // Adds additional 5 damage related to highest cleared world.
+        public bool v08_17_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

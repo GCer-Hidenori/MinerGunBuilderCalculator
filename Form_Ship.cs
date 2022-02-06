@@ -117,23 +117,39 @@ namespace MinerGunBuilderCalculator
             Current = this;
         }
 
-        private void TextBox_Highet_Tier_in_World_Map_Validated(object sender, EventArgs e)
+        private void TextBox_Highest_Reached_Tier_in_World_Map_Validated(object sender, EventArgs e)
         {
-            errorProvider1.SetError(TextBox_Highet_Tier_in_World_Map, "");
+            errorProvider1.SetError(TextBox_Highest_Reached_Tier_in_World_Map, "");
             shipLayoutManager.NotifyShipLayoutChange2Observer();
         }
 
-        private void TextBox_Highet_Tier_in_World_Map_Validating(object sender, CancelEventArgs e)
+        private void TextBox_Highest_Reached_Tier_in_World_Map_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;
             
             if (!int.TryParse(textbox.Text, out int value))
             {
-                errorProvider1.SetError(TextBox_Highet_Tier_in_World_Map, "Firerate must be number.");
+                errorProvider1.SetError(TextBox_Highest_Reached_Tier_in_World_Map, "Firerate must be number.");
                 e.Cancel = true;
             }
             profile.Highest_Reached_Tier_in_World_Map = value;
+        }
+        private void TextBox_Highest_Cleared_Tier_in_World_Map_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(TextBox_Highest_Cleared_Tier_in_World_Map, "");
+            shipLayoutManager.NotifyShipLayoutChange2Observer();
+        }
 
+        private void TextBox_Highest_Cleared_Tier_in_World_Map_Validating(object sender, CancelEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            
+            if (!int.TryParse(textbox.Text, out int value))
+            {
+                errorProvider1.SetError(TextBox_Highest_Cleared_Tier_in_World_Map, "Firerate must be number.");
+                e.Cancel = true;
+            }
+            profile.Highest_Cleared_Tier_in_World_Map = value;
         }
 
         private void TextBox_Projectile_Lifetime_Validated(object sender, EventArgs e)

@@ -1217,6 +1217,13 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.average_damage += additional;
             inbound_projectileStat.max_damage += additional;
             inbound_projectileStat.min_damage += additional;
+            if(skillTree.v08_17_more_damage)
+            {
+                additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
+                inbound_projectileStat.average_damage += additional;
+                inbound_projectileStat.max_damage += additional;
+                inbound_projectileStat.min_damage += additional;
+            }
 
             return inbound_projectileStat;
         }
@@ -1225,6 +1232,11 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
             inbound_projectile.damage += additional;
+            if(skillTree.v08_17_more_damage)
+            {
+                additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
+                inbound_projectile.damage += additional;
+            }
 
             return inbound_projectile;
         }

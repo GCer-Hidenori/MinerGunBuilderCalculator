@@ -9,6 +9,7 @@ namespace MinerGunBuilderCalculator
     public class Profile
     {
         public int Highest_Reached_Tier_in_World_Map = 0;
+        public int Highest_Cleared_Tier_in_World_Map = 0;
 
         public Profile()
         {

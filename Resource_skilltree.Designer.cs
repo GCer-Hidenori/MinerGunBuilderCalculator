@@ -313,6 +313,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Adds additional 5 damage related to highest cleared world. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _08_17 {
+            get {
+                return ResourceManager.GetString("08_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Projectile direction guides count as unused tile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _09_04 {
