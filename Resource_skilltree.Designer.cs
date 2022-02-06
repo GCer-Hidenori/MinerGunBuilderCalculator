@@ -347,5 +347,14 @@ namespace MinerGunBuilderCalculator {
                 return ResourceManager.GetString("09_08", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Adds 2 additional damage per played hour. Capped at 200 damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _09_16 {
+            get {
+                return ResourceManager.GetString("09_16", resourceCulture);
+            }
+        }
     }
 }

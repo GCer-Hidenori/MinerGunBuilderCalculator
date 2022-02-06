@@ -129,7 +129,7 @@ namespace MinerGunBuilderCalculator
             
             if (!int.TryParse(textbox.Text, out int value))
             {
-                errorProvider1.SetError(TextBox_Highest_Reached_Tier_in_World_Map, "Firerate must be number.");
+                errorProvider1.SetError(TextBox_Highest_Reached_Tier_in_World_Map, "Tier must be number.");
                 e.Cancel = true;
             }
             profile.Highest_Reached_Tier_in_World_Map = value;
@@ -146,7 +146,7 @@ namespace MinerGunBuilderCalculator
             
             if (!int.TryParse(textbox.Text, out int value))
             {
-                errorProvider1.SetError(TextBox_Highest_Cleared_Tier_in_World_Map, "Firerate must be number.");
+                errorProvider1.SetError(TextBox_Highest_Cleared_Tier_in_World_Map, "Tier must be number.");
                 e.Cancel = true;
             }
             profile.Highest_Cleared_Tier_in_World_Map = value;
@@ -168,6 +168,23 @@ namespace MinerGunBuilderCalculator
                 e.Cancel = true;
             }
             shipParamater.projectile_lifetime = value;
+        }
+        private void TextBox_Play_Hour_Validated(object sender, EventArgs e)
+        {
+            errorProvider1.SetError(TextBox_Play_Hour, "");
+            shipLayoutManager.NotifyShipLayoutChange2Observer();
+        }
+
+        private void TextBox_Play_Hour_Validating(object sender, CancelEventArgs e)
+        {
+            var textbox = (TextBox)sender;
+            
+            if (!Decimal.TryParse(textbox.Text, out decimal value))
+            {
+                errorProvider1.SetError(TextBox_Play_Hour, "Play hour must be number.");
+                e.Cancel = true;
+            }
+            profile.Play_Hour = value;
         }
 
         private void Button_Start_Detailed_Calc_Click(object sender, EventArgs e)

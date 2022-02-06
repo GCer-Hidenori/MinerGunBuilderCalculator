@@ -116,6 +116,10 @@ namespace MinerGunBuilderCalculator
         // Adds additional 5 damage related to highest cleared world.
         public bool v08_17_more_damage = false;
 
+        // Tier damage
+        // Adds 2 additional damage per played hour. Capped at 200 damage.
+        public bool v09_16_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

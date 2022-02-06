@@ -1210,33 +1210,35 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
+        private int Calc_additional_damage_magnification(SkillTree skillTree,Profile profile)
+        {
+            int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
+            if(skillTree.v08_17_more_damage)
+            {
+                additional += (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
+            }
+            if(skillTree.v09_16_more_damage)
+            {
+                decimal hour = profile.Play_Hour > 100 ? 100:profile.Play_Hour;
+                additional += (int)Decimal.Round(Decimal.Multiply(hour, 2m), MidpointRounding.AwayFromZero);
+            }
+            return additional;
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
+            int additional = Calc_additional_damage_magnification(skillTree,profile);
             inbound_projectileStat.average_damage += additional;
             inbound_projectileStat.max_damage += additional;
             inbound_projectileStat.min_damage += additional;
-            if(skillTree.v08_17_more_damage)
-            {
-                additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
-                inbound_projectileStat.average_damage += additional;
-                inbound_projectileStat.max_damage += additional;
-                inbound_projectileStat.min_damage += additional;
-            }
 
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
+            int additional = Calc_additional_damage_magnification(skillTree,profile);
             inbound_projectile.damage += additional;
-            if(skillTree.v08_17_more_damage)
-            {
-                additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
-                inbound_projectile.damage += additional;
-            }
 
             return inbound_projectile;
         }

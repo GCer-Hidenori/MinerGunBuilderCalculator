@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +10,7 @@ namespace MinerGunBuilderCalculator
     {
         public int Highest_Reached_Tier_in_World_Map = 0;
         public int Highest_Cleared_Tier_in_World_Map = 0;
+        public decimal Play_Hour = 0;
 
         public Profile()
         {
