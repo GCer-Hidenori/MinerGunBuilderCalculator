@@ -1210,7 +1210,7 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        private int Calc_additional_damage_magnification(SkillTree skillTree,Profile profile)
+        private int Calc_additional_damage(SkillTree skillTree,Profile profile)
         {
             int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
             if(skillTree.v08_17_more_damage)
@@ -1227,7 +1227,7 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            int additional = Calc_additional_damage_magnification(skillTree,profile);
+            int additional = Calc_additional_damage(skillTree,profile);
             inbound_projectileStat.average_damage += additional;
             inbound_projectileStat.max_damage += additional;
             inbound_projectileStat.min_damage += additional;
@@ -1237,7 +1237,7 @@ namespace MinerGunBuilderCalculator
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            int additional = Calc_additional_damage_magnification(skillTree,profile);
+            int additional = Calc_additional_damage(skillTree,profile);
             inbound_projectile.damage += additional;
 
             return inbound_projectile;
@@ -1591,17 +1591,39 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
+        /*
         private decimal Count_Unused_Ejection()
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEunusedEjection = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_02_Ejector").Where(thing => thing.Access_from_abs_top == null).Where(thing => thing.Access_from_abs_right == null).Where(thing => thing.Access_from_abs_down == null).Where(thing => thing.Access_from_abs_left == null);
             return IEunusedEjection.Count<Thing>();
         }
+        */
+        private decimal Calc_additional_damage(SkillTree skillTree)
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEunusedEjection = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_02_Ejector").Where(thing => thing.Access_from_abs_top == null).Where(thing => thing.Access_from_abs_right == null).Where(thing => thing.Access_from_abs_down == null).Where(thing => thing.Access_from_abs_left == null);
+            int unused_ejection = IEunusedEjection.Count<Thing>();
+            decimal additional_damage =  unused_ejection * 10m;
+            if(skillTree.v07_18_more_damage)
+            {
+                decimal magnification = unused_ejection / 2m;
+                if(magnification < 1)
+                {
+                    magnification = 1m;
+                }else if(magnification > 3)
+                {
+                    magnification = 3m;
+                }
+                additional_damage *= magnification;
+            }
+            return additional_damage;
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             //ProjectileStat inbound_projectileStat = null;
 
-            decimal additional_damage = Count_Unused_Ejection() * 10m;
+            decimal additional_damage = Calc_additional_damage(skillTree);
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
             inbound_projectileStat.average_damage += additional_damage;
             inbound_projectileStat.max_damage += additional_damage;
@@ -1612,7 +1634,7 @@ namespace MinerGunBuilderCalculator
         {
             //Projectile inbound_projectile = null;
 
-            decimal additional_damage = Count_Unused_Ejection() * 10m;
+            decimal additional_damage = Calc_additional_damage(skillTree);
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {

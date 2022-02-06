@@ -14,7 +14,7 @@ namespace MinerGunBuilderCalculator
     public class SaveData
     {
         public ShipParameter shipParameter;
-        internal Profile profile;
+        public Profile profile;
         public Thing[,] thing_layout;
         public SkillTree skillTree;
 
@@ -72,7 +72,6 @@ namespace MinerGunBuilderCalculator
                         var setting = new JsonSerializerSettings
                         {
                             TypeNameHandling = TypeNameHandling.All,
-
                         };
 
                         try

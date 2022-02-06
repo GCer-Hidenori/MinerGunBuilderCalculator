@@ -189,6 +189,9 @@
   <data name="07_12" xml:space="preserve">
     <value>Adds up to 50% more damage with bigger ejection angle.</value>
   </data>
+  <data name="07_18" xml:space="preserve">
+    <value>More added damage for more unused ejection blocks. Up to 30 at 6 blocks.</value>
+  </data>
   <data name="08_05" xml:space="preserve">
     <value>Legendary items count as unused tile.</value>
   </data>

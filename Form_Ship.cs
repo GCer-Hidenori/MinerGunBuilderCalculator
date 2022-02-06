@@ -59,6 +59,12 @@ namespace MinerGunBuilderCalculator
             TextBox_Projectile_Speed.Text = projectile_speed.ToString();
             TextBox_Projectile_Lifetime.Text = projectile_lifetime.ToString();
         }
+        public void SetProfileParameteLabelText(decimal highest_reached_tier_in_world_map, decimal highest_cleared_tier_in_world_map,decimal play_hour)
+        {
+            TextBox_Highest_Reached_Tier_in_World_Map.Text = highest_reached_tier_in_world_map.ToString();
+            TextBox_Highest_Cleared_Tier_in_World_Map.Text = highest_cleared_tier_in_world_map.ToString();
+            TextBox_Play_Hour.Text = play_hour.ToString();
+        }
         private void TextBox_Projectile_Speed_Validating(object sender, CancelEventArgs e)
         {
             var textbox = (TextBox)sender;

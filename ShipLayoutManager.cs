@@ -388,6 +388,7 @@ namespace MinerGunBuilderCalculator
                 }
             }
             form_ship.SetShipParameteLabelText(ship_parameter.base_damage, ship_parameter.fire_rate, ship_parameter.projectile_speed, ship_parameter.projectile_lifetime);
+            form_ship.SetProfileParameteLabelText(profile.Highest_Reached_Tier_in_World_Map,profile.Highest_Cleared_Tier_in_World_Map,profile.Play_Hour);
             NotifyShipLayoutChange2Observer();
         }
 

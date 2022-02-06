@@ -120,6 +120,10 @@ namespace MinerGunBuilderCalculator
         // Adds 2 additional damage per played hour. Capped at 200 damage.
         public bool v09_16_more_damage = false;
 
+        // Ejection damage
+        // More added damage for more unused ejection blocks. Up to 30 at 6 blocks.
+        public bool v07_18_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

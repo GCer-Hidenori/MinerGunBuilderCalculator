@@ -277,6 +277,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   More added damage for more unused ejection blocks. Up to 30 at 6 blocks. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _07_18 {
+            get {
+                return ResourceManager.GetString("07_18", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Legendary items count as unused tile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _08_05 {
