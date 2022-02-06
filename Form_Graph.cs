@@ -69,7 +69,7 @@ namespace MinerGunBuilderCalculator
             {
                 Dock = DockStyle.Fill,
                 Text = $"Low:{stats.min:#,0.00}\r\nAverage:{Decimal.Round(stats.average,2,MidpointRounding.AwayFromZero):#,0.00}\r\nMean:{stats.mean:#,0.00}\r\nHigh:{stats.max:#,0.00}" +
-                $"\r\nTotal:{stats.total_damage}\r\nAverage/sec:{Decimal.Round(stats.average_per_sec,2,MidpointRounding.AwayFromZero)}" +
+                $"\r\nTotal:{stats.total_damage}\r\nAverage/sec:{Decimal.Round(stats.average_per_sec,2,MidpointRounding.AwayFromZero):#,0.00}" +
                 $"\r\nEjected:{stats.ejected}\r\nEjected/sec:{Decimal.Round(stats.ejected_per_sec,2,MidpointRounding.AwayFromZero):#,0.00}"
 
 

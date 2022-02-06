@@ -108,6 +108,10 @@ namespace MinerGunBuilderCalculator
         // Chance of 5% to split instead of guide.
         public bool v09_08_chance_to_split = false;
 
+        // Random 3 way
+        // Chance of 5% to split instead of guide.
+        public bool v09_06_chance_to_split = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

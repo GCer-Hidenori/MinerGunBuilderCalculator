@@ -324,6 +324,15 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   Chance of 5% to split instead of guide. に類似しているローカライズされた文字列を検索します。
         /// </summary>
+        internal static string _09_06 {
+            get {
+                return ResourceManager.GetString("09_06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Chance of 5% to split instead of guide. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
         internal static string _09_08 {
             get {
                 return ResourceManager.GetString("09_08", resourceCulture);

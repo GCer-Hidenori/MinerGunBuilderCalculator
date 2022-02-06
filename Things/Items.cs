@@ -724,88 +724,60 @@ namespace MinerGunBuilderCalculator
     }
     class Item_023_Random_2_way : Item
     {
+        Projectile to_left_projectile = null;
+        Projectile to_right_projectile = null;
+        int counter_instead_of_random_number = 0;
         public Item_023_Random_2_way(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
+        public override void ResetBeforeCalculateDamage()
+        {
+            base.ResetBeforeCalculateDamage();
+            to_left_projectile = null;
+            to_right_projectile = null;
+            counter_instead_of_random_number = 0;
+
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
-
             if (Access_to_rel_right == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                if (skillTree.v09_08_chance_to_split)
-                {
-                    if (Access_to_rel_right == to_thing)
-                    {
-                        inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                    }
-                    else if (Access_to_rel_left == to_thing)
-                    {
-                        projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                        inbound_projectileStat = projectileStat.Copy();
-                    }
-                    if (skillTree.v08_09_high_multiplier)
-                    {
-                        inbound_projectileStat.min_damage *= 3;
-                        inbound_projectileStat.max_damage *= 3;
-                        inbound_projectileStat.average_damage *= 3;
-                    }
-                    else
-                    {
-                        inbound_projectileStat.min_damage *= 2;
-                        inbound_projectileStat.max_damage *= 2;
-                        inbound_projectileStat.average_damage *= 2;
-                    }
-                    inbound_projectileStat.magnification *= 0.05m * 1 + 0.95m / 2;
-                }
-                else
-                {
-                    if (skillTree.v08_09_high_multiplier)
-                    {
-                        projectileStat.min_damage *= 3;
-                        projectileStat.max_damage *= 3;
-                        projectileStat.average_damage *= 3;
-                    }
-                    else
-                    {
-                        projectileStat.min_damage *= 2;
-                        projectileStat.max_damage *= 2;
-                        projectileStat.average_damage *= 2;
-                    }
-                    projectileStat.magnification /= 2;
-                    inbound_projectileStat = projectileStat;
-                }
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
             }
-            else if (Access_to_rel_left == to_thing)
+            else    //Access_to_rel_left == to_thing
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                var copy = projectileStat.Copy();
-                if (skillTree.v08_09_high_multiplier)
-                {
-                    copy.min_damage *= 3;
-                    copy.max_damage *= 3;
-                    copy.average_damage *= 3;
-                }
-                else
-                {
-                    copy.min_damage *= 2;
-                    copy.max_damage *= 2;
-                    copy.average_damage *= 2;
-                }
-                copy.magnification = projectileStat.magnification / 2;
-                inbound_projectileStat = copy;
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
+            }
+            if (skillTree.v08_09_high_multiplier)
+            {
+                inbound_projectileStat.min_damage *= 3;
+                inbound_projectileStat.max_damage *= 3;
+                inbound_projectileStat.average_damage *= 3;
+            }
+            else
+            {
+                inbound_projectileStat.min_damage *= 2;
+                inbound_projectileStat.max_damage *= 2;
+                inbound_projectileStat.average_damage *= 2;
+            }
+            if (skillTree.v09_08_chance_to_split)
+            {
+                    inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 2m;
+            }else
+            {
+                inbound_projectileStat.magnification /= 2;
             }
             return inbound_projectileStat;
+
+
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            Projectile inbound_projectile = null;
-
-            if (Access_to_rel_right == to_thing)
+            if (Access_to_rel_right == to_thing && to_right_projectile == null || Access_to_rel_left == to_thing && to_left_projectile == null)
             {
                 var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (skillTree.v08_09_high_multiplier)
@@ -816,29 +788,45 @@ namespace MinerGunBuilderCalculator
                 {
                     projectile.damage *= 2;
                 }
-                projectile.magnification /= 2;
-                inbound_projectile = projectile;
-            }
-            else if (Access_to_rel_left == to_thing)
-            {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-                var copy = projectile.Copy();
-                if (skillTree.v08_09_high_multiplier)
+                if (skillTree.v09_08_chance_to_split && rand.Next(0, 100) < 5)
                 {
-                    copy.damage *= 3;
+                    to_right_projectile = projectile;
+                    to_left_projectile = projectile.Copy();
                 }
                 else
                 {
-                    copy.damage *= 2;
+                    if(counter_instead_of_random_number == 0)
+                    {
+                        to_right_projectile = projectile;
+                        to_left_projectile = null;
+                        counter_instead_of_random_number += 1;
+                    }else{
+                        to_right_projectile = null;
+                        to_left_projectile = projectile;
+                        counter_instead_of_random_number = 0;
+                    }
                 }
-                copy.magnification = projectile.magnification / 2;
-                inbound_projectile = copy;
             }
-            return inbound_projectile;
+            Projectile tmp;
+            if (Access_to_rel_right == to_thing)
+            {
+                (tmp, to_right_projectile) = (to_right_projectile, null);
+                return tmp;
+            }
+            else if (Access_to_rel_left == to_thing)
+            {
+                (tmp, to_left_projectile) = (to_left_projectile, null);
+                return tmp;
+            }
+            throw new NotImplementedException();
         }
     }
     class Item_024_Random_3_way : Item
     {
+        Projectile to_top_projectile = null;
+        Projectile to_left_projectile = null;
+        Projectile to_right_projectile = null;
+        int counter_instead_of_random_number = 0;
         public Item_024_Random_3_way(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -846,73 +834,55 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
+        public override void ResetBeforeCalculateDamage()
+        {
+            base.ResetBeforeCalculateDamage();
+            to_top_projectile = null;
+            to_left_projectile = null;
+            to_right_projectile = null;
+            counter_instead_of_random_number = 0;
+
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
-
             if (Access_to_rel_top == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                if (skillTree.v08_07_high_multiplier)
-                {
-                    projectileStat.min_damage *= 4;
-                    projectileStat.max_damage *= 4;
-                    projectileStat.average_damage *= 4;
-                }
-                else
-                {
-                    projectileStat.min_damage *= 3;
-                    projectileStat.max_damage *= 3;
-                    projectileStat.average_damage *= 3;
-                }
-                projectileStat.magnification /= 3;
-                inbound_projectileStat = projectileStat;
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
             }
             else if (Access_to_rel_right == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                var copy = projectileStat.Copy();
-                if (skillTree.v08_07_high_multiplier)
-                {
-                    copy.min_damage *= 4;
-                    copy.max_damage *= 4;
-                    copy.average_damage *= 4;
-                }
-                else
-                {
-                    copy.min_damage *= 3;
-                    copy.max_damage *= 3;
-                    copy.average_damage *= 3;
-                }
-                copy.magnification = projectileStat.magnification / 3;
-                inbound_projectileStat = copy;
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
             }
-            else if (Access_to_rel_left == to_thing)
+            else    //Access_to_rel_left == to_thing
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-                var copy = projectileStat.Copy();
-                if (skillTree.v08_07_high_multiplier)
-                {
-                    copy.min_damage *= 4;
-                    copy.max_damage *= 4;
-                    copy.average_damage *= 4;
-                }
-                else
-                {
-                    copy.min_damage *= 3;
-                    copy.max_damage *= 3;
-                    copy.average_damage *= 3;
-                }
-                copy.magnification = projectileStat.magnification / 3;
-                inbound_projectileStat = copy;
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
+            }
+            if (skillTree.v08_07_high_multiplier)
+            {
+                inbound_projectileStat.min_damage *= 4;
+                inbound_projectileStat.max_damage *= 4;
+                inbound_projectileStat.average_damage *= 4;
+            }
+            else
+            {
+                inbound_projectileStat.min_damage *= 3;
+                inbound_projectileStat.max_damage *= 3;
+                inbound_projectileStat.average_damage *= 3;
+            }
+            if (skillTree.v09_06_chance_to_split)
+            {
+                    inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 3m;
+            }else
+            {
+                inbound_projectileStat.magnification /= 3;
             }
             return inbound_projectileStat;
+
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
-            Projectile inbound_projectile = null;
-
-            if (Access_to_rel_top == to_thing)
+            if (Access_to_rel_right == to_thing && to_right_projectile == null || Access_to_rel_left == to_thing && to_left_projectile == null || Access_to_rel_top == to_thing && to_top_projectile == null)
             {
                 var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (skillTree.v08_07_high_multiplier)
@@ -923,41 +893,50 @@ namespace MinerGunBuilderCalculator
                 {
                     projectile.damage *= 3;
                 }
-                projectile.magnification /= 3;
-                inbound_projectile = projectile;
-            }
-            else if (Access_to_rel_right == to_thing)
-            {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-                var copy = projectile.Copy();
-                if (skillTree.v08_07_high_multiplier)
+                if (skillTree.v09_06_chance_to_split && rand.Next(0, 100) < 5)
                 {
-                    copy.damage *= 4;
+                    to_top_projectile = projectile;
+                    to_right_projectile = projectile.Copy();
+                    to_left_projectile = projectile.Copy();
                 }
                 else
                 {
-                    copy.damage *= 3;
+                    if(counter_instead_of_random_number == 0)
+                    {
+                        to_top_projectile = projectile;
+                        to_right_projectile = null;
+                        to_left_projectile = null;
+                        counter_instead_of_random_number += 1;
+                    }else if(counter_instead_of_random_number == 1)
+                    {
+                        to_top_projectile = null;
+                        to_right_projectile = projectile;
+                        to_left_projectile = null;
+                        counter_instead_of_random_number += 1;
+                    }else{
+                        to_top_projectile = null;
+                        to_right_projectile = null;
+                        to_left_projectile = projectile;
+                        counter_instead_of_random_number = 0;
+                    }
                 }
-                copy.magnification = projectile.magnification / 3;
-                inbound_projectile = copy;
+            }
+            Projectile tmp;
+            if (Access_to_rel_right == to_thing)
+            {
+                (tmp, to_right_projectile) = (to_right_projectile, null);
+                return tmp;
             }
             else if (Access_to_rel_left == to_thing)
             {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-                var copy = projectile.Copy();
-                if (skillTree.v08_07_high_multiplier)
-                {
-                    copy.damage *= 4;
-                }
-                else
-                {
-                    copy.damage *= 3;
-                }
-                copy.magnification = projectile.magnification / 3;
-                inbound_projectile = copy;
+                (tmp, to_left_projectile) = (to_left_projectile, null);
+                return tmp;
+            }else if (Access_to_rel_top == to_thing)
+            {
+                (tmp, to_top_projectile) = (to_top_projectile, null);
+                return tmp;
             }
-
-            return inbound_projectile;
+            throw new NotImplementedException();
         }
     }
     class Item_025_Remaining_damage : Item

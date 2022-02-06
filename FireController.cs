@@ -43,7 +43,7 @@ namespace MinerGunBuilderCalculator
             decimal total_magnification = 0;
 
             var thing_1dim_layout = thing_layout.Cast<Thing>();
-            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
+            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector)).Where(thing => thing.IsEjecting == true);
             foreach (Parts_02_Ejector ejector in IEejector)
             {
                 List<ProjectileStat> inbound_projectileStats = new();
@@ -107,8 +107,8 @@ namespace MinerGunBuilderCalculator
                     //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
                 }
 
-                //total_max_damage = total_max_damage < each_ejector_max_damage ? each_ejector_max_damage : total_max_damage;
-                total_max_damage += each_ejector_max_damage;
+                total_max_damage = total_max_damage < each_ejector_max_damage ? each_ejector_max_damage : total_max_damage;
+                //total_max_damage += each_ejector_max_damage;
                 total_average_damage += each_ejector_average_damage;
                 total_min_damage = (total_min_damage == null || total_min_damage > each_ejector_min_damage) ? each_ejector_min_damage : total_min_damage;
                 total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
@@ -118,6 +118,10 @@ namespace MinerGunBuilderCalculator
 
                 //stringBuilder.AppendLine($"ejector {i} avg_damage/sec={each_ejector_average_damage_per_sec:#,0.00} max_damage={each_ejector_max_damage:#,0.00} min_damage={each_ejector_min_damage:#,0.00} max_speed={max_speed:#,0.00}");
                 //i += 1;
+            }
+            if (IEejector.Count<Thing>() > 0)
+            {
+                total_average_damage /= IEejector.Count<Thing>();
             }
             //if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>(); //
 
@@ -141,6 +145,7 @@ namespace MinerGunBuilderCalculator
                     var image = (Bitmap)resource_manager_effect.GetObject("Parts_02_Ejector_ejecting");
                     image.MakeTransparent(Color.White);
                     pb.BackgroundImage = image;
+                    ejector.IsEjecting = true;
 
                 }
                 else
@@ -148,6 +153,7 @@ namespace MinerGunBuilderCalculator
                     var image = (Bitmap)resource_manager_shipparts.GetObject("Parts_02_Ejector");
                     image.MakeTransparent(Color.White);
                     pb.BackgroundImage = image;
+                    ejector.IsEjecting = false;
                 }
             }
         }
@@ -693,45 +699,64 @@ namespace MinerGunBuilderCalculator
             }
 
         }
-        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, SkillTree skillTree,int fire_time_sec)
+        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, SkillTree skillTree, int fire_time_sec)
         {
             int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
             List<decimal> ejector_damages = new();
             Projectile projectile;
-            if (ejector.Access_from_abs_top != null)
+            for (int k = 0; k < fireCount; k++)
             {
-                projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                for (int j = 0; j < projectile.magnification * fireCount; j++)
+                if (ejector.Access_from_abs_top != null)
                 {
-                    projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                    ejector_damages.Add(projectile.damage);
+                    projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                    if (projectile != null)
+                    {
+                        for (int j = 0; j < projectile.magnification; j++)
+                        {
+                            ejector_damages.Add(projectile.damage);
+                            //projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                            //if (projectile != null) ejector_damages.Add(projectile.damage);
+                        }
+                    }
                 }
-            }
-            if (ejector.Access_from_abs_right != null)
-            {
-                projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                for (int j = 0; j < projectile.magnification * fireCount; j++)
+                if (ejector.Access_from_abs_right != null)
                 {
-                    projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                    ejector_damages.Add(projectile.damage);
+                    projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                    if (projectile != null)
+                    {
+                        for (int j = 0; j < projectile.magnification; j++)
+                        {
+                            ejector_damages.Add(projectile.damage);
+                            //projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                            //if (projectile != null) ejector_damages.Add(projectile.damage);
+                        }
+                    }
                 }
-            }
-            if (ejector.Access_from_abs_down != null)
-            {
-                projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                for (int j = 0; j < projectile.magnification * fireCount; j++)
+                if (ejector.Access_from_abs_down != null)
                 {
-                    projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                    ejector_damages.Add(projectile.damage);
+                    projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                    if (projectile != null)
+                    {
+                        for (int j = 0; j < projectile.magnification; j++)
+                        {
+                            ejector_damages.Add(projectile.damage);
+                            //projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                            //if (projectile != null) ejector_damages.Add(projectile.damage);
+                        }
+                    }
                 }
-            }
-            if (ejector.Access_from_abs_left != null)
-            {
-                projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                for (int j = 0; j < projectile.magnification * fireCount; j++)
+                if (ejector.Access_from_abs_left != null)
                 {
-                    projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,skillTree, ejector);
-                    ejector_damages.Add(projectile.damage);
+                    projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                    if (projectile != null)
+                    {
+                        for (int j = 0; j < projectile.magnification; j++)
+                        {
+                            ejector_damages.Add(projectile.damage);
+                            //projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile, skillTree, ejector);
+                            //if (projectile != null) ejector_damages.Add(projectile.damage);
+                        }
+                    }
                 }
             }
             return ejector_damages;
@@ -799,7 +824,7 @@ namespace MinerGunBuilderCalculator
         {
             var results = new List<SimulationResult>();
             var thing_1dim_layout = thing_layout.Cast<Thing>();
-            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
+            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector)).Where(thing => thing.IsEjecting == true);
             int ejector_number = 1;
             List<decimal> all_ejector_damages = new();
             SimulationResult ejector_result;

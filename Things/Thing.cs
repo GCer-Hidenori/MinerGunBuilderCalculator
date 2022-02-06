@@ -54,6 +54,9 @@ namespace MinerGunBuilderCalculator
         public bool IsLegendary = false;
         public bool IsGuide = false;
 
+        [JsonIgnore]
+        public bool IsEjecting = false;
+
 
         [JsonIgnore]
         public Random rand;
