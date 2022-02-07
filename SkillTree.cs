@@ -124,6 +124,10 @@ namespace MinerGunBuilderCalculator
         // More added damage for more unused ejection blocks. Up to 30 at 6 blocks.
         public bool v07_18_more_damage = false;
 
+        // Add projectile
+        // Chance of 10% to clone projectile instead.
+        public bool v07_08_clone = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

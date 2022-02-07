@@ -1004,18 +1004,28 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
-            //TO BE CONFIRMED
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.magnification += 1;
+            if(skillTree.v07_08_clone)
+            {
+                inbound_projectileStat.magnification  += inbound_projectileStat.magnification * 0.1m + 1m * 0.9m;
+            }else
+            {
+                inbound_projectileStat.magnification += 1;
+            }
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
-            //TO BE CONFIRMED
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.magnification += 1;
+                if(skillTree.v07_08_clone && rand.Next(0,100) < 10)
+                {
+                    inbound_projectile.magnification *= 2;
+                }else
+                {
+                    inbound_projectile.magnification += 1;
+                }
             }
             return inbound_projectile;
         }

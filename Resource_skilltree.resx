@@ -183,6 +183,9 @@
   <data name="07_04" xml:space="preserve">
     <value>Chance of 20% to clone the projectile twice.</value>
   </data>
+  <data name="07_08" xml:space="preserve">
+    <value>Chance of 10% to clone projectile instead.</value>
+  </data>
   <data name="07_10" xml:space="preserve">
     <value>Adds up to 60% more damage with bigger ejection angle.</value>
   </data>
