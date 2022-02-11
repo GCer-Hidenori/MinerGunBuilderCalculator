@@ -1490,11 +1490,18 @@ namespace MinerGunBuilderCalculator
     class Item_106_Combine10 : Item
     {
         int count = 0;
+        decimal accumulation_damage = 0m;
         public Item_106_Combine10(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
             IsLegendary = true;
+        }
+        public override void ResetBeforeCalculateDamage()
+        {
+            base.ResetBeforeCalculateDamage();
+            accumulation_damage = 0m;
+            count = 0;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
@@ -1517,6 +1524,26 @@ namespace MinerGunBuilderCalculator
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            count += 1;
+            if(inbound_projectile != null)
+            {
+                accumulation_damage += inbound_projectile.damage * 2m;
+            }
+            if(count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
+            {
+                inbound_projectile.damage = accumulation_damage;
+                accumulation_damage = 0m;
+                count = 0;
+                return inbound_projectile;
+            }
+            else
+            {
+                return null;
+            }
+
+
+            /*
             Projectile inbound_projectile = null;
             count += 1;
             if (count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
@@ -1529,10 +1556,11 @@ namespace MinerGunBuilderCalculator
                 count = 0;
             }
             return inbound_projectile;
+            */
         }
     }
 
-    //TO BE SUPPORT
+    
     class Item_107_Change_Direction : Item
     {
         public Item_107_Change_Direction(Thing[,] thing_layout) : base(thing_layout)
