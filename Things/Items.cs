@@ -11,7 +11,7 @@ namespace MinerGunBuilderCalculator
     {
         private static decimal SkillTree_Add5damage(SkillTree skillTree)
         {
-            return skillTree.v03_12_add_5_damage ? 5 : 0;
+            return skillTree.v03_12_add_5_damage ? 5m : 0m;
         }
         public Item_001_Guide_right(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -49,7 +49,7 @@ namespace MinerGunBuilderCalculator
     {
         private static decimal SkillTree_Add5damage(SkillTree skillTree)
         {
-            return skillTree.v04_11_add_5_damage ? 5 : 0;
+            return skillTree.v04_11_add_5_damage ? 5m : 0m;
         }
         public Item_002_Guide_left(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -95,18 +95,18 @@ namespace MinerGunBuilderCalculator
             decimal additional_damage = 0m;
             if (skillTree.v05_08_more_damage)
             {
-                additional_damage = 5;
+                additional_damage = 5m;
             }
             if (skillTree.v05_00_more_damage)
             {
                 var thing_1dim_layout = thing_layout.Cast<Thing>();
                 IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
                 int num_add1damage = IEadd1damage.Count<Thing>();
-                additional_damage += 20 * num_add1damage;
+                additional_damage += 20m * num_add1damage;
             }
-            inbound_projectileStat.average_damage += 1 + additional_damage;
-            inbound_projectileStat.max_damage += 1 + additional_damage;
-            inbound_projectileStat.min_damage += 1 + additional_damage;
+            inbound_projectileStat.average_damage += 1m + additional_damage;
+            inbound_projectileStat.max_damage += 1m + additional_damage;
+            inbound_projectileStat.min_damage += 1m + additional_damage;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
@@ -117,16 +117,16 @@ namespace MinerGunBuilderCalculator
                 decimal additional_damage = 0m;
                 if (skillTree.v05_08_more_damage)
                 {
-                    additional_damage = 5;
+                    additional_damage = 5m;
                 }
                 if (skillTree.v05_00_more_damage)
                 {
                     var thing_1dim_layout = thing_layout.Cast<Thing>();
                     IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
                     int num_add1damage = IEadd1damage.Count<Thing>();
-                    additional_damage += 20 * num_add1damage;
+                    additional_damage += 20m * num_add1damage;
                 }
-                inbound_projectile.damage += 1 + additional_damage;
+                inbound_projectile.damage += 1m + additional_damage;
             }
             return inbound_projectile;
         }
@@ -141,7 +141,7 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.speed += 1;
+            inbound_projectileStat.speed += 1m;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
@@ -149,7 +149,7 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.speed += 1;
+                inbound_projectile.speed += 1m;
             }
             return inbound_projectile;
         }
@@ -368,7 +368,7 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.speed /= 2;
+            inbound_projectileStat.speed /= 2m;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
@@ -376,7 +376,7 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
-                inbound_projectile.speed /= 2;
+                inbound_projectile.speed /= 2m;
             }
             return inbound_projectile;
         }
@@ -458,35 +458,41 @@ namespace MinerGunBuilderCalculator
             //Projectile inbound_projectile = null;
 
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (rand.Next(0, 100) < (4 + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= 10;
+            if (rand.Next(0, 100) < (4 + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= 10m;
             return inbound_projectile;
         }
     }
     class Item_015_Random_critical : Item
     {
+        int counter_instead_of_random_number = 0;
         public Item_015_Random_critical(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
+        public override void ResetBeforeCalculateDamage()
+        {
+            base.ResetBeforeCalculateDamage();
+            counter_instead_of_random_number = 0;
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-            inbound_projectileStat.min_damage = 0;
+            inbound_projectileStat.min_damage = 0m;
             if (skillTree.v03_18_high_multiplier)
             {
-                inbound_projectileStat.max_damage *= 4;
-                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0+2.0+(3.0 + 4)/2)/6));
+                inbound_projectileStat.max_damage *= 4m;
+                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0m+2.0m+3.0m + 4m)/7m));
             }
             else if (skillTree.v03_16_high_multiplier)
             {
-                inbound_projectileStat.max_damage *= 3;
-                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0+1.0+(2.0 + 3.0)/2)/4));
+                inbound_projectileStat.max_damage *= 3m;
+                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0m+1.0m+2.0m + 3.0m)/5m));
             }
             else
             {
-                inbound_projectileStat.max_damage *= 4;
-                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)(9.0 / 12 + 2.0 / 12 + (3.0 + 4) / 2 / 12));
+                inbound_projectileStat.max_damage *= 4m;
+                inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)(9.0m / 13m + 2.0m / 13m + 3.0m / 13m + 4m / 13m ));
             }
             return inbound_projectileStat;
         }
@@ -495,58 +501,60 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
             if (skillTree.v03_18_high_multiplier)
             {
-                switch (rand.Next(0, 6))
+                switch (counter_instead_of_random_number)
                 {
                     case 0:
                     case 1:
                     case 2:
-                        inbound_projectile.damage = 0;
+                        inbound_projectile.damage = 0m;
+                        counter_instead_of_random_number += 1;
                         break;
                     case 3:
+                        counter_instead_of_random_number += 1;
                         break;
                     case 4:
-                        inbound_projectile.damage *= 2;
+                        counter_instead_of_random_number += 1;
+                        inbound_projectile.damage *= 2m;
                         break;
                     case 5:
-                        inbound_projectile.damage *= rand.Next(0, 2) switch
-                        {
-                            0 => 3,
-                            1 => 4,
-                            _ => throw new NotImplementedException(),
-                        };
+                        counter_instead_of_random_number += 1;
+                        inbound_projectile.damage *= 3m;
                         break;
-                    default:
-                        throw new NotImplementedException();
+                    case 6:
+                        counter_instead_of_random_number = 0;
+                        inbound_projectile.damage *= 4m;
+                        break;
                 }
             }
             else if (skillTree.v03_16_high_multiplier)
             {
-                switch (rand.Next(0, 4))
+                switch (counter_instead_of_random_number)
                 {
                     case 0:
-                        inbound_projectile.damage = 0;
+                        inbound_projectile.damage = 0m;
+                        counter_instead_of_random_number += 1;
                         break;
                     case 1:
                     case 2:
+                        counter_instead_of_random_number += 1;
                         break;
                     case 3:
-                        inbound_projectile.damage *= rand.Next(0, 2) switch
-                        {
-                            0 => 2,
-                            1 => 3,
-                            _ => throw new NotImplementedException(),
-                        };
+                        inbound_projectile.damage *= 2;
+                        counter_instead_of_random_number += 1;
                         break;
-                    default:
-                        throw new NotImplementedException();
+                    case 4:
+                        inbound_projectile.damage *= 3;
+                        counter_instead_of_random_number = 0;
+                        break;
                 }
             }
             else
             {
-                switch (rand.Next(0, 12))
+                switch (counter_instead_of_random_number)
                 {
                     case 0:
-                        inbound_projectile.damage = 0;
+                        inbound_projectile.damage = 0m;
+                        counter_instead_of_random_number += 1;
                         break;
                     case 1:
                     case 2:
@@ -557,20 +565,20 @@ namespace MinerGunBuilderCalculator
                     case 7:
                     case 8:
                     case 9:
+                        counter_instead_of_random_number += 1;
                         break;
                     case 10:
-                        inbound_projectile.damage *= 2;
+                        inbound_projectile.damage *= 2m;
+                        counter_instead_of_random_number += 1;
                         break;
                     case 11:
-                        inbound_projectile.damage *= rand.Next(0, 2) switch
-                        {
-                            0 => 3,
-                            1 => 4,
-                            _ => throw new NotImplementedException(),
-                        };
+                        inbound_projectile.damage *= 3m;
+                        counter_instead_of_random_number += 1;
                         break;
-                    default:
-                        throw new NotImplementedException();
+                    case 12:
+                        inbound_projectile.damage *= 4m;
+                        counter_instead_of_random_number = 0;
+                        break;
                 }
             }
 
@@ -754,22 +762,22 @@ namespace MinerGunBuilderCalculator
             }
             if (skillTree.v08_09_high_multiplier)
             {
-                inbound_projectileStat.min_damage *= 3;
-                inbound_projectileStat.max_damage *= 3;
-                inbound_projectileStat.average_damage *= 3;
+                inbound_projectileStat.min_damage *= 3m;
+                inbound_projectileStat.max_damage *= 3m;
+                inbound_projectileStat.average_damage *= 3m;
             }
             else
             {
-                inbound_projectileStat.min_damage *= 2;
-                inbound_projectileStat.max_damage *= 2;
-                inbound_projectileStat.average_damage *= 2;
+                inbound_projectileStat.min_damage *= 2m;
+                inbound_projectileStat.max_damage *= 2m;
+                inbound_projectileStat.average_damage *= 2m;
             }
             if (skillTree.v09_08_chance_to_split)
             {
                     inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 2m;
             }else
             {
-                inbound_projectileStat.magnification /= 2;
+                inbound_projectileStat.magnification /= 2m;
             }
             return inbound_projectileStat;
 
@@ -782,11 +790,11 @@ namespace MinerGunBuilderCalculator
                 var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (skillTree.v08_09_high_multiplier)
                 {
-                    projectile.damage *= 3;
+                    projectile.damage *= 3m;
                 }
                 else
                 {
-                    projectile.damage *= 2;
+                    projectile.damage *= 2m;
                 }
                 if (skillTree.v09_08_chance_to_split && rand.Next(0, 100) < 5)
                 {
@@ -860,22 +868,22 @@ namespace MinerGunBuilderCalculator
             }
             if (skillTree.v08_07_high_multiplier)
             {
-                inbound_projectileStat.min_damage *= 4;
-                inbound_projectileStat.max_damage *= 4;
-                inbound_projectileStat.average_damage *= 4;
+                inbound_projectileStat.min_damage *= 4m;
+                inbound_projectileStat.max_damage *= 4m;
+                inbound_projectileStat.average_damage *= 4m;
             }
             else
             {
-                inbound_projectileStat.min_damage *= 3;
-                inbound_projectileStat.max_damage *= 3;
-                inbound_projectileStat.average_damage *= 3;
+                inbound_projectileStat.min_damage *= 3m;
+                inbound_projectileStat.max_damage *= 3m;
+                inbound_projectileStat.average_damage *= 3m;
             }
             if (skillTree.v09_06_chance_to_split)
             {
                     inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 3m;
             }else
             {
-                inbound_projectileStat.magnification /= 3;
+                inbound_projectileStat.magnification /= 3m;
             }
             return inbound_projectileStat;
 
@@ -887,11 +895,11 @@ namespace MinerGunBuilderCalculator
                 var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (skillTree.v08_07_high_multiplier)
                 {
-                    projectile.damage *= 4;
+                    projectile.damage *= 4m;
                 }
                 else
                 {
-                    projectile.damage *= 3;
+                    projectile.damage *= 3m;
                 }
                 if (skillTree.v09_06_chance_to_split && rand.Next(0, 100) < 5)
                 {
@@ -1010,7 +1018,7 @@ namespace MinerGunBuilderCalculator
                 inbound_projectileStat.magnification  += inbound_projectileStat.magnification * 0.1m + 1m * 0.9m;
             }else
             {
-                inbound_projectileStat.magnification += 1;
+                inbound_projectileStat.magnification += 1m;
             }
             return inbound_projectileStat;
         }
@@ -1021,10 +1029,10 @@ namespace MinerGunBuilderCalculator
             {
                 if(skillTree.v07_08_clone && rand.Next(0,100) < 10)
                 {
-                    inbound_projectile.magnification *= 2;
+                    inbound_projectile.magnification *= 2m;
                 }else
                 {
-                    inbound_projectile.magnification += 1;
+                    inbound_projectile.magnification += 1m;
                 }
             }
             return inbound_projectile;
@@ -1285,7 +1293,7 @@ namespace MinerGunBuilderCalculator
                 if (projectile != null)
                 {
                     j += 1;
-                    if (last_damage_for_stats != null && last_damage_for_stats > projectile.damage) projectile.damage *= skillTree.v02_07_more_damage? 8 : 4;
+                    if (last_damage_for_stats != null && last_damage_for_stats > projectile.damage) projectile.damage *= skillTree.v02_07_more_damage? 8m : 4m;
                     total_damage += projectile.damage;
                     max_damage = max_damage < projectile.damage ? projectile.damage : max_damage;
                     min_damage = (min_damage == null || min_damage > projectile.damage) ? projectile.damage : min_damage;
@@ -1307,7 +1315,7 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (last_damage != null)
             {
-                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= skillTree.v02_07_more_damage ? 8 : 4;
+                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= skillTree.v02_07_more_damage ? 8m : 4m;
 
             }
             last_damage = inbound_projectile.damage;
@@ -1477,17 +1485,17 @@ namespace MinerGunBuilderCalculator
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
             if (skillTree.v02_17_only_6_projectile)
             {
-                inbound_projectileStat.average_damage *= 12;
-                inbound_projectileStat.max_damage *= 12;
-                inbound_projectileStat.min_damage *= 12;
-                inbound_projectileStat.magnification /= 6;
+                inbound_projectileStat.average_damage *= 12m;
+                inbound_projectileStat.max_damage *= 12m;
+                inbound_projectileStat.min_damage *= 12m;
+                inbound_projectileStat.magnification /= 6m;
             }
             else
             {
-                inbound_projectileStat.average_damage *= 20;
-                inbound_projectileStat.max_damage *= 20;
-                inbound_projectileStat.min_damage *= 20;
-                inbound_projectileStat.magnification /= 10;
+                inbound_projectileStat.average_damage *= 20m;
+                inbound_projectileStat.max_damage *= 20m;
+                inbound_projectileStat.min_damage *= 20m;
+                inbound_projectileStat.magnification /= 10m;
             }
             return inbound_projectileStat;
         }
@@ -1500,7 +1508,7 @@ namespace MinerGunBuilderCalculator
                 inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
                 if (inbound_projectile != null)
                 {
-                    inbound_projectile.damage *= (skillTree.v02_17_only_6_projectile ? 12 : 20);
+                    inbound_projectile.damage *= (skillTree.v02_17_only_6_projectile ? 12m : 20m);
                 }
                 count = 0;
             }
@@ -1567,20 +1575,20 @@ namespace MinerGunBuilderCalculator
                     now_thing = to_thing;
                 }
             }
-            return 5 * step;
+            return 5m * step;
         }
         private static decimal SkillTree_Add30damage(SkillTree skillTree)
         {
-            return skillTree.v01_08_add_30_damage ? 30 : 0;
+            return skillTree.v01_08_add_30_damage ? 30m : 0m;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             decimal skillTree_Add5damage = SkillTree_Add5damage(skillTree);
             decimal skillTree_Add30damage = SkillTree_Add30damage(skillTree);
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage += 100 + skillTree_Add5damage + skillTree_Add30damage;
-            inbound_projectileStat.max_damage += 100 + skillTree_Add5damage + skillTree_Add30damage;
-            inbound_projectileStat.min_damage += 100 + skillTree_Add5damage + skillTree_Add30damage;
+            inbound_projectileStat.average_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
+            inbound_projectileStat.max_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
+            inbound_projectileStat.min_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
@@ -1588,7 +1596,7 @@ namespace MinerGunBuilderCalculator
             decimal skillTree_Add5damage = SkillTree_Add5damage(skillTree);
             decimal skillTree_Add30damage = SkillTree_Add30damage(skillTree);
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            inbound_projectile.damage += 100 + skillTree_Add5damage + skillTree_Add30damage;
+            inbound_projectile.damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
 
             return inbound_projectile;
         }
@@ -1618,10 +1626,10 @@ namespace MinerGunBuilderCalculator
             if(skillTree.v07_18_more_damage)
             {
                 decimal magnification = unused_ejection / 2m;
-                if(magnification < 1)
+                if(magnification < 1m)
                 {
                     magnification = 1m;
-                }else if(magnification > 3)
+                }else if(magnification > 3m)
                 {
                     magnification = 3m;
                 }
@@ -1696,11 +1704,11 @@ namespace MinerGunBuilderCalculator
             {
                 if (skillTree.v07_04_chance_more_clone && rand.Next(0,100) < 20)
                 {
-                    inbound_projectile.magnification *= 3;
+                    inbound_projectile.magnification *= 3m;
                 }
                 else
                 {
-                    inbound_projectile.magnification *= 2;
+                    inbound_projectile.magnification *= 2m;
                 }
             }
 
