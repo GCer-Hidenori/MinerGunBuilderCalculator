@@ -133,6 +133,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Higher damage of current or previous projectile gets instead combined. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _02_19 {
+            get {
+                return ResourceManager.GetString("02_19", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds up to 60% more damage with bigger ejection curve angle. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _03_08 {

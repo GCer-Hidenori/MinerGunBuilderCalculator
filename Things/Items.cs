@@ -1491,6 +1491,8 @@ namespace MinerGunBuilderCalculator
     {
         int count = 0;
         decimal accumulation_damage = 0m;
+        decimal last_damage = 0m;
+
         public Item_106_Combine10(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
@@ -1501,6 +1503,7 @@ namespace MinerGunBuilderCalculator
         {
             base.ResetBeforeCalculateDamage();
             accumulation_damage = 0m;
+            last_damage = 0m;
             count = 0;
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
@@ -1528,7 +1531,22 @@ namespace MinerGunBuilderCalculator
             count += 1;
             if(inbound_projectile != null)
             {
-                accumulation_damage += inbound_projectile.damage * 2m;
+                if(skillTree.v02_19_more_damage)
+                {
+                    if(last_damage > inbound_projectile.damage)
+                    {
+                        accumulation_damage += last_damage * 2m;
+                    }
+                    else
+                    {
+                        accumulation_damage += inbound_projectile.damage * 2m;
+                    }
+                    last_damage = inbound_projectile.damage;
+                }
+                else
+                {
+                    accumulation_damage += inbound_projectile.damage * 2m;
+                }
             }
             if(count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
             {

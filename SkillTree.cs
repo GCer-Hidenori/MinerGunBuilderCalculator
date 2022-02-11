@@ -132,6 +132,10 @@ namespace MinerGunBuilderCalculator
         // Adds two times the damage of first passthrough.
         public bool v07_06_more_damage = false;
 
+        // Combine 10
+        // Higher damage of current or previous projectile gets instead combined.
+        public bool v02_19_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {
