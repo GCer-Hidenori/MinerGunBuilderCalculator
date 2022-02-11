@@ -259,6 +259,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Adds two times the damage of first passthrough. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _07_06 {
+            get {
+                return ResourceManager.GetString("07_06", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Chance of 10% to clone projectile instead. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _07_08 {

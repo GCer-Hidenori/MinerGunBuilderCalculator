@@ -128,6 +128,10 @@ namespace MinerGunBuilderCalculator
         // Chance of 10% to clone projectile instead.
         public bool v07_08_clone = false;
 
+        // Damage crossing
+        // Adds two times the damage of first passthrough.
+        public bool v07_06_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {
