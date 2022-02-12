@@ -135,6 +135,10 @@ namespace MinerGunBuilderCalculator
         // Combine 10
         // Higher damage of current or previous projectile gets instead combined.
         public bool v02_19_more_damage = false;
+        
+        // Guide damage
+        // Any direction in ship changing items count as projectile guides.
+        public bool v06_17_more_target_item = false;
 
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()

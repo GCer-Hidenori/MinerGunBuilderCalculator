@@ -259,6 +259,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Any direction in ship changing items count as projectile guides. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _06_17 {
+            get {
+                return ResourceManager.GetString("06_17", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Chance of 20% to clone the projectile twice. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _07_04 {
