@@ -140,6 +140,14 @@ namespace MinerGunBuilderCalculator
         // Any direction in ship changing items count as projectile guides.
         public bool v06_17_more_target_item = false;
 
+        // Late damage
+        // Half projectile lifetime but another stage of damage doubling bonus.
+        public bool v01_14_more_damage = false;
+
+        // Late damage
+        // 20% less damage at the start but triple damage at the last stage.
+        public bool v00_15_more_damage = false;
+
         public ShipLayoutManager shipLayoutManager;
         public SkillTree()
         {

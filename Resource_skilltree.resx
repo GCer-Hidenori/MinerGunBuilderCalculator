@@ -120,11 +120,17 @@
   <data name="00_07" xml:space="preserve">
     <value>Adds 5 damage for each item from the projectile generator to itself.</value>
   </data>
+  <data name="00_15" xml:space="preserve">
+    <value>20% less damage at the start but triple damage at the last stage.</value>
+  </data>
   <data name="01_08" xml:space="preserve">
     <value>Adds additional 30 damage to the projectile.</value>
   </data>
   <data name="01_12" xml:space="preserve">
     <value>Higher multiplier of times 2.5.</value>
+  </data>
+  <data name="01_14" xml:space="preserve">
+    <value>Half projectile lifetime but another stage of damage doubling bonus.</value>
   </data>
   <data name="01_16" xml:space="preserve">
     <value>Higher multiplier of times 12</value>

@@ -1384,10 +1384,34 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
+        private decimal Calc_late_damage_magnification(SkillTree skillTree,Decimal lifetime)
+        {
+            if(skillTree.v01_14_more_damage && skillTree.v00_15_more_damage)
+            {
+                return (lifetime + 3.2m) / lifetime;
+            }else if(skillTree.v01_14_more_damage)
+            {
+                return (lifetime + 1.8m) / lifetime;
+            }else if(skillTree.v00_15_more_damage)
+            {
+                return (lifetime +2m) / lifetime;
+            }else
+            {
+                return (lifetime +1m) / lifetime;
+            }
+        }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            decimal late_damage_magnification = (inbound_projectileStat.lifetime + 0.4m) / inbound_projectileStat.lifetime;
+            if(skillTree.v01_14_more_damage){
+                inbound_projectileStat.lifetime /= 2m;
+            }
+            if(skillTree.v00_15_more_damage){
+                inbound_projectileStat.average_damage *= 0.8m;
+                inbound_projectileStat.max_damage *= 0.8m;
+                inbound_projectileStat.min_damage *= 0.8m;
+            }
+            decimal late_damage_magnification = Calc_late_damage_magnification(skillTree,inbound_projectileStat.lifetime);
             inbound_projectileStat.average_damage *= late_damage_magnification;
             inbound_projectileStat.max_damage *= late_damage_magnification;
             inbound_projectileStat.min_damage *= late_damage_magnification;
@@ -1398,7 +1422,13 @@ namespace MinerGunBuilderCalculator
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
             if (inbound_projectile != null)
             {
-                decimal late_damage_magnification = (inbound_projectile.lifetime + 0.4m) / inbound_projectile.lifetime;
+                if(skillTree.v01_14_more_damage){
+                    inbound_projectile.lifetime /= 2m;
+                }
+                if(skillTree.v00_15_more_damage){
+                    inbound_projectile.damage *= 0.8m;
+                }
+                decimal late_damage_magnification = Calc_late_damage_magnification(skillTree,inbound_projectile.lifetime);
                 inbound_projectile.damage *= late_damage_magnification;
             }
             return inbound_projectile;

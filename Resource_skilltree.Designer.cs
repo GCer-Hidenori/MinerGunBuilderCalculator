@@ -70,6 +70,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   20% less damage at the start but triple damage at the last stage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _00_15 {
+            get {
+                return ResourceManager.GetString("00_15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds additional 30 damage to the projectile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _01_08 {
@@ -84,6 +93,15 @@ namespace MinerGunBuilderCalculator {
         internal static string _01_12 {
             get {
                 return ResourceManager.GetString("01_12", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Half projectile lifetime but another stage of damage doubling bonus. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _01_14 {
+            get {
+                return ResourceManager.GetString("01_14", resourceCulture);
             }
         }
         
