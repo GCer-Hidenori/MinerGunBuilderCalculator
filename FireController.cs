@@ -41,6 +41,7 @@ namespace MinerGunBuilderCalculator
             decimal total_max_damage = 0;
             decimal total_max_speed = 0;
             decimal total_magnification = 0;
+            decimal total_average_lifetime = 0;
 
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector)).Where(thing => thing.IsEjecting == true);
@@ -82,6 +83,7 @@ namespace MinerGunBuilderCalculator
 
                 decimal? each_ejector_min_damage = null;
                 decimal each_ejector_average_damage = 0;
+                decimal each_ejector_average_lifetime = 0;
                 decimal each_ejector_max_damage = 0;
                 decimal each_ejector_average_damage_per_sec = 0;
                 decimal each_ejector_magnification = 0;
@@ -98,18 +100,21 @@ namespace MinerGunBuilderCalculator
 
                     each_ejector_max_damage = each_ejector_max_damage < projectileStats.max_damage ? projectileStats.max_damage : each_ejector_max_damage;
                     each_ejector_average_damage += projectileStats.average_damage;
+                    each_ejector_average_lifetime += projectileStats.lifetime;
                     each_ejector_average_damage_per_sec += projectileStats.average_damage * projectileStats.magnification * shipParameter.fire_rate;
                     max_speed = max_speed < projectileStats.speed ? projectileStats.speed : max_speed;
                 }
                 if (inbound_projectileStats.Count > 0)
                 {
                     each_ejector_average_damage /= inbound_projectileStats.Count;
+                    each_ejector_average_lifetime /= inbound_projectileStats.Count;
                     //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
                 }
 
                 total_max_damage = total_max_damage < each_ejector_max_damage ? each_ejector_max_damage : total_max_damage;
                 //total_max_damage += each_ejector_max_damage;
                 total_average_damage += each_ejector_average_damage;
+                total_average_lifetime += each_ejector_average_lifetime;
                 total_min_damage = (total_min_damage == null || total_min_damage > each_ejector_min_damage) ? each_ejector_min_damage : total_min_damage;
                 total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
                 total_average_damage_per_sec += each_ejector_average_damage_per_sec;
@@ -122,10 +127,11 @@ namespace MinerGunBuilderCalculator
             if (IEejector.Count<Thing>() > 0)
             {
                 total_average_damage /= IEejector.Count<Thing>();
+                total_average_lifetime /= IEejector.Count<Thing>();
             }
             //if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>(); //
 
-            form_ship.WriteCalculateResult(total_average_damage_per_sec, total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification);
+            form_ship.WriteCalculateResult(total_average_damage_per_sec, total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification,total_average_lifetime);
 
             //return stringBuilder.ToString();
         }

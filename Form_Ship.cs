@@ -36,15 +36,15 @@ namespace MinerGunBuilderCalculator
             shipLayoutManager.Draw();
         }
 
-        public void WriteCalculateResult(decimal average_damage_per_sec, decimal? min_damage, decimal average_damage, decimal max_damage, decimal projectile_speed, decimal projectile_eject_per_sec)
+        public void WriteCalculateResult(decimal average_damage_per_sec, decimal? min_damage, decimal average_damage, decimal max_damage, decimal projectile_speed, decimal projectile_eject_per_sec,decimal projectile_lifetime)
         {
             Label_average_damage.Text = String.Format("{0:#,0.00}", Decimal.Round(average_damage,2,MidpointRounding.AwayFromZero));
             Label_average_damage_per_sec.Text = String.Format("{0:#,0.00}",Decimal.Round(average_damage_per_sec,2,MidpointRounding.AwayFromZero));
             Label_highest_projectile_damage.Text = String.Format("{0:#,0.00}", max_damage);
             Label_lowest_projectile_damage.Text = String.Format("{0:#,0.00}", min_damage ?? 0);
             Label_Projectile_Max_Speed.Text = String.Format("{0:#,0.00}", projectile_speed);
-            Label_projectile_ejected_per_sec.Text = String.Format("{0:#,0.00}", projectile_eject_per_sec);
-
+            Label_projectile_ejected_per_sec.Text = string.Format("{0:#,0.00}", projectile_eject_per_sec);
+            Label_Projectile_Lifetime.Text = string.Format("{0:#,0.00}", projectile_lifetime);
         }
 
         public void AddPictureBox(PictureBox pb)

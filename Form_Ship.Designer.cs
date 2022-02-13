@@ -41,8 +41,6 @@ namespace MinerGunBuilderCalculator
             this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.Label_highest_projectile_damage = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Label_Projectile_Max_Speed = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.Label_projectile_ejected_per_sec = new System.Windows.Forms.Label();
@@ -66,6 +64,12 @@ namespace MinerGunBuilderCalculator
             this.button_SkillTree = new System.Windows.Forms.Button();
             this.button_Start_Detailed_Calc = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.Label_Projectile_Max_Speed = new System.Windows.Forms.Label();
+            this.Label_Projectile_Lifetime = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -73,6 +77,8 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -81,10 +87,10 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 552F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.panel_pb_parent, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 2;
@@ -105,14 +111,14 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel2.Controls.Add(this.TextBox_Highest_Reached_Tier_in_World_Map, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.TextBox_Highest_Cleared_Tier_in_World_Map, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.TextBox_Play_Hour, 1, 2);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(554, 4);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(2, 113);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 26F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(221, 78);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(218, 78);
             this.tableLayoutPanel2.TabIndex = 6;
             // 
             // label13
@@ -122,7 +128,7 @@ namespace MinerGunBuilderCalculator
             this.label13.Location = new System.Drawing.Point(0, 52);
             this.label13.Margin = new System.Windows.Forms.Padding(0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(117, 26);
+            this.label13.Size = new System.Drawing.Size(115, 26);
             this.label13.TabIndex = 6;
             this.label13.Text = "Play time(hour)";
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -134,7 +140,7 @@ namespace MinerGunBuilderCalculator
             this.label12.Location = new System.Drawing.Point(0, 26);
             this.label12.Margin = new System.Windows.Forms.Padding(0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(117, 26);
+            this.label12.Size = new System.Drawing.Size(115, 26);
             this.label12.TabIndex = 4;
             this.label12.Text = "Highest cleared tier";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -146,14 +152,14 @@ namespace MinerGunBuilderCalculator
             this.label9.Location = new System.Drawing.Point(0, 0);
             this.label9.Margin = new System.Windows.Forms.Padding(0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(117, 26);
+            this.label9.Size = new System.Drawing.Size(115, 26);
             this.label9.TabIndex = 0;
             this.label9.Text = "Highest reached tier";
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // TextBox_Highest_Reached_Tier_in_World_Map
             // 
-            this.TextBox_Highest_Reached_Tier_in_World_Map.Location = new System.Drawing.Point(120, 3);
+            this.TextBox_Highest_Reached_Tier_in_World_Map.Location = new System.Drawing.Point(118, 3);
             this.TextBox_Highest_Reached_Tier_in_World_Map.Name = "TextBox_Highest_Reached_Tier_in_World_Map";
             this.TextBox_Highest_Reached_Tier_in_World_Map.Size = new System.Drawing.Size(63, 23);
             this.TextBox_Highest_Reached_Tier_in_World_Map.TabIndex = 3;
@@ -162,7 +168,7 @@ namespace MinerGunBuilderCalculator
             // 
             // TextBox_Highest_Cleared_Tier_in_World_Map
             // 
-            this.TextBox_Highest_Cleared_Tier_in_World_Map.Location = new System.Drawing.Point(120, 29);
+            this.TextBox_Highest_Cleared_Tier_in_World_Map.Location = new System.Drawing.Point(118, 29);
             this.TextBox_Highest_Cleared_Tier_in_World_Map.Name = "TextBox_Highest_Cleared_Tier_in_World_Map";
             this.TextBox_Highest_Cleared_Tier_in_World_Map.Size = new System.Drawing.Size(63, 23);
             this.TextBox_Highest_Cleared_Tier_in_World_Map.TabIndex = 5;
@@ -171,7 +177,7 @@ namespace MinerGunBuilderCalculator
             // 
             // TextBox_Play_Hour
             // 
-            this.TextBox_Play_Hour.Location = new System.Drawing.Point(120, 55);
+            this.TextBox_Play_Hour.Location = new System.Drawing.Point(118, 55);
             this.TextBox_Play_Hour.Name = "TextBox_Play_Hour";
             this.TextBox_Play_Hour.Size = new System.Drawing.Size(63, 23);
             this.TextBox_Play_Hour.TabIndex = 7;
@@ -180,8 +186,8 @@ namespace MinerGunBuilderCalculator
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tableLayoutPanel5);
             this.panel1.Controls.Add(this.tableLayoutPanel4);
-            this.panel1.Controls.Add(this.tableLayoutPanel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(4, 557);
             this.panel1.Name = "panel1";
@@ -194,8 +200,6 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.22388F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.77612F));
             this.tableLayoutPanel4.Controls.Add(this.Label_highest_projectile_damage, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.label8, 0, 5);
-            this.tableLayoutPanel4.Controls.Add(this.Label_Projectile_Max_Speed, 1, 5);
             this.tableLayoutPanel4.Controls.Add(this.label10, 0, 1);
             this.tableLayoutPanel4.Controls.Add(this.label7, 0, 4);
             this.tableLayoutPanel4.Controls.Add(this.Label_projectile_ejected_per_sec, 1, 4);
@@ -205,17 +209,16 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel4.Controls.Add(this.label5, 0, 0);
             this.tableLayoutPanel4.Controls.Add(this.Label_lowest_projectile_damage, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.Label_average_damage, 1, 1);
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(221, 4);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 6;
+            this.tableLayoutPanel4.RowCount = 5;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 143);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(268, 120);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // Label_highest_projectile_damage
@@ -228,28 +231,6 @@ namespace MinerGunBuilderCalculator
             this.Label_highest_projectile_damage.TabIndex = 10;
             this.Label_highest_projectile_damage.Text = "-";
             this.Label_highest_projectile_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(3, 120);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(142, 23);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "Projectile max speed";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // Label_Projectile_Max_Speed
-            // 
-            this.Label_Projectile_Max_Speed.AutoSize = true;
-            this.Label_Projectile_Max_Speed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_Projectile_Max_Speed.Location = new System.Drawing.Point(151, 120);
-            this.Label_Projectile_Max_Speed.Name = "Label_Projectile_Max_Speed";
-            this.Label_Projectile_Max_Speed.Size = new System.Drawing.Size(114, 23);
-            this.Label_Projectile_Max_Speed.TabIndex = 12;
-            this.Label_Projectile_Max_Speed.Text = "-";
-            this.Label_Projectile_Max_Speed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
@@ -364,7 +345,7 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel3.Controls.Add(this.TextBox_Projectile_Speed, 1, 2);
             this.tableLayoutPanel3.Controls.Add(this.label3, 0, 2);
             this.tableLayoutPanel3.Controls.Add(this.TextBox_Projectile_Lifetime, 1, 3);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 3);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 4;
@@ -501,6 +482,79 @@ namespace MinerGunBuilderCalculator
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.tableLayoutPanel2);
+            this.panel3.Controls.Add(this.tableLayoutPanel3);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(554, 1);
+            this.panel3.Margin = new System.Windows.Forms.Padding(0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(223, 552);
+            this.panel3.TabIndex = 5;
+            // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.ColumnCount = 2;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.22F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.78F));
+            this.tableLayoutPanel5.Controls.Add(this.label15, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.label14, 0, 0);
+            this.tableLayoutPanel5.Controls.Add(this.Label_Projectile_Max_Speed, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.Label_Projectile_Lifetime, 1, 1);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(271, 3);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 2;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(268, 48);
+            this.tableLayoutPanel5.TabIndex = 2;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label14.Location = new System.Drawing.Point(3, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(141, 24);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Projectile max speed";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label15.Location = new System.Drawing.Point(3, 24);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(141, 24);
+            this.label15.TabIndex = 10;
+            this.label15.Text = "Projectile Lifetime";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label_Projectile_Max_Speed
+            // 
+            this.Label_Projectile_Max_Speed.AutoSize = true;
+            this.Label_Projectile_Max_Speed.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_Projectile_Max_Speed.Location = new System.Drawing.Point(150, 0);
+            this.Label_Projectile_Max_Speed.Name = "Label_Projectile_Max_Speed";
+            this.Label_Projectile_Max_Speed.Size = new System.Drawing.Size(115, 24);
+            this.Label_Projectile_Max_Speed.TabIndex = 11;
+            this.Label_Projectile_Max_Speed.Text = "-";
+            this.Label_Projectile_Max_Speed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label_Projectile_Lifetime
+            // 
+            this.Label_Projectile_Lifetime.AutoSize = true;
+            this.Label_Projectile_Lifetime.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_Projectile_Lifetime.Location = new System.Drawing.Point(150, 24);
+            this.Label_Projectile_Lifetime.Name = "Label_Projectile_Lifetime";
+            this.Label_Projectile_Lifetime.Size = new System.Drawing.Size(115, 24);
+            this.Label_Projectile_Lifetime.TabIndex = 12;
+            this.Label_Projectile_Lifetime.Text = "-";
+            this.Label_Projectile_Lifetime.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form_Ship
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -523,6 +577,9 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel3.PerformLayout();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -533,7 +590,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.Label Label_Projectile_Max_Speed;
         private System.Windows.Forms.Label Label_projectile_ejected_per_sec;
         private System.Windows.Forms.Label Label_highest_projectile_damage;
         private System.Windows.Forms.Label Label_lowest_projectile_damage;
@@ -541,7 +597,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label Label_average_damage_per_sec;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.Label label1;
@@ -565,5 +620,11 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.TextBox TextBox_Highest_Cleared_Tier_in_World_Map;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox TextBox_Play_Hour;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label Label_Projectile_Max_Speed;
+        private System.Windows.Forms.Label Label_Projectile_Lifetime;
     }
 }
