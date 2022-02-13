@@ -15,9 +15,9 @@ namespace MinerGunBuilderCalculator
     public partial class Form_SkillTree : Form
     {
         PictureBox[,] ary_pb = new PictureBox[10, 20];
-        Dictionary<string, FieldInfo> skillTreeId2field = new();
 
-        public SkillTree skillTree;
+        public HashSet<string> SkillList;
+        public ShipLayoutManager shipLayoutManager = null;
 
         public Form_SkillTree()
         {
@@ -25,19 +25,6 @@ namespace MinerGunBuilderCalculator
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
-        }
-
-        private void MakeSkillTreeId2Field(SkillTree skillTree)
-        {
-            Regex regex = new(@"^v(\d\d_\d\d)");
-            foreach (var field in skillTree.GetType().GetFields())
-            {
-                Match matche = regex.Match(field.Name);
-                if (matche.Success)
-                {
-                    skillTreeId2field[matche.Groups[1].Value] = field;
-                } 
-            }
         }
 
         private static Bitmap GetImageFromResource(string name)
@@ -55,15 +42,6 @@ namespace MinerGunBuilderCalculator
                 }
             }
             throw new NotImplementedException(name);
-        }
-        private bool IsValid(string name)
-        {
-            FieldInfo field = GetFieldFromSkillTree(skillTree, name);
-            if(field != null)
-            {
-                return (bool)field.GetValue(skillTree);
-            }
-            throw new NotImplementedException();
         }
         public void RefreshHex(int x,int y,bool state)
         {
@@ -95,7 +73,7 @@ namespace MinerGunBuilderCalculator
                 PictureBox pb = CreateHex(image);
                 pb.Name = name;
 
-                if (IsValid(name))
+                if (SkillList.Contains(name))
                 {
                     pb.BackColor = Color.White;
                 }
@@ -118,27 +96,6 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private FieldInfo GetFieldFromSkillTree(SkillTree skillTree, string name)
-        {
-            if (skillTreeId2field.Count == 0)
-            {
-                MakeSkillTreeId2Field(skillTree);
-            }
-            return skillTreeId2field[name];
-
-            /*
-            foreach (var field in skillTree.GetType().GetFields())
-            {
-                if (field.Name.StartsWith("v" + name))
-                {
-                    return field;
-                }
-            }
-            
-            return null;
-            */
-        }
-
         private void Pb_Click(object sender, EventArgs e)
         {
             string name = ((PictureBox)sender).Name;
@@ -147,20 +104,16 @@ namespace MinerGunBuilderCalculator
             (x, y) = (int.Parse(tmpary[0]), int.Parse(tmpary[1]));
 
 
-            FieldInfo field = GetFieldFromSkillTree(skillTree, name);
-            
-            if(field != null)
+            if(SkillList.Contains(name))
             {
-                field.SetValue(skillTree,!(bool)field.GetValue(skillTree));
-                RefreshHex(x, y, (bool)field.GetValue(skillTree));
-                skillTree.shipLayoutManager.NotifyShipLayoutChange2Observer();
+                SkillList.Remove(name);
             }
             else
             {
-                throw new NotImplementedException();
+                SkillList.Add(name);
             }
-
-           
+            RefreshHex(x, y, SkillList.Contains(name));
+            shipLayoutManager.NotifyShipLayoutChange2Observer();
         }
 
         private static PictureBox CreateHex(Bitmap image)

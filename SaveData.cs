@@ -16,7 +16,6 @@ namespace MinerGunBuilderCalculator
         public ShipParameter shipParameter;
         public Profile profile;
         public Thing[,] thing_layout;
-        public SkillTree skillTree;
 
         const int SAVE_FORMAT_VERSION = 3;
         const int SUPPRT_MIN_SAVE_FORMAT_VERSION = 1;
@@ -117,14 +116,13 @@ namespace MinerGunBuilderCalculator
             }
             return null;
         }
-        public static string Save(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile,SkillTree skillTree,bool isSaveAs, string save_file_name = null)
+        public static string Save(Thing[,] thing_layout,ShipParameter shipParameter,Profile profile,bool isSaveAs, string save_file_name = null)
         {
             var saveData = new SaveData
             {
                 thing_layout = thing_layout,
                 shipParameter = shipParameter,
-                profile = profile,
-                skillTree = skillTree
+                profile = profile
             };
 
             var setting = new JsonSerializerSettings

@@ -197,7 +197,7 @@ namespace MinerGunBuilderCalculator
         {
             if(fireController != null)
             {
-                fireController.MakeGraphs((Form_Parent)this.ParentForm,shipLayoutManager.skillTree);
+                fireController.MakeGraphs((Form_Parent)this.ParentForm,shipLayoutManager.profile.skillList);
             }
             
             //var graphForm = new Form_Graph();
@@ -211,8 +211,8 @@ namespace MinerGunBuilderCalculator
                 {
                     MdiParent = this.MdiParent
                 };
-                form_skillTree.skillTree = shipLayoutManager.skillTree;
-                //form_skillTree.skillTree.form_SkillTree = form_skillTree;
+                form_skillTree.SkillList = shipLayoutManager.profile.skillList;
+                form_skillTree.shipLayoutManager = shipLayoutManager;
                 form_skillTree.Show();
                 form_skillTree.DrawSkills();
             }

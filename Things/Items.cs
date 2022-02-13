@@ -9,9 +9,9 @@ namespace MinerGunBuilderCalculator
 {
     class Item_001_Guide_right : Item
     {
-        private static decimal SkillTree_Add5damage(SkillTree skillTree)
+        private static decimal SkillTree_Add5damage(HashSet<string> skillList)
         {
-            return skillTree.v03_12_add_5_damage ? 5m : 0m;
+            return skillList.Contains("03_12")? 5m : 0m;
         }
         public Item_001_Guide_right(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -19,12 +19,12 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsGuide = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage += SkillTree_Add5damage(skillTree);
-            inbound_projectileStat.max_damage += SkillTree_Add5damage(skillTree);
-            inbound_projectileStat.min_damage += SkillTree_Add5damage(skillTree);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.average_damage += SkillTree_Add5damage(profile.skillList);
+            inbound_projectileStat.max_damage += SkillTree_Add5damage(profile.skillList);
+            inbound_projectileStat.min_damage += SkillTree_Add5damage(profile.skillList);
             if (inbound_projectileStat.Legendary_EnableGuideDamage)
             {
                 inbound_projectileStat.average_damage *= 1.1m;
@@ -34,10 +34,10 @@ namespace MinerGunBuilderCalculator
 
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            inbound_projectile.damage += SkillTree_Add5damage(skillTree);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            inbound_projectile.damage += SkillTree_Add5damage(profile.skillList);
             if (inbound_projectile.Legendary_EnableGuideDamage)
             {
                 inbound_projectile.damage *= 1.1m;
@@ -47,9 +47,9 @@ namespace MinerGunBuilderCalculator
     }
     class Item_002_Guide_left : Item
     {
-        private static decimal SkillTree_Add5damage(SkillTree skillTree)
+        private static decimal SkillTree_Add5damage(HashSet<string> skillList)
         {
-            return skillTree.v04_11_add_5_damage ? 5m : 0m;
+            return skillList.Contains("04_11") ? 5m : 0m;
         }
         public Item_002_Guide_left(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -57,12 +57,12 @@ namespace MinerGunBuilderCalculator
             IsAccessToLEFT = true;
             IsGuide = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.average_damage += SkillTree_Add5damage(skillTree);
-            inbound_projectileStat.max_damage += SkillTree_Add5damage(skillTree);
-            inbound_projectileStat.min_damage += SkillTree_Add5damage(skillTree);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.average_damage += SkillTree_Add5damage(profile.skillList);
+            inbound_projectileStat.max_damage += SkillTree_Add5damage(profile.skillList);
+            inbound_projectileStat.min_damage += SkillTree_Add5damage(profile.skillList);
             if (inbound_projectileStat.Legendary_EnableGuideDamage)
             {
                 inbound_projectileStat.average_damage *= 1.1m;
@@ -71,10 +71,10 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            inbound_projectile.damage += SkillTree_Add5damage(skillTree);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            inbound_projectile.damage += SkillTree_Add5damage(profile.skillList);
             if (inbound_projectile.Legendary_EnableGuideDamage)
             {
                 inbound_projectile.damage *= 1.1m;
@@ -89,15 +89,15 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
             decimal additional_damage = 0m;
-            if (skillTree.v05_08_more_damage)
+            if (profile.skillList.Contains("05_08"))
             {
                 additional_damage = 5m;
             }
-            if (skillTree.v05_00_more_damage)
+            if (profile.skillList.Contains("05_00"))
             {
                 var thing_1dim_layout = thing_layout.Cast<Thing>();
                 IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
@@ -109,17 +109,17 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.min_damage += 1m + additional_damage;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
             if (inbound_projectile != null)
             {
                 decimal additional_damage = 0m;
-                if (skillTree.v05_08_more_damage)
+                if (profile.skillList.Contains("05_08"))
                 {
                     additional_damage = 5m;
                 }
-                if (skillTree.v05_00_more_damage)
+                if (profile.skillList.Contains("05_00"))
                 {
                     var thing_1dim_layout = thing_layout.Cast<Thing>();
                     IEnumerable<Thing> IEadd1damage = thing_1dim_layout.Where(thing => thing.GetType().Name == "Item_003_Add_1_damage");
@@ -138,15 +138,15 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.speed += 1m;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
                 inbound_projectile.speed += 1m;
@@ -161,21 +161,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v06_11_more_damage){
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("06_11")){
                 inbound_projectileStat.average_damage *= 1.25m;
                 inbound_projectileStat.max_damage *= 1.5m;
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if (skillTree.v06_11_more_damage)
+                if (profile.skillList.Contains("06_11"))
                 {
                     decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.5m;
                     inbound_projectile.damage *= magnification;
@@ -191,21 +191,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v07_10_more_damage){
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("07_10")){
                 inbound_projectileStat.average_damage *= 1.3m;
                 inbound_projectileStat.max_damage *= 1.6m;
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if (skillTree.v07_10_more_damage)
+                if (profile.skillList.Contains("07_10"))
                 {
                     decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.6m;
                     inbound_projectile.damage *= magnification;
@@ -221,21 +221,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v07_12_more_damage){
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("07_12")){
                 inbound_projectileStat.average_damage *= 1.25m;
                 inbound_projectileStat.max_damage *= 1.5m;
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if (skillTree.v07_12_more_damage)
+                if (profile.skillList.Contains("07_12"))
                 {
                     decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.5m;
                     inbound_projectile.damage *= magnification;
@@ -251,21 +251,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v08_11_more_damage){
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("08_11")){
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.2m;
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if (skillTree.v08_11_more_damage)
+                if (profile.skillList.Contains("08_11"))
                 {
                     decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.2m;
                     inbound_projectile.damage *= magnification;
@@ -281,10 +281,10 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-            if (skillTree.v05_06_more_damage)
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
+            if (profile.skillList.Contains("05_06"))
             {
                 inbound_projectileStat.average_damage *= 1.4m;
                 inbound_projectileStat.max_damage *= 1.4m;
@@ -292,10 +292,10 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-            if (skillTree.v05_06_more_damage)
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+            if (profile.skillList.Contains("05_06"))
             {
                 inbound_projectile.damage *= 1.4m;
             }
@@ -309,20 +309,20 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-            if (skillTree.v03_08_more_damage)
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
+            if (profile.skillList.Contains("03_08"))
             {
                 inbound_projectileStat.average_damage *= 1.3m;
                 inbound_projectileStat.max_damage *= 1.6m;
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-            if (skillTree.v03_08_more_damage)
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+            if (profile.skillList.Contains("03_08"))
             {
                     decimal magnification = 1.0m + (decimal)rand.NextDouble() * 0.6m;
                     inbound_projectile.damage *= magnification;
@@ -337,10 +337,10 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-            if (skillTree.v04_05_more_damage)
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
+            if (profile.skillList.Contains("04_05"))
             {
                 inbound_projectileStat.average_damage *= 1.4m;
                 inbound_projectileStat.max_damage *= 1.4m;
@@ -348,10 +348,10 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-            if (skillTree.v04_05_more_damage)
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+            if (profile.skillList.Contains("04_05"))
             {
                 inbound_projectile.damage *= 1.4m;
             }
@@ -365,15 +365,15 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.speed /= 2m;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
                 inbound_projectile.speed /= 2m;
@@ -383,17 +383,17 @@ namespace MinerGunBuilderCalculator
     }
     class Item_013_Criticalx2 : Item
     {
-        private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
+        private static decimal SkillTree_IncreaseChance_magnification(HashSet<string> skillList)
         {
             decimal hit_rate,magnification;
-            if(skillTree.v02_13_increase_chance)
+            if(skillList.Contains("02_13"))
             {
                 hit_rate = 0.4m;
             }else
             {
                 hit_rate = 0.3m;
             }
-            if(skillTree.v01_12_high_multiplier)
+            if(skillList.Contains("01_12"))
             {
                 magnification = 2.5m;
             }
@@ -401,64 +401,64 @@ namespace MinerGunBuilderCalculator
             {
                 magnification = 2m;
             }
-            //return skillTree.v02_13_increase_chance ? 1.4m : (decimal)(1.0+1.0/3);
+            //return skillList.Contains("02_13") ? 1.4m : (decimal)(1.0+1.0/3);
             return (1.0m-hit_rate) + hit_rate * magnification;
         }
-        private static int SkillTree_IncreaseChance_Chance(SkillTree skillTree)
+        private static int SkillTree_IncreaseChance_Chance(HashSet<string> skillList)
         {
-            return skillTree.v02_13_increase_chance ? 7 : 0;
+            return skillList.Contains("02_13") ? 7 : 0;
         }
         public Item_013_Criticalx2(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.max_damage *= skillTree.v01_12_high_multiplier ? 2.5m : 2m;
-            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(skillTree));
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.max_damage *= profile.skillList.Contains("01_12") ? 2.5m : 2m;
+            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(profile.skillList));
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (rand.Next(0, 100) < (33m + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= skillTree.v01_12_high_multiplier ? 2.5m : 2m;
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            if (rand.Next(0, 100) < (33m + SkillTree_IncreaseChance_Chance(profile.skillList))) inbound_projectile.damage *= profile.skillList.Contains("01_12") ? 2.5m : 2m;
             return inbound_projectile;
         }
     }
     class Item_014_Criticalx10 : Item
     {
-        private static decimal SkillTree_IncreaseChance_magnification(SkillTree skillTree)
+        private static decimal SkillTree_IncreaseChance_magnification(HashSet<string> skillList)
         {
-            return skillTree.v02_15_increase_chance ? (decimal)(1m-0.06m+0.06m * (10m+SkillTree_High_Times(skillTree))) : (decimal)(1m - 0.04m + 0.04m * (10m + SkillTree_High_Times(skillTree)));
+            return skillList.Contains("02_15") ? (decimal)(1m-0.06m+0.06m * (10m+SkillTree_High_Times(skillList))) : (decimal)(1m - 0.04m + 0.04m * (10m + SkillTree_High_Times(skillList)));
         }
-        private static int SkillTree_IncreaseChance_Chance(SkillTree skillTree)
+        private static int SkillTree_IncreaseChance_Chance(HashSet<string> skillList)
         {
-            return skillTree.v02_15_increase_chance ? 2 : 0;
+            return skillList.Contains("02_15") ? 2 : 0;
         }
-        private static decimal SkillTree_High_Times(SkillTree skillTree)
+        private static decimal SkillTree_High_Times(HashSet<string> skillList)
         {
-            return skillTree.v01_16_high_times ? 2m : 0m;
+            return skillList.Contains("01_16") ? 2m : 0m;
         }
         public Item_014_Criticalx10(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            inbound_projectileStat.max_damage *= (10m + SkillTree_High_Times(skillTree));
-            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(skillTree));
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.max_damage *= (10m + SkillTree_High_Times(profile.skillList));
+            inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, SkillTree_IncreaseChance_magnification(profile.skillList));
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //Projectile inbound_projectile = null;
 
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            if (rand.Next(0, 100) < (4 + SkillTree_IncreaseChance_Chance(skillTree))) inbound_projectile.damage *= 10m;
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            if (rand.Next(0, 100) < (4 + SkillTree_IncreaseChance_Chance(profile.skillList))) inbound_projectile.damage *= 10m;
             return inbound_projectile;
         }
     }
@@ -475,16 +475,16 @@ namespace MinerGunBuilderCalculator
             base.ResetBeforeCalculateDamage();
             counter_instead_of_random_number = 0;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
             inbound_projectileStat.min_damage = 0m;
-            if (skillTree.v03_18_high_multiplier)
+            if (profile.skillList.Contains("03_18"))
             {
                 inbound_projectileStat.max_damage *= 4m;
                 inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0m+2.0m+3.0m + 4m)/7m));
             }
-            else if (skillTree.v03_16_high_multiplier)
+            else if (profile.skillList.Contains("03_16"))
             {
                 inbound_projectileStat.max_damage *= 3m;
                 inbound_projectileStat.average_damage = Decimal.Multiply(inbound_projectileStat.average_damage, (Decimal)( (1.0m+1.0m+2.0m + 3.0m)/5m));
@@ -496,10 +496,10 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-            if (skillTree.v03_18_high_multiplier)
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+            if (profile.skillList.Contains("03_18"))
             {
                 switch (counter_instead_of_random_number)
                 {
@@ -526,7 +526,7 @@ namespace MinerGunBuilderCalculator
                         break;
                 }
             }
-            else if (skillTree.v03_16_high_multiplier)
+            else if (profile.skillList.Contains("03_16"))
             {
                 switch (counter_instead_of_random_number)
                 {
@@ -592,19 +592,19 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            decimal magnification = skillTree.v06_13_high_multiplier ? 1.3m : 1.2m;
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            decimal magnification = profile.skillList.Contains("06_13") ? 1.3m : 1.2m;
             inbound_projectileStat.average_damage *= magnification;
             inbound_projectileStat.max_damage *= magnification;
             inbound_projectileStat.min_damage *= magnification;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            decimal magnification = skillTree.v06_13_high_multiplier ? 1.3m : 1.2m;
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            decimal magnification = profile.skillList.Contains("06_13") ? 1.3m : 1.2m;
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
                 inbound_projectile.damage *= magnification;
@@ -643,9 +643,9 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.lifetime *= 2;
             return inbound_projectileStat;
         }
@@ -658,20 +658,20 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
 
             if (Access_to_rel_right == to_thing)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             }
             else if (Access_to_rel_left == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
                 inbound_projectileStat = projectileStat.Copy();
             }
-            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
@@ -679,20 +679,20 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = null;
 
             if (Access_to_rel_right == to_thing)
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             }
             else if (Access_to_rel_left == to_thing)
             {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
                 inbound_projectile = projectile.Copy();
             }
-            if (inbound_projectile != null && inbound_projectile.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectile != null && inbound_projectile.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectile.damage *= 1.1m;
             }
@@ -708,20 +708,20 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
 
             if (Access_to_rel_top == to_thing)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             }
             else if (Access_to_rel_right == to_thing || Access_to_rel_left == to_thing)
             {
-                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                var projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
                 inbound_projectileStat = projectileStat.Copy();
             }
-            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
@@ -729,20 +729,20 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = null;
 
             if (Access_to_rel_top == to_thing)
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             }
             else if (Access_to_rel_right == to_thing || Access_to_rel_left == to_thing)
             {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
                 inbound_projectile = projectile.Copy();
             }
-            if (inbound_projectile != null && inbound_projectile.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectile != null && inbound_projectile.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectile.damage *= 1.1m;
             }
@@ -769,24 +769,24 @@ namespace MinerGunBuilderCalculator
             counter_instead_of_random_number = 0;
 
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
             if (Access_to_rel_right == to_thing)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
             }
             else    //Access_to_rel_left == to_thing
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this).Copy();
             }
-            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
                 inbound_projectileStat.min_damage *= 1.1m;
             }
-            if (skillTree.v08_09_high_multiplier)
+            if (profile.skillList.Contains("08_09"))
             {
                 inbound_projectileStat.min_damage *= 3m;
                 inbound_projectileStat.max_damage *= 3m;
@@ -798,7 +798,7 @@ namespace MinerGunBuilderCalculator
                 inbound_projectileStat.max_damage *= 2m;
                 inbound_projectileStat.average_damage *= 2m;
             }
-            if (skillTree.v09_08_chance_to_split)
+            if (profile.skillList.Contains("09_08"))
             {
                     inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 2m;
             }else
@@ -809,12 +809,12 @@ namespace MinerGunBuilderCalculator
 
 
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             if (Access_to_rel_right == to_thing && to_right_projectile == null || Access_to_rel_left == to_thing && to_left_projectile == null)
             {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-                if (skillTree.v08_09_high_multiplier)
+                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+                if (profile.skillList.Contains("08_09"))
                 {
                     projectile.damage *= 3m;
                 }
@@ -822,11 +822,11 @@ namespace MinerGunBuilderCalculator
                 {
                     projectile.damage *= 2m;
                 }
-                if (projectile != null && projectile.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+                if (projectile != null && projectile.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
                 {
                     projectile.damage *= 1.1m;
                 }
-                if (skillTree.v09_08_chance_to_split && rand.Next(0, 100) < 5)
+                if (profile.skillList.Contains("09_08") && rand.Next(0, 100) < 5)
                 {
                     to_right_projectile = projectile;
                     to_left_projectile = projectile.Copy();
@@ -881,28 +881,28 @@ namespace MinerGunBuilderCalculator
             counter_instead_of_random_number = 0;
 
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
             if (Access_to_rel_top == to_thing)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
             }
             else if (Access_to_rel_right == to_thing)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this).Copy();
             }
             else    //Access_to_rel_left == to_thing
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this).Copy();
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this).Copy();
             }
-            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+            if (inbound_projectileStat != null && inbound_projectileStat.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
             {
                 inbound_projectileStat.average_damage *= 1.1m;
                 inbound_projectileStat.max_damage *= 1.1m;
                 inbound_projectileStat.min_damage *= 1.1m;
             }
-            if (skillTree.v08_07_high_multiplier)
+            if (profile.skillList.Contains("08_07"))
             {
                 inbound_projectileStat.min_damage *= 4m;
                 inbound_projectileStat.max_damage *= 4m;
@@ -914,7 +914,7 @@ namespace MinerGunBuilderCalculator
                 inbound_projectileStat.max_damage *= 3m;
                 inbound_projectileStat.average_damage *= 3m;
             }
-            if (skillTree.v09_06_chance_to_split)
+            if (profile.skillList.Contains("09_06"))
             {
                     inbound_projectileStat.magnification *= 0.05m * 1m + 0.95m / 3m;
             }else
@@ -924,12 +924,12 @@ namespace MinerGunBuilderCalculator
             return inbound_projectileStat;
 
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             if (Access_to_rel_right == to_thing && to_right_projectile == null || Access_to_rel_left == to_thing && to_left_projectile == null || Access_to_rel_top == to_thing && to_top_projectile == null)
             {
-                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
-                if (skillTree.v08_07_high_multiplier)
+                var projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+                if (profile.skillList.Contains("08_07"))
                 {
                     projectile.damage *= 4m;
                 }
@@ -937,11 +937,11 @@ namespace MinerGunBuilderCalculator
                 {
                     projectile.damage *= 3m;
                 }
-                if (projectile != null && projectile.Legendary_EnableGuideDamage && skillTree.v06_17_more_target_item)
+                if (projectile != null && projectile.Legendary_EnableGuideDamage && profile.skillList.Contains("06_17"))
                 {
                     projectile.damage *= 1.1m;
                 }
-                if (skillTree.v09_06_chance_to_split && rand.Next(0, 100) < 5)
+                if (profile.skillList.Contains("09_06") && rand.Next(0, 100) < 5)
                 {
                     to_top_projectile = projectile;
                     to_right_projectile = projectile.Copy();
@@ -1050,10 +1050,10 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v07_08_clone)
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("07_08"))
             {
                 inbound_projectileStat.magnification  += inbound_projectileStat.magnification * 0.1m + 1m * 0.9m;
             }else
@@ -1062,12 +1062,12 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if(skillTree.v07_08_clone && rand.Next(0,100) < 10)
+                if(profile.skillList.Contains("07_08") && rand.Next(0,100) < 10)
                 {
                     inbound_projectile.magnification *= 2m;
                 }else
@@ -1107,7 +1107,7 @@ namespace MinerGunBuilderCalculator
             IsAccessToLEFT = true;
         }
         //TO BE CONFIRMED
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
 
@@ -1115,7 +1115,7 @@ namespace MinerGunBuilderCalculator
             {
                 if (Access_from_rel_down != null)
                 {
-                    inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                    inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
                 }
             }
             else if (Access_to_rel_left == to_thing || Access_to_rel_right == to_thing)
@@ -1123,17 +1123,17 @@ namespace MinerGunBuilderCalculator
                 if (Access_to_rel_left == to_thing)
                 {
                     if (Access_from_rel_right != null)
-                        inbound_projectileStat = Access_from_rel_right.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                        inbound_projectileStat = Access_from_rel_right.GetOutboundProjectileStat(shipParameter, profile, this);
                 }
                 else if (Access_to_rel_right == to_thing)
                 {
                     if (Access_from_rel_left != null)
-                        inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+                        inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile, this);
                 }
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = null;
 
@@ -1141,7 +1141,7 @@ namespace MinerGunBuilderCalculator
             {
                 if (Access_from_rel_down != null)
                 {
-                    inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                    inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
                 }
 
             }
@@ -1150,12 +1150,12 @@ namespace MinerGunBuilderCalculator
                 if (Access_to_rel_left == to_thing)
                 {
                     if (Access_from_rel_right != null)
-                        inbound_projectile = Access_from_rel_right.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                        inbound_projectile = Access_from_rel_right.GetOutboundProjectile(shipParameter, profile, this);
                 }
                 else if (Access_to_rel_right == to_thing)
                 {
                     if (Access_from_rel_left != null)
-                        inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                        inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile, this);
                 }
             }
             return inbound_projectile;
@@ -1185,7 +1185,7 @@ namespace MinerGunBuilderCalculator
             IsAccessToRIGHT = true;
             IsAccessToLEFT = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = null;
 
@@ -1193,12 +1193,12 @@ namespace MinerGunBuilderCalculator
             {
                 if (Access_from_rel_down != null)
                 {
-                    inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                    inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
                     foreach (var self_and_ancestor in inbound_projectileStat.self_and_ancestors)
                     {
                         if (projectileStats_history.TryGetValue(self_and_ancestor, out ProjectileStat his_projectileStats))
                         {
-                            if (skillTree.v07_06_more_damage)
+                            if (profile.skillList.Contains("07_06"))
                             {
                                 inbound_projectileStat.average_damage += his_projectileStats.average_damage * 2m;
                                 inbound_projectileStat.min_damage += his_projectileStats.min_damage * 2m;
@@ -1220,19 +1220,19 @@ namespace MinerGunBuilderCalculator
                 if (Access_to_rel_left == to_thing)
                 {
                     if (Access_from_rel_right != null)
-                        inbound_projectileStat = Access_from_rel_right.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                        inbound_projectileStat = Access_from_rel_right.GetOutboundProjectileStat(shipParameter, profile,  this);
                 }
                 else if (Access_to_rel_right == to_thing)
                 {
                     if (Access_from_rel_left != null)
-                        inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                        inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile,  this);
                 }
                 var projectileStat = inbound_projectileStat;
                 projectileStats_history[projectileStat] = projectileStat.Copy();
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = null;
 
@@ -1240,12 +1240,12 @@ namespace MinerGunBuilderCalculator
             {
                 if (Access_from_rel_down != null)
                 {
-                    inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+                    inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
                     foreach (var self_and_ancestor in inbound_projectile.self_and_ancestors)
                     {
                         if (projectile_history.TryGetValue(self_and_ancestor, out Projectile his_projectile))
                         {
-                            if (skillTree.v07_06_more_damage)
+                            if (profile.skillList.Contains("07_06"))
                             {
                                 inbound_projectile.damage += his_projectile.damage * 2m;
                             }
@@ -1264,12 +1264,12 @@ namespace MinerGunBuilderCalculator
                 if (Access_to_rel_left == to_thing)
                 {
                     if (Access_from_rel_right != null)
-                        inbound_projectile = Access_from_rel_right.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+                        inbound_projectile = Access_from_rel_right.GetOutboundProjectile(shipParameter, profile,  this);
                 }
                 else if (Access_to_rel_right == to_thing)
                 {
                     if (Access_from_rel_left != null)
-                        inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+                        inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile,  this);
                 }
                 projectile_history[inbound_projectile] = inbound_projectile.Copy();
             }
@@ -1284,34 +1284,34 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        private int Calc_additional_damage(SkillTree skillTree,Profile profile)
+        private int Calc_additional_damage(Profile profile)
         {
             int additional = (int)Decimal.Round(Decimal.Multiply(profile.Highest_Reached_Tier_in_World_Map, 0.1m), MidpointRounding.AwayFromZero);
-            if(skillTree.v08_17_more_damage)
+            if(profile.skillList.Contains("08_17"))
             {
                 additional += (int)Decimal.Round(Decimal.Multiply(profile.Highest_Cleared_Tier_in_World_Map , 0.05m), MidpointRounding.AwayFromZero);
             }
-            if(skillTree.v09_16_more_damage)
+            if(profile.skillList.Contains("09_16"))
             {
                 decimal hour = profile.Play_Hour > 100 ? 100:profile.Play_Hour;
                 additional += (int)Decimal.Round(Decimal.Multiply(hour, 2m), MidpointRounding.AwayFromZero);
             }
             return additional;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            int additional = Calc_additional_damage(skillTree,profile);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            int additional = Calc_additional_damage(profile);
             inbound_projectileStat.average_damage += additional;
             inbound_projectileStat.max_damage += additional;
             inbound_projectileStat.min_damage += additional;
 
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
-            int additional = Calc_additional_damage(skillTree,profile);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            int additional = Calc_additional_damage(profile);
             inbound_projectile.damage += additional;
 
             return inbound_projectile;
@@ -1334,7 +1334,7 @@ namespace MinerGunBuilderCalculator
             IsLegendary = true;
         }
 
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             // Since the average value of projectile damage cannot be calculated by a mathematical formula,
             // this program make a projectile 1000 times and calculate the average damage.
@@ -1346,7 +1346,7 @@ namespace MinerGunBuilderCalculator
             int i;
             for (i = 0; i < Count; i++)
             {
-                projectile = GetOutboundProjectile(shipParameter, profile,skillTree, this);
+                projectile = GetOutboundProjectile(shipParameter, profile, this);
                 if (projectile != null)
                 {
                     total_damage += projectile.damage;
@@ -1364,12 +1364,12 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.Legendary_EnableGuideDamage = projectile.Legendary_EnableGuideDamage;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (last_damage != null)
             {
-                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= skillTree.v02_07_more_damage ? 8m : 4m;
+                if (last_damage > inbound_projectile.damage) inbound_projectile.damage *= profile.skillList.Contains("02_07") ? 8m : 4m;
 
             }
             last_damage = inbound_projectile.damage;
@@ -1384,15 +1384,15 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        private decimal Calc_late_damage_magnification(SkillTree skillTree,Decimal lifetime)
+        private decimal Calc_late_damage_magnification(HashSet<string> skillList,Decimal lifetime)
         {
-            if(skillTree.v01_14_more_damage && skillTree.v00_15_more_damage)
+            if(skillList.Contains("01_14") && skillList.Contains("00_15"))
             {
                 return (lifetime + 3.2m) / lifetime;
-            }else if(skillTree.v01_14_more_damage)
+            }else if(skillList.Contains("01_14"))
             {
                 return (lifetime + 1.8m) / lifetime;
-            }else if(skillTree.v00_15_more_damage)
+            }else if(skillList.Contains("00_15"))
             {
                 return (lifetime +2m) / lifetime;
             }else
@@ -1400,35 +1400,35 @@ namespace MinerGunBuilderCalculator
                 return (lifetime +1m) / lifetime;
             }
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
-            if(skillTree.v01_14_more_damage){
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            if(profile.skillList.Contains("01_14")){
                 inbound_projectileStat.lifetime /= 2m;
             }
-            if(skillTree.v00_15_more_damage){
+            if(profile.skillList.Contains("00_15")){
                 inbound_projectileStat.average_damage *= 0.8m;
                 inbound_projectileStat.max_damage *= 0.8m;
                 inbound_projectileStat.min_damage *= 0.8m;
             }
-            decimal late_damage_magnification = Calc_late_damage_magnification(skillTree,inbound_projectileStat.lifetime);
+            decimal late_damage_magnification = Calc_late_damage_magnification(profile.skillList,inbound_projectileStat.lifetime);
             inbound_projectileStat.average_damage *= late_damage_magnification;
             inbound_projectileStat.max_damage *= late_damage_magnification;
             inbound_projectileStat.min_damage *= late_damage_magnification;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
-                if(skillTree.v01_14_more_damage){
+                if(profile.skillList.Contains("01_14")){
                     inbound_projectile.lifetime /= 2m;
                 }
-                if(skillTree.v00_15_more_damage){
+                if(profile.skillList.Contains("00_15")){
                     inbound_projectile.damage *= 0.8m;
                 }
-                decimal late_damage_magnification = Calc_late_damage_magnification(skillTree,inbound_projectile.lifetime);
+                decimal late_damage_magnification = Calc_late_damage_magnification(profile.skillList,inbound_projectile.lifetime);
                 inbound_projectile.damage *= late_damage_magnification;
             }
             return inbound_projectile;
@@ -1442,41 +1442,41 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        private decimal Calc_additional_damage_magnification(SkillTree skillTree)
+        private decimal Calc_additional_damage_magnification(HashSet<string> skillList)
         {
             int num_unused_tiles = 0;
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEnull = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_Null");
             num_unused_tiles = IEnull.Count<Thing>();
-            if(skillTree.v08_05_legendary_as_unused_tile)
+            if(skillList.Contains("08_05"))
             {
                 IEnull = thing_1dim_layout.Where(thing => thing.IsLegendary == true);
                 num_unused_tiles += IEnull.Count<Thing>();
             }
-            if(skillTree.v09_04_guide_as_unused_tile)
+            if(skillList.Contains("09_04"))
             {
                 IEnull = thing_1dim_layout.Where(thing => thing.IsGuide == true);
                 num_unused_tiles += IEnull.Count<Thing>();
             }
             return 1m + 0.1m * num_unused_tiles;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //ProjectileStat inbound_projectileStat = null;
 
-            decimal additional_damage_magnification = Calc_additional_damage_magnification(skillTree);
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            decimal additional_damage_magnification = Calc_additional_damage_magnification(profile.skillList);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.average_damage *= additional_damage_magnification;
             inbound_projectileStat.max_damage *= additional_damage_magnification;
             inbound_projectileStat.min_damage *= additional_damage_magnification;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //Projectile inbound_projectile = null;
 
-            decimal additional_damage_magnification = Calc_additional_damage_magnification(skillTree);
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            decimal additional_damage_magnification = Calc_additional_damage_magnification(profile.skillList);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
                 inbound_projectile.damage *= additional_damage_magnification;
@@ -1493,11 +1493,11 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
             decimal magnification = 1m;
-            if (skillTree.v04_17_increase_thresholds)
+            if (profile.skillList.Contains("04_17"))
             {
                 if (inbound_projectileStat.speed is >= 0.3m and <= 1.2m)
                 {
@@ -1524,11 +1524,11 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.min_damage *= magnification;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
             decimal magnification = 1m;
-            if (skillTree.v04_17_increase_thresholds)
+            if (profile.skillList.Contains("04_17"))
             {
                 if (inbound_projectile.speed is >= 0.3m and <= 1.2m)
                 {
@@ -1574,18 +1574,18 @@ namespace MinerGunBuilderCalculator
             last_damage = 0m;
             count = 0;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat;
-            if (skillTree.v02_17_only_6_projectile)
+            if (profile.skillList.Contains("02_17"))
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
                 inbound_projectileStat.average_damage *= 12m;
                 inbound_projectileStat.max_damage *= 12m;
                 inbound_projectileStat.min_damage *= 12m;
                 inbound_projectileStat.magnification /= 6m;
             }
-            else if (skillTree.v02_19_more_damage)
+            else if (profile.skillList.Contains("02_19"))
             {
                 // Since the average value of projectile damage cannot be calculated by a mathematical formula,
                 // this program make a projectile 1000 times and calculate the average damage.
@@ -1597,7 +1597,7 @@ namespace MinerGunBuilderCalculator
                 int j = 0;
                 for (int i = 0; i < Count; i++)
                 {
-                    projectile = GetOutboundProjectile(shipParameter, profile, skillTree, this);
+                    projectile = GetOutboundProjectile(shipParameter, profile,  this);
                     if(projectile != null)
                     {
                         j += 1;
@@ -1610,7 +1610,7 @@ namespace MinerGunBuilderCalculator
                 inbound_projectileStat.average_damage = total_damage / j;
                 inbound_projectileStat.max_damage = max_damage;
                 inbound_projectileStat.min_damage = (decimal)min_damage;
-                inbound_projectileStat.magnification = projectile.magnification / (skillTree.v02_17_only_6_projectile ? 6m : 10m) ;
+                inbound_projectileStat.magnification = projectile.magnification / (profile.skillList.Contains("02_17") ? 6m : 10m) ;
                 inbound_projectileStat.speed = projectile.speed;
                 inbound_projectileStat.lifetime = projectile.lifetime;
                 inbound_projectileStat.Legendary_EnableGuideDamage = projectile.Legendary_EnableGuideDamage;
@@ -1618,7 +1618,7 @@ namespace MinerGunBuilderCalculator
             }
             else
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
                 inbound_projectileStat.average_damage *= 20m;
                 inbound_projectileStat.max_damage *= 20m;
                 inbound_projectileStat.min_damage *= 20m;
@@ -1626,13 +1626,13 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
             count += 1;
             if(inbound_projectile != null)
             {
-                if(skillTree.v02_19_more_damage)
+                if(profile.skillList.Contains("02_19"))
                 {
                     if(last_damage > inbound_projectile.damage)
                     {
@@ -1649,7 +1649,7 @@ namespace MinerGunBuilderCalculator
                     accumulation_damage += inbound_projectile.damage * 2m;
                 }
             }
-            if(count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
+            if(count >= (profile.skillList.Contains("02_17") ? 6 : 10))
             {
                 inbound_projectile.damage = accumulation_damage;
                 accumulation_damage = 0m;
@@ -1663,12 +1663,12 @@ namespace MinerGunBuilderCalculator
             /*
             Projectile inbound_projectile = null;
             count += 1;
-            if (count >= (skillTree.v02_17_only_6_projectile ? 6 : 10))
+            if (count >= (profile.SkillList.Contains("02_17") ? 6 : 10))
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
                 if (inbound_projectile != null)
                 {
-                    inbound_projectile.damage *= (skillTree.v02_17_only_6_projectile ? 12m : 20m);
+                    inbound_projectile.damage *= (profile.SkillList.Contains("02_17") ? 12m : 20m);
                 }
                 count = 0;
             }
@@ -1695,15 +1695,15 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.Legendary_EnableGuideDamage = true;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             inbound_projectile.Legendary_EnableGuideDamage = true;
 
             return inbound_projectile;
@@ -1717,10 +1717,10 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
             IsLegendary = true;
         }
-        private decimal SkillTree_Add5damage(SkillTree skillTree)
+        private decimal SkillTree_Add5damage(HashSet<string> skillList)
         {
             int step = 0;
-            if (skillTree.v00_07_add_5_damage)
+            if (skillList.Contains("00_07"))
             {
                 Thing now_thing = this;
                 while(true)
@@ -1738,25 +1738,25 @@ namespace MinerGunBuilderCalculator
             }
             return 5m * step;
         }
-        private static decimal SkillTree_Add30damage(SkillTree skillTree)
+        private static decimal SkillTree_Add30damage(HashSet<string> skillList)
         {
-            return skillTree.v01_08_add_30_damage ? 30m : 0m;
+            return skillList.Contains("01_08") ? 30m : 0m;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            decimal skillTree_Add5damage = SkillTree_Add5damage(skillTree);
-            decimal skillTree_Add30damage = SkillTree_Add30damage(skillTree);
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            decimal skillTree_Add5damage = SkillTree_Add5damage(profile.skillList);
+            decimal skillTree_Add30damage = SkillTree_Add30damage(profile.skillList);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.average_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
             inbound_projectileStat.max_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
             inbound_projectileStat.min_damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            decimal skillTree_Add5damage = SkillTree_Add5damage(skillTree);
-            decimal skillTree_Add30damage = SkillTree_Add30damage(skillTree);
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            decimal skillTree_Add5damage = SkillTree_Add5damage(profile.skillList);
+            decimal skillTree_Add30damage = SkillTree_Add30damage(profile.skillList);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             inbound_projectile.damage += 100m + skillTree_Add5damage + skillTree_Add30damage;
 
             return inbound_projectile;
@@ -1778,13 +1778,13 @@ namespace MinerGunBuilderCalculator
             return IEunusedEjection.Count<Thing>();
         }
         */
-        private decimal Calc_additional_damage(SkillTree skillTree)
+        private decimal Calc_additional_damage(HashSet<string> skillList)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             IEnumerable<Thing> IEunusedEjection = thing_1dim_layout.Where(thing => thing.GetType().Name == "Parts_02_Ejector").Where(thing => thing.Access_from_abs_top == null).Where(thing => thing.Access_from_abs_right == null).Where(thing => thing.Access_from_abs_down == null).Where(thing => thing.Access_from_abs_left == null);
             int unused_ejection = IEunusedEjection.Count<Thing>();
             decimal additional_damage =  unused_ejection * 10m;
-            if(skillTree.v07_18_more_damage)
+            if(skillList.Contains("07_18"))
             {
                 decimal magnification = unused_ejection / 2m;
                 if(magnification < 1m)
@@ -1798,23 +1798,23 @@ namespace MinerGunBuilderCalculator
             }
             return additional_damage;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //ProjectileStat inbound_projectileStat = null;
 
-            decimal additional_damage = Calc_additional_damage(skillTree);
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,skillTree, this);
+            decimal additional_damage = Calc_additional_damage(profile.skillList);
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             inbound_projectileStat.average_damage += additional_damage;
             inbound_projectileStat.max_damage += additional_damage;
             inbound_projectileStat.min_damage += additional_damage;
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile,SkillTree skillTree, Thing to_thing)
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //Projectile inbound_projectile = null;
 
-            decimal additional_damage = Calc_additional_damage(skillTree);
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,skillTree, this);
+            decimal additional_damage = Calc_additional_damage(profile.skillList);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             if (inbound_projectile != null)
             {
                 inbound_projectile.damage += additional_damage;
@@ -1843,10 +1843,10 @@ namespace MinerGunBuilderCalculator
             IsLegendary = true;
             IsLegendary = true;
         }
-        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, skillTree, this);
-            if (skillTree.v07_04_chance_more_clone)
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
+            if (profile.skillList.Contains("07_04"))
             {
                 inbound_projectileStat.magnification *= 2.2m;
             }
@@ -1856,14 +1856,14 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStat;
         }
-        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, SkillTree skillTree, Thing to_thing)
+        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             //Projectile inbound_projectile = null;
 
-            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, skillTree, this);
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
             if (inbound_projectile != null)
             {
-                if (skillTree.v07_04_chance_more_clone && rand.Next(0,100) < 20)
+                if (profile.skillList.Contains("07_04") && rand.Next(0,100) < 20)
                 {
                     inbound_projectile.magnification *= 3m;
                 }

@@ -34,8 +34,7 @@ namespace MinerGunBuilderCalculator
             Form_Ship form_ship = new();
             ShipParameter shipParamater = new();
             Profile profile = new();
-            SkillTree skillTree = new();
-            ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater, profile,skillTree, 14);
+            ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater, profile, 14);
             form_ship.shipLayoutManager = shipLayoutManager;
             form_ship.shipParamater = shipParamater;
             form_ship.profile = profile;
@@ -57,8 +56,7 @@ namespace MinerGunBuilderCalculator
                 form_ship.save_file_name = save_file_name;
                 ShipParameter shipParamater = save_data.shipParameter;
                 Profile profile = save_data.profile;
-                SkillTree skillTree = save_data.skillTree;
-                ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater,profile, skillTree,save_data.thing_layout);
+                ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater,profile, save_data.thing_layout);
                 form_ship.shipLayoutManager = shipLayoutManager;
                 form_ship.shipParamater = shipParamater;
                 form_ship.profile = profile;
@@ -96,7 +94,7 @@ namespace MinerGunBuilderCalculator
                 Form_Ship form_ship = Form_Ship.Current;
                 var shipLayoutManager = form_ship.GetShipLayoutManager();
                 
-                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.ship_parameter,shipLayoutManager.profile,shipLayoutManager.skillTree, false,form_ship.save_file_name);
+                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout,shipLayoutManager.ship_parameter,shipLayoutManager.profile, false,form_ship.save_file_name);
                 form_ship.save_file_name = save_file_name;
                 form_ship.Text = Path.GetFileName(save_file_name);
             }
@@ -113,7 +111,7 @@ namespace MinerGunBuilderCalculator
                 Form_Ship form_ship = Form_Ship.Current;
                 var shipLayoutManager = form_ship.GetShipLayoutManager();
 
-                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.ship_parameter,shipLayoutManager.profile,shipLayoutManager.skillTree, true);
+                var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.ship_parameter,shipLayoutManager.profile, true);
                 form_ship.save_file_name = save_file_name;
                 form_ship.Text = Path.GetFileName(save_file_name);
             }

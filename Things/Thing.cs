@@ -501,21 +501,21 @@ namespace MinerGunBuilderCalculator
             rand = new Random(0);
         }
 
-        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,SkillTree skillTree, Thing to_thing)
+        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile, skillTree, this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile,this);
             }
             return inbound_projectileStat;
         }
-        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile, SkillTree skillTree, Thing to_thing)
+        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile, skillTree, this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile,this);
             }
             return inbound_projectile;
         }

@@ -32,7 +32,6 @@ namespace MinerGunBuilderCalculator
         private IList<IShipLayoutChangeObserver> ship_layoutchange_observers = new List<IShipLayoutChangeObserver>();
         public ShipParameter ship_parameter;
         internal Profile profile;
-        internal SkillTree skillTree;
         private MouseHVoerEffect? mouse_hover_effect;
         const int panelsize = 39;
 
@@ -45,7 +44,7 @@ namespace MinerGunBuilderCalculator
         {
             foreach(var observer in ship_layoutchange_observers)
             {
-                observer.ShipLayoutChanged(thing_layout, ship_parameter,profile,skillTree,picturebox_layout);
+                observer.ShipLayoutChanged(thing_layout, ship_parameter,profile,picturebox_layout);
             }
         }
         public ShipLayoutManager()
@@ -57,19 +56,17 @@ namespace MinerGunBuilderCalculator
         /// </summary>
         /// <param name="_tab">TableLayoutPanel</param>
         /// <param name="_size">Ship size</param>
-        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile,SkillTree skillTree, int size=12)
+        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile,int size=12)
         {
             this.form_ship = form_ship;
             this.shipsize = size;
             this.ship_parameter = ship_parameter;
             this.profile = profile;
-            this.skillTree = skillTree;
-            this.skillTree.shipLayoutManager = this;
             CreateInitialThingLayout(); // set initial thing_layout
             CreatePictureBoxs();
         }
 
-        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile, SkillTree skillTree,Thing[,] thing_layout)
+        public ShipLayoutManager(Form_Ship form_ship, ShipParameter ship_parameter,Profile profile,Thing[,] thing_layout)
         {
             this.form_ship = form_ship;
 
@@ -77,8 +74,6 @@ namespace MinerGunBuilderCalculator
             shipsize = thing_layout.GetLength(0);
             this.ship_parameter = ship_parameter;
             this.profile = profile;
-            this.skillTree = skillTree;
-            this.skillTree.shipLayoutManager = this;
             CreatePictureBoxs();
         }
         private void CreateInitialThingLayout()
