@@ -1496,62 +1496,13 @@ namespace MinerGunBuilderCalculator
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
-            decimal magnification = 1m;
-            if (profile.skillList.Contains("04_17"))
-            {
-                if (inbound_projectileStat.speed is >= 0.3m and <= 1.2m)
-                {
-                    magnification = Math.Truncate(-10m / 3m * inbound_projectileStat.speed + 6m);
-                }
-                else if (inbound_projectileStat.speed < 0.3m)
-                {
-                    magnification = 5m;
-                }
-            }
-            else
-            {
-                if (inbound_projectileStat.speed is >= 0.2m and <= 1)
-                {
-                    magnification = Math.Truncate(-3.75m * inbound_projectileStat.speed + 5.75m);
-                }
-                else if (inbound_projectileStat.speed < 0.2m)
-                {
-                    magnification = 5m;
-                }
-            }
-            inbound_projectileStat.average_damage *= magnification;
-            inbound_projectileStat.max_damage *= magnification;
-            inbound_projectileStat.min_damage *= magnification;
+            inbound_projectileStat.slowdamage = true;
             return inbound_projectileStat;
         }
         public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
-            decimal magnification = 1m;
-            if (profile.skillList.Contains("04_17"))
-            {
-                if (inbound_projectile.speed is >= 0.3m and <= 1.2m)
-                {
-                    magnification = Math.Truncate(-10m / 3m * inbound_projectile.speed + 6m);
-                }
-                else if (inbound_projectile.speed < 0.3m)
-                {
-                    magnification = 5m;
-                }
-            }
-            else
-            {
-                if (inbound_projectile.speed is >= 0.2m and <= 1)
-                {
-                    magnification = Math.Truncate(-3.75m * inbound_projectile.speed + 5.75m);
-                }
-                else if (inbound_projectile.speed < 0.2m)
-                {
-                    magnification = 5m;
-                }
-            }
-            inbound_projectile.damage *= magnification;
-
+            inbound_projectile.slowdamage = true;
             return inbound_projectile;
         }
     }

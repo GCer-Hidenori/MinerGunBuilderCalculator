@@ -16,6 +16,7 @@ namespace MinerGunBuilderCalculator
         public decimal speed;
         public decimal lifetime;
         public decimal magnification;
+        public bool slowdamage = false;
 
         public bool Legendary_EnableGuideDamage = false;
 
