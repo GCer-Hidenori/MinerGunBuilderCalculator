@@ -47,39 +47,7 @@ namespace MinerGunBuilderCalculator
             IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector)).Where(thing => thing.IsEjecting == true);
             foreach (Parts_02_Ejector ejector in IEejector)
             {
-                List<ProjectileStat> inbound_projectileStats = new();
-                if (ejector.Access_from_abs_top != null)
-                {
-                    ProjectileStat projectileStat;
-                    if((projectileStat = ejector.Access_from_abs_top.GetOutboundProjectileStat(shipParameter, profile,  ejector)) != null)
-                    {
-                        inbound_projectileStats.Add(projectileStat);
-                    }
-                }
-                if (ejector.Access_from_abs_right != null)
-                {
-                    ProjectileStat projectileStat;
-                    if((projectileStat = ejector.Access_from_abs_right.GetOutboundProjectileStat(shipParameter, profile,  ejector)) != null)
-                    {
-                        inbound_projectileStats.Add(projectileStat);
-                    }
-                }
-                if (ejector.Access_from_abs_down != null)
-                {
-                    ProjectileStat projectileStat;
-                    if((projectileStat = ejector.Access_from_abs_down.GetOutboundProjectileStat(shipParameter, profile,  ejector)) != null)
-                    {
-                        inbound_projectileStats.Add(projectileStat);
-                    }
-                }
-                if (ejector.Access_from_abs_left != null)
-                {
-                    ProjectileStat projectileStat;
-                    if((projectileStat = ejector.Access_from_abs_left.GetOutboundProjectileStat(shipParameter, profile,  ejector)) != null)
-                    {
-                        inbound_projectileStats.Add(projectileStat);
-                    }
-                }
+                List<ProjectileStat> inbound_projectileStats = ejector.GetOutboundProjectileStatList(shipParameter,profile);
 
                 decimal? each_ejector_min_damage = null;
                 decimal each_ejector_average_damage = 0;
@@ -709,123 +677,23 @@ namespace MinerGunBuilderCalculator
         {
             int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
             List<decimal> ejector_damages = new();
-            Projectile projectile;
+            List<Projectile> projectileList;
             for (int k = 0; k < fireCount; k++)
             {
-                if (ejector.Access_from_abs_top != null)
+                projectileList = ejector.GetOutboundProjectileList(shipParameter,profile);
+                foreach(Projectile projectile in projectileList)
                 {
-                    projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,  ejector);
-                    if (projectile != null)
+                    if(projectile != null)
                     {
                         for (int j = 0; j < projectile.magnification; j++)
                         {
                             ejector_damages.Add(projectile.damage);
-                            //projectile = ejector.Access_from_abs_top.GetOutboundProjectile(shipParameter, profile,  ejector);
-                            //if (projectile != null) ejector_damages.Add(projectile.damage);
-                        }
-                    }
-                }
-                if (ejector.Access_from_abs_right != null)
-                {
-                    projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,  ejector);
-                    if (projectile != null)
-                    {
-                        for (int j = 0; j < projectile.magnification; j++)
-                        {
-                            ejector_damages.Add(projectile.damage);
-                            //projectile = ejector.Access_from_abs_right.GetOutboundProjectile(shipParameter, profile,  ejector);
-                            //if (projectile != null) ejector_damages.Add(projectile.damage);
-                        }
-                    }
-                }
-                if (ejector.Access_from_abs_down != null)
-                {
-                    projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,  ejector);
-                    if (projectile != null)
-                    {
-                        for (int j = 0; j < projectile.magnification; j++)
-                        {
-                            ejector_damages.Add(projectile.damage);
-                            //projectile = ejector.Access_from_abs_down.GetOutboundProjectile(shipParameter, profile,  ejector);
-                            //if (projectile != null) ejector_damages.Add(projectile.damage);
-                        }
-                    }
-                }
-                if (ejector.Access_from_abs_left != null)
-                {
-                    projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,  ejector);
-                    if (projectile != null)
-                    {
-                        for (int j = 0; j < projectile.magnification; j++)
-                        {
-                            ejector_damages.Add(projectile.damage);
-                            //projectile = ejector.Access_from_abs_left.GetOutboundProjectile(shipParameter, profile,  ejector);
-                            //if (projectile != null) ejector_damages.Add(projectile.damage);
                         }
                     }
                 }
             }
             return ejector_damages;
         }
-        /*
-        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,int fire_time_sec)
-        {
-            var results = new List<SimulationResult>();
-            var thing_1dim_layout = thing_layout.Cast<Thing>();
-            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector));
-            int ejector_number = 1;
-            List<decimal> all_ejector_damages = new();
-            SimulationResult ejector_result;
-            Statistics.Stats stats;
-            foreach (Parts_02_Ejector ejector in IEejector)
-            {
-                const int loop_number_for_accuracy = 10;
-                List<List<decimal>> loop_ejector_damages = new();
-                for(int i = 0;i < loop_number_for_accuracy; i++)
-                {
-                    loop_ejector_damages.Add(GetEjectorDamages(ejector, shipParameter, fire_time_sec));
-                }
-                List<decimal> ejector_damages = new();
-
-                for (int j = 0; j < loop_ejector_damages[0].Count; j++)
-                {
-                    decimal damage = 0;
-                    for (int i = 0; i < loop_number_for_accuracy; i++)
-                    {
-                        damage += loop_ejector_damages[i][j];
-                    }
-                    ejector_damages.Add(damage / loop_number_for_accuracy);
-                }
-
-                if (ejector_damages.Count > 0)
-                {
-                    stats = Statistics.Calculate(ejector_damages,fire_time_sec);
-                    ejector_result = new SimulationResult
-                    {
-                        ejector_name = ejector_number.ToString(),
-                        damages = ejector_damages,
-                        stats = stats
-                    };
-                    results.Add(ejector_result);
-                    ejector_number += 1;
-
-                    all_ejector_damages.AddRange(ejector_damages);
-                }
-            }
-            if (results.Count > 1)
-            {
-                stats = Statistics.Calculate(all_ejector_damages,fire_time_sec);
-                ejector_result = new SimulationResult
-                {
-                    ejector_name = "Total",
-                    damages = all_ejector_damages,
-                    stats = stats
-                };
-                results.Insert(0, ejector_result);
-            }
-            return results;
-        }
-        */
         private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,HashSet<string> skillList,int fire_time_sec)
         {
             var results = new List<SimulationResult>();
