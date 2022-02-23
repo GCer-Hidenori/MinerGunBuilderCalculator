@@ -121,30 +121,33 @@ namespace MinerGunBuilderCalculator
             }
             foreach (Projectile projectile in projectileList)
             {
-                decimal magnification = 1m;
-                if (profile.skillList.Contains("04_17"))
+                if (projectile.slowdamage)
                 {
-                    if (projectile.speed is >= 0.3m and <= 1.2m)
+                    decimal magnification = 1m;
+                    if (profile.skillList.Contains("04_17"))
                     {
-                        magnification = Math.Truncate(-10m / 3m * projectile.speed + 6m);
+                        if (projectile.speed is >= 0.3m and <= 1.2m)
+                        {
+                            magnification = Math.Truncate(-10m / 3m * projectile.speed + 6m);
+                        }
+                        else if (projectile.speed < 0.3m)
+                        {
+                            magnification = 5m;
+                        }
                     }
-                    else if (projectile.speed < 0.3m)
+                    else
                     {
-                        magnification = 5m;
+                        if (projectile.speed is >= 0.2m and <= 1)
+                        {
+                            magnification = Math.Truncate(-3.75m * projectile.speed + 5.75m);
+                        }
+                        else if (projectile.speed < 0.2m)
+                        {
+                            magnification = 5m;
+                        }
                     }
+                    projectile.damage *= magnification;
                 }
-                else
-                {
-                    if (projectile.speed is >= 0.2m and <= 1)
-                    {
-                        magnification = Math.Truncate(-3.75m * projectile.speed + 5.75m);
-                    }
-                    else if (projectile.speed < 0.2m)
-                    {
-                        magnification = 5m;
-                    }
-                }
-                projectile.damage *= magnification;
             }
             return projectileList;
         }
