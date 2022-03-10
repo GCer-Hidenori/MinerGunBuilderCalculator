@@ -81,6 +81,18 @@ namespace MinerGunBuilderCalculator
                     projectileStat.max_damage *= magnification;
                     projectileStat.min_damage *= magnification;
                 }
+                if(projectileStat.round_area_count > 0)
+                {
+                    projectileStat.average_damage *= 0.96m;
+                    projectileStat.max_damage *= 0.96m;
+                    projectileStat.min_damage *= 0.96m;
+                }
+                if(projectileStat.rectangle_area_count > 0)
+                {
+                    projectileStat.average_damage *= 0.96m;
+                    projectileStat.max_damage *= 0.96m;
+                    projectileStat.min_damage *= 0.96m;
+                }
             }
             return inbound_projectileStatList;
         }
@@ -147,6 +159,14 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     projectile.damage *= magnification;
+                }
+                if(projectile.round_area_count > 0)
+                {
+                    projectile.damage *= 0.96m;
+                }
+                if(projectile.rectangle_area_count > 0)
+                {
+                    projectile.damage *= 0.96m;
                 }
             }
             return projectileList;

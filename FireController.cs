@@ -39,6 +39,12 @@ namespace MinerGunBuilderCalculator
             decimal total_average_damage_per_sec = 0;
             decimal total_average_damage = 0;
             decimal total_max_damage = 0;
+
+            decimal? total_min_effective_damage = null;
+            decimal total_average_effective_damage_per_sec = 0;
+            decimal total_average_effective_damage = 0;
+            decimal total_max_effective_damage = 0;
+
             decimal total_max_speed = 0;
             decimal total_magnification = 0;
             decimal total_average_lifetime = 0;
@@ -51,57 +57,74 @@ namespace MinerGunBuilderCalculator
 
                 decimal? each_ejector_min_damage = null;
                 decimal each_ejector_average_damage = 0;
-                decimal each_ejector_average_lifetime = 0;
                 decimal each_ejector_max_damage = 0;
                 decimal each_ejector_average_damage_per_sec = 0;
+
+                decimal? each_ejector_min_effective_damage = null;
+                decimal each_ejector_average_effective_damage = 0;
+                decimal each_ejector_max_effective_damage = 0;
+                decimal each_ejector_average_effective_damage_per_sec = 0;
+
+                decimal each_ejector_average_lifetime = 0;
                 decimal each_ejector_magnification = 0;
 
                 decimal max_speed = 0;
-                //decimal projectile_num = 0;
+
+                int ejected_count = 0;
 
                 foreach (var projectileStats in inbound_projectileStats)
                 {
-                    //projectile_num++;
+                    ejected_count += 1;
                     each_ejector_magnification += projectileStats.magnification;
-
                     each_ejector_min_damage = (each_ejector_min_damage == null || each_ejector_min_damage > projectileStats.min_damage) ? projectileStats.min_damage : each_ejector_min_damage;
 
                     each_ejector_max_damage = each_ejector_max_damage < projectileStats.max_damage ? projectileStats.max_damage : each_ejector_max_damage;
                     each_ejector_average_damage += projectileStats.average_damage;
-                    each_ejector_average_lifetime += projectileStats.lifetime;
                     each_ejector_average_damage_per_sec += projectileStats.average_damage * projectileStats.magnification * shipParameter.fire_rate;
+                    each_ejector_average_lifetime += projectileStats.lifetime;
+
+
+                    each_ejector_min_effective_damage = (each_ejector_min_effective_damage == null || each_ejector_min_effective_damage > projectileStats.Calc_min_effective_damage()) ? projectileStats.Calc_min_effective_damage() : each_ejector_min_effective_damage;
+                    each_ejector_max_effective_damage = each_ejector_max_effective_damage < projectileStats.Calc_max_effective_damage() ? projectileStats.Calc_max_effective_damage() : each_ejector_max_effective_damage;
+                    each_ejector_average_effective_damage += projectileStats.Calc_average_effective_damage();
+                    each_ejector_average_effective_damage_per_sec += projectileStats.Calc_average_effective_damage() * projectileStats.magnification * shipParameter.fire_rate;
                     max_speed = max_speed < projectileStats.speed ? projectileStats.speed : max_speed;
                 }
-                if (inbound_projectileStats.Count > 0)
+                if (ejected_count > 0)
                 {
-                    each_ejector_average_damage /= inbound_projectileStats.Count;
-                    each_ejector_average_lifetime /= inbound_projectileStats.Count;
-                    //average_damage_per_sec = average_damage_per_sec; // / inbound_projectileStats.Count;
+                    each_ejector_average_damage /= ejected_count;
+                    each_ejector_average_lifetime /= ejected_count;
+
+                    each_ejector_average_effective_damage /= ejected_count;
                 }
 
                 total_max_damage = total_max_damage < each_ejector_max_damage ? each_ejector_max_damage : total_max_damage;
-                //total_max_damage += each_ejector_max_damage;
                 total_average_damage += each_ejector_average_damage;
-                total_average_lifetime += each_ejector_average_lifetime;
                 total_min_damage = (total_min_damage == null || total_min_damage > each_ejector_min_damage) ? each_ejector_min_damage : total_min_damage;
                 total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
                 total_average_damage_per_sec += each_ejector_average_damage_per_sec;
-                //total_projectile_num += projectile_num;
+
+                total_max_effective_damage = total_max_effective_damage < each_ejector_max_effective_damage ? each_ejector_max_effective_damage : total_max_effective_damage;
+                total_average_effective_damage += each_ejector_average_effective_damage;
+                total_min_effective_damage = (total_min_effective_damage == null || total_min_effective_damage > each_ejector_min_effective_damage) ? each_ejector_min_effective_damage : total_min_effective_damage;
+                total_max_speed = total_max_speed < max_speed ? max_speed : total_max_speed;
+                total_average_effective_damage_per_sec += each_ejector_average_effective_damage_per_sec;
+
+
+                total_average_lifetime += each_ejector_average_lifetime;
                 total_magnification += each_ejector_magnification;
 
-                //stringBuilder.AppendLine($"ejector {i} avg_damage/sec={each_ejector_average_damage_per_sec:#,0.00} max_damage={each_ejector_max_damage:#,0.00} min_damage={each_ejector_min_damage:#,0.00} max_speed={max_speed:#,0.00}");
-                //i += 1;
             }
             if (IEejector.Count<Thing>() > 0)
             {
                 total_average_damage /= IEejector.Count<Thing>();
+                total_average_effective_damage /= IEejector.Count<Thing>();
                 total_average_lifetime /= IEejector.Count<Thing>();
             }
-            //if(IEejector.Count<Thing>() > 0)total_average_damage /= IEejector.Count<Thing>(); //
 
-            form_ship.WriteCalculateResult(total_average_damage_per_sec, total_min_damage, total_average_damage, total_max_damage, total_max_speed, shipParameter.fire_rate * total_magnification,total_average_lifetime);
+            form_ship.WriteCalculateResult(average_damage_per_sec: total_average_damage_per_sec,min_damage: total_min_damage,average_damage: total_average_damage, max_damage: total_max_damage,projectile_speed: total_max_speed,projectile_eject_per_sec: shipParameter.fire_rate * total_magnification,projectile_lifetime: total_average_lifetime);
+            form_ship.WriteCalculateResult_EffectiveDamage(average_effective_damage_per_sec: total_average_effective_damage_per_sec,min_effective_damage: total_min_effective_damage,average_effective_damage: total_average_effective_damage, max_effective_damage: total_max_effective_damage);
 
-            //return stringBuilder.ToString();
         }
 
         private static void DrawEjectorEffect(Thing[,] thing_layout, PictureBox[,] picturebox_layout)
@@ -416,7 +439,7 @@ namespace MinerGunBuilderCalculator
         {
             ResetBeforeCalculateDamage(thing_layout);
 
-            // 1. Check the connection between thing and assign it to access_**** property.
+            // 1. Check the connection between thing and assign it to access_to_**** property.
             CreateProjectileFlow1(thing_layout);
 
             // 3. Delete connections that are not connected to Projectile generator.
@@ -426,10 +449,50 @@ namespace MinerGunBuilderCalculator
             CreateProjectileFlow2(thing_layout);
 
 
-
             // 4. Create backward projectile connection.
             CreateProjectileFlow4(thing_layout);
         }
+
+    /*
+        private static void CreateProjectileFlow2(Thing[,] thing_layout)
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEcrossing = thing_1dim_layout.Where(thing => thing.IsCrossing == true);
+            foreach (Thing crossing in IEcrossing)
+            {
+                if (crossing.Access_to_abs_top != null)
+                {
+                    if (!crossing.CanReachFromProjectileGenerator(thing_layout, from_direction: Thing.Direction.DOWN))
+                    {
+                        crossing.Access_to_rel_top = null;
+                    }
+                }
+                else if (crossing.Access_to_abs_right != null)
+                {
+                    if (!crossing.CanReachFromProjectileGenerator(thing_layout, from_direction: Thing.Direction.LEFT))
+                    {
+                        crossing.Access_to_abs_right = null;
+                    }
+                }
+                else if (crossing.Access_to_abs_down != null)
+                {
+                    if (!crossing.CanReachFromProjectileGenerator(thing_layout, from_direction: Thing.Direction.TOP))
+                    {
+                        crossing.Access_to_abs_down = null;
+                    }
+                }
+                else if (crossing.Access_to_abs_left != null)
+                {
+                    if (!crossing.CanReachFromProjectileGenerator(thing_layout, from_direction: Thing.Direction.RIGHT))
+                    {
+                        crossing.Access_to_abs_left = null;
+                    }
+                }
+
+            }
+        }
+        */
+
         private static void CreateProjectileFlow2(Thing[,] thing_layout)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
@@ -444,38 +507,47 @@ namespace MinerGunBuilderCalculator
                         for (var y = 0; y < thing_layout.GetLength(0); y++)
                         {
                             var thing = thing_layout[x, y];
-                            switch (crossing.direction)
+                            switch (thing)
                             {
-                                case Thing.Direction.TOP:
-                                    if (thing.Access_to_abs_top == crossing)
-                                    {
-                                        isfound = true;
-                                        break;
-                                    }
-                                    break;
-                                case Thing.Direction.RIGHT:
-                                    if (thing.Access_to_abs_right == crossing)
-                                    {
-                                        isfound = true;
-                                        break;
-                                    }
-                                    break;
-                                case Thing.Direction.DOWN:
-                                    if (thing.Access_to_abs_down == crossing)
-                                    {
-                                        isfound = true;
-                                        break;
-                                    }
-                                    break;
-                                case Thing.Direction.LEFT:
-                                    if (thing.Access_to_abs_left == crossing)
-                                    {
-                                        isfound = true;
-                                        break;
-                                    }
+                                case Parts_01_Wall:
+                                case Parts_Null:
                                     break;
                                 default:
-                                    throw new NotImplementedException();
+                                    if (crossing == thing) continue;
+                                    switch (crossing.direction)
+                                    {
+                                        case Thing.Direction.TOP:
+                                            if (thing.Access_to_abs_top == crossing)
+                                            {
+                                                isfound = true;
+                                                break;
+                                            }
+                                            break;
+                                        case Thing.Direction.RIGHT:
+                                            if (thing.Access_to_abs_right == crossing)
+                                            {
+                                                isfound = true;
+                                                break;
+                                            }
+                                            break;
+                                        case Thing.Direction.DOWN:
+                                            if (thing.Access_to_abs_down == crossing)
+                                            {
+                                                isfound = true;
+                                                break;
+                                            }
+                                            break;
+                                        case Thing.Direction.LEFT:
+                                            if (thing.Access_to_abs_left == crossing)
+                                            {
+                                                isfound = true;
+                                                break;
+                                            }
+                                            break;
+                                        default:
+                                            throw new NotImplementedException();
+                                    }
+                                    break;
                             }
 
                             /*
@@ -669,13 +741,36 @@ namespace MinerGunBuilderCalculator
             formGraph.ClearGraphs();
             foreach(SimulationResult each_result in results)
             {
-                formGraph.AddHistogram(each_result.ejector_name, each_result.damages,fire_time_sec,each_result.stats);
+                formGraph.AddHistogram(each_result.ejector_name, each_result.projectile_damages,each_result.projectile_effective_damges,fire_time_sec,each_result.stats_projectile_damage,each_result.stats_projectile_effective_damage);
             }
 
         }
-        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec)
+        private List<Projectile> GetProjectileListOfPassEjector (Parts_02_Ejector ejector, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec)
         {
             int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
+            List<Projectile> projectileListOfPassEjector = new();
+            List<Projectile> projectileList;
+            for (int k = 0; k < fireCount; k++)
+            {
+                projectileList = ejector.GetOutboundProjectileList(shipParameter,profile);
+                foreach(Projectile projectile in projectileList)
+                {
+                    if(projectile != null)
+                    {
+                        for (int j = 0; j < projectile.magnification; j++)
+                        {
+                            projectileListOfPassEjector.Add(projectile);
+                        }
+                    }
+                }
+            }
+            return projectileListOfPassEjector;
+        }
+        /*
+        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec,out decimal eject_count)
+        {
+            int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
+            eject_count = 0;
             List<decimal> ejector_damages = new();
             List<Projectile> projectileList;
             for (int k = 0; k < fireCount; k++)
@@ -687,14 +782,91 @@ namespace MinerGunBuilderCalculator
                     {
                         for (int j = 0; j < projectile.magnification; j++)
                         {
-                            ejector_damages.Add(projectile.damage);
+                            eject_count += 1;
+                            for (int pierce = 0; pierce < projectile.pierce_count + 1; pierce++)
+                            {
+                                ejector_damages.Add(projectile.damage);
+                            }
                         }
                     }
                 }
             }
             return ejector_damages;
         }
-        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter,HashSet<string> skillList,int fire_time_sec)
+        */
+        private (List<decimal> projectile_damages, List<decimal> projectile_effective_damges) GetProjectilesDamages(List<Projectile> list_projectile)
+        {
+            List<decimal> projectile_damages = new();            //Not take into account pierce,area damage
+            List<decimal> projectile_effective_damges = new();   //Take into account pierce,area damage
+            foreach(Projectile projectile in list_projectile)
+            {
+                projectile_damages.Add(projectile.damage);
+                projectile_effective_damges.Add(projectile.Calc_effective_damage());
+            }
+            return (projectile_damages,projectile_effective_damges);
+        }
+        private List<SimulationResult> DamageSimulate(Thing[,] thing_layout, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec)
+        {
+            var results = new List<SimulationResult>();
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            IEnumerable<Thing> IEejector = thing_1dim_layout.Where(thing => thing.GetType() == typeof(Parts_02_Ejector)).Where(thing => thing.IsEjecting == true);
+            int ejector_number = 1;
+            List<decimal> all_ejector_damages = new();
+            List<decimal> all_ejector_effective_damages = new();
+            SimulationResult ejector_result;
+            Statistics.Stats stats_projectile_damage;
+            Statistics.Stats stats_projectile_effective_damage;
+
+            foreach (Parts_02_Ejector ejector in IEejector)
+            {
+                List<Projectile> projectile_list = GetProjectileListOfPassEjector(ejector, shipParameter, skillList, fire_time_sec);
+                var ejector_damages = GetProjectilesDamages(projectile_list);
+
+                stats_projectile_damage = Statistics.Calculate(ejector_damages.projectile_damages,fire_time_sec);
+                stats_projectile_effective_damage = Statistics.Calculate(ejector_damages.projectile_effective_damges,fire_time_sec);
+
+                int eject_count = ejector_damages.projectile_damages.Count;
+
+                ejector_result = new SimulationResult
+                {
+                    ejector_name = ejector_number.ToString(),
+                    projectile_damages = ejector_damages.projectile_damages,
+                    projectile_effective_damges = ejector_damages.projectile_effective_damges,
+                    stats_projectile_damage = stats_projectile_damage,
+                    stats_projectile_effective_damage = stats_projectile_effective_damage,
+                    ejected_count = eject_count,
+                    ejected_count_per_sec = new decimal(eject_count) / fire_time_sec
+                };
+                results.Add(ejector_result);
+                ejector_number += 1;
+                all_ejector_damages.AddRange(ejector_damages.projectile_damages);
+                all_ejector_effective_damages.AddRange(ejector_damages.projectile_effective_damges);
+            }
+            if (results.Count > 1)
+            {
+                stats_projectile_damage = Statistics.Calculate(all_ejector_damages, fire_time_sec);
+                stats_projectile_effective_damage = Statistics.Calculate(all_ejector_effective_damages, fire_time_sec);
+                int eject_count = all_ejector_damages.Count;
+                ejector_result = new SimulationResult
+                {
+                    ejector_name = "Total",
+                    projectile_damages = all_ejector_damages,
+                    projectile_effective_damges = all_ejector_effective_damages,
+                    stats_projectile_damage = stats_projectile_damage,
+                    stats_projectile_effective_damage = stats_projectile_effective_damage,
+                    ejected_count = eject_count,
+                    ejected_count_per_sec = new decimal(eject_count) / fire_time_sec
+                };
+                results.Insert(0, ejector_result);
+            }
+            return results;
+
+
+        }
+
+        //ŒÃ‚¢
+        /*
+        private List<SimulationResult> DamageSimulate_old(Thing[,] thing_layout, ShipParameter shipParameter,HashSet<string> skillList,int fire_time_sec)
         {
             var results = new List<SimulationResult>();
             var thing_1dim_layout = thing_layout.Cast<Thing>();
@@ -703,13 +875,15 @@ namespace MinerGunBuilderCalculator
             List<decimal> all_ejector_damages = new();
             SimulationResult ejector_result;
             Statistics.Stats stats;
+
+            decimal eject_count = 0;
             foreach (Parts_02_Ejector ejector in IEejector)
             {
-                List<decimal> ejector_damages = GetEjectorDamages(ejector, shipParameter, skillList,fire_time_sec);
+                List<decimal> ejector_damages = GetEjectorDamages(ejector, shipParameter, skillList,fire_time_sec,out eject_count);
 
                 if (ejector_damages.Count > 0)
                 {
-                    stats = Statistics.Calculate(ejector_damages,fire_time_sec);
+                    stats = Statistics.Calculate(ejector_damages,fire_time_sec,eject_count);
                     ejector_result = new SimulationResult
                     {
                         ejector_name = ejector_number.ToString(),
@@ -724,7 +898,7 @@ namespace MinerGunBuilderCalculator
             }
             if (results.Count > 1)
             {
-                stats = Statistics.Calculate(all_ejector_damages,fire_time_sec);
+                stats = Statistics.Calculate(all_ejector_damages,fire_time_sec, eject_count);
                 ejector_result = new SimulationResult
                 {
                     ejector_name = "Total",
@@ -735,5 +909,6 @@ namespace MinerGunBuilderCalculator
             }
             return results;
         }
+        */
     }
 }

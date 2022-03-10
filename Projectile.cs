@@ -14,6 +14,9 @@ namespace MinerGunBuilderCalculator
         public decimal speed;
         public decimal lifetime;
         public bool slowdamage = false;
+        public int round_area_count = 0;
+        public int rectangle_area_count = 0;
+        public int pierce_count = 0;
 
         public bool Legendary_EnableGuideDamage = false;
         public Projectile()
@@ -25,14 +28,41 @@ namespace MinerGunBuilderCalculator
             var projectile = new Projectile
             {
                 damage = damage,
+                magnification = magnification,
                 speed = speed,
                 lifetime = lifetime,
-                Legendary_EnableGuideDamage = Legendary_EnableGuideDamage,
-                magnification = magnification
+                slowdamage = slowdamage,
+                round_area_count = round_area_count,
+                rectangle_area_count = rectangle_area_count,
+                pierce_count = pierce_count,
+                Legendary_EnableGuideDamage = Legendary_EnableGuideDamage
             };
             projectile.self_and_ancestors.AddRange(self_and_ancestors);
 
             return projectile;
+        }
+        public decimal Calc_effective_damage()
+        {
+            decimal effective_damage = 0m;
+            for(int pierce = 0;pierce < pierce_count + 1;pierce++)
+            {
+	            if (round_area_count != 0 || rectangle_area_count != 0)
+	            {
+	                if (round_area_count > 0)
+	                {
+	                    effective_damage += damage * Statistics.Calc_round_area(round_area_count,pierce);
+	                }
+	                if (rectangle_area_count > 0)
+	                {
+	                    effective_damage += damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce);
+	                }
+	            }
+	            else
+	            {
+	                effective_damage += damage;
+	            }
+            }
+            return effective_damage;
         }
     }
 }

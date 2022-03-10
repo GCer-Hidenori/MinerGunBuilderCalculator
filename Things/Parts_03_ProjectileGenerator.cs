@@ -44,5 +44,6 @@ namespace MinerGunBuilderCalculator
             projectile.lifetime = shipParameter.projectile_lifetime;
             return projectile;
         }
+
     }
 }

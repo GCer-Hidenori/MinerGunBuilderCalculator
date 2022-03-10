@@ -603,6 +603,106 @@ namespace MinerGunBuilderCalculator
                 return true;
             }
         }
+        public bool CanReachFromProjectileGenerator(Thing[,] thing_layout, Direction? from_direction=null)
+        {
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            List<Thing> list_thing;
+            Thing thing;
+            switch (from_direction)
+            {
+                case Direction.DOWN:
 
+                    list_thing = thing_1dim_layout.Where(thing => thing.Access_to_abs_top == this).ToList();
+                    if (list_thing.Count > 0)
+                    {
+                        thing = list_thing[0];
+                        if (thing is Parts_03_ProjectileGenerator)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return thing.CanReachFromProjectileGenerator(thing_layout);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case Direction.LEFT:
+                    list_thing = thing_1dim_layout.Where(thing => thing.Access_to_abs_right == this).ToList();
+                    if (list_thing.Count > 0)
+                    {
+                        thing = list_thing[0];
+                        if (thing is Parts_03_ProjectileGenerator)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return thing.CanReachFromProjectileGenerator(thing_layout);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case Direction.TOP:
+                    list_thing = thing_1dim_layout.Where(thing => thing.Access_to_abs_down == this).ToList();
+                    if (list_thing.Count > 0)
+                    {
+                        thing = list_thing[0];
+                        if (thing is Parts_03_ProjectileGenerator)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return thing.CanReachFromProjectileGenerator(thing_layout);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                case Direction.RIGHT:
+                    list_thing = thing_1dim_layout.Where(thing => thing.Access_to_abs_left == this).ToList();
+                    if (list_thing.Count > 0)
+                    {
+                        thing = list_thing[0];
+                        if (thing is Parts_03_ProjectileGenerator)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return thing.CanReachFromProjectileGenerator(thing_layout);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                default:
+                    list_thing = thing_1dim_layout.Where(thing => thing.Access_to_abs_top == thing || thing.Access_to_abs_right == thing || thing.Access_to_abs_down == thing || thing.Access_to_abs_left == thing).ToList();
+                    if (list_thing.Count > 0)
+                    {
+                        thing = list_thing[0];
+                        if (thing is Parts_03_ProjectileGenerator)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return thing.CanReachFromProjectileGenerator(thing_layout);
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+            }
+        }
     }
 }

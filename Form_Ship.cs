@@ -46,6 +46,14 @@ namespace MinerGunBuilderCalculator
             Label_projectile_ejected_per_sec.Text = string.Format("{0:#,0.00}", projectile_eject_per_sec);
             Label_Projectile_Lifetime.Text = string.Format("{0:#,0.00}", projectile_lifetime);
         }
+        public void WriteCalculateResult_EffectiveDamage(decimal average_effective_damage_per_sec, decimal? min_effective_damage, decimal average_effective_damage, decimal max_effective_damage)
+        {
+            Label_average_effective_damage.Text = String.Format("{0:#,0.00}", Decimal.Round(average_effective_damage, 2, MidpointRounding.AwayFromZero));
+            Label_average_effective_damage_per_sec.Text = String.Format("{0:#,0.00}", Decimal.Round(average_effective_damage_per_sec, 2, MidpointRounding.AwayFromZero));
+            Label_highest_projectile_effective_damage.Text = String.Format("{0:#,0.00}", max_effective_damage);
+            Label_lowest_projectile_effective_damage.Text = String.Format("{0:#,0.00}", min_effective_damage ?? 0);
+        }
+
 
         public void AddPictureBox(PictureBox pb)
         {

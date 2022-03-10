@@ -1002,6 +1002,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.pierce_count += 1;
+            return inbound_projectileStat;
+        }
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            if (inbound_projectile != null)
+            {
+                inbound_projectile.pierce_count += 1;
+            }
+            return inbound_projectile;
+        }
     }
     class Item_027_Round_area : Item
     {
@@ -1010,6 +1025,21 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
         }
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.round_area_count += 1;
+            return inbound_projectileStat;
+        }
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            if (inbound_projectile != null)
+            {
+                inbound_projectile.round_area_count += 1;
+            }
+            return inbound_projectile;
+        }
     }
     class Item_028_Rectangle_area : Item
     {
@@ -1017,6 +1047,21 @@ namespace MinerGunBuilderCalculator
         {
             IsAccessFromDOWN = true;
             IsAccessToTOP = true;
+        }
+       public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            ProjectileStat inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
+            inbound_projectileStat.rectangle_area_count += 1;
+            return inbound_projectileStat;
+        }
+       public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
+        {
+            Projectile inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
+            if (inbound_projectile != null)
+            {
+                inbound_projectile.rectangle_area_count += 1;
+            }
+            return inbound_projectile;
         }
     }
     class Item_029_Attraction : Item
