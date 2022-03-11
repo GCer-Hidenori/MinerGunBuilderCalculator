@@ -421,6 +421,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Area is tall instead of wide(The result of the damage calculation does not change). に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _09_00 {
+            get {
+                return ResourceManager.GetString("09_00", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Projectile direction guides count as unused tile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _09_04 {

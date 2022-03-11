@@ -69,6 +69,10 @@ namespace MinerGunBuilderCalculator
                 width = 1.5m * rectangle_area_count + 1.9m;
                 height = 0.43m * rectangle_area_count + 0.5m;
             }
+            if(skillList.Contains("09_00"))
+            {
+                (width,height) = (height,width);
+            }
             if (height / 2m >= pierce)
             {
                 return (height / 2m + pierce) * width;

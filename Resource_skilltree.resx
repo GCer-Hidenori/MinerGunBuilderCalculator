@@ -237,6 +237,9 @@
   <data name="08_17" xml:space="preserve">
     <value>Adds additional 5 damage related to highest cleared world.</value>
   </data>
+  <data name="09_00" xml:space="preserve">
+    <value>Area is tall instead of wide(The result of the damage calculation does not change).</value>
+  </data>
   <data name="09_04" xml:space="preserve">
     <value>Projectile direction guides count as unused tile.</value>
   </data>
