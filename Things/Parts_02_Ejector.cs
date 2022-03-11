@@ -96,11 +96,20 @@ namespace MinerGunBuilderCalculator
                         projectileStat.min_damage *= 0.96m;
                     }
                 }
-                if(projectileStat.rectangle_area_count > 0)
+                if (projectileStat.rectangle_area_count > 0)
                 {
-                    projectileStat.average_damage *= 0.96m;
-                    projectileStat.max_damage *= 0.96m;
-                    projectileStat.min_damage *= 0.96m;
+                    if (profile.skillList.Contains("07_02"))
+                    {
+                        projectileStat.average_damage *= 0.98m;
+                        projectileStat.max_damage *= 0.98m;
+                        projectileStat.min_damage *= 0.98m;
+                    }
+                    else
+                    {
+                        projectileStat.average_damage *= 0.96m;
+                        projectileStat.max_damage *= 0.96m;
+                        projectileStat.min_damage *= 0.96m;
+                    }
                 }
             }
             return inbound_projectileStatList;
@@ -169,7 +178,7 @@ namespace MinerGunBuilderCalculator
                     }
                     projectile.damage *= magnification;
                 }
-                if(projectile.round_area_count > 0)
+                if (projectile.round_area_count > 0)
                 {
                     if (profile.skillList.Contains("06_01"))
                     {
@@ -180,9 +189,16 @@ namespace MinerGunBuilderCalculator
                         projectile.damage *= 0.96m;
                     }
                 }
-                if(projectile.rectangle_area_count > 0)
+                if (projectile.rectangle_area_count > 0)
                 {
-                    projectile.damage *= 0.96m;
+                    if (profile.skillList.Contains("07_02"))
+                    {
+                        projectile.damage *= 0.98m;
+                    }
+                    else
+                    {
+                        projectile.damage *= 0.96m;
+                    }
                 }
             }
             return projectileList;
