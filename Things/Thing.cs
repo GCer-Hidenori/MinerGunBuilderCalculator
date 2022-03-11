@@ -63,7 +63,6 @@ namespace MinerGunBuilderCalculator
 
         public Direction direction = Direction.TOP;
 
-        //debug
         private int dx,dy;
         public int DX
         {
@@ -704,5 +703,322 @@ namespace MinerGunBuilderCalculator
 
             }
         }
+        protected static Thing Get_access_top_thing(Thing[,] thing_layout, int from_x, int from_y)
+        {
+            if (from_y > 0)
+            {
+                if (thing_layout[from_x, from_y - 1].GetType() == typeof(Parts_Null))
+                {
+                    return Get_access_top_thing(thing_layout, from_x, from_y - 1);
+                }
+                else
+                {
+                    var obj = thing_layout[from_x, from_y - 1];
+                    switch (obj.direction)
+                    {
+                        case Thing.Direction.TOP:
+                            if (obj.IsAccessFromDOWN) return obj;
+                            break;
+                        case Thing.Direction.RIGHT:
+                            if (obj.IsAccessFromRIGHT) return obj;
+                            break;
+                        case Thing.Direction.DOWN:
+                            if (obj.IsAccessFromTOP) return obj;
+                            break;
+                        case Thing.Direction.LEFT:
+                            if (obj.IsAccessFromLEFT) return obj;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        protected static Thing Get_access_right_thing(Thing[,] thing_layout, int from_x, int from_y)
+        {
+            if (from_x < thing_layout.GetLength(0) - 1)
+            {
+                if (thing_layout[from_x + 1, from_y].GetType() == typeof(Parts_Null))
+                {
+                    return Get_access_right_thing(thing_layout, from_x + 1, from_y);
+                }
+                else
+                {
+                    var obj = thing_layout[from_x + 1, from_y];
+                    switch (obj.direction)
+                    {
+                        case Thing.Direction.TOP:
+                            if (obj.IsAccessFromLEFT) return obj;
+                            break;
+                        case Thing.Direction.RIGHT:
+                            if (obj.IsAccessFromDOWN) return obj;
+                            break;
+                        case Thing.Direction.DOWN:
+                            if (obj.IsAccessFromRIGHT) return obj;
+                            break;
+                        case Thing.Direction.LEFT:
+                            if (obj.IsAccessFromTOP) return obj;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        protected static Thing Get_access_left_thing(Thing[,] thing_layout, int from_x, int from_y)
+        {
+            if (from_x > 0)
+            {
+                if (thing_layout[from_x - 1, from_y].GetType() == typeof(Parts_Null))
+                {
+                    return Get_access_left_thing(thing_layout, from_x - 1, from_y);
+                }
+                else
+                {
+                    var obj = thing_layout[from_x - 1, from_y];
+                    switch (obj.direction)
+                    {
+                        case Thing.Direction.TOP:
+                            if (obj.IsAccessFromRIGHT) return obj;
+                            break;
+                        case Thing.Direction.RIGHT:
+                            if (obj.IsAccessFromTOP) return obj;
+                            break;
+                        case Thing.Direction.DOWN:
+                            if (obj.IsAccessFromLEFT) return obj;
+                            break;
+                        case Thing.Direction.LEFT:
+                            if (obj.IsAccessFromDOWN) return obj;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        protected static Thing Get_access_down_thing(Thing[,] thing_layout, int from_x, int from_y)
+        {
+            if (from_y < thing_layout.GetLength(1) - 1)
+            {
+                if (thing_layout[from_x, from_y + 1].GetType() == typeof(Parts_Null))
+                {
+                    return Get_access_down_thing(thing_layout, from_x, from_y + 1);
+                }
+                else
+                {
+                    var obj = thing_layout[from_x, from_y + 1];
+                    switch (obj.direction)
+                    {
+                        case Thing.Direction.TOP:
+                            if (obj.IsAccessFromTOP) return obj;
+                            break;
+                        case Thing.Direction.RIGHT:
+                            if (obj.IsAccessFromLEFT) return obj;
+                            break;
+                        case Thing.Direction.DOWN:
+                            if (obj.IsAccessFromDOWN) return obj;
+                            break;
+                        case Thing.Direction.LEFT:
+                            if (obj.IsAccessFromRIGHT) return obj;
+                            break;
+                        default:
+                            throw new NotImplementedException();
+                    }
+                    return null;
+                }
+            }
+            else
+            {
+                return null;
+            }
+        }
+        public virtual void CreateProjectileFlow(Thing[,] thing_layout, Thing fromThing = null, Direction? from_direction = null)
+        {
+            switch (from_direction)
+            {
+                case Direction.DOWN:
+                    Access_from_abs_down = fromThing;
+                    break;
+                case Direction.LEFT:
+                    Access_from_abs_left = fromThing;
+                    break;
+                case Direction.TOP:
+                    Access_from_abs_top = fromThing;
+                    break;
+                case Direction.RIGHT:
+                    Access_from_abs_right = fromThing;
+                    break;
+            }
+
+            Thing access_to;
+            if (IsAccessToTOP)
+            {
+                switch (direction)
+                {
+                    case Thing.Direction.TOP:
+                        access_to = Get_access_top_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_top = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Direction.DOWN);
+                        }
+                        break;
+                    case Thing.Direction.RIGHT:
+                        access_to = Get_access_right_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_right = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Direction.LEFT);
+                        }
+                        break;
+                    case Thing.Direction.DOWN:
+                        access_to = Get_access_down_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_down = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Direction.TOP);
+                        }
+                        break;
+                    case Thing.Direction.LEFT:
+                        access_to = Get_access_left_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_left = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Direction.RIGHT);
+                        }
+                        break;
+                }
+            }
+            if (IsAccessToRIGHT)
+            {
+                switch (direction)
+                {
+                    case Thing.Direction.TOP:
+                        access_to = Get_access_right_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_right = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.LEFT);
+                        }
+                        break;
+                    case Thing.Direction.RIGHT:
+                        access_to = Get_access_down_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_down = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.TOP);
+                        }
+                        break;
+                    case Thing.Direction.DOWN:
+                        access_to = Get_access_left_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_left = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                        }
+                        break;
+                    case Thing.Direction.LEFT:
+                        access_to = Get_access_top_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_top = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                        }
+                        break;
+                }
+            }
+            if (IsAccessToDOWN)
+            {
+                switch (direction)
+                {
+                    case Thing.Direction.TOP:
+                        access_to = Get_access_down_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_down = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.TOP);
+                        }
+                        break;
+                    case Thing.Direction.RIGHT:
+                        access_to = Get_access_left_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_left = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                        }
+                        break;
+                    case Thing.Direction.DOWN:
+                        access_to = Get_access_top_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_top = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                        }
+                        break;
+                    case Thing.Direction.LEFT:
+                        access_to = Get_access_right_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_right = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.LEFT);
+                        }
+                        break;
+                }
+            }
+            if (IsAccessToLEFT)
+            {
+                switch (direction)
+                {
+                    case Thing.Direction.TOP:
+                        access_to = Get_access_left_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_left = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                        }
+                        break;
+                    case Thing.Direction.RIGHT:
+                        access_to = Get_access_top_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_top = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                        }
+                        break;
+                    case Thing.Direction.DOWN:
+                        access_to = Get_access_right_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_right = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.LEFT);
+                        }
+                        break;
+                    case Thing.Direction.LEFT:
+                        access_to = Get_access_down_thing(thing_layout, DX, DY);
+                        if (access_to != null)
+                        {
+                            Access_to_abs_down = access_to;
+                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.TOP);
+                        }
+                        break;
+                }
+            }
+        }
+
     }
 }

@@ -101,7 +101,7 @@ namespace MinerGunBuilderCalculator
             List<Projectile> projectileList = new();
             if (Access_from_rel_top != null)
             {
-                Projectile projectile = new();
+                Projectile projectile;
                 if ((projectile = Access_from_rel_top.GetOutboundProjectile(shipParameter, profile, this)) != null)
                 {
                     projectileList.Add(projectile);
@@ -109,7 +109,7 @@ namespace MinerGunBuilderCalculator
             }
             if (Access_from_rel_right != null)
             {
-                Projectile projectile = new();
+                Projectile projectile;
                 if ((projectile = Access_from_rel_right.GetOutboundProjectile(shipParameter, profile, this)) != null)
                 {
                     projectileList.Add(projectile);
@@ -117,7 +117,7 @@ namespace MinerGunBuilderCalculator
             }
             if (Access_from_rel_down != null)
             {
-                Projectile projectile = new();
+                Projectile projectile;
                 if ((projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this)) != null)
                 {
                     projectileList.Add(projectile);
@@ -125,7 +125,7 @@ namespace MinerGunBuilderCalculator
             }
             if (Access_from_rel_left != null)
             {
-                Projectile projectile = new();
+                Projectile projectile;
                 if ((projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile, this)) != null)
                 {
                     projectileList.Add(projectile);

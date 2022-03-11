@@ -271,150 +271,6 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-        private static Thing Get_access_right_thing(Thing[,] thing_layout, int from_x, int from_y)
-        {
-            if (from_x < thing_layout.GetLength(0) - 1)
-            {
-                if (thing_layout[from_x + 1, from_y].GetType() == typeof(Parts_Null))
-                {
-                    return Get_access_right_thing(thing_layout, from_x + 1, from_y);
-                }
-                else
-                {
-                    var obj = thing_layout[from_x + 1, from_y];
-                    switch (obj.direction)
-                    {
-                        case Thing.Direction.TOP:
-                            if (obj.IsAccessFromLEFT) return obj;
-                            break;
-                        case Thing.Direction.RIGHT:
-                            if (obj.IsAccessFromDOWN) return obj;
-                            break;
-                        case Thing.Direction.DOWN:
-                            if (obj.IsAccessFromRIGHT) return obj;
-                            break;
-                        case Thing.Direction.LEFT:
-                            if (obj.IsAccessFromTOP) return obj;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        private static Thing Get_access_left_thing(Thing[,] thing_layout, int from_x, int from_y)
-        {
-            if (from_x > 0)
-            {
-                if (thing_layout[from_x - 1, from_y].GetType() == typeof(Parts_Null))
-                {
-                    return Get_access_left_thing(thing_layout, from_x - 1, from_y);
-                }
-                else
-                {
-                    var obj = thing_layout[from_x - 1, from_y];
-                    switch (obj.direction)
-                    {
-                        case Thing.Direction.TOP:
-                            if (obj.IsAccessFromRIGHT) return obj;
-                            break;
-                        case Thing.Direction.RIGHT:
-                            if (obj.IsAccessFromTOP) return obj;
-                            break;
-                        case Thing.Direction.DOWN:
-                            if (obj.IsAccessFromLEFT) return obj;
-                            break;
-                        case Thing.Direction.LEFT:
-                            if (obj.IsAccessFromDOWN) return obj;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        private static Thing Get_access_top_thing(Thing[,] thing_layout, int from_x, int from_y)
-        {
-            if (from_y > 0)
-            {
-                if (thing_layout[from_x, from_y - 1].GetType() == typeof(Parts_Null))
-                {
-                    return Get_access_top_thing(thing_layout, from_x, from_y - 1);
-                }
-                else
-                {
-                    var obj = thing_layout[from_x, from_y - 1];
-                    switch (obj.direction)
-                    {
-                        case Thing.Direction.TOP:
-                            if (obj.IsAccessFromDOWN) return obj;
-                            break;
-                        case Thing.Direction.RIGHT:
-                            if (obj.IsAccessFromRIGHT) return obj;
-                            break;
-                        case Thing.Direction.DOWN:
-                            if (obj.IsAccessFromTOP) return obj;
-                            break;
-                        case Thing.Direction.LEFT:
-                            if (obj.IsAccessFromLEFT) return obj;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
-        private static Thing Get_access_down_thing(Thing[,] thing_layout, int from_x, int from_y)
-        {
-            if (from_y < thing_layout.GetLength(1) - 1)
-            {
-                if (thing_layout[from_x, from_y + 1].GetType() == typeof(Parts_Null))
-                {
-                    return Get_access_down_thing(thing_layout, from_x, from_y + 1);
-                }
-                else
-                {
-                    var obj = thing_layout[from_x, from_y + 1];
-                    switch (obj.direction)
-                    {
-                        case Thing.Direction.TOP:
-                            if (obj.IsAccessFromTOP) return obj;
-                            break;
-                        case Thing.Direction.RIGHT:
-                            if (obj.IsAccessFromLEFT) return obj;
-                            break;
-                        case Thing.Direction.DOWN:
-                            if (obj.IsAccessFromDOWN) return obj;
-                            break;
-                        case Thing.Direction.LEFT:
-                            if (obj.IsAccessFromRIGHT) return obj;
-                            break;
-                        default:
-                            throw new NotImplementedException();
-                    }
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
-            }
-        }
         private static void ResetBeforeCalculateDamage(Thing[,] thing_layout)
         {
             for (int x = 0; x < thing_layout.GetLength(0); x++)
@@ -439,6 +295,9 @@ namespace MinerGunBuilderCalculator
         {
             ResetBeforeCalculateDamage(thing_layout);
 
+            CreateProjectileFlow_Main(thing_layout);
+
+            /*
             // 1. Check the connection between thing and assign it to access_to_**** property.
             CreateProjectileFlow1(thing_layout);
 
@@ -451,6 +310,29 @@ namespace MinerGunBuilderCalculator
 
             // 4. Create backward projectile connection.
             CreateProjectileFlow4(thing_layout);
+            */
+        }
+
+        private static void CreateProjectileFlow_Main(Thing[,] thing_layout)
+        {
+            //convert Thing[,] to IEnumerable<Thing> 
+            var thing_1dim_layout = thing_layout.Cast<Thing>();
+            Parts_03_ProjectileGenerator projectileGgenerator = (Parts_03_ProjectileGenerator)thing_1dim_layout.First<Thing>(thing => thing.GetType() == typeof(Parts_03_ProjectileGenerator));
+
+            projectileGgenerator.CreateProjectileFlow(thing_layout);
+            /*
+            foreach (Thing thing in projectileGgenerator.ConnectedThings(true))
+            {
+                inconnected_things.Remove(thing);
+            }
+            foreach (Thing thing in inconnected_things)
+            {
+                thing.Access_to_abs_top = null;
+                thing.Access_to_abs_right = null;
+                thing.Access_to_abs_down = null;
+                thing.Access_to_abs_left = null;
+            }
+            */
         }
 
     /*
@@ -492,7 +374,7 @@ namespace MinerGunBuilderCalculator
             }
         }
         */
-
+    /*
         private static void CreateProjectileFlow2(Thing[,] thing_layout)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
@@ -550,12 +432,6 @@ namespace MinerGunBuilderCalculator
                                     break;
                             }
 
-                            /*
-                            if(thing.Access_to_rel_top == crossing || thing.Access_to_rel_right == crossing || thing.Access_to_rel_down == crossing || thing.Access_to_rel_left == crossing){
-                                isfound = true;
-                                break;
-                            }
-                            */
                         }
                         if (isfound) break;
                     }
@@ -566,6 +442,7 @@ namespace MinerGunBuilderCalculator
                 }
             }
         }
+        
 
         private static void CreateProjectileFlow4(Thing[,] thing_layout)
         {
@@ -611,17 +488,6 @@ namespace MinerGunBuilderCalculator
                 for (int y = 0; y < thing_layout.GetLength(1); y++)
                 {
                     var thing = thing_layout[x, y];
-                    /*
-                    thing.Access_to_abs_top = null;
-                    thing.Access_to_abs_right = null;
-                    thing.Access_to_abs_down = null;
-                    thing.Access_to_abs_left = null;
-
-                    thing.Access_from_abs_top = null;
-                    thing.Access_from_abs_right = null;
-                    thing.Access_from_abs_down = null;
-                    thing.Access_from_abs_left = null;
-                    */
 
                     if (thing.IsAccessToTOP)
                     {
@@ -698,6 +564,7 @@ namespace MinerGunBuilderCalculator
                 }
             }
         }
+        */
         /*
         private Point Find_projectile_generator_position(Thing[,] thing_layout)
         {

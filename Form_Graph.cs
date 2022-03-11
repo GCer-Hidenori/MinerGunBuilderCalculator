@@ -111,7 +111,7 @@ namespace MinerGunBuilderCalculator
 
             };
 
-            return (label,formsPlot_projectile_damage);
+            return (label, formsPlot_projectile_damage);
         }
         public void AddHistogram(string ejector_name,List<decimal> projectile_damages,List<decimal> projectile_effective_damages,int fire_time_sec, Statistics.Stats stats_projectile_damage,Statistics.Stats stats_projectile_effective_damage)
         {

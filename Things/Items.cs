@@ -771,7 +771,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = null;
+            ProjectileStat inbound_projectileStat;
             if (Access_to_rel_right == to_thing)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
@@ -883,7 +883,7 @@ namespace MinerGunBuilderCalculator
         }
         public override ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
-            ProjectileStat inbound_projectileStat = null;
+            ProjectileStat inbound_projectileStat;
             if (Access_to_rel_top == to_thing)
             {
                 inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
@@ -1139,7 +1139,7 @@ namespace MinerGunBuilderCalculator
             IsAccessToTOP = true;
         }
     }
-    class Item_035_Money_crossing : Item
+    class Item_035_Money_crossing : Crossing
     {
         public Item_035_Money_crossing(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -1206,7 +1206,7 @@ namespace MinerGunBuilderCalculator
             return inbound_projectile;
         }
     }
-    class Item_036_Damage_crossing : Item
+    class Item_036_Damage_crossing : Crossing
     {
         [JsonIgnore]
         public Dictionary<ProjectileStat, ProjectileStat> projectileStats_history = new();
