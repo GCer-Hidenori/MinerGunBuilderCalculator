@@ -43,7 +43,7 @@ namespace MinerGunBuilderCalculator
 
             return projectile;
         }
-        public decimal Calc_effective_damage()
+        public decimal Calc_effective_damage(HashSet<string> skillList)
         {
             decimal effective_damage = 0m;
             for(int pierce = 0;pierce < pierce_count + 1;pierce++)
@@ -52,7 +52,7 @@ namespace MinerGunBuilderCalculator
 	            {
 	                if (round_area_count > 0)
 	                {
-	                    effective_damage += damage * Statistics.Calc_round_area(round_area_count,pierce);
+	                    effective_damage += damage * Statistics.Calc_round_area(round_area_count,pierce,skillList);
 	                }
 	                if (rectangle_area_count > 0)
 	                {

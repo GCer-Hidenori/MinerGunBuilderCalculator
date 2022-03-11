@@ -84,10 +84,10 @@ namespace MinerGunBuilderCalculator
                     each_ejector_average_lifetime += projectileStats.lifetime;
 
 
-                    each_ejector_min_effective_damage = (each_ejector_min_effective_damage == null || each_ejector_min_effective_damage > projectileStats.Calc_min_effective_damage()) ? projectileStats.Calc_min_effective_damage() : each_ejector_min_effective_damage;
-                    each_ejector_max_effective_damage = each_ejector_max_effective_damage < projectileStats.Calc_max_effective_damage() ? projectileStats.Calc_max_effective_damage() : each_ejector_max_effective_damage;
-                    each_ejector_average_effective_damage += projectileStats.Calc_average_effective_damage();
-                    each_ejector_average_effective_damage_per_sec += projectileStats.Calc_average_effective_damage() * projectileStats.magnification * shipParameter.fire_rate;
+                    each_ejector_min_effective_damage = (each_ejector_min_effective_damage == null || each_ejector_min_effective_damage > projectileStats.Calc_min_effective_damage(profile.skillList)) ? projectileStats.Calc_min_effective_damage(profile.skillList) : each_ejector_min_effective_damage;
+                    each_ejector_max_effective_damage = each_ejector_max_effective_damage < projectileStats.Calc_max_effective_damage(profile.skillList) ? projectileStats.Calc_max_effective_damage(profile.skillList) : each_ejector_max_effective_damage;
+                    each_ejector_average_effective_damage += projectileStats.Calc_average_effective_damage(profile.skillList);
+                    each_ejector_average_effective_damage_per_sec += projectileStats.Calc_average_effective_damage(profile.skillList) * projectileStats.magnification * shipParameter.fire_rate;
                     max_speed = max_speed < projectileStats.speed ? projectileStats.speed : max_speed;
                 }
                 if (ejected_count > 0)
@@ -633,34 +633,6 @@ namespace MinerGunBuilderCalculator
             }
             return projectileListOfPassEjector;
         }
-        /*
-        private List<decimal> GetEjectorDamages(Parts_02_Ejector ejector, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec,out decimal eject_count)
-        {
-            int fireCount = decimal.ToInt32(shipParameter.fire_rate * fire_time_sec);
-            eject_count = 0;
-            List<decimal> ejector_damages = new();
-            List<Projectile> projectileList;
-            for (int k = 0; k < fireCount; k++)
-            {
-                projectileList = ejector.GetOutboundProjectileList(shipParameter,profile);
-                foreach(Projectile projectile in projectileList)
-                {
-                    if(projectile != null)
-                    {
-                        for (int j = 0; j < projectile.magnification; j++)
-                        {
-                            eject_count += 1;
-                            for (int pierce = 0; pierce < projectile.pierce_count + 1; pierce++)
-                            {
-                                ejector_damages.Add(projectile.damage);
-                            }
-                        }
-                    }
-                }
-            }
-            return ejector_damages;
-        }
-        */
         private (List<decimal> projectile_damages, List<decimal> projectile_effective_damges) GetProjectilesDamages(List<Projectile> list_projectile)
         {
             List<decimal> projectile_damages = new();            //Not take into account pierce,area damage
@@ -668,7 +640,7 @@ namespace MinerGunBuilderCalculator
             foreach(Projectile projectile in list_projectile)
             {
                 projectile_damages.Add(projectile.damage);
-                projectile_effective_damges.Add(projectile.Calc_effective_damage());
+                projectile_effective_damges.Add(projectile.Calc_effective_damage(profile.skillList));
             }
             return (projectile_damages,projectile_effective_damges);
         }

@@ -195,6 +195,9 @@
   <data name="06_17" xml:space="preserve">
     <value>Any direction in ship changing items count as projectile guides.</value>
   </data>
+  <data name="07_00" xml:space="preserve">
+    <value>Less base radius but more increase per item.</value>
+  </data>
   <data name="07_04" xml:space="preserve">
     <value>Chance of 20% to clone the projectile twice.</value>
   </data>

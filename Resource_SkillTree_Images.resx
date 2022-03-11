@@ -166,9 +166,6 @@
   <data name="05_10" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\05_10.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="06_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>Resources\06_01.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="06_11" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\06_11.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -210,5 +207,8 @@
   </data>
   <data name="08_17-09_16" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>Resources\08_17-09_16.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="_06_01_07_00" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>Resources\06_01-07_00.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

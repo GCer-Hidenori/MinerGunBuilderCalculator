@@ -37,35 +37,17 @@ namespace MinerGunBuilderCalculator
                 average_damage_per_sec = sum_damage / fire_time_sec
             };
         }
-        /*
-        public static Stats Calculate_old(List<decimal> ejector_damages,int fire_time_sec,decimal eject_count)
+        public static decimal Calc_round_area(int round_area_count,int pierce,HashSet<string> skillList)
         {
-            int count;
-            decimal sum_damage = 0;
-            ejector_damages.Sort();
-
-            for (count = 0; count < ejector_damages.Count; count++)
+            decimal radius;
+            if(skillList.Contains("07_00"))
             {
-                sum_damage += ejector_damages[count];
+                radius = (0.567m * (decimal)round_area_count + 1.167m) / 2.0m;
             }
-            //count = inputs.Count;
-            count = (int)eject_count;
-            return new Stats()
+            else
             {
-                average_damage = sum_damage / count,
-                mean_damage = ejector_damages[count / 2],
-                min_damage = ejector_damages[0],
-                max_damage = ejector_damages[count - 1],
-                total_damage = sum_damage,
-                average_damage_per_sec = sum_damage / fire_time_sec,
-                ejected_count = count,
-                ejected_count_per_sec = new decimal(count) / fire_time_sec
-            };
-        }
-        */
-        public static decimal Calc_round_area(int round_area_count,int pierce)
-        {
-            decimal radius = (0.567m * (decimal)round_area_count + 1.167m) / 2.0m;
+                radius = (0.756m * (decimal)round_area_count + 0.195m) / 2.0m;
+            }
             if(radius >= pierce)
             {
                 double theta = Math.Asin((double)(pierce / radius));
