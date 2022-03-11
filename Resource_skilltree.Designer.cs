@@ -304,6 +304,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Less damage penalty of 2% for total damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _07_02 {
+            get {
+                return ResourceManager.GetString("07_02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Chance of 20% to clone the projectile twice. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _07_04 {

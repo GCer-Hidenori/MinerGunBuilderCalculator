@@ -171,7 +171,14 @@ namespace MinerGunBuilderCalculator
                 }
                 if(projectile.round_area_count > 0)
                 {
-                    projectile.damage *= 0.96m;
+                    if (profile.skillList.Contains("06_01"))
+                    {
+                        projectile.damage *= 0.98m;
+                    }
+                    else
+                    {
+                        projectile.damage *= 0.96m;
+                    }
                 }
                 if(projectile.rectangle_area_count > 0)
                 {
