@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator
 {
-    class Crossing : Thing
+    public class Crossing : Thing
     {
+
         public Crossing(Thing[,] thing_layout) : base(thing_layout)
         {
 

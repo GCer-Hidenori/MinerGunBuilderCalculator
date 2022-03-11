@@ -8,7 +8,7 @@ namespace MinerGunBuilderCalculator
 {
     public class Projectile
     {
-        public List<Projectile> self_and_ancestors = new();
+        //public List<Projectile> self_and_ancestors = new();
         public decimal damage;
         public decimal magnification;
         public decimal speed;
@@ -19,9 +19,10 @@ namespace MinerGunBuilderCalculator
         public int pierce_count = 0;
 
         public bool Legendary_EnableGuideDamage = false;
+        public List<Crossing> list_of_crossing_passed = new();
         public Projectile()
         {
-            self_and_ancestors.Add(this);
+            //self_and_ancestors.Add(this);
         }
         public Projectile Copy()
         {
@@ -35,9 +36,10 @@ namespace MinerGunBuilderCalculator
                 round_area_count = round_area_count,
                 rectangle_area_count = rectangle_area_count,
                 pierce_count = pierce_count,
-                Legendary_EnableGuideDamage = Legendary_EnableGuideDamage
+                Legendary_EnableGuideDamage = Legendary_EnableGuideDamage,
+                list_of_crossing_passed = new List<Crossing>(list_of_crossing_passed)
             };
-            projectile.self_and_ancestors.AddRange(self_and_ancestors);
+            //projectile.self_and_ancestors.AddRange(self_and_ancestors);
 
             return projectile;
         }

@@ -1209,16 +1209,20 @@ namespace MinerGunBuilderCalculator
     class Item_036_Damage_crossing : Crossing
     {
         [JsonIgnore]
-        public Dictionary<ProjectileStat, ProjectileStat> projectileStats_history = new();
-
+        public decimal passed_damage = 0m;
         [JsonIgnore]
-        public Dictionary<Projectile, Projectile> projectile_history = new();
-
+        public decimal passed_average_damage = 0m;
+        [JsonIgnore]
+        public decimal passed_max_damage = 0m;
+        [JsonIgnore]
+        public decimal passed_min_damage = 0m;
         public override void ResetBeforeCalculateDamage()
         {
+            passed_damage = 0m;
+            passed_average_damage = 0m;
+            passed_min_damage = 0m;
+            passed_max_damage = 0m;
             base.ResetBeforeCalculateDamage();
-            projectileStats_history.Clear();
-            projectile_history.Clear();
         }
         public Item_036_Damage_crossing(Thing[,] thing_layout) : base(thing_layout)
         {
@@ -1239,6 +1243,25 @@ namespace MinerGunBuilderCalculator
                 if (Access_from_rel_down != null)
                 {
                     inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile,  this);
+                    if(inbound_projectileStat.list_of_crossing_passed.Contains(this))
+                    {
+                            if (profile.skillList.Contains("07_06"))
+                            {
+                                inbound_projectileStat.average_damage += passed_average_damage * 2m;
+                                inbound_projectileStat.min_damage += passed_min_damage * 2m;
+                                inbound_projectileStat.max_damage += passed_max_damage * 2m;
+                            }
+                            else
+                            {
+                                inbound_projectileStat.average_damage += passed_average_damage;
+                                inbound_projectileStat.min_damage += passed_min_damage;
+                                inbound_projectileStat.max_damage += passed_max_damage;
+                            }
+                    }
+
+
+
+                    /*
                     foreach (var self_and_ancestor in inbound_projectileStat.self_and_ancestors)
                     {
                         if (projectileStats_history.TryGetValue(self_and_ancestor, out ProjectileStat his_projectileStats))
@@ -1258,6 +1281,7 @@ namespace MinerGunBuilderCalculator
                         }
                         break;
                     }
+                    */
                 }
             }
             else if (Access_to_rel_left == to_thing || Access_to_rel_right == to_thing)
@@ -1273,7 +1297,11 @@ namespace MinerGunBuilderCalculator
                         inbound_projectileStat = Access_from_rel_left.GetOutboundProjectileStat(shipParameter, profile,  this);
                 }
                 var projectileStat = inbound_projectileStat;
-                projectileStats_history[projectileStat] = projectileStat.Copy();
+                projectileStat.list_of_crossing_passed.Add(this);
+
+                passed_average_damage = projectileStat.average_damage;
+                passed_min_damage = projectileStat.min_damage;
+                passed_max_damage = projectileStat.max_damage;
             }
             return inbound_projectileStat;
         }
@@ -1286,6 +1314,19 @@ namespace MinerGunBuilderCalculator
                 if (Access_from_rel_down != null)
                 {
                     inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile,  this);
+                    if(inbound_projectile.list_of_crossing_passed.Contains(this))
+                    {
+                            if (profile.skillList.Contains("07_06"))
+                            {
+                                inbound_projectile.damage += passed_damage * 2m;
+                            }
+                            else
+                            {
+                                inbound_projectile.damage += passed_damage;
+                            }
+                    }
+
+                    /*
                     foreach (var self_and_ancestor in inbound_projectile.self_and_ancestors)
                     {
                         if (projectile_history.TryGetValue(self_and_ancestor, out Projectile his_projectile))
@@ -1301,6 +1342,7 @@ namespace MinerGunBuilderCalculator
                         }
                         break;
                     }
+                    */
                 }
 
             }
@@ -1316,7 +1358,8 @@ namespace MinerGunBuilderCalculator
                     if (Access_from_rel_left != null)
                         inbound_projectile = Access_from_rel_left.GetOutboundProjectile(shipParameter, profile,  this);
                 }
-                projectile_history[inbound_projectile] = inbound_projectile.Copy();
+                inbound_projectile.list_of_crossing_passed.Add(this);
+                passed_damage = inbound_projectile.damage;
             }
             return inbound_projectile;
         }
