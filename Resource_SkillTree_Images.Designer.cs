@@ -73,6 +73,16 @@ namespace MinerGunBuilderCalculator {
         /// <summary>
         ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
         /// </summary>
+        internal static System.Drawing.Bitmap _01_10 {
+            get {
+                object obj = ResourceManager.GetObject("01_10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   型 System.Drawing.Bitmap のローカライズされたリソースを検索します。
+        /// </summary>
         internal static System.Drawing.Bitmap _01_14_00_15 {
             get {
                 object obj = ResourceManager.GetObject("01_14-00_15", resourceCulture);

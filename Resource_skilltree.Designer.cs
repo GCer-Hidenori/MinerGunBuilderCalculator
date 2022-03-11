@@ -88,6 +88,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Chance of 30% to pierce without reducing left pierces. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _01_10 {
+            get {
+                return ResourceManager.GetString("01_10", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Higher multiplier of times 2.5. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _01_12 {

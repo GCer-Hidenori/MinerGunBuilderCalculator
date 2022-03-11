@@ -46,7 +46,9 @@ namespace MinerGunBuilderCalculator
         public decimal Calc_effective_damage(HashSet<string> skillList)
         {
             decimal effective_damage = 0m;
-            for(int pierce = 0;pierce < pierce_count + 1;pierce++)
+            int pierce = 0;
+            Random rand = new Random();
+            while(true)
             {
 	            if (round_area_count != 0 || rectangle_area_count != 0)
 	            {
@@ -63,6 +65,11 @@ namespace MinerGunBuilderCalculator
 	            {
 	                effective_damage += damage;
 	            }
+                if(!skillList.Contains("01_10") || skillList.Contains("01_10") &&  rand.Next(0,100)<70)
+                {
+                   pierce++;
+                }
+                if(pierce > pierce_count)break;
             }
             return effective_damage;
         }

@@ -51,39 +51,22 @@ namespace MinerGunBuilderCalculator
 
             return projectileStats;
         }
-        /*
-        private decimal Calc_round_area(int pierce)
+        private decimal Calc_skill_01_10_magnification(HashSet<string> skillList)
         {
-            decimal radius = (0.567m * (decimal)round_area_count + 1.167m) / 2.0m;
-            if(radius >= pierce)
+            if(skillList.Contains("01_10"))
             {
-                double theta = Math.Asin((double)(pierce / radius));
-                return (decimal)Math.PI * radius * radius / 2m + radius * radius * (decimal)theta + pierce * radius * (decimal)Math.Cos(theta); 
-            }
-            return radius * radius * (decimal)Math.PI / 2m;
-
-        }
-        */
-        /*
-        private decimal Calc_rectangle_area(int pierce)
-        {
-            decimal width = 1.5m * rectangle_area_count + 1.9m;
-            decimal height = 0.43m * rectangle_area_count + 0.5m;
-            if (height / 2m >= pierce)
-            {
-                return (height / 2m + pierce) * width;
+                return 1.3m;
             }
             else
             {
-                return height * width;
+                return 1m;
             }
         }
-        */
 
         public decimal Calc_average_effective_damage(HashSet<string> skillList)
         {
             decimal damage = 0m;
-            for(int pierce = 0;pierce < pierce_count + 1;pierce++)
+            for(int pierce = 0;pierce < (pierce_count + 1) * Calc_skill_01_10_magnification(skillList);pierce++)
             {
                 if (round_area_count != 0 || rectangle_area_count != 0)
                 {
@@ -106,7 +89,7 @@ namespace MinerGunBuilderCalculator
         public decimal Calc_min_effective_damage(HashSet<string> skillList)
         {
             decimal damage = 0m;
-            for(int pierce = 0;pierce < pierce_count + 1;pierce++)
+            for(int pierce = 0;pierce < (pierce_count + 1) * Calc_skill_01_10_magnification(skillList);pierce++)
             {
                 if (round_area_count != 0 || rectangle_area_count != 0)
                 {
@@ -129,7 +112,7 @@ namespace MinerGunBuilderCalculator
         public decimal Calc_max_effective_damage(HashSet<string> skillList)
         {
             decimal damage = 0m;
-            for(int pierce = 0;pierce < pierce_count + 1;pierce++)
+            for(int pierce = 0;pierce < (pierce_count + 1) * Calc_skill_01_10_magnification(skillList);pierce++)
             {
                 if (round_area_count != 0 || rectangle_area_count != 0)
                 {

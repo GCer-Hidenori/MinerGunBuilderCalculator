@@ -126,6 +126,9 @@
   <data name="01_08" xml:space="preserve">
     <value>Adds additional 30 damage to the projectile.</value>
   </data>
+  <data name="01_10" xml:space="preserve">
+    <value>Chance of 30% to pierce without reducing left pierces.</value>
+  </data>
   <data name="01_12" xml:space="preserve">
     <value>Higher multiplier of times 2.5.</value>
   </data>
