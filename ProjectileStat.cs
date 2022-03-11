@@ -93,7 +93,7 @@ namespace MinerGunBuilderCalculator
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += average_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce);
+                        damage += average_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
                     }
                 }
                 else
@@ -116,7 +116,7 @@ namespace MinerGunBuilderCalculator
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += min_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce);
+                        damage += min_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
                     }
                 }
                 else
@@ -139,7 +139,7 @@ namespace MinerGunBuilderCalculator
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += max_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce);
+                        damage += max_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
                     }
                 }
                 else

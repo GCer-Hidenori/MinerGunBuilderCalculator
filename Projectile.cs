@@ -56,7 +56,7 @@ namespace MinerGunBuilderCalculator
 	                }
 	                if (rectangle_area_count > 0)
 	                {
-	                    effective_damage += damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce);
+	                    effective_damage += damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
 	                }
 	            }
 	            else

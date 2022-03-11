@@ -56,10 +56,19 @@ namespace MinerGunBuilderCalculator
             return radius * radius * (decimal)Math.PI / 2m;
 
         }
-        public static decimal Calc_rectangle_area(int rectangle_area_count,int pierce)
+        public static decimal Calc_rectangle_area(int rectangle_area_count,int pierce,HashSet<string> skillList)
         {
-            decimal width = 1.5m * rectangle_area_count + 1.9m;
-            decimal height = 0.43m * rectangle_area_count + 0.5m;
+            decimal width,height;
+            if(skillList.Contains("08_01"))
+            {
+                width = 1.81m * rectangle_area_count + 0.6m;
+                height = 0.5m * rectangle_area_count;
+            }
+            else
+            {
+                width = 1.5m * rectangle_area_count + 1.9m;
+                height = 0.43m * rectangle_area_count + 0.5m;
+            }
             if (height / 2m >= pierce)
             {
                 return (height / 2m + pierce) * width;

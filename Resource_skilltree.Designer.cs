@@ -367,6 +367,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Less base radius but more increase per item. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _08_01 {
+            get {
+                return ResourceManager.GetString("08_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Legendary items count as unused tile. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _08_05 {
