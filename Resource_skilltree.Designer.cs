@@ -259,6 +259,15 @@ namespace MinerGunBuilderCalculator {
         }
         
         /// <summary>
+        ///   Less damage penalty of 2% for total damage. に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _06_01 {
+            get {
+                return ResourceManager.GetString("06_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Adds up to 50% more damage with bigger ejection angle. に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string _06_11 {
