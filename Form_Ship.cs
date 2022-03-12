@@ -201,7 +201,7 @@ namespace MinerGunBuilderCalculator
             profile.Play_Hour = value;
         }
 
-        private void Button_Start_Detailed_Calc_Click(object sender, EventArgs e)
+        private void Button_Start_Simulation_Click(object sender, EventArgs e)
         {
             if(fireController != null)
             {

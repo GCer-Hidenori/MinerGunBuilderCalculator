@@ -74,7 +74,7 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Highest_Reached_Tier_in_World_Map = new System.Windows.Forms.TextBox();
             this.TextBox_Highest_Cleared_Tier_in_World_Map = new System.Windows.Forms.TextBox();
             this.TextBox_Play_Hour = new System.Windows.Forms.TextBox();
-            this.button_Start_Detailed_Calc = new System.Windows.Forms.Button();
+            this.button_Start_Simulation = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -414,7 +414,7 @@ namespace MinerGunBuilderCalculator
             this.panel2.Controls.Add(this.button_SkillTree);
             this.panel2.Controls.Add(this.tableLayoutPanel3);
             this.panel2.Controls.Add(this.tableLayoutPanel2);
-            this.panel2.Controls.Add(this.button_Start_Detailed_Calc);
+            this.panel2.Controls.Add(this.button_Start_Simulation);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(552, 0);
             this.panel2.Margin = new System.Windows.Forms.Padding(0);
@@ -626,15 +626,15 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Play_Hour.Validating += new System.ComponentModel.CancelEventHandler(this.TextBox_Play_Hour_Validating);
             this.TextBox_Play_Hour.Validated += new System.EventHandler(this.TextBox_Play_Hour_Validated);
             // 
-            // button_Start_Detailed_Calc
+            // button_Start_Simulation
             // 
-            this.button_Start_Detailed_Calc.Location = new System.Drawing.Point(31, 378);
-            this.button_Start_Detailed_Calc.Name = "button_Start_Detailed_Calc";
-            this.button_Start_Detailed_Calc.Size = new System.Drawing.Size(101, 23);
-            this.button_Start_Detailed_Calc.TabIndex = 0;
-            this.button_Start_Detailed_Calc.Text = "SIMULATE";
-            this.button_Start_Detailed_Calc.UseVisualStyleBackColor = true;
-            this.button_Start_Detailed_Calc.Click += new System.EventHandler(this.Button_Start_Detailed_Calc_Click);
+            this.button_Start_Simulation.Location = new System.Drawing.Point(31, 378);
+            this.button_Start_Simulation.Name = "button_Start_Simulation";
+            this.button_Start_Simulation.Size = new System.Drawing.Size(101, 23);
+            this.button_Start_Simulation.TabIndex = 0;
+            this.button_Start_Simulation.Text = "SIMULATE";
+            this.button_Start_Simulation.UseVisualStyleBackColor = true;
+            this.button_Start_Simulation.Click += new System.EventHandler(this.Button_Start_Simulation_Click);
             // 
             // errorProvider1
             // 
@@ -698,7 +698,7 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.Label Label_average_damage;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox TextBox_Projectile_Lifetime;
-        private System.Windows.Forms.Button button_Start_Detailed_Calc;
+        private System.Windows.Forms.Button button_Start_Simulation;
         private System.Windows.Forms.Button button_SkillTree;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox TextBox_Highest_Cleared_Tier_in_World_Map;
