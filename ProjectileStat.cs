@@ -72,11 +72,11 @@ namespace MinerGunBuilderCalculator
                 {
                     if (round_area_count > 0)
                     {
-                        damage += average_damage * Statistics.Calc_round_area(round_area_count,pierce,skillList);
+                        damage += average_damage * Statistics.Calc_round_area(round_area_count,skillList);
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += average_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
+                        damage += average_damage * Statistics.Calc_rectangle_area(rectangle_area_count, skillList);
                     }
                 }
                 else
@@ -95,11 +95,11 @@ namespace MinerGunBuilderCalculator
                 {
                     if (round_area_count > 0)
                     {
-                        damage += min_damage * Statistics.Calc_round_area(round_area_count,pierce,skillList);
+                        damage += min_damage * Statistics.Calc_round_area(round_area_count,skillList);
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += min_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
+                        damage += min_damage * Statistics.Calc_rectangle_area(rectangle_area_count, skillList);
                     }
                 }
                 else
@@ -118,11 +118,11 @@ namespace MinerGunBuilderCalculator
                 {
                     if (round_area_count > 0)
                     {
-                        damage += max_damage * Statistics.Calc_round_area(round_area_count,pierce, skillList);
+                        damage += max_damage * Statistics.Calc_round_area(round_area_count, skillList);
                     }
                     if (rectangle_area_count > 0)
                     {
-                        damage += max_damage * Statistics.Calc_rectangle_area(rectangle_area_count,pierce, skillList);
+                        damage += max_damage * Statistics.Calc_rectangle_area(rectangle_area_count, skillList);
                     }
                 }
                 else

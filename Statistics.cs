@@ -37,50 +37,38 @@ namespace MinerGunBuilderCalculator
                 average_damage_per_sec = sum_damage / fire_time_sec
             };
         }
-        public static decimal Calc_round_area(int round_area_count,int pierce,HashSet<string> skillList)
+        public static decimal Calc_round_area(int round_area_count,HashSet<string> skillList)
         {
             decimal radius;
             if(skillList.Contains("07_00"))
             {
-                radius = (0.567m * (decimal)round_area_count + 1.167m) / 2.0m;
+                radius = 0.938m * (decimal)round_area_count + 0.0781m ;
             }
             else
             {
-                radius = (0.756m * (decimal)round_area_count + 0.195m) / 2.0m;
+                radius = 0.703m * (decimal)round_area_count + 0.469m;
             }
-            if(radius >= pierce)
-            {
-                double theta = Math.Asin((double)(pierce / radius));
-                return (decimal)Math.PI * radius * radius / 2m + radius * radius * (decimal)theta + pierce * radius * (decimal)Math.Cos(theta); 
-            }
-            return radius * radius * (decimal)Math.PI / 2m;
+            return radius * radius * (decimal)Math.PI;
 
         }
-        public static decimal Calc_rectangle_area(int rectangle_area_count,int pierce,HashSet<string> skillList)
+        public static decimal Calc_rectangle_area(int rectangle_area_count,HashSet<string> skillList)
         {
             decimal width,height;
             if(skillList.Contains("08_01"))
             {
-                width = 1.81m * rectangle_area_count + 0.6m;
-                height = 0.5m * rectangle_area_count;
+                width = 2.266m * rectangle_area_count + 0.313m;
+                height = 1.172m * rectangle_area_count;
             }
             else
             {
-                width = 1.5m * rectangle_area_count + 1.9m;
-                height = 0.43m * rectangle_area_count + 0.5m;
+                width = 1.875m * rectangle_area_count + 0.938m;
+                height = 1.016m * rectangle_area_count + 0.0781m;
             }
             if(skillList.Contains("09_00"))
             {
                 (width,height) = (height,width);
             }
-            if (height / 2m >= pierce)
-            {
-                return (height / 2m + pierce) * width;
-            }
-            else
-            {
-                return height * width;
-            }
+            return height * width;
         }
         
     }
