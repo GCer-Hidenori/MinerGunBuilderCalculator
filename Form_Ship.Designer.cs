@@ -632,7 +632,7 @@ namespace MinerGunBuilderCalculator
             this.button_Start_Simulation.Name = "button_Start_Simulation";
             this.button_Start_Simulation.Size = new System.Drawing.Size(101, 23);
             this.button_Start_Simulation.TabIndex = 0;
-            this.button_Start_Simulation.Text = "SIMULATE";
+            this.button_Start_Simulation.Text = "Simulate";
             this.button_Start_Simulation.UseVisualStyleBackColor = true;
             this.button_Start_Simulation.Click += new System.EventHandler(this.Button_Start_Simulation_Click);
             // 

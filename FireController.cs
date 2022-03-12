@@ -609,8 +609,8 @@ namespace MinerGunBuilderCalculator
             foreach(SimulationResult each_result in results)
             {
                 formGraph.AddHistogram(each_result.ejector_name, each_result.projectile_damages,each_result.projectile_effective_damges,fire_time_sec,each_result.stats_projectile_damage,each_result.stats_projectile_effective_damage);
-                formGraph.Focus();
             }
+            formGraph.Focus();
 
         }
         private List<Projectile> GetProjectileListOfPassEjector (Parts_02_Ejector ejector, ShipParameter shipParameter, HashSet<string> skillList, int fire_time_sec)

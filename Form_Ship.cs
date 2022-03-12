@@ -224,6 +224,7 @@ namespace MinerGunBuilderCalculator
                 form_skillTree.Show();
                 form_skillTree.DrawSkills();
             }
+            form_skillTree.Focus();
 
         }
 
