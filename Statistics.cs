@@ -16,6 +16,11 @@ namespace MinerGunBuilderCalculator
             public decimal min_damage;
             public decimal total_damage;
             public decimal average_damage_per_sec;
+            public decimal? round_area_count;
+            public decimal? rectangle_area_count;
+            public decimal? pierce_count;
+            public decimal? round_area;
+            public decimal? rectangle_area;
         }
         public static Stats Calculate(List<decimal> damages,int fire_time_sec)
         {

@@ -12,7 +12,7 @@ namespace MinerGunBuilderCalculator
 {
     public partial class Form_VersionInfo : Form
     {
-        const string version = "0.7";
+        const string version = "0.8";
         public Form_VersionInfo()
         {
             InitializeComponent();

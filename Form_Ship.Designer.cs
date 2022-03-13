@@ -76,6 +76,12 @@ namespace MinerGunBuilderCalculator
             this.TextBox_Play_Hour = new System.Windows.Forms.TextBox();
             this.button_Start_Simulation = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.Label_average_round_area_count = new System.Windows.Forms.Label();
+            this.Label_average_rectangle_area_count = new System.Windows.Forms.Label();
+            this.Label_average_pierce_count = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -118,29 +124,39 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel5.ColumnCount = 2;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55.22F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 44.78F));
+            this.tableLayoutPanel5.Controls.Add(this.Label_average_pierce_count, 1, 5);
+            this.tableLayoutPanel5.Controls.Add(this.Label_average_rectangle_area_count, 1, 4);
+            this.tableLayoutPanel5.Controls.Add(this.Label_average_round_area_count, 1, 3);
+            this.tableLayoutPanel5.Controls.Add(this.label17, 0, 4);
             this.tableLayoutPanel5.Controls.Add(this.label15, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.label14, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.Label_projectile_ejected_per_sec, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label7, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.Label_Projectile_Max_Speed, 1, 1);
             this.tableLayoutPanel5.Controls.Add(this.Label_Projectile_Lifetime, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.label18, 0, 3);
+            this.tableLayoutPanel5.Controls.Add(this.label19, 0, 5);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(499, 3);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(268, 74);
+            this.tableLayoutPanel5.RowCount = 6;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(268, 140);
             this.tableLayoutPanel5.TabIndex = 2;
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(4, 51);
+            this.label15.Location = new System.Drawing.Point(1, 47);
+            this.label15.Margin = new System.Windows.Forms.Padding(0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(140, 22);
+            this.label15.Size = new System.Drawing.Size(146, 22);
             this.label15.TabIndex = 10;
             this.label15.Text = "Projectile Lifetime";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -149,9 +165,10 @@ namespace MinerGunBuilderCalculator
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(4, 26);
+            this.label14.Location = new System.Drawing.Point(1, 24);
+            this.label14.Margin = new System.Windows.Forms.Padding(0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(140, 24);
+            this.label14.Size = new System.Drawing.Size(146, 22);
             this.label14.TabIndex = 8;
             this.label14.Text = "Projectile max speed";
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -162,7 +179,7 @@ namespace MinerGunBuilderCalculator
             this.Label_projectile_ejected_per_sec.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Label_projectile_ejected_per_sec.Location = new System.Drawing.Point(151, 1);
             this.Label_projectile_ejected_per_sec.Name = "Label_projectile_ejected_per_sec";
-            this.Label_projectile_ejected_per_sec.Size = new System.Drawing.Size(113, 24);
+            this.Label_projectile_ejected_per_sec.Size = new System.Drawing.Size(113, 22);
             this.Label_projectile_ejected_per_sec.TabIndex = 11;
             this.Label_projectile_ejected_per_sec.Text = "-";
             this.Label_projectile_ejected_per_sec.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -171,9 +188,10 @@ namespace MinerGunBuilderCalculator
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(4, 1);
+            this.label7.Location = new System.Drawing.Point(1, 1);
+            this.label7.Margin = new System.Windows.Forms.Padding(0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(140, 24);
+            this.label7.Size = new System.Drawing.Size(146, 22);
             this.label7.TabIndex = 6;
             this.label7.Text = "Projectile ejected/sec";
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -182,9 +200,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_Projectile_Max_Speed.AutoSize = true;
             this.Label_Projectile_Max_Speed.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_Projectile_Max_Speed.Location = new System.Drawing.Point(151, 26);
+            this.Label_Projectile_Max_Speed.Location = new System.Drawing.Point(151, 24);
             this.Label_Projectile_Max_Speed.Name = "Label_Projectile_Max_Speed";
-            this.Label_Projectile_Max_Speed.Size = new System.Drawing.Size(113, 24);
+            this.Label_Projectile_Max_Speed.Size = new System.Drawing.Size(113, 22);
             this.Label_Projectile_Max_Speed.TabIndex = 11;
             this.Label_Projectile_Max_Speed.Text = "-";
             this.Label_Projectile_Max_Speed.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -193,7 +211,7 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_Projectile_Lifetime.AutoSize = true;
             this.Label_Projectile_Lifetime.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_Projectile_Lifetime.Location = new System.Drawing.Point(151, 51);
+            this.Label_Projectile_Lifetime.Location = new System.Drawing.Point(151, 47);
             this.Label_Projectile_Lifetime.Name = "Label_Projectile_Lifetime";
             this.Label_Projectile_Lifetime.Size = new System.Drawing.Size(113, 22);
             this.Label_Projectile_Lifetime.TabIndex = 12;
@@ -230,16 +248,16 @@ namespace MinerGunBuilderCalculator
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 120);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(392, 110);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(4, 93);
+            this.label4.Location = new System.Drawing.Point(4, 85);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(142, 26);
+            this.label4.Size = new System.Drawing.Size(142, 24);
             this.label4.TabIndex = 3;
             this.label4.Text = "Average damage/sec";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -248,9 +266,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(4, 70);
+            this.label6.Location = new System.Drawing.Point(4, 64);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(142, 22);
+            this.label6.Size = new System.Drawing.Size(142, 20);
             this.label6.TabIndex = 5;
             this.label6.Text = "Highet projectile damage";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -259,9 +277,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(4, 47);
+            this.label10.Location = new System.Drawing.Point(4, 43);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(142, 22);
+            this.label10.Size = new System.Drawing.Size(142, 20);
             this.label10.TabIndex = 13;
             this.label10.Text = "Average damage";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -270,9 +288,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.label5.AutoSize = true;
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label5.Location = new System.Drawing.Point(4, 24);
+            this.label5.Location = new System.Drawing.Point(4, 22);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(142, 22);
+            this.label5.Size = new System.Drawing.Size(142, 20);
             this.label5.TabIndex = 4;
             this.label5.Text = "Lowest projectile damage";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -281,9 +299,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_average_damage_per_sec.AutoSize = true;
             this.Label_average_damage_per_sec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_average_damage_per_sec.Location = new System.Drawing.Point(153, 93);
+            this.Label_average_damage_per_sec.Location = new System.Drawing.Point(153, 85);
             this.Label_average_damage_per_sec.Name = "Label_average_damage_per_sec";
-            this.Label_average_damage_per_sec.Size = new System.Drawing.Size(114, 26);
+            this.Label_average_damage_per_sec.Size = new System.Drawing.Size(114, 24);
             this.Label_average_damage_per_sec.TabIndex = 8;
             this.Label_average_damage_per_sec.Text = "-";
             this.Label_average_damage_per_sec.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -292,9 +310,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_highest_projectile_damage.AutoSize = true;
             this.Label_highest_projectile_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_highest_projectile_damage.Location = new System.Drawing.Point(153, 70);
+            this.Label_highest_projectile_damage.Location = new System.Drawing.Point(153, 64);
             this.Label_highest_projectile_damage.Name = "Label_highest_projectile_damage";
-            this.Label_highest_projectile_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_highest_projectile_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_highest_projectile_damage.TabIndex = 10;
             this.Label_highest_projectile_damage.Text = "-";
             this.Label_highest_projectile_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -303,9 +321,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_average_damage.AutoSize = true;
             this.Label_average_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_average_damage.Location = new System.Drawing.Point(153, 47);
+            this.Label_average_damage.Location = new System.Drawing.Point(153, 43);
             this.Label_average_damage.Name = "Label_average_damage";
-            this.Label_average_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_average_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_average_damage.TabIndex = 14;
             this.Label_average_damage.Text = "-";
             this.Label_average_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -314,9 +332,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_lowest_projectile_damage.AutoSize = true;
             this.Label_lowest_projectile_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_lowest_projectile_damage.Location = new System.Drawing.Point(153, 24);
+            this.Label_lowest_projectile_damage.Location = new System.Drawing.Point(153, 22);
             this.Label_lowest_projectile_damage.Name = "Label_lowest_projectile_damage";
-            this.Label_lowest_projectile_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_lowest_projectile_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_lowest_projectile_damage.TabIndex = 9;
             this.Label_lowest_projectile_damage.Text = "-";
             this.Label_lowest_projectile_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -327,7 +345,7 @@ namespace MinerGunBuilderCalculator
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label8.Location = new System.Drawing.Point(153, 1);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(114, 22);
+            this.label8.Size = new System.Drawing.Size(114, 20);
             this.label8.TabIndex = 15;
             this.label8.Text = "Ejected damage";
             // 
@@ -337,7 +355,7 @@ namespace MinerGunBuilderCalculator
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label16.Location = new System.Drawing.Point(274, 1);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(114, 22);
+            this.label16.Size = new System.Drawing.Size(114, 20);
             this.label16.TabIndex = 16;
             this.label16.Text = "Effective damage";
             // 
@@ -345,9 +363,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_lowest_projectile_effective_damage.AutoSize = true;
             this.Label_lowest_projectile_effective_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_lowest_projectile_effective_damage.Location = new System.Drawing.Point(274, 24);
+            this.Label_lowest_projectile_effective_damage.Location = new System.Drawing.Point(274, 22);
             this.Label_lowest_projectile_effective_damage.Name = "Label_lowest_projectile_effective_damage";
-            this.Label_lowest_projectile_effective_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_lowest_projectile_effective_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_lowest_projectile_effective_damage.TabIndex = 17;
             this.Label_lowest_projectile_effective_damage.Text = "-";
             this.Label_lowest_projectile_effective_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -356,9 +374,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_average_effective_damage.AutoSize = true;
             this.Label_average_effective_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_average_effective_damage.Location = new System.Drawing.Point(274, 47);
+            this.Label_average_effective_damage.Location = new System.Drawing.Point(274, 43);
             this.Label_average_effective_damage.Name = "Label_average_effective_damage";
-            this.Label_average_effective_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_average_effective_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_average_effective_damage.TabIndex = 17;
             this.Label_average_effective_damage.Text = "-";
             this.Label_average_effective_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -367,9 +385,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_highest_projectile_effective_damage.AutoSize = true;
             this.Label_highest_projectile_effective_damage.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_highest_projectile_effective_damage.Location = new System.Drawing.Point(274, 70);
+            this.Label_highest_projectile_effective_damage.Location = new System.Drawing.Point(274, 64);
             this.Label_highest_projectile_effective_damage.Name = "Label_highest_projectile_effective_damage";
-            this.Label_highest_projectile_effective_damage.Size = new System.Drawing.Size(114, 22);
+            this.Label_highest_projectile_effective_damage.Size = new System.Drawing.Size(114, 20);
             this.Label_highest_projectile_effective_damage.TabIndex = 17;
             this.Label_highest_projectile_effective_damage.Text = "-";
             this.Label_highest_projectile_effective_damage.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -378,9 +396,9 @@ namespace MinerGunBuilderCalculator
             // 
             this.Label_average_effective_damage_per_sec.AutoSize = true;
             this.Label_average_effective_damage_per_sec.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Label_average_effective_damage_per_sec.Location = new System.Drawing.Point(274, 93);
+            this.Label_average_effective_damage_per_sec.Location = new System.Drawing.Point(274, 85);
             this.Label_average_effective_damage_per_sec.Name = "Label_average_effective_damage_per_sec";
-            this.Label_average_effective_damage_per_sec.Size = new System.Drawing.Size(114, 26);
+            this.Label_average_effective_damage_per_sec.Size = new System.Drawing.Size(114, 24);
             this.Label_average_effective_damage_per_sec.TabIndex = 17;
             this.Label_average_effective_damage_per_sec.Text = "-";
             this.Label_average_effective_damage_per_sec.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -640,6 +658,75 @@ namespace MinerGunBuilderCalculator
             // 
             this.errorProvider1.ContainerControl = this;
             // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label17.Location = new System.Drawing.Point(1, 93);
+            this.label17.Margin = new System.Windows.Forms.Padding(0);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(146, 22);
+            this.label17.TabIndex = 13;
+            this.label17.Text = "Avg rectangle area count";
+            this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label18.Location = new System.Drawing.Point(1, 70);
+            this.label18.Margin = new System.Windows.Forms.Padding(0);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(146, 22);
+            this.label18.TabIndex = 14;
+            this.label18.Text = "Avg round area count";
+            this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label19.Location = new System.Drawing.Point(1, 116);
+            this.label19.Margin = new System.Windows.Forms.Padding(0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(146, 23);
+            this.label19.TabIndex = 15;
+            this.label19.Text = "Avg pierce count";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label_average_round_area_count
+            // 
+            this.Label_average_round_area_count.AutoSize = true;
+            this.Label_average_round_area_count.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_average_round_area_count.Location = new System.Drawing.Point(151, 70);
+            this.Label_average_round_area_count.Name = "Label_average_round_area_count";
+            this.Label_average_round_area_count.Size = new System.Drawing.Size(113, 22);
+            this.Label_average_round_area_count.TabIndex = 16;
+            this.Label_average_round_area_count.Text = "-";
+            this.Label_average_round_area_count.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label_average_rectangle_area_count
+            // 
+            this.Label_average_rectangle_area_count.AutoSize = true;
+            this.Label_average_rectangle_area_count.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_average_rectangle_area_count.Location = new System.Drawing.Point(151, 93);
+            this.Label_average_rectangle_area_count.Name = "Label_average_rectangle_area_count";
+            this.Label_average_rectangle_area_count.Size = new System.Drawing.Size(113, 22);
+            this.Label_average_rectangle_area_count.TabIndex = 17;
+            this.Label_average_rectangle_area_count.Text = "-";
+            this.Label_average_rectangle_area_count.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // Label_average_pierce_count
+            // 
+            this.Label_average_pierce_count.AutoSize = true;
+            this.Label_average_pierce_count.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Label_average_pierce_count.Location = new System.Drawing.Point(151, 116);
+            this.Label_average_pierce_count.Name = "Label_average_pierce_count";
+            this.Label_average_pierce_count.Size = new System.Drawing.Size(113, 23);
+            this.Label_average_pierce_count.TabIndex = 18;
+            this.Label_average_pierce_count.Text = "-";
+            this.Label_average_pierce_count.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // Form_Ship
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -717,5 +804,11 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.Label Label_average_effective_damage;
         private System.Windows.Forms.Label Label_highest_projectile_effective_damage;
         private System.Windows.Forms.Label Label_average_effective_damage_per_sec;
+        private System.Windows.Forms.Label Label_average_pierce_count;
+        private System.Windows.Forms.Label Label_average_rectangle_area_count;
+        private System.Windows.Forms.Label Label_average_round_area_count;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
     }
 }

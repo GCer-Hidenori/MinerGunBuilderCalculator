@@ -53,6 +53,12 @@ namespace MinerGunBuilderCalculator
             Label_highest_projectile_effective_damage.Text = String.Format("{0:#,0.00}", max_effective_damage);
             Label_lowest_projectile_effective_damage.Text = String.Format("{0:#,0.00}", min_effective_damage ?? 0);
         }
+        public void WriteCalculateResult_area_pierce(decimal average_round_area_count, decimal average_rectangle_area_count, decimal average_pierce_count)
+        {
+            Label_average_round_area_count.Text = String.Format("{0:#,0.00}", Decimal.Round(average_round_area_count,2,MidpointRounding.AwayFromZero));
+            Label_average_rectangle_area_count.Text = String.Format("{0:#,0.00}",Decimal.Round(average_rectangle_area_count,2,MidpointRounding.AwayFromZero));
+            Label_average_pierce_count.Text = String.Format("{0:#,0.00}", Decimal.Round(average_pierce_count,2,MidpointRounding.AwayFromZero));
+        }
 
 
         public void AddPictureBox(PictureBox pb)

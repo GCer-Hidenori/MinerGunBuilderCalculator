@@ -30,40 +30,7 @@ namespace MinerGunBuilderCalculator
                 tableLayoutPanel1.Controls.Remove(control);
             }
 
-            /*
-            for(int i = tableLayoutPanel1.Controls.Count - 1; i >= 0; i--)
-            {
-                Control control = tableLayoutPanel1.Controls[i];
-                if(!first_row_controls.Contains(control))
-                {
-                    tableLayoutPanel1
-                }
-            }
-
-            foreach (Control control in tableLayoutPanel1.Controls)
-            {
-                if(!first_row_controls.Contains(control))
-                {
-                    tableLayoutPanel1.Controls.Remove(control);
-                }
-            }
-            */
             tableLayoutPanel1.RowCount = 1;
-            /*
-            while (tableLayoutPanel1.RowCount > 1)
-            {
-                for(int col = 0 ; col < tableLayoutPanel1.ColumnCount;col++)
-                {
-                    このあたりから。列ループとは違う？ずれてくるし
-                }
-            }
-            */
-            /*
-            while(tableLayoutPanel1.Controls.Count > 0){
-                tableLayoutPanel1.Controls.RemoveAt(0);
-            }
-            tableLayoutPanel1.RowCount = 1;
-            */
         }
         private (Label label,ScottPlot.FormsPlot formsPlot) CreateSingleHistgram(string ejector_name,List<decimal> projectile_damages,int fire_time_sec,Statistics.Stats stats_projectile_damage,decimal ejected_count,decimal ejected_count_per_sec)
         {
@@ -104,12 +71,15 @@ namespace MinerGunBuilderCalculator
             var label = new Label()
             {
                 Dock = DockStyle.Fill,
-                Text = $"Lowest projectile damage:{stats_projectile_damage.min_damage:#,0.00}\r\nAverage projectile damage:{Decimal.Round(stats_projectile_damage.average_damage,2,MidpointRounding.AwayFromZero):#,0.00}\r\nMean projectile damage:{stats_projectile_damage.mean_damage:#,0.00}\r\nHighest projectile damage:{stats_projectile_damage.max_damage:#,0.00}" +
-                $"\r\nTotal projectile damage:{Decimal.Round(stats_projectile_damage.total_damage,2,MidpointRounding.AwayFromZero)}\r\nAverage projectile damage/sec:{Decimal.Round(stats_projectile_damage.average_damage_per_sec,2,MidpointRounding.AwayFromZero):#,0.00}" +
-                $"\r\nProjectile ejected count:{ejected_count}\r\nProjectile ejected count/sec:{Decimal.Round(ejected_count_per_sec,2,MidpointRounding.AwayFromZero):#,0.00}"
-
-
+                Text = $"Lowest projectile damage:{stats_projectile_damage.min_damage:#,0.00}\r\nAverage projectile damage:{Decimal.Round(stats_projectile_damage.average_damage, 2, MidpointRounding.AwayFromZero):#,0.00}\r\nMean projectile damage:{stats_projectile_damage.mean_damage:#,0.00}\r\nHighest projectile damage:{stats_projectile_damage.max_damage:#,0.00}" +
+                $"\r\nTotal projectile damage:{Decimal.Round(stats_projectile_damage.total_damage, 2, MidpointRounding.AwayFromZero)}\r\nAverage projectile damage/sec:{Decimal.Round(stats_projectile_damage.average_damage_per_sec, 2, MidpointRounding.AwayFromZero):#,0.00}" +
+                $"\r\nProjectile ejected count:{ejected_count}\r\nProjectile ejected count/sec:{Decimal.Round(ejected_count_per_sec, 2, MidpointRounding.AwayFromZero):#,0.00}"
             };
+            if(stats_projectile_damage.round_area_count != null)
+            {
+                label.Text += $"\r\nRound area count:{Decimal.Round((Decimal)stats_projectile_damage.round_area_count,2,MidpointRounding.AwayFromZero):#,0.00}\r\nRectangle area count:{Decimal.Round((Decimal)stats_projectile_damage.rectangle_area_count,2,MidpointRounding.AwayFromZero):#,0.00}\r\nPierce count:{Decimal.Round((Decimal)stats_projectile_damage.pierce_count,2,MidpointRounding.AwayFromZero):#,0.00}" +
+                $"\r\nRound area:{Decimal.Round((Decimal)stats_projectile_damage.round_area,2,MidpointRounding.AwayFromZero):#,0.00}\r\nRectangle area:{Decimal.Round((Decimal)stats_projectile_damage.rectangle_area,2,MidpointRounding.AwayFromZero):#,0.00}";
+            }
 
             return (label, formsPlot_projectile_damage);
         }
@@ -120,11 +90,8 @@ namespace MinerGunBuilderCalculator
             var histgram_projectile_damage = CreateSingleHistgram(ejector_name,projectile_damages,fire_time_sec,stats_projectile_damage,ejected_count,ejected_count_per_sec);
             var histgram_projectile_effective_damage = CreateSingleHistgram(ejector_name,projectile_effective_damages,fire_time_sec,stats_projectile_effective_damage,ejected_count,ejected_count_per_sec);
 
-            //if(tableLayoutPanel1.Controls.Count != 0)
-            //{
-                tableLayoutPanel1.RowCount += 1;
-                tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 200));
-            //}
+            tableLayoutPanel1.RowCount += 1;
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 200));
             tableLayoutPanel1.Controls.Add(histgram_projectile_damage.formsPlot);
             tableLayoutPanel1.Controls.Add(histgram_projectile_damage.label);
             tableLayoutPanel1.Controls.Add(histgram_projectile_effective_damage.formsPlot);
