@@ -1449,7 +1449,12 @@ namespace MinerGunBuilderCalculator
             inbound_projectileStat.magnification = projectile.magnification;
             inbound_projectileStat.speed = projectile.speed;
             inbound_projectileStat.lifetime = projectile.lifetime;
+            inbound_projectileStat.slowdamage = projectile.slowdamage;
+            inbound_projectileStat.round_area_count = projectile.round_area_count;
+            inbound_projectileStat.rectangle_area_count = projectile.rectangle_area_count;
+            inbound_projectileStat.pierce_count = projectile.pierce_count;
             inbound_projectileStat.Legendary_EnableGuideDamage = projectile.Legendary_EnableGuideDamage;
+            inbound_projectileStat.list_of_crossing_passed = new List<Crossing>(projectile.list_of_crossing_passed);
             return inbound_projectileStat;
         }
        public override Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
