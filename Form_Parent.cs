@@ -67,6 +67,36 @@ namespace MinerGunBuilderCalculator
                 form_ship.Show();
             }
         }
+
+        private void ImportShip()
+        {
+            //string save_file_name; // = null;
+            var save_data = ImportData.Load(out string save_file_name, logger);
+            if (save_data != null)
+            {
+                Form_Ship form_ship = new();
+                form_ship.Text = Path.GetFileName(save_file_name);
+                form_ship.save_file_name = save_file_name;
+                ShipParameter shipParamater = save_data.shipParameter;
+                Profile profile = save_data.profile;
+                ShipLayoutManager shipLayoutManager = new(form_ship, shipParamater, profile, save_data.thing_layout);
+                form_ship.shipLayoutManager = shipLayoutManager;
+                form_ship.shipParamater = shipParamater;
+                form_ship.profile = profile;
+
+                // Set the Parent Form of the Child window.
+                form_ship.MdiParent = this;
+                // Display the new form.
+                form_ship.Show();
+            }
+        }
+
+        private void ImportShipMenuItem_Click(object sender, EventArgs e)
+        {
+            ImportShip();
+            
+        }
+
         private void NewShipToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             NewShip();
