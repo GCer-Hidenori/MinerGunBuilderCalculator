@@ -296,88 +296,87 @@ namespace MinerGunBuilderCalculator
                     sp.fire_rate = 3.2m;
                     sp.projectile_speed = 2;
                     break;
-                case "014":
+                case "029":
                     shipName = "Radio Seeker";
                     sp.fire_rate = 12.7m;
                     sp.projectile_speed = 3;
                     break;
-                case "015":
+                case "014":
                     shipName = "Scout";
                     sp.fire_rate = 1.6m;
                     sp.projectile_speed = 1;
                     break;
-                case "016":
+                case "015":
                     shipName = "Eco Seeker";
                     sp.fire_rate = 4.9m;
                     sp.projectile_speed = 2;
                     break;
-                case "017":
+                case "016":
                     shipName = "Spaceshuttle";
                     sp.fire_rate = 2.8m;
                     sp.projectile_speed = 2;
                     break;
-                case "018":
+                case "017":
                     shipName = "Army Launcher";
                     sp.fire_rate = 2.2m;
                     sp.projectile_speed = 2;
                     break;
-                case "019":
+                case "018":
                     shipName = "Explorer";
                     sp.fire_rate = 4.3m;
                     sp.projectile_speed = 1.3m;
                     break;
-                case "020":
+                case "019":
                     shipName = "Luxus-Class";
                     sp.fire_rate = 3.9m;
                     sp.projectile_speed = 2;
                     break;
-                case "021":
+                case "030":
                     shipName = "Extractor";
                     sp.fire_rate = 11.1m;
                     sp.projectile_speed = 3;
                     break;
-                case "022":
+                case "020":
                     shipName = "Endprice";
                     sp.fire_rate = 1;
                     sp.projectile_speed = 1;
                     break;
-                case "023":
+                case "021":
                     shipName = "Eco Destroyer";
                     sp.fire_rate = 3.7m;
                     sp.projectile_speed = 2.2m;
                     break;
-                case "024":
+                case "022":
                     shipName = "Alien Destroyer";
                     sp.fire_rate = 1.8m;
                     sp.projectile_speed = 2;
                     break;
-                case "025":
+                case "023":
                     shipName = "Rocket Carrier";
                     sp.fire_rate = 1;
                     sp.projectile_speed = 1;
                     break;
-                case "026":
+                case "024":
                     shipName = "Mothership";
                     sp.fire_rate = 4;
-
                     sp.projectile_speed = 2;
                     break;
-                case "027":
+                case "025":
                     shipName = "Death Star";
                     sp.fire_rate = 5.5m;
                     sp.projectile_speed = 3.7m;
                     break;
-                case "028":
+                case "026":
                     shipName = "Cargo Ship";
                     sp.fire_rate = 1;
                     sp.projectile_speed = 1;
                     break;
-                case "029":
+                case "027":
                     shipName = "Archmage";
                     sp.fire_rate = 3.1m;
                     sp.projectile_speed = 3;
                     break;
-                case "030":
+                case "028":
                     shipName = "Eco Death";
                     sp.fire_rate = 3;
                     sp.projectile_speed = 4;
