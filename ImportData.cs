@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using MinerGunBuilderCalculator.Ships;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -37,10 +38,11 @@ namespace MinerGunBuilderCalculator
                 if (CheckSaveFormatVersion(importData))
                 {
                     List<string> parts = Split(importData, 3).ToList();
-                    saveData.shipParameter = CreateShip(parts.First(), ref saveFileName);
+                    Ship ship = ShipCatalog.GetShipById(parts.First());
+                    saveFileName = ship.Name;
+                    saveData.shipParameter = ship.Parameter;
 
                     saveData.profile = new Profile();
-
                     saveData.thing_layout = CreateThings(parts.Skip(1).ToList());
 
                 }
@@ -219,177 +221,11 @@ namespace MinerGunBuilderCalculator
             return thing_layout;
         }
 
-
-        private static ShipParameter CreateShip(string shipId, ref string shipName)
+        private static Ship GetShip(string shipId)
         {
-            ShipParameter sp = new ShipParameter();
-
-            switch (shipId)
-            {
-                case "000":
-                    shipName = "Rider-used";
-                    sp.fire_rate = 1;
-                    sp.projectile_speed = 1;
-                    break;
-                case "001":
-                    shipName = "Rider";
-                    sp.fire_rate = (decimal)1.5;
-                    sp.projectile_speed = 1;
-                    break;
-                case "002":
-                    shipName = "Transporter";
-                    sp.fire_rate = 1.4m;
-                    sp.projectile_speed = 1;
-                    break;
-                case "003":
-                    shipName = "Rocket";
-                    sp.fire_rate = 2.7m;
-                    sp.projectile_speed = 1;
-                    break;
-                case "004":
-                    shipName = "Alien Seeker";
-                    sp.fire_rate = 4.9m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "005":
-                    shipName = "Bus";
-                    sp.fire_rate = 2;
-                    sp.projectile_speed = 1;
-                    break;
-                case "006":
-                    shipName = "Fighter";
-                    sp.fire_rate = 3.5m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "007":
-                    shipName = "Family cruiser";
-                    sp.fire_rate = 5.5m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "008":
-                    shipName = "Pirate Blade";
-                    sp.fire_rate = 4;
-                    sp.projectile_speed = 3;
-                    break;
-                case "009":
-                    shipName = "Window";
-                    sp.fire_rate = 5.5m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "010":
-                    shipName = "Backsword";
-                    sp.fire_rate = 6.2m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "011":
-                    shipName = "Container ship";
-                    sp.fire_rate = 1;
-                    sp.projectile_speed = 2;
-                    break;
-                case "012":
-                    shipName = "Prototype";
-                    sp.fire_rate = 5.1m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "013":
-                    shipName = "Practice Launcher";
-                    sp.fire_rate = 3.2m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "029":
-                    shipName = "Radio Seeker";
-                    sp.fire_rate = 12.7m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "014":
-                    shipName = "Scout";
-                    sp.fire_rate = 1.6m;
-                    sp.projectile_speed = 1;
-                    break;
-                case "015":
-                    shipName = "Eco Seeker";
-                    sp.fire_rate = 4.9m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "016":
-                    shipName = "Spaceshuttle";
-                    sp.fire_rate = 2.8m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "017":
-                    shipName = "Army Launcher";
-                    sp.fire_rate = 2.2m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "018":
-                    shipName = "Explorer";
-                    sp.fire_rate = 4.3m;
-                    sp.projectile_speed = 1.3m;
-                    break;
-                case "019":
-                    shipName = "Luxus-Class";
-                    sp.fire_rate = 3.9m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "030":
-                    shipName = "Extractor";
-                    sp.fire_rate = 11.1m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "020":
-                    shipName = "Endprice";
-                    sp.fire_rate = 1;
-                    sp.projectile_speed = 1;
-                    break;
-                case "021":
-                    shipName = "Eco Destroyer";
-                    sp.fire_rate = 3.7m;
-                    sp.projectile_speed = 2.2m;
-                    break;
-                case "022":
-                    shipName = "Alien Destroyer";
-                    sp.fire_rate = 1.8m;
-                    sp.projectile_speed = 2;
-                    break;
-                case "023":
-                    shipName = "Rocket Carrier";
-                    sp.fire_rate = 1;
-                    sp.projectile_speed = 1;
-                    break;
-                case "024":
-                    shipName = "Mothership";
-                    sp.fire_rate = 4;
-                    sp.projectile_speed = 2;
-                    break;
-                case "025":
-                    shipName = "Death Star";
-                    sp.fire_rate = 5.5m;
-                    sp.projectile_speed = 3.7m;
-                    break;
-                case "026":
-                    shipName = "Cargo Ship";
-                    sp.fire_rate = 1;
-                    sp.projectile_speed = 1;
-                    break;
-                case "027":
-                    shipName = "Archmage";
-                    sp.fire_rate = 3.1m;
-                    sp.projectile_speed = 3;
-                    break;
-                case "028":
-                    shipName = "Eco Death";
-                    sp.fire_rate = 3;
-                    sp.projectile_speed = 4;
-                    break;
-                case "031":
-                    shipName = "Transmitter";
-                    sp.fire_rate = 9.9m;
-                    sp.projectile_speed = 4;
-                    break;
-            }
-
-            return sp;
+            return ShipCatalog.GetShipById(shipId);
         }
+
 
         static IEnumerable<string> Split(string str, int chunkSize)
         {
