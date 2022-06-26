@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator
 {
-    class Parts_02_Ejector : Parts
+    internal class Parts_02_Ejector : Parts
     {
+        public override string Id { get; set; } = "03";
+        public override string Name { get; set; } = nameof(Parts_02_Ejector);
+
         public Parts_02_Ejector(Thing[,] thing_layout) : base(thing_layout)
         {
             IsAccessFromTOP = true;
@@ -15,6 +15,7 @@ namespace MinerGunBuilderCalculator
             IsAccessFromDOWN = true;
             IsAccessFromLEFT = true;
         }
+
         public List<ProjectileStat> GetOutboundProjectileStatList(ShipParameter shipParameter, Profile profile)
         {
             List<ProjectileStat> inbound_projectileStatList = new();
@@ -114,6 +115,7 @@ namespace MinerGunBuilderCalculator
             }
             return inbound_projectileStatList;
         }
+
         public List<Projectile> GetOutboundProjectileList(ShipParameter shipParameter, Profile profile)
         {
             List<Projectile> projectileList = new();

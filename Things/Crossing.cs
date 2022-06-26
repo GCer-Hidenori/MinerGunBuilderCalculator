@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace MinerGunBuilderCalculator
 {
     public class Crossing : Thing
     {
-
         public Crossing(Thing[,] thing_layout) : base(thing_layout)
         {
-
         }
+
+        public override string Id { get; set; } = "--";
+        public override string Name { get; set; } = nameof(Crossing);
+
         public override void CreateProjectileFlow(Thing[,] thing_layout, Thing fromThing = null, Direction? from_direction = null)
         {
             switch (from_direction)
@@ -20,12 +16,15 @@ namespace MinerGunBuilderCalculator
                 case Direction.TOP:
                     Access_from_abs_top = fromThing;
                     break;
+
                 case Direction.RIGHT:
                     Access_from_abs_right = fromThing;
                     break;
+
                 case Direction.DOWN:
                     Access_from_abs_down = fromThing;
                     break;
+
                 case Direction.LEFT:
                     Access_from_abs_left = fromThing;
                     break;
@@ -46,6 +45,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.RIGHT:
                     if (from_direction == Direction.LEFT)
                     {
@@ -57,6 +57,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.DOWN:
                     if (from_direction == Direction.TOP)
                     {
@@ -68,6 +69,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.LEFT:
                     if (from_direction == Direction.RIGHT)
                     {
@@ -79,7 +81,6 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
-
             }
 
             // Access to right
@@ -96,6 +97,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.RIGHT:
                     if (from_direction == Direction.TOP)
                     {
@@ -107,6 +109,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.DOWN:
                     if (from_direction == Direction.RIGHT)
                     {
@@ -118,6 +121,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.LEFT:
                     if (from_direction == Direction.DOWN)
                     {
@@ -146,6 +150,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.RIGHT:
                     if (from_direction == Direction.RIGHT)
                     {
@@ -157,6 +162,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.DOWN:
                     if (from_direction == Direction.DOWN)
                     {
@@ -168,6 +174,7 @@ namespace MinerGunBuilderCalculator
                         }
                     }
                     break;
+
                 case Thing.Direction.LEFT:
                     if (from_direction == Direction.LEFT)
                     {
@@ -196,6 +203,7 @@ namespace MinerGunBuilderCalculator
                             }
                         }
                         break;
+
                     case Thing.Direction.RIGHT:
                         if (from_direction == Direction.DOWN)
                         {
@@ -207,6 +215,7 @@ namespace MinerGunBuilderCalculator
                             }
                         }
                         break;
+
                     case Thing.Direction.DOWN:
                         if (from_direction == Direction.LEFT)
                         {
@@ -218,6 +227,7 @@ namespace MinerGunBuilderCalculator
                             }
                         }
                         break;
+
                     case Thing.Direction.LEFT:
                         if (from_direction == Direction.TOP)
                         {

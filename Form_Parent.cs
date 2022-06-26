@@ -147,6 +147,21 @@ namespace MinerGunBuilderCalculator
             }
         }
 
+        private void exportShipToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Form_Ship.Current != null)
+            {
+                Form_Ship form_ship = Form_Ship.Current;
+                var shipLayoutManager = form_ship.GetShipLayoutManager();
+                string saveFileName = form_ship.save_file_name;
+                Form_ShipExport formShipExport = new Form_ShipExport(shipLayoutManager, saveFileName);
+                formShipExport.ShowDialog();
+                //var save_file_name = SaveData.Save(shipLayoutManager.thing_layout, shipLayoutManager.ship_parameter, shipLayoutManager.profile, false, form_ship.save_file_name);
+                //form_ship.save_file_name = save_file_name;
+                //form_ship.Text = Path.GetFileName(save_file_name);
+            }
+        }
+
         private void Form_Parent_KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -177,5 +192,7 @@ namespace MinerGunBuilderCalculator
                 versionForm.Dispose();
             }
         }
+
+
     }
 }

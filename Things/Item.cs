@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MinerGunBuilderCalculator
+﻿namespace MinerGunBuilderCalculator
 {
-    class Item : Thing
+    internal class Item : Thing
     {
         public Item(Thing[,] thing_layout) : base(thing_layout)
         {
             this.thing_layout = thing_layout;
         }
+
+        public override string Id { get; set; } = "--";
+        public override string Name { get; set; } = nameof(Item);
     }
 }

@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator.Ships
 {
@@ -21,7 +18,6 @@ namespace MinerGunBuilderCalculator.Ships
             Parameter = new ShipParameter(fireRate, projectileSpeed);
         }
     }
-
 
     public static class ShipCatalog
     {
@@ -60,7 +56,7 @@ namespace MinerGunBuilderCalculator.Ships
             { "030", new Ship("030", "Extractor", 11.1m, 3) },
             { "031", new Ship("031", "Transmitter", 9.9m, 4) }
         };
-    
+
         public static Ship GetShipById(string id)
         {
             return Catalog.GetValueOrDefault(id);
