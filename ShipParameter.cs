@@ -21,5 +21,13 @@ namespace MinerGunBuilderCalculator
             projectile_lifetime = 3m;
 
         }
+
+        public ShipParameter(decimal fireRate, decimal projectileSpeed)
+        {
+            base_damage = 1m;
+            fire_rate = fireRate;
+            projectile_speed = projectileSpeed;
+            projectile_lifetime = 3m;
+        }
     }
 }

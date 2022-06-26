@@ -2,29 +2,37 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MinerGunBuilderCalculator
 {
+    internal interface IThing
+    {
+        string Id { get; set; }
+        string Name { get; set; }
+    }
+
     public struct Location
     {
         public int X;
         public int Y;
-        public Location(int x,int y)
+
+        public Location(int x, int y)
         {
             X = x;
             Y = y;
         }
+
         public double GetDistance(Location loc)
         {
             return Math.Sqrt((Math.Pow(X - loc.X, 2) + Math.Pow(Y - loc.Y, 2)));
         }
     }
-    public class Thing
+
+    public abstract class Thing : IThing
     {
         [JsonIgnore]
         public Thing[,] thing_layout;
+
         public enum Direction
         {
             TOP = 0,
@@ -57,13 +65,18 @@ namespace MinerGunBuilderCalculator
         [JsonIgnore]
         public bool IsEjecting = false;
 
-
         [JsonIgnore]
         public Random rand;
 
+        [JsonIgnore]
+        public abstract string Id { get; set; }
+
+        public abstract string Name { get; set; }
+
         public Direction direction = Direction.TOP;
 
-        private int dx,dy;
+        private int dx, dy;
+
         public int DX
         {
             set
@@ -75,6 +88,7 @@ namespace MinerGunBuilderCalculator
                 return GetLocation().X;
             }
         }
+
         public int DY
         {
             set
@@ -86,10 +100,11 @@ namespace MinerGunBuilderCalculator
                 return GetLocation().Y;
             }
         }
+
         // Orientation with respect to the display orientation
         //
         [JsonIgnore]
-        private Thing access_from_abs_top, access_from_abs_right,access_from_abs_down,access_from_abs_left;
+        private Thing access_from_abs_top, access_from_abs_right, access_from_abs_down, access_from_abs_left;
 
         [JsonIgnore]
         public Thing Access_to_rel_top
@@ -101,15 +116,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         Access_to_abs_top = value;
                         break;
+
                     case Direction.RIGHT:
                         Access_to_abs_right = value;
                         break;
+
                     case Direction.DOWN:
                         Access_to_abs_down = value;
                         break;
+
                     case Direction.LEFT:
                         Access_to_abs_left = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -126,6 +145,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+
         [JsonIgnore]
         public Thing Access_to_rel_right
         {
@@ -136,15 +156,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         Access_to_abs_right = value;
                         break;
+
                     case Direction.RIGHT:
                         Access_to_abs_down = value;
                         break;
+
                     case Direction.DOWN:
                         Access_to_abs_left = value;
                         break;
+
                     case Direction.LEFT:
                         Access_to_abs_top = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -161,7 +185,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
-        
+
         [JsonIgnore]
         public Thing Access_to_rel_down
         {
@@ -172,15 +196,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         Access_to_abs_down = value;
                         break;
+
                     case Direction.RIGHT:
                         Access_to_abs_left = value;
                         break;
+
                     case Direction.DOWN:
                         Access_to_abs_top = value;
                         break;
+
                     case Direction.LEFT:
                         Access_to_abs_right = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -197,6 +225,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+
         [JsonIgnore]
         public Thing Access_to_rel_left
         {
@@ -207,15 +236,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         Access_to_abs_left = value;
                         break;
+
                     case Direction.RIGHT:
                         Access_to_abs_top = value;
                         break;
+
                     case Direction.DOWN:
                         Access_to_abs_right = value;
                         break;
+
                     case Direction.LEFT:
                         Access_to_abs_down = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -234,7 +267,8 @@ namespace MinerGunBuilderCalculator
         }
 
         [JsonIgnore]
-        public Thing Access_to_abs_top,Access_to_abs_right,Access_to_abs_down,Access_to_abs_left;
+        public Thing Access_to_abs_top, Access_to_abs_right, Access_to_abs_down, Access_to_abs_left;
+
         [JsonIgnore]
         public Thing Access_from_abs_top
         {
@@ -254,6 +288,7 @@ namespace MinerGunBuilderCalculator
                 return access_from_abs_top;
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_abs_right
         {
@@ -273,6 +308,7 @@ namespace MinerGunBuilderCalculator
                 return access_from_abs_right;
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_abs_down
         {
@@ -292,6 +328,7 @@ namespace MinerGunBuilderCalculator
                 return access_from_abs_down;
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_abs_left
         {
@@ -312,7 +349,6 @@ namespace MinerGunBuilderCalculator
             }
         }
 
-
         [JsonIgnore]
         public Thing Access_from_rel_top
         {
@@ -323,15 +359,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         access_from_abs_top = value;
                         break;
+
                     case Direction.RIGHT:
                         access_from_abs_right = value;
                         break;
+
                     case Direction.DOWN:
                         access_from_abs_down = value;
                         break;
+
                     case Direction.LEFT:
                         access_from_abs_left = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -348,6 +388,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_rel_right
         {
@@ -358,15 +399,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         access_from_abs_right = value;
                         break;
+
                     case Direction.RIGHT:
                         access_from_abs_down = value;
                         break;
+
                     case Direction.DOWN:
                         access_from_abs_left = value;
                         break;
+
                     case Direction.LEFT:
                         access_from_abs_top = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -383,6 +428,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_rel_down
         {
@@ -393,15 +439,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         access_from_abs_down = value;
                         break;
+
                     case Direction.RIGHT:
                         access_from_abs_left = value;
                         break;
+
                     case Direction.DOWN:
                         access_from_abs_top = value;
                         break;
+
                     case Direction.LEFT:
                         access_from_abs_right = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -418,6 +468,7 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
+
         [JsonIgnore]
         public Thing Access_from_rel_left
         {
@@ -428,15 +479,19 @@ namespace MinerGunBuilderCalculator
                     case Direction.TOP:
                         access_from_abs_left = value;
                         break;
+
                     case Direction.RIGHT:
                         access_from_abs_top = value;
                         break;
+
                     case Direction.DOWN:
                         access_from_abs_right = value;
                         break;
+
                     case Direction.LEFT:
                         access_from_abs_down = value;
                         break;
+
                     default:
                         throw new NotImplementedException();
                 }
@@ -453,36 +508,36 @@ namespace MinerGunBuilderCalculator
                 };
             }
         }
-        
+
         [JsonIgnore]
         public Thing Access_from
         {
             get
             {
-                if(Access_from_rel_down != null)return Access_from_rel_down;
-                if(Access_from_rel_right != null)return Access_from_rel_right;
-                if(Access_from_rel_left != null)return Access_from_rel_left;
-                if(Access_from_rel_top != null)return Access_from_rel_top;
+                if (Access_from_rel_down != null) return Access_from_rel_down;
+                if (Access_from_rel_right != null) return Access_from_rel_right;
+                if (Access_from_rel_left != null) return Access_from_rel_left;
+                if (Access_from_rel_top != null) return Access_from_rel_top;
                 return null;
             }
         }
 
         public bool IsReachable(Thing target_thing)
         {
-            foreach(Thing thing in ConnectedThings(true))
+            foreach (Thing thing in ConnectedThings(true))
             {
-                if(thing == target_thing)return true;
+                if (thing == target_thing) return true;
             }
             return false;
         }
 
         public Location GetLocation()
         {
-            for(int x = 0;x < thing_layout.GetLength(0); x++)
+            for (int x = 0; x < thing_layout.GetLength(0); x++)
             {
-                for(int y = 0;y < thing_layout.GetLength(1); y++)
+                for (int y = 0; y < thing_layout.GetLength(1); y++)
                 {
-                    if(thing_layout[x,y] == this)
+                    if (thing_layout[x, y] == this)
                     {
                         return new Location(x, y);
                     }
@@ -495,26 +550,28 @@ namespace MinerGunBuilderCalculator
         {
             this.thing_layout = thing_layout;
         }
+
         public virtual void ResetBeforeCalculateDamage()
         {
             rand = new Random(0);
         }
 
-        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter,Profile profile,Thing to_thing)
+        public virtual ProjectileStat GetOutboundProjectileStat(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             ProjectileStat inbound_projectileStat = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter,profile,this);
+                inbound_projectileStat = Access_from_rel_down.GetOutboundProjectileStat(shipParameter, profile, this);
             }
             return inbound_projectileStat;
         }
-        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter,Profile profile, Thing to_thing)
+
+        public virtual Projectile GetOutboundProjectile(ShipParameter shipParameter, Profile profile, Thing to_thing)
         {
             Projectile inbound_projectile = new();
             if (Access_from_rel_down != null)
             {
-                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter,profile,this);
+                inbound_projectile = Access_from_rel_down.GetOutboundProjectile(shipParameter, profile, this);
             }
             return inbound_projectile;
         }
@@ -527,9 +584,9 @@ namespace MinerGunBuilderCalculator
 
         private void ResetAllThingsCheckConnectionFlag()
         {
-            for(var x = 0;x < thing_layout.GetLength(0); x++)
+            for (var x = 0; x < thing_layout.GetLength(0); x++)
             {
-                for(var y = 0;y < thing_layout.GetLength(1); y++)
+                for (var y = 0; y < thing_layout.GetLength(1); y++)
                 {
                     thing_layout[x, y].connectionChecked = false;
                 }
@@ -541,18 +598,19 @@ namespace MinerGunBuilderCalculator
         /// </summary>
         /// <param name="isFirstCall">If true,reset connectionChecked flag to false of all things. </param>
         /// <returns></returns>
-        public IEnumerable<Thing> ConnectedThings(bool isFirstCall=false)
+        public IEnumerable<Thing> ConnectedThings(bool isFirstCall = false)
         {
             if (isFirstCall)
             {
                 ResetAllThingsCheckConnectionFlag();
             }
-            if(connectionChecked == false){
+            if (connectionChecked == false)
+            {
                 connectionChecked = true;
                 yield return this;
-                if(Access_to_abs_top != null)
+                if (Access_to_abs_top != null)
                 {
-                    foreach(Thing thing in Access_to_abs_top.ConnectedThings())
+                    foreach (Thing thing in Access_to_abs_top.ConnectedThings())
                     {
                         yield return thing;
                     }
@@ -579,9 +637,8 @@ namespace MinerGunBuilderCalculator
                     }
                 }
             }
-
-
         }
+
         public bool IsSeparate(Thing thing_target)
         {
             Location loc_me, loc_target;
@@ -590,10 +647,11 @@ namespace MinerGunBuilderCalculator
             int distance_x = loc_me.X - loc_target.X;
             int distance_y = loc_me.Y - loc_target.Y;
 
-            if(distance_x ==0 && (distance_y == 1 || distance_y == -1))
+            if (distance_x == 0 && (distance_y == 1 || distance_y == -1))
             {
                 return false;
-            }else if(distance_y == 0 && (distance_x == 1 || distance_y == -1))
+            }
+            else if (distance_y == 0 && (distance_x == 1 || distance_y == -1))
             {
                 return false;
             }
@@ -602,7 +660,8 @@ namespace MinerGunBuilderCalculator
                 return true;
             }
         }
-        public bool CanReachFromProjectileGenerator(Thing[,] thing_layout, Direction? from_direction=null)
+
+        public bool CanReachFromProjectileGenerator(Thing[,] thing_layout, Direction? from_direction = null)
         {
             var thing_1dim_layout = thing_layout.Cast<Thing>();
             List<Thing> list_thing;
@@ -700,9 +759,9 @@ namespace MinerGunBuilderCalculator
                     {
                         return false;
                     }
-
             }
         }
+
         protected static Thing Get_access_top_thing(Thing[,] thing_layout, int from_x, int from_y)
         {
             if (from_y > 0)
@@ -719,15 +778,19 @@ namespace MinerGunBuilderCalculator
                         case Thing.Direction.TOP:
                             if (obj.IsAccessFromDOWN) return obj;
                             break;
+
                         case Thing.Direction.RIGHT:
                             if (obj.IsAccessFromRIGHT) return obj;
                             break;
+
                         case Thing.Direction.DOWN:
                             if (obj.IsAccessFromTOP) return obj;
                             break;
+
                         case Thing.Direction.LEFT:
                             if (obj.IsAccessFromLEFT) return obj;
                             break;
+
                         default:
                             throw new NotImplementedException();
                     }
@@ -739,6 +802,7 @@ namespace MinerGunBuilderCalculator
                 return null;
             }
         }
+
         protected static Thing Get_access_right_thing(Thing[,] thing_layout, int from_x, int from_y)
         {
             if (from_x < thing_layout.GetLength(0) - 1)
@@ -755,15 +819,19 @@ namespace MinerGunBuilderCalculator
                         case Thing.Direction.TOP:
                             if (obj.IsAccessFromLEFT) return obj;
                             break;
+
                         case Thing.Direction.RIGHT:
                             if (obj.IsAccessFromDOWN) return obj;
                             break;
+
                         case Thing.Direction.DOWN:
                             if (obj.IsAccessFromRIGHT) return obj;
                             break;
+
                         case Thing.Direction.LEFT:
                             if (obj.IsAccessFromTOP) return obj;
                             break;
+
                         default:
                             throw new NotImplementedException();
                     }
@@ -775,6 +843,7 @@ namespace MinerGunBuilderCalculator
                 return null;
             }
         }
+
         protected static Thing Get_access_left_thing(Thing[,] thing_layout, int from_x, int from_y)
         {
             if (from_x > 0)
@@ -791,15 +860,19 @@ namespace MinerGunBuilderCalculator
                         case Thing.Direction.TOP:
                             if (obj.IsAccessFromRIGHT) return obj;
                             break;
+
                         case Thing.Direction.RIGHT:
                             if (obj.IsAccessFromTOP) return obj;
                             break;
+
                         case Thing.Direction.DOWN:
                             if (obj.IsAccessFromLEFT) return obj;
                             break;
+
                         case Thing.Direction.LEFT:
                             if (obj.IsAccessFromDOWN) return obj;
                             break;
+
                         default:
                             throw new NotImplementedException();
                     }
@@ -811,6 +884,7 @@ namespace MinerGunBuilderCalculator
                 return null;
             }
         }
+
         protected static Thing Get_access_down_thing(Thing[,] thing_layout, int from_x, int from_y)
         {
             if (from_y < thing_layout.GetLength(1) - 1)
@@ -827,15 +901,19 @@ namespace MinerGunBuilderCalculator
                         case Thing.Direction.TOP:
                             if (obj.IsAccessFromTOP) return obj;
                             break;
+
                         case Thing.Direction.RIGHT:
                             if (obj.IsAccessFromLEFT) return obj;
                             break;
+
                         case Thing.Direction.DOWN:
                             if (obj.IsAccessFromDOWN) return obj;
                             break;
+
                         case Thing.Direction.LEFT:
                             if (obj.IsAccessFromRIGHT) return obj;
                             break;
+
                         default:
                             throw new NotImplementedException();
                     }
@@ -847,6 +925,7 @@ namespace MinerGunBuilderCalculator
                 return null;
             }
         }
+
         public virtual void CreateProjectileFlow(Thing[,] thing_layout, Thing fromThing = null, Direction? from_direction = null)
         {
             switch (from_direction)
@@ -854,12 +933,15 @@ namespace MinerGunBuilderCalculator
                 case Direction.DOWN:
                     Access_from_abs_down = fromThing;
                     break;
+
                 case Direction.LEFT:
                     Access_from_abs_left = fromThing;
                     break;
+
                 case Direction.TOP:
                     Access_from_abs_top = fromThing;
                     break;
+
                 case Direction.RIGHT:
                     Access_from_abs_right = fromThing;
                     break;
@@ -875,31 +957,34 @@ namespace MinerGunBuilderCalculator
                         if (access_to != null)
                         {
                             Access_to_abs_top = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Direction.DOWN);
+                            access_to.CreateProjectileFlow(thing_layout, this, Direction.DOWN);
                         }
                         break;
+
                     case Thing.Direction.RIGHT:
                         access_to = Get_access_right_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_right = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Direction.LEFT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Direction.LEFT);
                         }
                         break;
+
                     case Thing.Direction.DOWN:
                         access_to = Get_access_down_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_down = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Direction.TOP);
+                            access_to.CreateProjectileFlow(thing_layout, this, Direction.TOP);
                         }
                         break;
+
                     case Thing.Direction.LEFT:
                         access_to = Get_access_left_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_left = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Direction.RIGHT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Direction.RIGHT);
                         }
                         break;
                 }
@@ -916,6 +1001,7 @@ namespace MinerGunBuilderCalculator
                             access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.LEFT);
                         }
                         break;
+
                     case Thing.Direction.RIGHT:
                         access_to = Get_access_down_thing(thing_layout, DX, DY);
                         if (access_to != null)
@@ -924,20 +1010,22 @@ namespace MinerGunBuilderCalculator
                             access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.TOP);
                         }
                         break;
+
                     case Thing.Direction.DOWN:
                         access_to = Get_access_left_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_left = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.RIGHT);
                         }
                         break;
+
                     case Thing.Direction.LEFT:
                         access_to = Get_access_top_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_top = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.DOWN);
                         }
                         break;
                 }
@@ -951,31 +1039,34 @@ namespace MinerGunBuilderCalculator
                         if (access_to != null)
                         {
                             Access_to_abs_down = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.TOP);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.TOP);
                         }
                         break;
+
                     case Thing.Direction.RIGHT:
                         access_to = Get_access_left_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_left = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.RIGHT);
                         }
                         break;
+
                     case Thing.Direction.DOWN:
                         access_to = Get_access_top_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_top = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.DOWN);
                         }
                         break;
+
                     case Thing.Direction.LEFT:
                         access_to = Get_access_right_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_right = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.LEFT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.LEFT);
                         }
                         break;
                 }
@@ -989,36 +1080,38 @@ namespace MinerGunBuilderCalculator
                         if (access_to != null)
                         {
                             Access_to_abs_left = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.RIGHT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.RIGHT);
                         }
                         break;
+
                     case Thing.Direction.RIGHT:
                         access_to = Get_access_top_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_top = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.DOWN);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.DOWN);
                         }
                         break;
+
                     case Thing.Direction.DOWN:
                         access_to = Get_access_right_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_right = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.LEFT);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.LEFT);
                         }
                         break;
+
                     case Thing.Direction.LEFT:
                         access_to = Get_access_down_thing(thing_layout, DX, DY);
                         if (access_to != null)
                         {
                             Access_to_abs_down = access_to;
-                            access_to.CreateProjectileFlow(thing_layout, this,Thing.Direction.TOP);
+                            access_to.CreateProjectileFlow(thing_layout, this, Thing.Direction.TOP);
                         }
                         break;
                 }
             }
         }
-
     }
 }
