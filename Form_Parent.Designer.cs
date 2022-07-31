@@ -35,6 +35,7 @@ namespace MinerGunBuilderCalculator
             this.loadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.importShipMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemWindowToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.windowwToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,7 +62,8 @@ namespace MinerGunBuilderCalculator
             this.newShipToolStripMenuItem1,
             this.loadToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.importShipMenuItem});
             this.newShipToolStripMenuItem.Name = "newShipToolStripMenuItem";
             this.newShipToolStripMenuItem.Size = new System.Drawing.Size(42, 20);
             this.newShipToolStripMenuItem.Text = "Ship";
@@ -93,6 +95,13 @@ namespace MinerGunBuilderCalculator
             this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.saveAsToolStripMenuItem.Text = "Save as";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.SaveAsShipToolStripMenuItem_Click);
+
+            this.importShipMenuItem.Name = "importShipMenuItem";
+            this.importShipMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.importShipMenuItem.Text = "Import Ship";
+            this.importShipMenuItem.Click += new System.EventHandler(this.ImportShipMenuItem_Click);
+
+
             // 
             // aToolStripMenuItem
             // 
@@ -105,7 +114,7 @@ namespace MinerGunBuilderCalculator
             // itemWindowToolStripMenuItem
             // 
             this.itemWindowToolStripMenuItem.Name = "itemWindowToolStripMenuItem";
-            this.itemWindowToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+            this.itemWindowToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
             this.itemWindowToolStripMenuItem.Text = "Item window";
             this.itemWindowToolStripMenuItem.Click += new System.EventHandler(this.NewItemWindowToolStripMenuItem_Click);
             // 
@@ -153,5 +162,6 @@ namespace MinerGunBuilderCalculator
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem importShipMenuItem;
     }
 }
